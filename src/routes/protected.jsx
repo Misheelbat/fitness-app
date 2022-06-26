@@ -1,11 +1,15 @@
 import { Suspense } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 
+import { MainLayout } from 'components/Layout';
+
 const App = () => {
 	return (
-		<Suspense fallback={<div>Spinner</div>}>
-			<Outlet />
-		</Suspense>
+		<MainLayout>
+			<Suspense fallback={<div>Spinner</div>}>
+				<Outlet />
+			</Suspense>
+		</MainLayout>
 	);
 };
 

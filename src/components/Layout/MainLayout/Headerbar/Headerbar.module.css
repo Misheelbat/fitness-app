@@ -1,0 +1,8 @@
+.headerbar {
+	background-color: var(--clr-primary);
+}
+
+.headerbar {
+	min-width: 100%;
+	min-height: 5rem;
+}

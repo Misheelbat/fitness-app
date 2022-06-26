@@ -1,0 +1,14 @@
+/* Typography */
+.mainLayout {
+	background-color: var(--clr-bg);
+	color: #fff;
+}
+/* Layout */
+.mainLayout {
+	width: 100%;
+	height: 100vh;
+	display: flex;
+}
+.rightSide {
+	width: 100%;
+}
