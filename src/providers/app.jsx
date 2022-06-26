@@ -13,7 +13,7 @@ const ErrorFallBack = () => {
 
 export const AppProvider = ({ children }) => {
 	return (
-		<Suspense fallback={<div>Spinnger</div>}>
+		<Suspense fallback={<div>Spinner</div>}>
 			<ErrorBoundary FallbackComponent={ErrorFallBack}>
 				<BrowserRouter>{children}</BrowserRouter>
 			</ErrorBoundary>
