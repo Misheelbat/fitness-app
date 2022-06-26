@@ -1,7 +1,8 @@
-import SearchForm from 'components/Elements/Searchbar/SearchForm';
-import { User } from 'phosphor-react/dist/';
 import { useState } from 'react';
+import { User } from 'phosphor-react/dist/';
 import { Link } from 'react-router-dom';
+
+import SearchForm from 'components/Elements/Searchbar/SearchForm';
 
 import styles from './Headerbar.module.css';
 
@@ -28,7 +29,7 @@ const UserNav = () => {
 		<div className={styles.userNav}>
 			<div>
 				<button aria-label="open user menu" onClick={() => setOpen(!open)}>
-					<User size="40" />
+					<User size="4" />
 				</button>
 			</div>
 			<div className={styles.userNavItems}>
