@@ -1,0 +1,18 @@
+.searchForm {
+	position: relative;
+}
+.searchForm input {
+	color: #fff;
+	font-size: 0.9em;
+	width: 250px;
+	border: 0;
+	border-radius: 0.4em;
+	padding: 0.8em 2em;
+	background-color: var(--clr-secondary);
+}
+.searchForm svg {
+	position: absolute;
+	top: 50%;
+	left: 0.5em;
+	transform: translateY(-50%);
+}
