@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
-import { Button } from 'components/Elements/Button/Button';
-import { BUTTON_TYPES } from 'components/Elements/Button/Button';
+import { Button } from 'components/Elements';
+import { BUTTON_TYPES } from 'components/Elements';
 
 import styles from './RegisterForm.module.css';
 export const RegisterForm = () => {

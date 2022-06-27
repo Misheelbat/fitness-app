@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { User } from 'phosphor-react/dist/';
 import { Link } from 'react-router-dom';
 
-import SearchForm from 'components/Elements/Searchbar/SearchForm';
+import { SearchForm } from 'components/Elements';
 
 import styles from './Headerbar.module.css';
 

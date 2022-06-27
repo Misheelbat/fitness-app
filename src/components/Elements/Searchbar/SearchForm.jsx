@@ -3,7 +3,7 @@ import { MagnifyingGlass } from 'phosphor-react/dist/';
 
 import styles from './SearchForm.module.css';
 
-export default function SearchForm() {
+export const SearchForm = () => {
 	const [term, setTerm] = useState('');
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -26,4 +26,4 @@ export default function SearchForm() {
 			</form>
 		</div>
 	);
-}
+};

@@ -1,8 +1,6 @@
 import { Link } from 'react-router-dom';
-
-import { Spinner } from 'components/Elements/Spinner/Spinner';
-import { Button } from 'components/Elements/Button/Button';
-import { BUTTON_TYPES } from 'components/Elements/Button/Button';
+import { Button } from 'components/Elements';
+import { BUTTON_TYPES } from 'components/Elements';
 
 import styles from './LoginForm.module.css';
 export const LoginForm = () => {
