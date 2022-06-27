@@ -29,7 +29,7 @@ const UserNav = () => {
 		<div className={styles.userNav}>
 			<div>
 				<button aria-label="open user menu" onClick={() => setOpen(!open)}>
-					<User size="4" />
+					<User size="35" />
 				</button>
 			</div>
 			<div className={styles.userNavItems}>
