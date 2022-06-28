@@ -22,7 +22,7 @@ export const LoginForm = () => {
 		const { name, value } = e.target;
 		setFormFields({ ...formFields, [name]: value });
 	};
-	
+
 	const loginWithGoogle = async () => {
 		await signWithGooglePopup();
 	};
@@ -57,7 +57,11 @@ export const LoginForm = () => {
 			</label>
 			<div className={styles.btnGroup}>
 				<Button type="submit">Log in</Button>
-				<Button onClick={loginWithGoogle} buttonType={BUTTON_TYPES.google}>
+				<Button
+					type="button"
+					onClick={loginWithGoogle}
+					buttonType={BUTTON_TYPES.google}
+				>
 					Login with Google
 				</Button>
 			</div>
