@@ -2,10 +2,11 @@
 	display: grid;
 	place-content: center;
 	background-color: var(--clr-bg);
-	height: 100vh;
+	min-height: 100vh;
 	color: #fff;
 }
 .authLayoutContainer {
+	margin: 3rem;
 	min-width: 300px;
 	max-width: 500px;
 	width: 40vw;

@@ -1,7 +1,8 @@
 .buttonContainer {
 	cursor: pointer;
+	white-space: nowrap;
 	font-size: 1.2em;
-	min-width: 100px;
+	min-width: max-content;
 	width: 100%;
 	height: 44px;
 	padding: 10px 20px;
