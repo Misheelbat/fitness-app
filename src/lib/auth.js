@@ -1,10 +1,10 @@
 import { initReactQueryAuth } from 'react-query-auth';
 import { updateProfile } from 'firebase/auth';
 
-import { signoutUser, createUserFromAuth, signWithGooglePopup } from 'utils';
+import { signoutUser, createUserFromAuth } from 'utils';
 import {
 	loginAuthUserWithEmailAndPassword,
-	createAuthUserWithEmailAndPassword,
+	registerWithEmailAndPassword,
 } from 'features/auth';
 
 import { Spinner } from 'components/Elements';
@@ -26,7 +26,7 @@ async function loginFn(data) {
 
 async function registerFn(data) {
 	const { email, password, displayName } = data;
-	const response = await createAuthUserWithEmailAndPassword({
+	const response = await registerWithEmailAndPassword({
 		email,
 		password,
 	});

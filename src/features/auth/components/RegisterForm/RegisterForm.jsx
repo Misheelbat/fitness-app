@@ -1,12 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import {
-	signWithGooglePopup,
-	createUserFromAuth,
-	// createAuthUserWithEmailAndPassword,
-} from 'utils';
-
+import { signWithGooglePopup } from 'utils';
+import { registerWithEmailAndPassword } from 'features/auth/api/register';
 
 import { Button } from 'components/Elements';
 import { BUTTON_TYPES } from 'components/Elements';
@@ -26,13 +22,12 @@ export const RegisterForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+		await registerWithEmailAndPassword(formFields);
 		setFormFields(defaultFormFields);
 	};
 
-	const registerGoogleUser = async (e) => {
-		const { user } = await signWithGooglePopup();
-		await createUserFromAuth(user);
+	const registerGoogleUser = async () => {
+		await signWithGooglePopup();
 	};
 
 	const handleFormInput = (e) => {
