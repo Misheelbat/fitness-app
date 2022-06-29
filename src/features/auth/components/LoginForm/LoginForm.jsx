@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { useAuth } from 'features/auth';
 import { Button } from 'components/Elements';
-import { useAuth } from 'lib';
 
 import styles from './LoginForm.module.css';
 
@@ -12,8 +12,10 @@ const defaultFormFields = {
 };
 
 export const LoginForm = ({ onSuccess }) => {
-	const { login, isLoggingIn } = useAuth();
+	const { login } = useAuth();
 	const [formFields, setFormFields] = useState(defaultFormFields);
+	const [error, setError] = useState('');
+	const [isLoading, setIsLoading] = useState('');
 	const { email, password } = formFields;
 
 	const handleFormInput = (e) => {
@@ -23,16 +25,28 @@ export const LoginForm = ({ onSuccess }) => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await login(formFields);
-		setFormFields(defaultFormFields);
-		onSuccess();
+		try {
+			setError('');
+			setIsLoading(true);
+
+			await login(formFields);
+
+			onSuccess();
+		} catch (error) {
+			console.log(error);
+			setError(error.message);
+		}
+
+		setIsLoading(false);
 	};
 
 	return (
 		<form onSubmit={handleSubmit} className={styles.loginForm}>
+			{error && <span>{error}</span>}
 			<label htmlFor="email">
 				<span>Email Address</span>
 				<input
+					required
 					onChange={handleFormInput}
 					value={email}
 					type="email"
@@ -43,6 +57,7 @@ export const LoginForm = ({ onSuccess }) => {
 			<label htmlFor="password">
 				<span>Password</span>
 				<input
+					required
 					onChange={handleFormInput}
 					value={password}
 					type="password"
@@ -51,7 +66,7 @@ export const LoginForm = ({ onSuccess }) => {
 				/>
 			</label>
 			<div className={styles.btnGroup}>
-				<Button type="submit" isLoading={isLoggingIn}>
+				<Button isLoading={isLoading} type="submit">
 					Log in
 				</Button>
 			</div>

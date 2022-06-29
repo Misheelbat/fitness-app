@@ -1,6 +1,6 @@
 import { initReactQueryAuth } from 'react-query-auth';
 
-import { signoutUser, onAuthStateListener } from 'utils';
+import { signoutUser } from 'utils';
 import {
 	loginAuthUserWithEmailAndPassword,
 	registerWithEmailAndPassword,
@@ -51,4 +51,4 @@ const authConfig = {
 	},
 };
 
-export const { AuthProvider, useAuth } = initReactQueryAuth(authConfig);
+// export const { AuthProvider, useAuth } = initReactQueryAuth(authConfig);

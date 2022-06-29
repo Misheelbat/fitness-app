@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { User } from 'phosphor-react/dist/';
 import { Link } from 'react-router-dom';
 
+import { useAuth } from 'features/auth';
 import { SearchForm } from 'components/Elements';
 
 import styles from './Headerbar.module.css';
-import { useAuth } from 'lib';
 
 const UserNav = () => {
-	const { user, logout } = useAuth();
+	const { currentUser, logOut } = useAuth();
 	const [open, setOpen] = useState(false);
 	const userNavItems = [
 		{
@@ -23,25 +23,27 @@ const UserNav = () => {
 			to: '',
 			onClick: () => {
 				setOpen(false);
-				logout();
+				logOut();
 			},
 		},
 	];
 	return (
 		<div className={styles.userNav}>
+			{currentUser && <span>{currentUser.displayName}</span>}
 			<div>
-				{user && <div>{user.displayName}</div>}
-				<button aria-label="open user menu" onClick={() => setOpen(!open)}>
-					<User size="35" />
-				</button>
-			</div>
-			<div className={styles.userNavItems}>
-				{open &&
-					userNavItems.map((item) => (
-						<Link key={item.name} to={item.to} onClick={item.onClick}>
-							{item.name}
-						</Link>
-					))}
+				<div>
+					<button aria-label="open user menu" onClick={() => setOpen(!open)}>
+						<User size="35" />
+					</button>
+				</div>
+				<div className={styles.userNavItems}>
+					{open &&
+						userNavItems.map((item) => (
+							<Link key={item.name} to={item.to} onClick={item.onClick}>
+								{item.name}
+							</Link>
+						))}
+				</div>
 			</div>
 		</div>
 	);

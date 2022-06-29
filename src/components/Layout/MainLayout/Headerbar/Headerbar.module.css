@@ -15,6 +15,9 @@
 .userNav {
 	position: relative;
 	margin-left: auto;
+	display: flex;
+	align-items: center;
+	gap: 2em;
 }
 .userNav button {
 	padding: 0;

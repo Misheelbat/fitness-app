@@ -9,8 +9,7 @@ export const registerWithEmailAndPassword = async ({
 }) => {
 	if (!email || !password) return;
 	if (password !== confirmPassword) {
-		alert('password must be identical');
-		return;
+		throw new Error('Passwords do not match');
 	}
 	const res = await createUserWithEmailAndPassword(auth, email, password);
 

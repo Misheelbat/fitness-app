@@ -2,11 +2,9 @@ import { Suspense } from 'react';
 import { ErrorBoundary } from 'react-error-boundary';
 import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
-import { QueryClientProvider } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 
-import { queryClient } from 'lib/react-query';
-import { AuthProvider } from 'lib';
+import { AuthProvider } from 'features/auth';
+
 const ErrorFallBack = () => {
 	return (
 		<div>
@@ -21,12 +19,9 @@ export const AppProvider = ({ children }) => {
 		<Suspense fallback={<div>Spinner</div>}>
 			<ErrorBoundary FallbackComponent={ErrorFallBack}>
 				<HelmetProvider>
-					<QueryClientProvider client={queryClient}>
-						<ReactQueryDevtools />
-						<AuthProvider>
-							<BrowserRouter>{children}</BrowserRouter>
-						</AuthProvider>
-					</QueryClientProvider>
+					<AuthProvider>
+						<BrowserRouter>{children}</BrowserRouter>
+					</AuthProvider>
 				</HelmetProvider>
 			</ErrorBoundary>
 		</Suspense>

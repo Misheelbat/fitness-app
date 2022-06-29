@@ -7,8 +7,6 @@ import {
 	onAuthStateChanged,
 } from 'firebase/auth';
 
-// import { getFirestore } from 'firebase/firestore';
-// Firebase configuration
 const firebaseConfig = {
 	apiKey: 'AIzaSyBVDqbPR5BnRj_vRnFybI-FLRKYP6-WuZI',
 	authDomain: 'fitness-app-31114.firebaseapp.com',
@@ -17,7 +15,7 @@ const firebaseConfig = {
 	messagingSenderId: '396836325331',
 	appId: '1:396836325331:web:fac3bde758e86f9d9a1126',
 };
-// Initialize Firebase
+
 const firebaseApp = initializeApp(firebaseConfig);
 
 // Initialize Firebase Database

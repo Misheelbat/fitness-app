@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Button } from 'components/Elements';
-import { useAuth } from 'lib';
+import { useAuth } from 'features/auth';
 
 import styles from './RegisterForm.module.css';
 
@@ -14,14 +14,24 @@ const defaultFormFields = {
 };
 
 export const RegisterForm = ({ onSuccess }) => {
-	const { register, isRegistering } = useAuth();
+	const { register } = useAuth();
 	const [formFields, setFormFields] = useState(defaultFormFields);
+	const [error, setError] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 	const { displayName, email, password, confirmPassword } = formFields;
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await register(formFields);
-		onSuccess();
+		try {
+			setError('');
+			setIsLoading(true);
+			await register(formFields);
+			onSuccess();
+		} catch (error) {
+			console.log(error);
+			setError(error.message);
+		}
+		setIsLoading(false);
 	};
 
 	const handleFormInput = (e) => {
@@ -30,6 +40,7 @@ export const RegisterForm = ({ onSuccess }) => {
 	};
 	return (
 		<form onSubmit={handleSubmit} className={styles.registerForm}>
+			{error && <span>{error}</span>}
 			<label htmlFor="displayName">
 				<span>Display Name</span>
 				<input
@@ -38,7 +49,7 @@ export const RegisterForm = ({ onSuccess }) => {
 					onChange={handleFormInput}
 					type="text"
 					name="displayName"
-					placeholder="Enter your Name"
+					placeholder="Enter Name"
 				/>
 			</label>
 			<label htmlFor="email">
@@ -49,7 +60,7 @@ export const RegisterForm = ({ onSuccess }) => {
 					onChange={handleFormInput}
 					type="email"
 					name="email"
-					placeholder="Enter your Email"
+					placeholder="Enter Email"
 				/>
 			</label>
 			<label htmlFor="password">
@@ -60,7 +71,7 @@ export const RegisterForm = ({ onSuccess }) => {
 					onChange={handleFormInput}
 					type="password"
 					name="password"
-					placeholder="Enter your Password"
+					placeholder="Enter Password"
 				/>
 			</label>
 			<label htmlFor="confirmPassword">
@@ -71,11 +82,11 @@ export const RegisterForm = ({ onSuccess }) => {
 					onChange={handleFormInput}
 					type="password"
 					name="confirmPassword"
-					placeholder="confirm Passowrd"
+					placeholder="confirm Password"
 				/>
 			</label>
 			<div className={styles.btnGroup}>
-				<Button isLoading={isRegistering} type="submit">
+				<Button isLoading={isLoading} type="submit">
 					Register
 				</Button>
 			</div>
