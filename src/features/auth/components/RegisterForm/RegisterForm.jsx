@@ -1,11 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { signWithGooglePopup } from 'utils';
-import { registerWithEmailAndPassword } from 'features/auth/api/register';
-
 import { Button } from 'components/Elements';
-import { BUTTON_TYPES } from 'components/Elements';
+import { useAuth } from 'lib';
 
 import styles from './RegisterForm.module.css';
 
@@ -16,18 +13,15 @@ const defaultFormFields = {
 	confirmPassword: '',
 };
 
-export const RegisterForm = () => {
+export const RegisterForm = ({ onSuccess }) => {
+	const { register, isRegistering } = useAuth();
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { displayName, email, password, confirmPassword } = formFields;
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		await registerWithEmailAndPassword(formFields);
-		setFormFields(defaultFormFields);
-	};
-
-	const registerGoogleUser = async () => {
-		await signWithGooglePopup();
+		await register(formFields);
+		onSuccess();
 	};
 
 	const handleFormInput = (e) => {
@@ -81,9 +75,8 @@ export const RegisterForm = () => {
 				/>
 			</label>
 			<div className={styles.btnGroup}>
-				<Button type="submit">Register</Button>
-				<Button onClick={registerGoogleUser} buttonType={BUTTON_TYPES.google}>
-					Register with Google
+				<Button isLoading={isRegistering} type="submit">
+					Register
 				</Button>
 			</div>
 			<div className={styles.register}>

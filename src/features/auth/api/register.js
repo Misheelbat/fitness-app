@@ -1,7 +1,8 @@
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from 'utils';
 
 export const registerWithEmailAndPassword = async ({
+	displayName,
 	email,
 	password,
 	confirmPassword,
@@ -11,5 +12,8 @@ export const registerWithEmailAndPassword = async ({
 		alert('password must be identical');
 		return;
 	}
-	return await createUserWithEmailAndPassword(auth, email, password);
+	const res = await createUserWithEmailAndPassword(auth, email, password);
+
+	await updateProfile(res.user, { displayName });
+	return res;
 };

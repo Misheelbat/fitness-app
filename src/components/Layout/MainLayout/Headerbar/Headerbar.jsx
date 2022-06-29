@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import { SearchForm } from 'components/Elements';
 
 import styles from './Headerbar.module.css';
+import { useAuth } from 'lib';
 
 const UserNav = () => {
+	const { user, logout } = useAuth();
 	const [open, setOpen] = useState(false);
 	const userNavItems = [
 		{
@@ -20,14 +22,15 @@ const UserNav = () => {
 			name: 'Signout',
 			to: '',
 			onClick: () => {
-				console.log('user logged out');
 				setOpen(false);
+				logout();
 			},
 		},
 	];
 	return (
 		<div className={styles.userNav}>
 			<div>
+				{user && <div>{user.displayName}</div>}
 				<button aria-label="open user menu" onClick={() => setOpen(!open)}>
 					<User size="35" />
 				</button>

@@ -1,7 +1,13 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import { Head } from 'components/Head';
 
 export const Landing = () => {
-	return <div>Landing</div>;
+	return (
+		<>
+			<Head />
+			<div>Landing</div>
+			<Link to="/auth/login">login</Link>
+		</>
+	);
 };
