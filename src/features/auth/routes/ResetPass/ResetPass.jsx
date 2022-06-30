@@ -10,5 +10,3 @@ export const ResetPass = () => {
 		</Layout>
 	);
 };
-
-export default ResetPass;

@@ -1,0 +1,16 @@
+.contentLayout {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	padding-inline: 2rem;
+}
+.contentLayoutHeader {
+	min-height: 6rem;
+	display: flex;
+	align-items: center;
+}
+.contentLayoutContent {
+	flex-grow: 1;
+	border-radius: 1rem 1rem 0 0;
+	background-color: var(--clr-primary);
+}
