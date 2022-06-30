@@ -3,7 +3,7 @@
 	white-space: nowrap;
 	font-size: 1.2em;
 	min-width: max-content;
-	width: 100%;
+
 	height: 44px;
 	padding: 10px 20px;
 	border: 0;
@@ -17,10 +17,13 @@
 	color: var(--clr-grey);
 	background-color: var(--clr-dark-blue);
 }
-.google-sign {
+.max-width {
+	width: 100%;
+}
+.inverted {
 	background: #6e41e2;
 }
-.google-sign:hover,
-.google-sign:active {
+.inverted:hover,
+.inverted:active {
 	background: #5629c7;
 }

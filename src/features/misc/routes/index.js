@@ -1,1 +1,1 @@
-export * from './Landing-Page';
+export * from './Landing-Page/Landing';

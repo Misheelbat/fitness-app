@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import { useAuth } from 'features/auth';
 import { Button } from 'components/Elements';
+import { BUTTON_TYPES } from 'components/Elements';
+import { tranformErrMSg } from 'utils';
 
 import styles from './LoginForm.module.css';
 
@@ -28,13 +30,10 @@ export const LoginForm = ({ onSuccess }) => {
 		try {
 			setError('');
 			setIsLoading(true);
-
 			await login(formFields);
-
 			onSuccess();
 		} catch (error) {
-			console.log(error);
-			setError(error.message);
+			setError(tranformErrMSg(error.message));
 		}
 
 		setIsLoading(false);
@@ -66,7 +65,11 @@ export const LoginForm = ({ onSuccess }) => {
 				/>
 			</label>
 			<div className={styles.btnGroup}>
-				<Button isLoading={isLoading} type="submit">
+				<Button
+					isLoading={isLoading}
+					type="submit"
+					buttonType={BUTTON_TYPES.max}
+				>
 					Log in
 				</Button>
 			</div>

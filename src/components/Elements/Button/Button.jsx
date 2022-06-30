@@ -5,7 +5,7 @@ import { Spinner } from '../Spinner/Spinner';
 import styles from './Button.module.css';
 
 export const BUTTON_TYPES = {
-	google: 'google-sign',
+	max: 'max-width',
 	inverted: 'inverted',
 };
 export const Button = ({ children, buttonType, isLoading, ...otherProps }) => {

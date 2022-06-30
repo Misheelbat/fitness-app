@@ -7,7 +7,7 @@ import {
 import { onAuthStateListener } from 'utils';
 import { signoutUser } from 'utils';
 
-import { Spinner } from 'components/Elements';
+import { PageSpinner } from 'components/Elements';
 
 const AuthContext = createContext();
 
@@ -38,10 +38,8 @@ export const AuthProvider = ({ children }) => {
 				const { displayName, email } = user;
 				setCurrentUser({ displayName, email });
 				setIsLoading(true);
-			} else {
-				setCurrentUser(null);
-				setIsLoading(true);
 			}
+			setIsLoading(true);
 		});
 
 		return unsub;
@@ -49,6 +47,7 @@ export const AuthProvider = ({ children }) => {
 
 	const value = {
 		currentUser,
+		setCurrentUser,
 		register,
 		login,
 		logOut,
@@ -56,15 +55,7 @@ export const AuthProvider = ({ children }) => {
 
 	return (
 		<AuthContext.Provider value={value}>
-			{isLoading ? (
-				children
-			) : (
-				<div
-					style={{ display: 'grid', placeContent: 'center', height: '100vh' }}
-				>
-					<Spinner size="80" />
-				</div>
-			)}
+			{isLoading ? children : <PageSpinner />}
 		</AuthContext.Provider>
 	);
 };

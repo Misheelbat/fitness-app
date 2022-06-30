@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Button } from 'components/Elements';
+import { BUTTON_TYPES } from 'components/Elements';
 import { useAuth } from 'features/auth';
 
 import styles from './RegisterForm.module.css';
@@ -14,7 +15,7 @@ const defaultFormFields = {
 };
 
 export const RegisterForm = ({ onSuccess }) => {
-	const { register } = useAuth();
+	const { register, setCurrentUser } = useAuth();
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const [error, setError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +27,7 @@ export const RegisterForm = ({ onSuccess }) => {
 			setError('');
 			setIsLoading(true);
 			await register(formFields);
+			setCurrentUser({ displayName, email });
 			onSuccess();
 		} catch (error) {
 			console.log(error);
@@ -86,7 +88,11 @@ export const RegisterForm = ({ onSuccess }) => {
 				/>
 			</label>
 			<div className={styles.btnGroup}>
-				<Button isLoading={isLoading} type="submit">
+				<Button
+					isLoading={isLoading}
+					type="submit"
+					buttonType={BUTTON_TYPES.max}
+				>
 					Register
 				</Button>
 			</div>

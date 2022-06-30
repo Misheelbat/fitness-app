@@ -11,8 +11,8 @@ export const registerWithEmailAndPassword = async ({
 	if (password !== confirmPassword) {
 		throw new Error('Passwords do not match');
 	}
-	const res = await createUserWithEmailAndPassword(auth, email, password);
-
-	await updateProfile(res.user, { displayName });
-	return res;
+	const { user } = await createUserWithEmailAndPassword(auth, email, password);
+	await updateProfile(user, { displayName });
+	await user.reload();
+	return;
 };
