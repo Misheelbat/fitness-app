@@ -4,8 +4,7 @@ import {
 	registerWithEmailAndPassword,
 	loginAuthUserWithEmailAndPassword,
 } from '../api';
-import { onAuthStateListener } from 'utils';
-import { signoutUser } from 'utils';
+import { onAuthStateListener, signoutUser, resetPassWithEmail } from 'utils';
 
 import { PageSpinner } from 'components/Elements';
 
@@ -32,6 +31,10 @@ export const AuthProvider = ({ children }) => {
 		window.location.assign(window.location.origin);
 	};
 
+	const resetPassword = (email) => {
+		return resetPassWithEmail(email);
+	};
+
 	useEffect(() => {
 		const unsub = onAuthStateListener((user) => {
 			if (user) {
@@ -47,6 +50,7 @@ export const AuthProvider = ({ children }) => {
 
 	const value = {
 		currentUser,
+		resetPassword,
 		setCurrentUser,
 		register,
 		login,

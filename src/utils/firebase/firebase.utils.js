@@ -5,6 +5,7 @@ import {
 	GoogleAuthProvider,
 	signOut,
 	onAuthStateChanged,
+	sendPasswordResetEmail,
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -33,3 +34,6 @@ export const signoutUser = () => signOut(auth);
 
 export const onAuthStateListener = (callback) =>
 	onAuthStateChanged(auth, callback);
+
+export const resetPassWithEmail = (email) =>
+	sendPasswordResetEmail(auth, email);

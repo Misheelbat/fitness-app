@@ -6,23 +6,16 @@ import { Button } from 'components/Elements';
 import { BUTTON_TYPES } from 'components/Elements';
 import { tranformErrMSg } from 'utils';
 
-import styles from './LoginForm.module.css';
+import styles from './ForgotPassForm.module.css';
 
-const defaultFormFields = {
-	email: '',
-	password: '',
-};
-
-export const LoginForm = ({ onSuccess }) => {
-	const { login } = useAuth();
-	const [formFields, setFormFields] = useState(defaultFormFields);
+export const ForgotPassForm = ({ onSuccess }) => {
+	const { resetPassword } = useAuth();
+	const [email, setEmail] = useState('');
 	const [error, setError] = useState('');
 	const [isLoading, setIsLoading] = useState('');
-	const { email, password } = formFields;
 
 	const handleFormInput = (e) => {
-		const { name, value } = e.target;
-		setFormFields({ ...formFields, [name]: value });
+		setEmail(e.target.value);
 	};
 
 	const handleSubmit = async (e) => {
@@ -30,8 +23,8 @@ export const LoginForm = ({ onSuccess }) => {
 		try {
 			setError('');
 			setIsLoading(true);
-			await login(formFields);
-			onSuccess();
+			await resetPassword(email);
+			// onSuccess();
 		} catch (error) {
 			setError(tranformErrMSg(error.message));
 		}
@@ -53,27 +46,15 @@ export const LoginForm = ({ onSuccess }) => {
 					placeholder="Enter your Email"
 				/>
 			</label>
-			<label htmlFor="password">
-				<span>Password</span>
-				<input
-					required
-					onChange={handleFormInput}
-					value={password}
-					type="password"
-					name="password"
-					placeholder="Enter your Password"
-				/>
-			</label>
 			<div className={styles.btnGroup}>
 				<Button isLoading={isLoading} buttonType={BUTTON_TYPES.max}>
-					Log in
+					Reset Password
 				</Button>
 			</div>
-			<div className={styles.register}>
-				<div>
-					<span>Forgot password? </span>
-					<Link to="../forgotPassword">Reset</Link>
-				</div>
+			<Link className={styles.backBtn} to="../login">
+				Login
+			</Link>
+			<div className={styles.register}>		
 				<div>
 					<span>Not registered yet? </span>
 					<Link to="../register">Register</Link>
@@ -82,4 +63,3 @@ export const LoginForm = ({ onSuccess }) => {
 		</form>
 	);
 };
-// <Button buttonType={BUTTON_TYPES.max}>Forgot Password</Button>;

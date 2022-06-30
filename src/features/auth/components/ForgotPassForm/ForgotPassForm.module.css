@@ -8,7 +8,7 @@
 	display: block;
 	font-size: 0.9em;
 	text-align: start;
-	padding-bottom: 0.3em;
+	padding-bottom: 0.7em;
 	color: rgba(250, 250, 250, 0.8);
 	font-weight: 400;
 }
@@ -25,11 +25,27 @@
 .loginForm label input::placeholder {
 	font-size: 0.7em;
 }
-.btnGroup {
-	display: flex;
-	gap: 1rem;
+
+.backBtn:hover,
+.backBtn:focus {
+	color: var(--clr-purple);
+	background-color: var(--clr-grey);
+}
+.backBtn {
+	display: grid;
+	place-content: center;
+	margin-top: 0.6em;
+	height: 44px;
+	padding: 0;
+	border-radius: 4px;
+	color: var(--clr-blue);
+	background-color: #fff;
+	font-size: 1.2em;
+	text-align: center;
+	transition: background 100ms ease-out;
 }
 .register {
+	padding-top: 1em;
 	color: var(--clr-grey);
 	letter-spacing: 0.5px;
 }
