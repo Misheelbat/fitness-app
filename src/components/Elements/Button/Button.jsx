@@ -11,6 +11,7 @@ export const BUTTON_TYPES = {
 export const Button = ({ children, buttonType, isLoading, ...otherProps }) => {
 	return (
 		<button
+			disabled={isLoading}
 			className={cx(styles.buttonContainer, styles[buttonType])}
 			{...otherProps}
 		>

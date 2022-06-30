@@ -17,7 +17,7 @@ export const LoginForm = ({ onSuccess }) => {
 	const { login } = useAuth();
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const [error, setError] = useState('');
-	const [isLoading, setIsLoading] = useState('');
+	const [isLoading, setIsLoading] = useState(false);
 	const { email, password } = formFields;
 
 	const handleFormInput = (e) => {
@@ -82,4 +82,3 @@ export const LoginForm = ({ onSuccess }) => {
 		</form>
 	);
 };
-// <Button buttonType={BUTTON_TYPES.max}>Forgot Password</Button>;

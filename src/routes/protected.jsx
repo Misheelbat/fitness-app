@@ -4,6 +4,7 @@ import { Outlet, Navigate } from 'react-router-dom';
 import { PageSpinner } from 'components/Elements';
 import { MainLayout } from 'components/Layout';
 import { UserRoutes } from 'features/users';
+
 const App = () => {
 	return (
 		<MainLayout>

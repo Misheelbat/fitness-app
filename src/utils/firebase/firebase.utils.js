@@ -6,6 +6,9 @@ import {
 	signOut,
 	onAuthStateChanged,
 	sendPasswordResetEmail,
+	updateEmail,
+	updatePassword,
+	updateProfile,
 } from 'firebase/auth';
 
 const firebaseConfig = {

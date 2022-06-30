@@ -1,0 +1,64 @@
+.loginForm {
+	padding: 2em;
+}
+.loginForm h3 {
+	font-weight: 400;
+}
+.loginForm label {
+	max-width: 50%;
+	display: block;
+}
+.loginForm > * + * {
+	padding-top: 1.5rem;
+}
+.loginForm label span {
+	display: block;
+	font-size: 0.9em;
+	text-align: start;
+	color: rgba(250, 250, 250, 0.8);
+	font-weight: 400;
+}
+.loginForm label > * {
+	padding-bottom: 0.3em;
+}
+.loginForm label input {
+	display: block;
+	color: white;
+	width: 100%;
+	font-size: 1em;
+	padding: 0.6em 2em;
+	border: 0;
+	border-radius: 0.5em;
+	background-color: var(--clr-secondary);
+	border: 2px solid rgba(250, 250, 250, 0.05);
+}
+.loginForm label input::placeholder {
+	font-size: 0.7em;
+}
+.btnGroup {
+	display: flex;
+	align-items: center;
+}
+.btnGroup button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.8em 3em;
+	letter-spacing: 0.5px;
+}
+.register {
+	color: #fff;
+	letter-spacing: 0.5px;
+}
+.register span {
+	font-size: 0.9em;
+}
+.register a {
+	display: inline-block;
+	padding: 0.8em 3em;
+}
+.register a:hover,
+.register a:focus {
+	color: var(--clr-purple);
+	text-decoration: underline;
+}

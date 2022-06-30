@@ -30,7 +30,6 @@ export const RegisterForm = ({ onSuccess }) => {
 			setCurrentUser({ displayName, email });
 			onSuccess();
 		} catch (error) {
-			console.log(error);
 			setError(error.message);
 		}
 		setIsLoading(false);

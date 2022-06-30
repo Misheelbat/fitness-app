@@ -1,0 +1,39 @@
+.profile {
+	padding: 2rem;
+}
+.profile h3 {
+	font-weight: 400;
+	padding-bottom: 1.5em;
+}
+.entry {
+	margin-bottom: 2em;
+}
+.entry dt {
+	padding-bottom: 0.5em;
+	color: var(--clr-grey);
+}
+.entry dd {
+	min-height: 40px;
+	margin: 0;
+	padding: 0.5em;
+	background-color: var(--clr-secondary);
+	min-width: max-content;
+	max-width: 50%;
+	border-radius: 0.5em;
+}
+.updateProfile {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 1em;
+	width: max-content;
+	background-color: var(--clr-blue);
+	border-radius: 4px;
+	padding: 0.8em 3em;
+}
+
+.updateProfile:active,
+.updateProfile:hover {
+	color: var(--clr-grey);
+	background-color: var(--clr-dark-blue);
+}

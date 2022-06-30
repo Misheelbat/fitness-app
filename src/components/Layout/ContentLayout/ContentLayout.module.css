@@ -8,6 +8,11 @@
 	min-height: 6rem;
 	display: flex;
 	align-items: center;
+	font-weight: 400;
+}
+.contentLayoutHeader h1 {
+	font-weight: 400;
+	letter-spacing: 1px;
 }
 .contentLayoutContent {
 	flex-grow: 1;

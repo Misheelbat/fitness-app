@@ -5,6 +5,11 @@ import {
 	loginAuthUserWithEmailAndPassword,
 } from '../api';
 import { onAuthStateListener, signoutUser, resetPassWithEmail } from 'utils';
+// import {
+// 	updateUserEmail,
+// 	updateUserDisplayName,
+// 	updateUserPassword,
+// } from 'features/users';
 
 import { PageSpinner } from 'components/Elements';
 
@@ -35,6 +40,18 @@ export const AuthProvider = ({ children }) => {
 		return resetPassWithEmail(email);
 	};
 
+	// const updateEmail = (email) => {
+	// 	return updateUserEmail(email);
+	// };
+
+	// const updatePassword = (password) => {
+	// 	return updateUserPassword(password);
+	// };
+
+	// const updateDisplayName = (displayName) => {
+	// 	return updateUserDisplayName(displayName);
+	// };
+
 	useEffect(() => {
 		const unsub = onAuthStateListener((user) => {
 			if (user) {
@@ -55,6 +72,9 @@ export const AuthProvider = ({ children }) => {
 		register,
 		login,
 		logOut,
+		// updateEmail,
+		// updateDisplayName,
+		// updatePassword,
 	};
 
 	return (
