@@ -6,11 +6,11 @@ export const useUpdate = () => {
 	const [isError, setIsError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 
-	const update = async (callback, data) => {
+	const update = async (callback, ...args) => {
 		try {
 			setIsError('');
 			setIsLoading(true);
-			await callback(data);
+			await callback(...args);
 			await auth.currentUser.reload();
 		} catch (error) {
 			console.log('err', error.message);

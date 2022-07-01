@@ -8,7 +8,7 @@ import styles from './Profile.module.css';
 
 const Entry = ({ label, value }) => {
 	return (
-		<div div className={styles.entry}>
+		<div className={styles.entry}>
 			<dt>{label}</dt>
 			<dd>{value}</dd>
 		</div>

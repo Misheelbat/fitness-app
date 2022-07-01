@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from 'components/Elements';
 import styles from './InputForm.module.css';
 
-export const InputForm = ({
-	name,
-	value,
-	type = 'text',
-	title,
-	onClick,
-	isLoading,
-	handleClick,
-	...otherProps
-}) => {
+export const InputForm = ({ isLoading, handleClick, ...otherProps }) => {
+	const [term, setTerm] = useState('');
+
+	const handleSubmit = async () => {
+		await handleClick(term);
+	};
 	return (
-		<form className={styles.inputForm}>
-			<label htmlFor={name}>{title}</label>
-			<input type={type} name={name} {...otherProps} />
+		<div className={styles.inputForm}>
+			<input
+				value={term}
+				onChange={(e) => setTerm(e.target.value)}
+				type="password"
+				{...otherProps}
+			/>
 			<Button onClick={handleClick} isLoading={isLoading}>
-				Update
+				Confirm
 			</Button>
-		</form>
+		</div>
 	);
 };
