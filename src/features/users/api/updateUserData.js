@@ -8,11 +8,8 @@ export const updateUserEmail = (email) => {
 	return updateEmail(auth.currentUser, email);
 };
 
-export const updateUserPassword = (password, confirmPassword) => {
-	if (password !== confirmPassword) {
-		throw new Error('Passwords do not match');
-	}
-	return updatePassword(auth.currentUser, password);
+export const updateUserPassword = (pass) => {
+	return updatePassword(auth.currentUser, pass);
 };
 
 export const updateUserDisplayName = (name) => {
