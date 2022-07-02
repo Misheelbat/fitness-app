@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
-import { Button } from 'components/Elements';
-import { BUTTON_TYPES } from 'components/Elements';
 import { useAuth } from 'features/auth';
+import { Button, BUTTON_TYPES } from 'components/Elements';
+import { transformErrMSg } from 'utils';
 
 import styles from './RegisterForm.module.css';
 
@@ -17,20 +18,19 @@ const defaultFormFields = {
 export const RegisterForm = ({ onSuccess }) => {
 	const { register, setCurrentUser } = useAuth();
 	const [formFields, setFormFields] = useState(defaultFormFields);
-	const [error, setError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const { displayName, email, password, confirmPassword } = formFields;
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			setError('');
 			setIsLoading(true);
 			await register(formFields);
 			setCurrentUser({ displayName, email });
+			toast.success('Welcome');
 			onSuccess();
 		} catch (error) {
-			setError(error.message);
+			toast.error(transformErrMSg(error.message));
 		}
 		setIsLoading(false);
 	};
@@ -41,7 +41,6 @@ export const RegisterForm = ({ onSuccess }) => {
 	};
 	return (
 		<form onSubmit={handleSubmit} className={styles.registerForm}>
-			{error && <span>{error}</span>}
 			<label htmlFor="displayName">
 				<span>Display Name</span>
 				<input

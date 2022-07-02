@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { useAuth } from 'features/auth';
-import { Button } from 'components/Elements';
-import { BUTTON_TYPES } from 'components/Elements';
-import { tranformErrMSg } from 'utils';
+import { Button, BUTTON_TYPES } from 'components/Elements';
+import { transformErrMSg } from 'utils';
 import { LoginGuest } from '../LoginGuest/LoginGuest';
 
 import styles from './LoginForm.module.css';
@@ -17,7 +17,6 @@ const defaultFormFields = {
 export const LoginForm = ({ onSuccess }) => {
 	const { login } = useAuth();
 	const [formFields, setFormFields] = useState(defaultFormFields);
-	const [error, setError] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
 	const { email, password } = formFields;
 
@@ -29,21 +28,19 @@ export const LoginForm = ({ onSuccess }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			setError('');
 			setIsLoading(true);
 			await login(formFields);
+			toast.success('Welcome');
 			onSuccess();
 		} catch (error) {
-			setError(tranformErrMSg(error.message));
+			toast.error(transformErrMSg(error.message));
 		}
-
 		setIsLoading(false);
 	};
 
 	return (
 		<>
 			<form onSubmit={handleSubmit} className={styles.loginForm}>
-				{error && <span>{error}</span>}
 				<label htmlFor="email">
 					<span>Email Address</span>
 					<input

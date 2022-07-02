@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useMutation } from 'react-query';
+import { toast } from 'react-toastify';
 
 import { updateUserEmail } from 'features/users';
 import { Button } from 'components/Elements';
+import { transformErrMSg } from 'utils';
 
 import styles from './UpdateEmail.module.css';
 
@@ -13,9 +15,11 @@ export const UpdateEmail = ({ placeHolder }) => {
 	const handleEmail = async () => {
 		mutate(email, {
 			onSuccess: () => {
-				console.log('updated email');
-				window.location.reload();
+				toast.success('Successfully update Email', {
+					onClose: () => window.location.reload(),
+				});
 			},
+			onError: (err) => toast.error(transformErrMSg(err.message)),
 		});
 	};
 

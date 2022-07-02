@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { useMutation } from 'react-query';
 import cx from 'classnames';
+import { toast } from 'react-toastify';
 
 import { updateUserPassword } from 'features/users';
+import { transformErrMSg } from 'utils';
 import { Button } from 'components/Elements';
 
 import styles from './UpdatePassword.module.css';
@@ -18,11 +20,11 @@ export const UpdatePassword = () => {
 		}
 		mutate(pass, {
 			onSuccess: () => {
-				console.log('Password updated');
-				setPass('');
-				setConfirmPass('');
+				toast.success('Successfully update Password', {
+					onClose: () => window.location.reload(),
+				});
 			},
-			onError: (err) => console.log('mutate', err),
+			onError: (err) => toast.error(transformErrMSg(err.message)),
 		});
 	};
 

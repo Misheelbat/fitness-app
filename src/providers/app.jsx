@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 
 import { AuthProvider } from 'features/auth';
+import { ToastProvider } from 'components/ToastContainer/ToastProvider';
 import { queryClient } from 'lib';
 
 const ErrorFallBack = () => {
@@ -24,6 +25,7 @@ export const AppProvider = ({ children }) => {
 					<QueryClientProvider client={queryClient}>
 						<AuthProvider>
 							<BrowserRouter>{children}</BrowserRouter>
+							<ToastProvider />
 						</AuthProvider>
 					</QueryClientProvider>
 				</HelmetProvider>
