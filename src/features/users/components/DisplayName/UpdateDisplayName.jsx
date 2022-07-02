@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useMutation } from 'react-query';
 
 import { updateUserDisplayName } from 'features/users';
 import { Button } from 'components/Elements';
 
 import styles from './updateDisplayName.module.css';
+
 export const UpdateDisplayName = ({ placeHolder }) => {
 	const { isLoading, mutate } = useMutation(updateUserDisplayName);
+
 	const [displayName, setDisplayName] = useState('');
 
 	const handleDisplayName = async () => {

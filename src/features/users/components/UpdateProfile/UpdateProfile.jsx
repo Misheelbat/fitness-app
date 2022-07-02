@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
 import { useAuth } from 'features/auth';
-import { ContentLayout } from 'components/Layout';
 
+import { ContentLayout } from 'components/Layout';
 import { UpdateDisplayName } from '../DisplayName/UpdateDisplayName';
 import { UpdateEmail } from '../Email/UpdateEmail';
 import { UpdatePassword } from '../Password/UpdatePassword';

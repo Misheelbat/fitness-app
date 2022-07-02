@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useMutation } from 'react-query';
-
 import cx from 'classnames';
+
 import { updateUserPassword } from 'features/users';
 import { Button } from 'components/Elements';
 

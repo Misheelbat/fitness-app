@@ -1,9 +1,11 @@
 import { Suspense } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 
+import { lazyImport } from 'utils/lazyImport';
 import { PageSpinner } from 'components/Elements';
 import { MainLayout } from 'components/Layout';
-import { UserRoutes } from 'features/users';
+
+const { UserRoutes } = lazyImport(() => import('features/users'), 'UserRoutes');
 
 const App = () => {
 	return (
@@ -17,14 +19,14 @@ const App = () => {
 
 export const protectedRoutes = [
 	{
-		path: '/app',
+		path: 'app',
 		element: <App />,
 		children: [
 			{ path: 'exercises', element: <div>Exercise</div> },
 			{ path: 'programm', element: <div>Programm</div> },
 			{ path: 'schedule', element: <div>Schedule</div> },
 			{ path: 'profile/*', element: <UserRoutes /> },
-			{ path: '', element: <div>Home</div> },
+			{ path: '', element: <div>dashboard</div> },
 			{ path: '*', element: <Navigate to="." /> },
 		],
 	},

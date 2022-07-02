@@ -1,4 +1,4 @@
-import { useRoutes, Navigate } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 
 import { useAuth } from 'features/auth';
 import { Landing } from 'features/misc';
@@ -14,13 +14,11 @@ export const AppRoutes = () => {
 		{
 			path: '',
 			element: <Landing />,
-			children: [
-				{ path: '*', element: <PageSpinner size="100" variant="primary" /> },
-			],
+			children: [{ path: '/*', element: <PageSpinner /> }],
 		},
 	];
 
-	const routes = currentUser ? protectedRoutes : publicRoutes;
+	const routes = currentUser?.displayName ? protectedRoutes : publicRoutes;
 
 	const element = useRoutes([...routes, ...commenRoutes]);
 	return <>{element}</>;

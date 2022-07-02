@@ -11,7 +11,13 @@ export const Spinner = ({ size = '30', variant = '' }) => {
 
 export const PageSpinner = ({ size = '80', variant = 'primary' }) => {
 	return (
-		<div style={{ display: 'grid', placeContent: 'center', height: '100vh' }}>
+		<div
+			style={{
+				display: 'grid',
+				placeContent: 'center',
+				height: '100vh',
+			}}
+		>
 			<Spinner size={size} variant={variant} />
 		</div>
 	);
