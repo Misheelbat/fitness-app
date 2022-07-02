@@ -4,7 +4,7 @@ import {
 	registerWithEmailAndPassword,
 	loginAuthUserWithEmailAndPassword,
 	loginAnonymously,
-} from '../api';
+} from 'features/auth';
 import { onAuthStateListener, signoutUser, resetPassWithEmail } from 'utils';
 
 import { PageSpinner } from 'components/Elements';

@@ -29,7 +29,9 @@ const UserNav = () => {
 	];
 	return (
 		<div className={styles.userNav}>
-			{currentUser && <span>{currentUser.displayName}</span>}
+			{currentUser && (
+				<span className={styles.userName}>{currentUser.displayName}</span>
+			)}
 			<div>
 				<div>
 					<button aria-label="open user menu" onClick={() => setOpen(!open)}>

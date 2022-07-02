@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { useAuth } from 'features/auth';
-import { Button, BUTTON_TYPES } from 'components/Elements';
 import { transformErrMSg } from 'utils';
+
+import { Button, BUTTON_TYPES } from 'components/Elements';
 import { LoginGuest } from '../LoginGuest/LoginGuest';
 
 import styles from './LoginForm.module.css';

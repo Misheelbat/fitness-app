@@ -9,12 +9,12 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyBVDqbPR5BnRj_vRnFybI-FLRKYP6-WuZI',
-	authDomain: 'fitness-app-31114.firebaseapp.com',
-	projectId: 'fitness-app-31114',
-	storageBucket: 'fitness-app-31114.appspot.com',
-	messagingSenderId: '396836325331',
-	appId: '1:396836325331:web:fac3bde758e86f9d9a1126',
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+	storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+	messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+	appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
 const firebaseApp = initializeApp(firebaseConfig);

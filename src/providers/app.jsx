@@ -5,17 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 
 import { AuthProvider } from 'features/auth';
-import { ToastProvider } from 'components/ToastContainer/ToastProvider';
+import { ToastProvider } from 'components/ToastContainer';
+import { ErrorFallBack } from 'features/misc';
 import { queryClient } from 'lib';
-
-const ErrorFallBack = () => {
-	return (
-		<div>
-			<h2>Oops, something went wrong :( </h2>
-			<button>Refresh</button>
-		</div>
-	);
-};
 
 export const AppProvider = ({ children }) => {
 	return (

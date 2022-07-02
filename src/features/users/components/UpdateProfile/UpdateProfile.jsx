@@ -9,7 +9,6 @@ import { UpdatePassword } from '../Password/UpdatePassword';
 
 import styles from './UpdateProfile.module.css';
 
-
 export const UpdateProfile = () => {
 	const { currentUser } = useAuth();
 

@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { useAuth } from 'features/auth';
-import { Button, BUTTON_TYPES } from 'components/Elements';
 import { transformErrMSg } from 'utils';
+
+import { Button, BUTTON_TYPES } from 'components/Elements';
 
 export const LoginGuest = ({ onSuccess }) => {
 	const { loginAsGuest } = useAuth();
