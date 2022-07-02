@@ -3,6 +3,7 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import {
 	registerWithEmailAndPassword,
 	loginAuthUserWithEmailAndPassword,
+	loginAnonymously,
 } from '../api';
 import { onAuthStateListener, signoutUser, resetPassWithEmail } from 'utils';
 
@@ -35,11 +36,20 @@ export const AuthProvider = ({ children }) => {
 		return resetPassWithEmail(email);
 	};
 
+	const loginAsGuest = () => {
+		return loginAnonymously();
+	};
+
 	useEffect(() => {
 		const unsub = onAuthStateListener((user) => {
 			if (user) {
-				const { displayName, email } = user;
-				setCurrentUser({ displayName, email });
+				if (user.providerData.length === 0) {
+					setCurrentUser({ displayName: 'Guest', email: 'Guest' });
+				} else {
+					const { displayName, email } = user;
+					setCurrentUser({ displayName, email });
+				}
+
 				setIsLoading(true);
 			}
 			setIsLoading(true);
@@ -52,12 +62,10 @@ export const AuthProvider = ({ children }) => {
 		currentUser,
 		resetPassword,
 		setCurrentUser,
+		loginAsGuest,
 		register,
 		login,
 		logOut,
-		// updateEmail,
-		// updateDisplayName,
-		// updatePassword,
 	};
 
 	return (

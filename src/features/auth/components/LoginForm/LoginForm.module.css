@@ -1,8 +1,8 @@
 .loginForm label {
 	display: block;
 }
-.loginForm > * + * {
-	padding-top: 1.5rem;
+.loginForm > * {
+	padding-bottom: 1.5rem;
 }
 .loginForm label span {
 	display: block;
@@ -25,13 +25,11 @@
 .loginForm label input::placeholder {
 	font-size: 0.7em;
 }
-.btnGroup {
-	display: flex;
-	gap: 1rem;
-}
+
 .register {
 	color: var(--clr-grey);
 	letter-spacing: 0.5px;
+	padding-top: 1.5em;
 }
 .register span {
 	font-size: 0.9em;
