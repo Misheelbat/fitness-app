@@ -4,7 +4,7 @@
 .loginForm > * {
 	padding-bottom: 1.5rem;
 }
-.loginForm label span {
+.loginInput label {
 	display: block;
 	font-size: 0.9em;
 	text-align: start;
@@ -12,7 +12,7 @@
 	color: rgba(250, 250, 250, 0.8);
 	font-weight: 400;
 }
-.loginForm label input {
+.loginInput input {
 	color: white;
 	width: 100%;
 	font-size: 1em;
@@ -22,7 +22,7 @@
 	background-color: var(--clr-secondary);
 	border: 2px solid rgba(250, 250, 250, 0.05);
 }
-.loginForm label input::placeholder {
+.loginInput input::placeholder {
 	font-size: 0.7em;
 }
 

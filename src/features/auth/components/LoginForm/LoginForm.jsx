@@ -42,30 +42,36 @@ export const LoginForm = ({ onSuccess }) => {
 	return (
 		<>
 			<form onSubmit={handleSubmit} className={styles.loginForm}>
-				<label htmlFor="email">
-					<span>Email Address</span>
+				<div className={styles.loginInput}>
+					<label htmlFor="email">Email Address</label>
 					<input
 						required
 						onChange={handleFormInput}
 						value={email}
 						type="email"
 						name="email"
+						id="email"
 						placeholder="Enter your Email"
 					/>
-				</label>
-				<label htmlFor="password">
-					<span>Password</span>
+				</div>
+				<div className={styles.loginInput}>
+					<label htmlFor="password">Password</label>
 					<input
 						required
 						onChange={handleFormInput}
 						value={password}
 						type="password"
 						name="password"
+						id="password"
 						placeholder="Enter your Password"
 					/>
-				</label>
+				</div>
 				<div className={styles.btnGroup}>
-					<Button isLoading={isLoading} buttonType={BUTTON_TYPES.max}>
+					<Button
+						type="submit"
+						isLoading={isLoading}
+						buttonType={BUTTON_TYPES.max}
+					>
 						Log in
 					</Button>
 				</div>

@@ -12,6 +12,7 @@ export const Spinner = ({ size = '30', variant = '' }) => {
 export const PageSpinner = ({ size = '80', variant = 'primary' }) => {
 	return (
 		<div
+			data-testid="loading"
 			style={{
 				display: 'grid',
 				placeContent: 'center',
