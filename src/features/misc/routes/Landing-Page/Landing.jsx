@@ -20,10 +20,10 @@ export const Landing = () => {
 	return (
 		<>
 			<Head />
-			<div className={styles.landing}>
+			<main className={styles.landing}>
 				<h1>Landing</h1>
 				<Button onClick={handleStart}>Get Started</Button>
-			</div>
+			</main>
 		</>
 	);
 };

@@ -6,10 +6,10 @@ export const MainLayout = ({ children }) => {
 	return (
 		<div className={styles.mainLayout}>
 			<Sidebar />
-			<div className={styles.rightSide}>
+			<section className={styles.content}>
 				<Headerbar />
 				<main>{children}</main>
-			</div>
+			</section>
 		</div>
 	);
 };

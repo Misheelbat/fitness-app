@@ -5,14 +5,14 @@ export const Layout = ({ children, title }) => {
 	return (
 		<>
 			<Head title={title} />
-			<div className={styles.authLayout}>
+			<section className={styles.authLayout}>
 				<div className={styles.authLayoutContainer}>
-					<div className={styles.authLayoutHeader}>
+					<header className={styles.authLayoutHeader}>
 						<h2>{title}</h2>
-					</div>
-					<div className={styles.authLayoutContent}>{children}</div>
+					</header>
+					<main className={styles.authLayoutContent}>{children}</main>
 				</div>
-			</div>
+			</section>
 		</>
 	);
 };

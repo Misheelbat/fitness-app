@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+
 import {
 	SquaresFour,
 	Barbell,
@@ -15,6 +16,7 @@ const SideNavItem = () => {
 		{ name: 'Programms', to: 'programms', icon: CheckSquareOffset },
 		{ name: 'Schedule', to: 'schedule', icon: CalendarPlus },
 	];
+
 	return (
 		<>
 			{navItems.map((item, index) => (
@@ -34,10 +36,10 @@ const SideNavItem = () => {
 
 export const Sidebar = () => {
 	return (
-		<div className={styles.sidebar}>
+		<section className={styles.sidebar}>
 			<nav>
 				<SideNavItem />
 			</nav>
-		</div>
+		</section>
 	);
 };

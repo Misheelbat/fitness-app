@@ -23,7 +23,7 @@ export const protectedRoutes = [
 		element: <App />,
 		children: [
 			{ path: 'exercises', element: <div>Exercise</div> },
-			{ path: 'programm', element: <div>Programm</div> },
+			{ path: 'programms', element: <div>Programm</div> },
 			{ path: 'schedule', element: <div>Schedule</div> },
 			{ path: 'profile/*', element: <UserRoutes /> },
 			{ path: '', element: <div>dashboard</div> },
