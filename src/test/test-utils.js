@@ -3,6 +3,8 @@ import {
 	waitForElementToBeRemoved,
 	screen,
 } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+
 import { AppProvider } from 'providers/app';
 
 export const waitForLoadingToFinish = () =>
@@ -10,7 +12,7 @@ export const waitForLoadingToFinish = () =>
 		timeout: 4000,
 	});
 
-export const render = async (ui, options) => {
+export const customRender = async (ui, options) => {
 	window.history.pushState({}, 'Test page', '/');
 
 	const returnValue = {
@@ -20,3 +22,5 @@ export const render = async (ui, options) => {
 	await waitForLoadingToFinish();
 	return returnValue;
 };
+export * from '@testing-library/react';
+export { userEvent };

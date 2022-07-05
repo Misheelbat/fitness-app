@@ -42,50 +42,54 @@ export const RegisterForm = ({ onSuccess }) => {
 	};
 	return (
 		<form onSubmit={handleSubmit} className={styles.registerForm}>
-			<label htmlFor="displayName">
-				<span>Display Name</span>
+			<div className={styles.registerInput}>
+				<label htmlFor="displayName">Display Name</label>
 				<input
 					required
 					value={displayName}
 					onChange={handleFormInput}
 					type="text"
 					name="displayName"
+					id="displayName"
 					placeholder="Enter Name"
 				/>
-			</label>
-			<label htmlFor="email">
-				<span>Email Address</span>
+			</div>
+			<div className={styles.registerInput}>
+				<label htmlFor="email">Email Address</label>
 				<input
 					required
 					value={email}
 					onChange={handleFormInput}
 					type="email"
 					name="email"
+					id="email"
 					placeholder="Enter Email"
 				/>
-			</label>
-			<label htmlFor="password">
-				<span>Password</span>
+			</div>
+			<div className={styles.registerInput}>
+				<label htmlFor="password">Password</label>
 				<input
 					required
 					value={password}
 					onChange={handleFormInput}
 					type="password"
 					name="password"
+					id="password"
 					placeholder="Enter Password"
 				/>
-			</label>
-			<label htmlFor="confirmPassword">
-				<span>Confirm Password</span>
+			</div>
+			<div className={styles.registerInput}>
+				<label htmlFor="confirmPassword">Confirm Password</label>
 				<input
 					required
 					value={confirmPassword}
 					onChange={handleFormInput}
 					type="password"
 					name="confirmPassword"
+					id="confirmPassword"
 					placeholder="confirm Password"
 				/>
-			</label>
+			</div>
 			<div className={styles.btnGroup}>
 				<Button
 					isLoading={isLoading}
