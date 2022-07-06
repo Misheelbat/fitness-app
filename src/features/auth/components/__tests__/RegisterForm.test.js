@@ -26,7 +26,7 @@ describe('register functions', () => {
 
 	const newUser = userDataGenerator('register@email.com');
 
-	test('registering a new user works and call onSuccess cb', async () => {
+	test('if register is successful, onSuccess callback is called which redirects the user', async () => {
 		const onSuccess = jest.fn();
 		await customRender(<RegisterForm onSuccess={onSuccess} />);
 
@@ -64,7 +64,7 @@ describe('register functions', () => {
 		);
 	});
 
-	test('entering wrong password at Confirm Password displays correct error Msg', async () => {
+	test('entering wrong password at Confirm Password displays the correct error Msg', async () => {
 		const wrongConfirmPassword = 'wrongPassword';
 
 		await customRender(<RegisterForm />);

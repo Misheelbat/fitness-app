@@ -34,7 +34,7 @@ describe('login features', () => {
 		await waitFor(() => expect(onSuccess).toHaveBeenCalledTimes(1));
 	});
 
-	test('login with wrong password displays correct error message', async () => {
+	test('login with wrong password displays the correct error message', async () => {
 		const wrongPassword = '654321';
 
 		const onSuccess = jest.fn();
@@ -51,7 +51,7 @@ describe('login features', () => {
 		);
 	});
 
-	test('login with non-existing email displays correct error message', async () => {
+	test('login with non-existing email displays the correct error message', async () => {
 		const wrongEmail = 'wrong@email.com';
 
 		const onSuccess = jest.fn();
