@@ -1,4 +1,4 @@
-const userData = {
+export const userData = {
 	displayName: 'testUser',
 	email: 'test@email.com',
 	password: 'testPassword',

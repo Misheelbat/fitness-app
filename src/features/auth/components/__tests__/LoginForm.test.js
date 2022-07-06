@@ -5,6 +5,7 @@ import {
 	userEvent,
 	createNewUser,
 	clearUserDb,
+	act,
 } from 'test/test-utils';
 import { userDataGenerator } from 'test/data-generators';
 
@@ -20,51 +21,49 @@ describe('login features', () => {
 		await clearUserDb();
 	});
 
+	const user = userDataGenerator();
 	test('if login is successful, onSuccess callback is called which redirects the user', async () => {
-		const user = userDataGenerator();
-
 		const onSuccess = jest.fn();
 		await customRender(<LoginForm onSuccess={onSuccess} />);
 
 		userEvent.type(screen.getByLabelText(/Email address/i), user.email);
 		userEvent.type(screen.getByLabelText(/Password/i), user.password);
+
 		userEvent.click(screen.getByRole('button', { name: /Log in/i }));
 
 		await waitFor(() => expect(onSuccess).toHaveBeenCalledTimes(1));
 	});
 
 	test('login with wrong password displays correct error message', async () => {
-		const newUser = userDataGenerator();
-		const user = {
-			email: newUser.email,
-			password: '654321',
-		};
+		const wrongPassword = '654321';
 
 		const onSuccess = jest.fn();
 		await customRender(<LoginForm onSuccess={onSuccess} />);
 
 		userEvent.type(screen.getByLabelText(/Email address/i), user.email);
-		userEvent.type(screen.getByLabelText(/Password/i), user.password);
+		userEvent.type(screen.getByLabelText(/Password/i), wrongPassword);
+
 		userEvent.click(screen.getByRole('button', { name: /Log in/i }));
 
-		const errorMsg = await screen.findByText('wrong-password');
-		expect(errorMsg).toBeDefined();
+		// const errorMsg = screen.findByText('wrong-password');
+		await waitFor(() =>
+			expect(screen.findByText('wrong-password')).toBeDefined()
+		);
 	});
 
 	test('login with non-existing email displays correct error message', async () => {
-		const user = {
-			email: 'wrong@email.com',
-			password: '654321',
-		};
+		const wrongEmail = 'wrong@email.com';
 
 		const onSuccess = jest.fn();
 		await customRender(<LoginForm onSuccess={onSuccess} />);
 
-		userEvent.type(screen.getByLabelText(/Email address/i), user.email);
+		userEvent.type(screen.getByLabelText(/Email address/i), wrongEmail);
 		userEvent.type(screen.getByLabelText(/Password/i), user.password);
 		userEvent.click(screen.getByRole('button', { name: /Log in/i }));
 
-		const errorMsg = await screen.findByText(/^user-not-found$/i);
-		expect(errorMsg).toBeDefined();
+		// const errorMsg = screen.findByText(/^user-not-found$/i);
+		await waitFor(() =>
+			expect(screen.findByText(/^user-not-found$/i)).toBeDefined()
+		);
 	});
 });

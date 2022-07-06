@@ -5,6 +5,7 @@ import {
 	waitFor,
 	clearUserDb,
 	createNewUser,
+	act,
 } from 'test/test-utils';
 import { userDataGenerator } from 'test/data-generators';
 
@@ -12,10 +13,15 @@ import { RegisterForm } from '../RegisterForm/RegisterForm';
 
 describe('register functions', () => {
 	beforeAll(async () => {
-		await clearUserDb();
+		await act(async () => {
+			await clearUserDb();
+		});
 	});
+
 	afterEach(async () => {
-		await clearUserDb();
+		await act(async () => {
+			await clearUserDb();
+		});
 	});
 
 	const newUser = userDataGenerator('register@email.com');
@@ -39,6 +45,7 @@ describe('register functions', () => {
 
 	test('registering with already existing email displays the correct error msg', async () => {
 		await createNewUser(newUser);
+
 		await customRender(<RegisterForm />);
 
 		userEvent.type(screen.getByLabelText(/Display Name/i), newUser.email);
@@ -48,24 +55,33 @@ describe('register functions', () => {
 			screen.getByLabelText(/^Confirm Password/i),
 			newUser.password
 		);
+
 		userEvent.click(screen.getByRole('button', { name: /Register/i }));
 
-		const errorMsg = await screen.findByText(/^email-already-in-use$/i);
-		await waitFor(() => expect(errorMsg).toBeDefined());
+		// const errorMsg = await screen.findByText(/^email-already-in-use$/i);
+		await waitFor(() =>
+			expect(screen.findByText(/^email-already-in-use$/i)).toBeDefined()
+		);
 	});
 
 	test('entering wrong password at Confirm Password displays correct error Msg', async () => {
-		const wrongPassword = 'wrongPassword';
+		const wrongConfirmPassword = 'wrongPassword';
 
 		await customRender(<RegisterForm />);
 
 		userEvent.type(screen.getByLabelText(/Display Name/i), newUser.email);
 		userEvent.type(screen.getByLabelText(/Email address/i), newUser.email);
 		userEvent.type(screen.getByLabelText(/^Password/i), newUser.password);
-		userEvent.type(screen.getByLabelText(/^Confirm Password/i), wrongPassword);
+		userEvent.type(
+			screen.getByLabelText(/^Confirm Password/i),
+			wrongConfirmPassword
+		);
+
 		userEvent.click(screen.getByRole('button', { name: /Register/i }));
 
-		const errorMsg = await screen.findByText(/^Passwords do not match$/i);
-		await waitFor(() => expect(errorMsg).toBeDefined());
+		// const errorMsg = await screen.findByText(/^Passwords do not match$/i);
+		await waitFor(() =>
+			expect(screen.findByText(/^Passwords do not match$/i)).toBeDefined()
+		);
 	});
 });

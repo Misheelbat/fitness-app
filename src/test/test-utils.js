@@ -10,6 +10,7 @@ import {
 	registerWithEmailAndPassword,
 	loginAuthUserWithEmailAndPassword,
 } from 'features/auth';
+import { userData } from './data-generators';
 
 const FB_EMULATOR_URI = process.env.REACT_APP_FIREBASE_EMULATOR_URI;
 
@@ -19,7 +20,7 @@ export const waitForLoadingToFinish = () =>
 	});
 
 export const customRender = async (ui, options) => {
-	window.history.pushState({}, 'Test page', '/');
+	// window.history.pushState({}, 'Test page', '/');
 
 	const returnValue = {
 		...rtlRender(ui, { wrapper: AppProvider, ...options }),
