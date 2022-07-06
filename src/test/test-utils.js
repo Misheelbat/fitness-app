@@ -6,6 +6,12 @@ import {
 import userEvent from '@testing-library/user-event';
 
 import { AppProvider } from 'providers/app';
+import {
+	registerWithEmailAndPassword,
+	loginAuthUserWithEmailAndPassword,
+} from 'features/auth';
+
+const FB_EMULATOR_URI = process.env.REACT_APP_FIREBASE_EMULATOR_URI;
 
 export const waitForLoadingToFinish = () =>
 	waitForElementToBeRemoved(() => [...screen.queryAllByTestId('loading')], {
@@ -22,5 +28,23 @@ export const customRender = async (ui, options) => {
 	await waitForLoadingToFinish();
 	return returnValue;
 };
+
+export const createNewUser = async (userInput = userData) => {
+	const user = await registerWithEmailAndPassword(userInput);
+	return user;
+};
+
+export const loginAsUser = async (userInput = userData) => {
+	const user = await loginAuthUserWithEmailAndPassword(userInput);
+	return user;
+};
+
+export const clearUserDb = async () => {
+	const res = await fetch(FB_EMULATOR_URI, { method: 'DELETE' });
+	if (res.status !== 200) {
+		throw new Error('could not register user');
+	}
+};
+
 export * from '@testing-library/react';
 export { userEvent };
