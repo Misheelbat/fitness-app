@@ -7,7 +7,6 @@ import {
 	clearUserDb,
 } from 'test/test-utils';
 import { userDataGenerator } from 'test/data-generators';
-import '@testing-library/jest-dom/extend-expect';
 
 import { LoginForm } from '../LoginForm/LoginForm';
 
