@@ -6,10 +6,10 @@ export const ContentLayout = ({ children, title }) => {
 		<>
 			<Head title={title} />
 			<div className={styles.contentLayout}>
-				<div className={styles.contentLayoutHeader}>
+				<section className={styles.header}>
 					<h1>{title}</h1>
-				</div>
-				<div className={styles.contentLayoutContent}>{children}</div>
+				</section>
+				<section className={styles.content}>{children}</section>
 			</div>
 		</>
 	);
