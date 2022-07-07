@@ -2,6 +2,6 @@
 	background-color: var(--clr-bg);
 	border-bottom: 0.5px solid var(--clr-border);
 }
-.tabList > :first-child {
-	/* padding-left: 0.2em; */
-}
+/* .tabList > :first-child {
+ padding-left: 0.2em; 
+} */
