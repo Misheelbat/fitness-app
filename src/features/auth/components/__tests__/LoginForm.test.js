@@ -5,9 +5,9 @@ import {
 	userEvent,
 	createNewUser,
 	clearUserDb,
-	act,
 } from 'test/test-utils';
 import { userDataGenerator } from 'test/data-generators';
+import '@testing-library/jest-dom/extend-expect';
 
 import { LoginForm } from '../LoginForm/LoginForm';
 
@@ -64,6 +64,26 @@ describe('login features', () => {
 		// const errorMsg = screen.findByText(/^user-not-found$/i);
 		await waitFor(() =>
 			expect(screen.findByText(/^user-not-found$/i)).toBeDefined()
+		);
+	});
+
+	test('login as a Guest works and redirects the user and sets the current user as Guest', async () => {
+		const onSuccess = jest.fn();
+		await customRender(<LoginForm onSuccess={onSuccess} />);
+
+		userEvent.click(screen.getByRole('button', { name: /^Login as Guest$/i }));
+
+		await waitFor(() => expect(onSuccess).toHaveBeenCalledTimes(1));
+	});
+
+	test('after succesful login as a Guest, the correct msg is displayed', async () => {
+		const onSuccess = jest.fn();
+		await customRender(<LoginForm onSuccess={onSuccess} />);
+
+		userEvent.click(screen.getByRole('button', { name: /^Login as Guest$/i }));
+
+		await waitFor(() =>
+			expect(screen.queryByText(/^Welcome Guest!$/i)).toBeInTheDocument()
 		);
 	});
 });

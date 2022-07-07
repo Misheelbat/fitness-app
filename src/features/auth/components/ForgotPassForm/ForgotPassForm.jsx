@@ -8,7 +8,7 @@ import { transformErrMSg } from 'utils';
 
 import styles from './ForgotPassForm.module.css';
 
-export const ForgotPassForm = ({ onSuccess }) => {
+export const ForgotPassForm = () => {
 	const { resetPassword } = useAuth();
 	const [email, setEmail] = useState('');
 	const [isLoading, setIsLoading] = useState('');
