@@ -16,7 +16,7 @@ export const UpdatePassword = () => {
 
 	const handlePassword = async () => {
 		if (pass !== confirmPass) {
-			throw new Error('Passwords do not match');
+			throw new Error('(/Passwords do not match)');
 		}
 		mutate(pass, {
 			onSuccess: () => {

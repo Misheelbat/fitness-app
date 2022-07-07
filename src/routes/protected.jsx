@@ -6,6 +6,10 @@ import { PageSpinner } from 'components/Elements';
 import { MainLayout } from 'components/Layout';
 
 const { UserRoutes } = lazyImport(() => import('features/users'), 'UserRoutes');
+const { ExercisesRoutes } = lazyImport(
+	() => import('features/exercises'),
+	'ExercisesRoutes'
+);
 
 const App = () => {
 	return (
@@ -22,7 +26,7 @@ export const protectedRoutes = [
 		path: 'app',
 		element: <App />,
 		children: [
-			{ path: 'exercises', element: <div>Exercise</div> },
+			{ path: 'exercises/*', element: <ExercisesRoutes /> },
 			{ path: 'programms', element: <div>Programm</div> },
 			{ path: 'schedule', element: <div>Schedule</div> },
 			{ path: 'profile/*', element: <UserRoutes /> },

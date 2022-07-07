@@ -8,7 +8,7 @@ import { transformErrMSg } from 'utils';
 
 import styles from './UpdateEmail.module.css';
 
-export const UpdateEmail = ({ placeHolder }) => {
+export const UpdateEmail = ({ placeHolder = 'email' }) => {
 	const { isLoading, mutate } = useMutation(updateUserEmail);
 	const [email, setEmail] = useState('');
 

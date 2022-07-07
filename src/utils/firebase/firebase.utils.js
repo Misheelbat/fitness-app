@@ -20,9 +20,9 @@ const firebaseApp = initializeApp(firebaseConfig);
 
 export const auth = getAuth(firebaseApp);
 
-if (window.location.hostname === 'localhost') {
-	connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
-}
+// if (window.location.hostname === 'localhost') {
+// 	connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
+// }
 
 // Firebase Functions
 
