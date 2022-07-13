@@ -1,22 +1,30 @@
 import cx from 'classnames';
+
 import { useExercise } from 'features/exercises';
+import { makeId } from 'utils';
 
 import styles from './Tab.module.css';
-export const Tab = ({ Element = 'button', buttonId, children, ...props }) => {
+
+export const Tab = ({ Element = 'button', value, children, ...props }) => {
 	const { activeTab, setActiveTab } = useExercise();
 
+	const panelId = makeId('panelId', value);
+	const tabId = makeId('tabId', value);
+
+	const isActive = activeTab === value;
 	const handleClick = () => {
-		setActiveTab(buttonId);
+		setActiveTab(value);
 	};
 	return (
 		<Element
-			onClick={handleClick}
-			id={buttonId}
+			id={tabId}
 			role="tab"
-			aria-selected={activeTab === buttonId ? true : false}
-			tabIndex={activeTab === buttonId ? '0' : '-1'}
+			onClick={handleClick}
+			aria-controls={panelId}
+			aria-selected={isActive}
+			tabIndex={isActive ? '0' : '-1'}
+			className={cx(styles.tab, isActive ? styles.activeTab : '')}
 			{...props}
-			className={cx(styles.tab, buttonId === activeTab ? styles.activeTab : '')}
 		>
 			{children}
 		</Element>

@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet, Navigate } from 'react-router-dom';
 
-import { lazyImport } from 'utils/lazyImport';
+import { lazyImport } from 'utils';
 import { PageSpinner } from 'components/Elements';
 import { MainLayout } from 'components/Layout';
 
