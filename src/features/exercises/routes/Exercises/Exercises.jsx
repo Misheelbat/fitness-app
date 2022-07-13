@@ -6,9 +6,7 @@ export const Exercises = () => {
 	return (
 		<ExerciseProvider>
 			<ContentLayout title={'Exercises'}>
-				<div>
-					<ExerciseTab />
-				</div>
+				<ExerciseTab />
 			</ContentLayout>
 		</ExerciseProvider>
 	);

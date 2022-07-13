@@ -1,20 +1,25 @@
 import cx from 'classnames';
 
-import { useExercise } from 'features/exercises';
 import { makeId } from 'utils';
 
 import styles from './Tab.module.css';
 
-export const Tab = ({ Element = 'button', value, children, ...props }) => {
-	const { activeTab, setActiveTab } = useExercise();
-
+export const Tab = ({
+	Element = 'button',
+	setActiveTab,
+	activeTab,
+	value,
+	children,
+	...props
+}) => {
 	const panelId = makeId('panelId', value);
 	const tabId = makeId('tabId', value);
 
-	const isActive = activeTab === value;
 	const handleClick = () => {
 		setActiveTab(value);
 	};
+
+	const isActive = activeTab === value;
 	return (
 		<Element
 			id={tabId}

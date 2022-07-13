@@ -1,0 +1,5 @@
+.tabPanel {
+	background-color: var(--clr-bg);
+	padding-top: 2rem;
+	flex: 1 0 auto;
+}

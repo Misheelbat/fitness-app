@@ -10,6 +10,7 @@ export const ExerciseProvider = ({ children }) => {
 	const [activeTab, setActiveTab] = useState(1);
 
 	const value = { activeTab, setActiveTab };
+	
 	return (
 		<ExerciseContext.Provider value={value}>
 			{children}
