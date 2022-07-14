@@ -1,16 +1,24 @@
-import { useQuery } from 'react-query';
-import { getData } from 'features/exercises/api/getCategory';
-import styles from './Dropdown.module.css';
+import Select from 'react-select';
+import { useCategory } from 'features/exercises';
 
+import styles from './dropdownstyle';
 export const Dropdown = () => {
-	const { data } = useQuery('category', () =>
-		getData('https://wger.de/api/v2/muscle/')
-	);
+	const { data, isSuccess } = useCategory('https://wger.de/api/v2/muscle/');
+
+	const handleChange = (selected) => {
+		console.log(selected);
+	};
+
+	if (!isSuccess) {
+		return <div>error</div>;
+	}
+
 	return (
-		<div className={styles.dropdown}>
-			{data?.results.map((d) => (
-				<div>{d.name_en}</div>
-			))}
-		</div>
+		<Select
+			defaultValue={data[0]}
+			options={data}
+			onChange={handleChange}
+			styles={styles}
+		/>
 	);
 };

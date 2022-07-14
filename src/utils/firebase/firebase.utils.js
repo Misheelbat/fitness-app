@@ -4,6 +4,7 @@ import {
 	signOut,
 	onAuthStateChanged,
 	sendPasswordResetEmail,
+	// eslint-disable-next-line
 	connectAuthEmulator,
 } from 'firebase/auth';
 
