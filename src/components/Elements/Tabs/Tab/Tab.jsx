@@ -1,5 +1,4 @@
 import cx from 'classnames';
-
 import { makeId } from 'utils';
 
 import styles from './Tab.module.css';
@@ -8,18 +7,19 @@ export const Tab = ({
 	Element = 'button',
 	setActiveTab,
 	activeTab,
-	value,
+	tab,
 	children,
 	...props
 }) => {
+	const value = tab.id;
 	const panelId = makeId('panelId', value);
 	const tabId = makeId('tabId', value);
 
 	const handleClick = () => {
-		setActiveTab(value);
+		setActiveTab(tab);
 	};
 
-	const isActive = activeTab === value;
+	const isActive = activeTab.id === value;
 	return (
 		<Element
 			id={tabId}
