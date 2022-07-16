@@ -4,7 +4,9 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
+import { Provider } from 'react-redux';
 
+import { store } from 'store/store';
 import { AuthProvider } from 'features/auth';
 import { ToastProvider } from 'components/ToastContainer';
 import { queryClient } from 'lib';
@@ -19,8 +21,10 @@ export const AppProvider = ({ children }) => {
 				<HelmetProvider>
 					<QueryClientProvider client={queryClient}>
 						<AuthProvider>
-							<BrowserRouter>{children}</BrowserRouter>
-							<ToastProvider />
+							<Provider store={store}>
+								<BrowserRouter>{children}</BrowserRouter>
+								<ToastProvider />
+							</Provider>
 							<ReactQueryDevtools />
 						</AuthProvider>
 					</QueryClientProvider>

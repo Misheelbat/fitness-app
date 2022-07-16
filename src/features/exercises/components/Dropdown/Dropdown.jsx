@@ -1,34 +1,35 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import Select from 'react-select';
-import { useCategory } from 'features/exercises';
-import { useExercise } from 'features/exercises';
+
+import { useSelector, useDispatch } from 'react-redux/es/exports';
+import { useCategory, setSubCategory } from 'features/exercises';
 
 import styles from './dropdownstyle';
-export const Dropdown = () => {
-	const { activeTab } = useExercise();
-	const { data, isLoading, isSuccess } = useCategory(activeTab);
-	const [sel, setSel] = useState();
 
-	useEffect(() => {
-		if (data) {
-			setSel(data);
-		}
-	}, [data]);
+export const Dropdown = () => {
+	const dispatch = useDispatch();
+	const { category, subCategory } = useSelector((state) => state.tab);
+	const { data, isLoading, isSuccess } = useCategory(category);
 
 	const handleChange = (e) => {
-		setSel(e);
+		dispatch(setSubCategory(e));
 	};
 
-	if (!isSuccess) {
-		return <Select isLoading={true} styles={styles} />;
-	}
+	useEffect(() => {
+		if (Array.isArray(data)) {
+			dispatch(setSubCategory(data[0]));
+		}
+	}, [dispatch, data]);
+
 	return (
-		<Select
-			value={sel}
-			isLoading={isLoading}
-			options={data}
-			onChange={handleChange}
-			styles={styles}
-		/>
+		isSuccess && (
+			<Select
+				value={subCategory}
+				isLoading={isLoading}
+				options={data}
+				onChange={handleChange}
+				styles={styles}
+			/>
+		)
 	);
 };

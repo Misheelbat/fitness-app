@@ -8,6 +8,7 @@ const extractCategory = (category) => ({
 	label: category.name_en
 		? `${category.name} (${category.name_en})`
 		: category.name,
+	id: category.id,
 });
 
 export const useCategory = (activeTab) => {
