@@ -1,21 +1,31 @@
+import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { useCategory } from 'features/exercises';
+import { useExercise } from 'features/exercises';
 
 import styles from './dropdownstyle';
 export const Dropdown = () => {
-	const { data, isSuccess } = useCategory('https://wger.de/api/v2/muscle/');
+	const { activeTab } = useExercise();
+	const { data, isLoading, isSuccess } = useCategory(activeTab);
+	const [sel, setSel] = useState();
 
-	const handleChange = (selected) => {
-		console.log(selected);
+	useEffect(() => {
+		if (data) {
+			setSel(data);
+		}
+	}, [data]);
+
+	const handleChange = (e) => {
+		setSel(e);
 	};
 
 	if (!isSuccess) {
-		return <div>error</div>;
+		return <Select isLoading={true} styles={styles} />;
 	}
-
 	return (
 		<Select
-			defaultValue={data[0]}
+			value={sel}
+			isLoading={isLoading}
 			options={data}
 			onChange={handleChange}
 			styles={styles}
