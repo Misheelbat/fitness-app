@@ -6,7 +6,7 @@ import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Provider } from 'react-redux';
 
-import { store } from 'store/store';
+import { reduxStore } from 'store';
 import { AuthProvider } from 'features/auth';
 import { ToastProvider } from 'components/ToastContainer';
 import { queryClient } from 'lib';
@@ -21,7 +21,7 @@ export const AppProvider = ({ children }) => {
 				<HelmetProvider>
 					<QueryClientProvider client={queryClient}>
 						<AuthProvider>
-							<Provider store={store}>
+							<Provider store={reduxStore}>
 								<BrowserRouter>{children}</BrowserRouter>
 								<ToastProvider />
 							</Provider>

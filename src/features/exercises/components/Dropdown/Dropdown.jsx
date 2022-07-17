@@ -2,21 +2,21 @@ import { useEffect } from 'react';
 import Select from 'react-select';
 
 import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { useCategory, setSubCategory } from 'features/exercises';
+import { setSubCategory, useGetCategoryQuery } from 'features/exercises';
 
 import styles from './dropdownstyle';
 
 export const Dropdown = () => {
 	const dispatch = useDispatch();
 	const { category, subCategory } = useSelector((state) => state.tab);
-	const { data, isLoading, isSuccess } = useCategory(category);
+	const { data, isLoading, isSuccess } = useGetCategoryQuery(category);
 
 	const handleChange = (e) => {
 		dispatch(setSubCategory(e));
 	};
 
 	useEffect(() => {
-		if (Array.isArray(data)) {
+		if (data && Array.isArray(data)) {
 			dispatch(setSubCategory(data[0]));
 		}
 	}, [dispatch, data]);
