@@ -1,4 +1,5 @@
 import { apiSlice } from 'store/api/apiSlice';
+import { extractExercise } from 'features/exercises';
 
 const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['exercise'] });
 
@@ -15,7 +16,7 @@ const exerciseApi = apiWithTag.injectEndpoints({
 					id: arg.subCategory,
 				},
 			],
-			// transformResponse: () => {},
+			// transformResponse: (data) => extractExercise(data),
 		}),
 	}),
 	overrideExisting: false,

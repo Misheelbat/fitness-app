@@ -15,7 +15,8 @@ export const ExerciseList = () => {
 	const [page, setPage] = useState(0);
 	const category = useSelector(selectCategory);
 	const { value, id } = useSelector(selectSubCategory);
-	const res = useGetExercisesQuery(
+
+	const { data, isLoading } = useGetExercisesQuery(
 		{ category, subCategory: id, page },
 		{ skip: id === null }
 	);
@@ -25,18 +26,19 @@ export const ExerciseList = () => {
 		setPage((prev) => prev - 1);
 	};
 	const nextPage = () => {
-		if (res.data?.next === null) return;
+		if (data?.next === null) return;
 		setPage((prev) => prev + 1);
 	};
+
 	return (
 		<div className={styles.exerciseList}>
-			<Dropdown />
+			<Dropdown setPage={setPage} />
 			<div className={styles.info}>
 				<div className={styles.arrowsBtns}>
 					<button onClick={prevPage} disabled={page === 0}>
 						<CaretLeft weight="bold" />
 					</button>
-					<button onClick={nextPage} disabled={res.data?.next === null}>
+					<button onClick={nextPage} disabled={data?.next === null}>
 						<CaretRight weight="bold" />
 					</button>
 				</div>
@@ -45,7 +47,7 @@ export const ExerciseList = () => {
 			<p className={styles.selected}>
 				{category} - {value}
 			</p>
-			<CardsList cards={res.data?.results} />
+			<CardsList isLoading={isLoading} cards={data?.results} />
 		</div>
 	);
 };
