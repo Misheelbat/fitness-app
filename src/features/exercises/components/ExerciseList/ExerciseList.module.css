@@ -37,3 +37,9 @@
 .info p {
 	margin-left: auto;
 }
+.selected {
+	margin-bottom: 1rem;
+}
+.selected::first-letter {
+	text-transform: capitalize;
+}
