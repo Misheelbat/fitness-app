@@ -4,6 +4,7 @@
 	height: 100%;
 	border-radius: 15px 15px 0 0;
 	max-width: 400px;
+	height: 100%;
 }
 .exerciseList p {
 	font-size: 0.8em;
@@ -23,7 +24,7 @@
 	display: flex;
 	color: #fff;
 	border: 0;
-	background-color: var(--clr-secondary);
+	background-color: var(--clr-blue);
 	cursor: pointer;
 	padding: 5px 8px;
 }
@@ -33,6 +34,11 @@
 }
 .arrowsBtns button:nth-child(2) {
 	border-radius: 0 5px 5px 0;
+}
+
+.arrowsBtns button:disabled {
+	color: var(--clr-grey);
+	background-color: var(--clr-secondary);
 }
 .info p {
 	margin-left: auto;

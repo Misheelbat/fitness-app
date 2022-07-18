@@ -9,7 +9,7 @@ import styles from './dropdownstyle';
 export const Dropdown = () => {
 	const dispatch = useDispatch();
 	const { category, subCategory } = useSelector((state) => state.tab);
-	const { data, isLoading, isSuccess, isError } = useGetCategoryQuery(category);
+	const { data, isLoading, isSuccess } = useGetCategoryQuery(category);
 
 	const handleChange = (e) => {
 		dispatch(setSubCategory(e));

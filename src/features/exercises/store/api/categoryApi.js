@@ -7,7 +7,12 @@ const categoryApi = apiWithTag.injectEndpoints({
 	endpoints: (build) => ({
 		getCategory: build.query({
 			query: (url) => url,
-			providesTags: ['category'],
+			providesTags: (result, error, arg) => [
+				{
+					type: 'category',
+					id: arg,
+				},
+			],
 			transformResponse: (categories) => extractCategory(categories),
 		}),
 	}),
