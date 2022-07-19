@@ -1,6 +1,6 @@
 import { equipment } from '../assets/equipmentTable';
 
-export const extractCategory = (categories) => {
+export function extractCategory(categories) {
 	return categories.results.map((category) => ({
 		value: category.name,
 		label: category.name_en
@@ -8,7 +8,18 @@ export const extractCategory = (categories) => {
 			: category.name,
 		id: category.id,
 	}));
-};
+}
+
+export function extractEquipment(data) {
+	if (data.length === 0) return '';
+	return data.map((d) => equipment[d]);
+}
+
+export function calcCurrentNumber(allNumber, page) {
+	const currentNumber = 5 * (page + 1);
+	if (currentNumber > allNumber) return allNumber;
+	return currentNumber;
+}
 
 // export const extractExercise = (data) => {
 // 	const exercises = data.results.map((ex) => {
@@ -23,7 +34,3 @@ export const extractCategory = (categories) => {
 // 	const isNext = data.next ? true : false;
 // 	return { count: data.count, exercises, isNext };
 // };
-export const extractEquipment = (data) => {
-	if (data.length === 0) return '';
-	return data.map((d) => equipment[d]);
-};

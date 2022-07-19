@@ -17,29 +17,6 @@
 	margin-block: 2rem;
 }
 
-.arrowsBtns {
-	display: flex;
-}
-.arrowsBtns button {
-	display: flex;
-	color: #fff;
-	border: 0;
-	background-color: var(--clr-blue);
-	cursor: pointer;
-	padding: 5px 8px;
-}
-.arrowsBtns button:nth-child(1) {
-	border-radius: 5px 0 0 5px;
-	border-right: 0.5px solid rgba(250, 250, 250, 0.5);
-}
-.arrowsBtns button:nth-child(2) {
-	border-radius: 0 5px 5px 0;
-}
-
-.arrowsBtns button:disabled {
-	color: var(--clr-grey);
-	background-color: var(--clr-secondary);
-}
 .info p {
 	margin-left: auto;
 }

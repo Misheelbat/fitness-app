@@ -1,27 +1,27 @@
-import { useEffect } from 'react';
+import { useEffect, memo } from 'react';
+import { useSelector, useDispatch } from 'react-redux/es/exports';
 import Select from 'react-select';
 
-import { useSelector, useDispatch } from 'react-redux/es/exports';
 import { setSubCategory, useGetCategoryQuery } from 'features/exercises';
 
 import styles from './dropdownstyle';
 
-export const Dropdown = ({ setPage }) => {
+export let Dropdown = ({ resetPage }) => {
 	const dispatch = useDispatch();
 	const { category, subCategory } = useSelector((state) => state.tab);
 	const { data, isLoading, isSuccess } = useGetCategoryQuery(category);
 
 	const handleChange = (e) => {
 		dispatch(setSubCategory(e));
-		setPage(0);
+		resetPage();
 	};
 
 	useEffect(() => {
 		if (data && Array.isArray(data)) {
 			dispatch(setSubCategory(data[0]));
-			setPage(0);
+			resetPage();
 		}
-	}, [dispatch, data]);
+	}, [dispatch, data, resetPage]);
 
 	if (isLoading) {
 		return <Select isLoading={true} styles={styles} />;
@@ -39,3 +39,5 @@ export const Dropdown = ({ setPage }) => {
 		)
 	);
 };
+
+Dropdown = memo(Dropdown);

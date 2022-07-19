@@ -1,15 +1,18 @@
+import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { CaretLeft, CaretRight } from 'phosphor-react';
 
 import {
 	selectCategory,
 	selectSubCategory,
 	useGetExercisesQuery,
 } from 'features/exercises';
-import { Dropdown } from '../Dropdown/Dropdown';
+
+import { Counter } from './Counter/Counter';
+import { PageBtn } from './PageBtn/PageBtn';
 import { CardsList } from '../CardsList/CardsList';
+import { Dropdown } from '../Dropdown/Dropdown';
+
 import styles from './ExerciseList.module.css';
-import { useState } from 'react';
 
 export const ExerciseList = () => {
 	const [page, setPage] = useState(0);
@@ -21,28 +24,17 @@ export const ExerciseList = () => {
 		{ skip: id === null }
 	);
 
-	const prevPage = () => {
-		if (page === 0) return;
-		setPage((prev) => prev - 1);
-	};
-	const nextPage = () => {
-		if (data?.next === null) return;
-		setPage((prev) => prev + 1);
-	};
-
+	const resetPage = useCallback(() => setPage(0), []);
 	return (
 		<div className={styles.exerciseList}>
-			<Dropdown setPage={setPage} />
+			<Dropdown resetPage={resetPage} />
 			<div className={styles.info}>
-				<div className={styles.arrowsBtns}>
-					<button onClick={prevPage} disabled={page === 0}>
-						<CaretLeft weight="bold" />
-					</button>
-					<button onClick={nextPage} disabled={data?.next === null}>
-						<CaretRight weight="bold" />
-					</button>
-				</div>
-				<p>9 of 19 showing</p>
+				<PageBtn
+					setPage={setPage}
+					totalPages={data?.count}
+					currentPage={page}
+				/>
+				<Counter counter={data?.count} page={page} />
 			</div>
 			<p className={styles.selected}>
 				{category} - {value}

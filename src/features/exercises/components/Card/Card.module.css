@@ -8,6 +8,7 @@
 	border-radius: 2px;
 	gap: 1rem;
 	box-shadow: inset 4px 0px 0px rgba(34, 103, 220, 0.8);
+	cursor: pointer;
 }
 .card h4 {
 	color: var(--clr-blue);
@@ -26,6 +27,9 @@
 	white-space: nowrap;
 	flex-wrap: wrap;
 }
-.equipment p:first-of-type {
-	padding-right: 0.5em;
+.equipment p + p {
+	padding-left: 0.5em;
+}
+.card:hover {
+	background-color: #c0bebe;
 }
