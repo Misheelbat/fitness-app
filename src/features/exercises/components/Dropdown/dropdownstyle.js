@@ -7,6 +7,10 @@ const customStyles = {
 		minWidth: 'max-content',
 		border: 'none',
 		padding: '2px',
+		cursor: 'pointer',
+		'&:hover': {
+			color: 'red',
+		},
 	}),
 
 	singleValue: (styles) => ({
@@ -28,6 +32,7 @@ const customStyles = {
 		...styles,
 		backgroundColor: isFocused ? '#2267dc' : null,
 		minWidth: 'max-content',
+		cursor: 'pointer',
 	}),
 };
 export default customStyles;

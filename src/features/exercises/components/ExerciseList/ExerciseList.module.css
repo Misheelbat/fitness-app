@@ -4,6 +4,7 @@
 	height: 100%;
 	border-radius: 15px 15px 0 0;
 	max-width: 400px;
+	height: 100%;
 }
 .exerciseList p {
 	font-size: 0.8em;
@@ -16,24 +17,12 @@
 	margin-block: 2rem;
 }
 
-.arrowsBtns {
-	display: flex;
-}
-.arrowsBtns button {
-	display: flex;
-	color: #fff;
-	border: 0;
-	background-color: var(--clr-secondary);
-	cursor: pointer;
-	padding: 5px 8px;
-}
-.arrowsBtns button:nth-child(1) {
-	border-radius: 5px 0 0 5px;
-	border-right: 0.5px solid rgba(250, 250, 250, 0.5);
-}
-.arrowsBtns button:nth-child(2) {
-	border-radius: 0 5px 5px 0;
-}
 .info p {
 	margin-left: auto;
+}
+.selected {
+	margin-bottom: 1rem;
+}
+.selected::first-letter {
+	text-transform: capitalize;
 }

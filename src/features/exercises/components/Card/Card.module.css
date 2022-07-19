@@ -1,0 +1,35 @@
+.card {
+	flex-shrink: 0;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	height: 80px;
+	background-color: var(--clr-grey);
+	border-radius: 2px;
+	gap: 1rem;
+	box-shadow: inset 4px 0px 0px rgba(34, 103, 220, 0.8);
+	cursor: pointer;
+}
+.card h4 {
+	color: var(--clr-blue);
+	font-weight: 400;
+}
+.card .cardInfo p {
+	font-size: 0.8em;
+	color: rgba(0, 0, 0, 0.7);
+}
+.card img {
+	width: 50px;
+	margin-left: 1.8rem;
+}
+.equipment {
+	display: flex;
+	white-space: nowrap;
+	flex-wrap: wrap;
+}
+.equipment p + p {
+	padding-left: 0.5em;
+}
+.card:hover {
+	background-color: #c0bebe;
+}

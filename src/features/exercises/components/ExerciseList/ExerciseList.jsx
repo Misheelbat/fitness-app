@@ -1,27 +1,45 @@
-import { CaretLeft, CaretRight } from 'phosphor-react';
+import { useCallback, useState } from 'react';
+import { useSelector } from 'react-redux';
+
+import {
+	selectCategory,
+	selectSubCategory,
+	useGetExercisesQuery,
+} from 'features/exercises';
+
+import { Counter } from './Counter/Counter';
+import { PageBtn } from './PageBtn/PageBtn';
+import { CardsList } from '../CardsList/CardsList';
 import { Dropdown } from '../Dropdown/Dropdown';
 
 import styles from './ExerciseList.module.css';
 
 export const ExerciseList = () => {
+	const [page, setPage] = useState(0);
+	const category = useSelector(selectCategory);
+	const { value, id } = useSelector(selectSubCategory);
+
+	const { data, isLoading } = useGetExercisesQuery(
+		{ category, subCategory: id, page },
+		{ skip: id === null }
+	);
+
+	const resetPage = useCallback(() => setPage(0), []);
 	return (
 		<div className={styles.exerciseList}>
-			<Dropdown />
+			<Dropdown resetPage={resetPage} />
 			<div className={styles.info}>
-				<div className={styles.arrowsBtns}>
-					<button>
-						<CaretLeft />
-					</button>
-					<button>
-						<CaretRight />
-					</button>
-				</div>
-				<p>9 of 19 showing</p>
+				<PageBtn
+					setPage={setPage}
+					totalPages={data?.count}
+					currentPage={page}
+				/>
+				<Counter counter={data?.count} page={page} />
 			</div>
-			<p>Selected: Muscle - Chest</p>
-			<div>
-				<div>Barbell</div>
-			</div>
+			<p className={styles.selected}>
+				{category} - {value}
+			</p>
+			<CardsList isLoading={isLoading} cards={data?.results} />
 		</div>
 	);
 };
