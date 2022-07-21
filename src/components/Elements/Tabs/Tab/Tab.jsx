@@ -1,14 +1,14 @@
 import cx from 'classnames';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { selectTab, setCategory } from 'features/exercises';
+import { selectCategoryId, setCategory } from 'features/exercises';
 import { makeId } from 'utils';
 
 import styles from './Tab.module.css';
 
 export const Tab = ({ Element = 'button', tab, children, ...props }) => {
 	const dispatch = useDispatch();
-	const activeTab = useSelector(selectTab);
+	const activeTab = useSelector(selectCategoryId);
 
 	const panelId = makeId('panelId', tab.id);
 	const tabId = makeId('tabId', tab.id);
@@ -17,7 +17,7 @@ export const Tab = ({ Element = 'button', tab, children, ...props }) => {
 		dispatch(setCategory(tab));
 	};
 
-	const isActive = activeTab.id === tab.id;
+	const isActive = activeTab === tab.id;
 	return (
 		<Element
 			id={tabId}

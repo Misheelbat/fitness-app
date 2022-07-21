@@ -2,14 +2,20 @@ import { useEffect, memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux/es/exports';
 import Select from 'react-select';
 
-import { setSubCategory, useGetCategoryQuery } from 'features/exercises';
+import {
+	setSubCategory,
+	useGetCategoryQuery,
+	selectCategoryUrl,
+	selectSubCategory,
+} from 'features/exercises';
 
 import styles from './dropdownstyle';
 
 export let Dropdown = ({ resetPage }) => {
 	const dispatch = useDispatch();
-	const { category, subCategory } = useSelector((state) => state.tab);
-	const { data, isLoading, isSuccess } = useGetCategoryQuery(category);
+	const url = useSelector(selectCategoryUrl);
+	const subCategory = useSelector(selectSubCategory);
+	const { data, isLoading, isSuccess } = useGetCategoryQuery(url);
 
 	const handleChange = (e) => {
 		dispatch(setSubCategory(e));
