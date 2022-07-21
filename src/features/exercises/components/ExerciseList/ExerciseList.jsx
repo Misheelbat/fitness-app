@@ -2,8 +2,8 @@ import { useCallback, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import {
-	selectCategory,
 	selectSubCategory,
+	selectCategoryName,
 	useGetExercisesQuery,
 } from 'features/exercises';
 
@@ -16,7 +16,7 @@ import styles from './ExerciseList.module.css';
 
 export const ExerciseList = () => {
 	const [page, setPage] = useState(0);
-	const category = useSelector(selectCategory);
+	const category = useSelector(selectCategoryName);
 	const { value, id } = useSelector(selectSubCategory);
 
 	const { data, isLoading } = useGetExercisesQuery(
