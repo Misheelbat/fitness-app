@@ -8,6 +8,8 @@
 	background-color: var(--clr-blue);
 	cursor: pointer;
 	padding: 5px 8px;
+
+	transition: 0.2s all;
 }
 .arrowsBtns button:nth-child(1) {
 	border-radius: 5px 0 0 5px;
@@ -21,4 +23,11 @@
 	color: var(--clr-grey);
 	background-color: var(--clr-secondary);
 	cursor: not-allowed;
+}
+
+.arrowsBtns button:not(:disabled):hover {
+	background-color: var(--clr-dark-blue);
+}
+.arrowsBtns button:active {
+	transform: scale(0.98);
 }
