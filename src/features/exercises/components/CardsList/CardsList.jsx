@@ -13,8 +13,8 @@ export const CardsList = ({ cards = [], isLoading }) => {
 
 	return (
 		<div className={styles.cardsList}>
-			{cards.map((card) => (
-				<Card key={card.id} exercise={card.name} equipments={card.equipment} />
+			{cards.map(({ id, name, equipment }) => (
+				<Card key={id} exercise={name} equipments={equipment} exId={id} />
 			))}
 		</div>
 	);

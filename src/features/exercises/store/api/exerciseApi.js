@@ -1,6 +1,6 @@
 import { apiSlice } from 'store/api/apiSlice';
 
-const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['exercise'] });
+const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['exercises'] });
 
 // endpoint for exercises with pagination
 const exerciseApi = apiWithTag.injectEndpoints({
@@ -12,13 +12,16 @@ const exerciseApi = apiWithTag.injectEndpoints({
 			},
 			providesTags: (result, error, arg) => [
 				{
-					type: 'exercise',
+					type: 'exercises',
 					id: arg.subCategory,
 				},
 			],
+		}),
+		getSingleExercise: build.query({
+			query: (id) => `exerciseinfo/${id}`,
 		}),
 	}),
 	overrideExisting: false,
 });
 
-export const { useGetExercisesQuery } = exerciseApi;
+export const { useGetExercisesQuery, useGetSingleExerciseQuery } = exerciseApi;

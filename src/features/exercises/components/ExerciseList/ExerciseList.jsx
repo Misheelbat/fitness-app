@@ -36,7 +36,7 @@ export const ExerciseList = () => {
 				/>
 				<Counter counter={data?.count} page={page} />
 			</div>
-			<p className={styles.selected}>
+			<p className={styles.activeCategory}>
 				{category} - {value}
 			</p>
 			<CardsList isLoading={isLoading} cards={data?.results} />

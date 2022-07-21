@@ -1,17 +1,17 @@
 import { createSelector } from 'reselect';
 
-const selectTabReducer = (state) => state.tab;
+const selectCurrentTab = (state) => state.tab;
 
 export const selectTab = createSelector(
-	[selectTabReducer],
+	[selectCurrentTab],
 	(tab) => tab.category
 );
 
 export const selectSubCategory = createSelector(
-	[selectTabReducer],
+	[selectCurrentTab],
 	(tab) => tab.subCategory
 );
 
-export const selectCategory = createSelector([selectTabReducer], (tab) =>
+export const selectCategory = createSelector([selectCurrentTab], (tab) =>
 	tab.category.name.toLowerCase()
 );

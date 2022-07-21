@@ -1,5 +1,12 @@
 .tabs {
-	height: 100%;
 	display: flex;
 	flex-direction: column;
+	background-color: var(--clr-bg);
+	height: 100%;
+}
+.tabsPanel {
+	height: 100%;
+	display: flex;
+	padding-top: 2rem;
+	gap: 1rem;
 }

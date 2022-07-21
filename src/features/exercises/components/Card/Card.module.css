@@ -1,6 +1,7 @@
 .card {
 	flex-shrink: 0;
 	width: 100%;
+	min-width: 300px;
 	display: flex;
 	align-items: center;
 	height: 80px;
