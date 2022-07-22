@@ -47,7 +47,7 @@ export const ExercisePreview = () => {
 							<img key={img.id} src={img.image} alt="exercise" />
 						))}
 					</div>
-					<MuscleDiagram />
+					<MuscleDiagram /> 
 				</div>
 			</div>
 		)
