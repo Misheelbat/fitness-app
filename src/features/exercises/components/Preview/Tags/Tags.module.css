@@ -1,0 +1,14 @@
+.tags {
+	display: flex;
+	gap: 0.25rem;
+	flex-wrap: wrap;
+	width: fit-content;
+	border-radius: 4px;
+}
+.tag {
+	color: white;
+	line-height: 1.4;
+	padding: 2px 8px;
+	border-radius: 4px;
+	background-color: var(--clr-purple);
+}

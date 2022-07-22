@@ -19,7 +19,7 @@ const exerciseApi = apiWithTag.injectEndpoints({
 				},
 			],
 		}),
-		getSingleExercise: build.query({
+		getExerciseDetails: build.query({
 			query: (id) => `exerciseinfo/${id}`,
 			providesTags: (result, error, arg) => [
 				{
@@ -32,4 +32,4 @@ const exerciseApi = apiWithTag.injectEndpoints({
 	overrideExisting: false,
 });
 
-export const { useGetExercisesQuery, useGetSingleExerciseQuery } = exerciseApi;
+export const { useGetExercisesQuery, useGetExerciseDetailsQuery } = exerciseApi;
