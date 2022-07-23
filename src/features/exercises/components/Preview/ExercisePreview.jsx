@@ -47,7 +47,10 @@ export const ExercisePreview = () => {
 							<img key={img.id} src={img.image} alt="exercise" />
 						))}
 					</div>
-					<MuscleDiagram /> 
+					<MuscleDiagram
+						primary={data.muscles}
+						secondary={data.muscles_secondary}
+					/>
 				</div>
 			</div>
 		)
