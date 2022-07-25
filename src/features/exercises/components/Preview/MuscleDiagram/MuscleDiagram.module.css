@@ -1,6 +1,20 @@
+.muscleDiagram h4 {
+	font-weight: 400;
+	border-bottom: 2px solid var(--clr-blue);
+	padding: 0.5rem 0;
+	width: min-content;
+	margin-bottom: 1em;
+}
+
 .diagram {
-	width: 150px;
-	height: 276px;
+	width: 182px;
+	height: 308px;
 	background-size: 150px;
 	background-repeat: no-repeat;
+	background-color: #fff;
+	background-position: center center;
+}
+.diagramContainer {
+	display: flex;
+	gap: 1rem;
 }

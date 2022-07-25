@@ -41,7 +41,7 @@ export const ExercisePreview = () => {
 				</div>
 
 				<div className={styles.illustration}>
-					<h4>Illustration:</h4>
+					<h4>Illustrations:</h4>
 					<div className={styles.images}>
 						{data.images.map((img) => (
 							<img key={img.id} src={img.image} alt="exercise" />
