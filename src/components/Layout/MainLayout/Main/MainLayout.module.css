@@ -2,6 +2,7 @@
 .mainLayout {
 	background-color: var(--clr-bg);
 	color: #fff;
+	overflow: hidden;
 }
 /* Layout */
 .mainLayout {

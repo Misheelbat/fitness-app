@@ -1,9 +1,14 @@
+/* .muscleDiagram > * + * {
+	margin-bottom: 1rem;
+} */
 .muscleDiagram h4 {
+	font-size: 20px;
 	font-weight: 400;
 	border-bottom: 2px solid var(--clr-blue);
 	padding: 0.5rem 0;
 	width: min-content;
-	margin-bottom: 1em;
+	margin-bottom: 0.5em;
+	white-space: nowrap;
 }
 
 .diagram {
@@ -13,8 +18,36 @@
 	background-repeat: no-repeat;
 	background-color: #fff;
 	background-position: center center;
+	border-radius: 5px;
 }
 .diagramContainer {
 	display: flex;
+	justify-content: space-evenly;
 	gap: 1rem;
+}
+
+.muscles {
+	padding-top: 0.5em;
+}
+.muscles p {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+}
+.muscles p::before {
+	content: '';
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 2px;
+}
+.primary p::before {
+	background-color: #cc0000;
+}
+.secondary p::before {
+	background-color: #f57900;
+}
+.primary,
+.secondary {
+	margin-bottom: 1.5em;
 }

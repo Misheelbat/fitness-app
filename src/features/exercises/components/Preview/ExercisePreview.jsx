@@ -27,31 +27,41 @@ export const ExercisePreview = () => {
 	return (
 		data && (
 			<div className={styles.preview}>
-				<div className={styles.title}>
+				<section className={styles.title}>
 					<h3>{data.name}</h3>
+				</section>
+
+				<div className={styles.category}>
+					<div className={styles.categoryEquipment}>
+						<p>Equipments:</p>
+						<Tags tags={data.equipment} />
+					</div>
+					<div>
+						<p>Category:</p>
+						<Tags tag={data.category.name} />
+					</div>
 				</div>
 
-				<div>
-					<Tags tags={data.equipment} />
-				</div>
+				{data.images.length > 1 && (
+					<section className={styles.illustration}>
+						<h4>Illustrations:</h4>
+						<div className={styles.images}>
+							{data.images.map((img) => (
+								<img key={img.id} src={img.image} alt="exercise" />
+							))}
+						</div>
+					</section>
+				)}
 
-				<div className={styles.description}>
+				<section className={styles.description}>
 					<h4>Description:</h4>
 					<div dangerouslySetInnerHTML={{ __html: data.description }}></div>
-				</div>
+				</section>
 
-				<div className={styles.illustration}>
-					<h4>Illustrations:</h4>
-					<div className={styles.images}>
-						{data.images.map((img) => (
-							<img key={img.id} src={img.image} alt="exercise" />
-						))}
-					</div>
-					<MuscleDiagram
-						primary={data.muscles}
-						secondary={data.muscles_secondary}
-					/>
-				</div>
+				<MuscleDiagram
+					primary={data.muscles}
+					secondary={data.muscles_secondary}
+				/>
 			</div>
 		)
 	);

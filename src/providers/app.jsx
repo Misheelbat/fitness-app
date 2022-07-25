@@ -25,7 +25,7 @@ export const AppProvider = ({ children }) => {
 								<BrowserRouter>{children}</BrowserRouter>
 								<ToastProvider />
 							</Provider>
-							<ReactQueryDevtools />
+							{/* <ReactQueryDevtools /> */}
 						</AuthProvider>
 					</QueryClientProvider>
 				</HelmetProvider>
