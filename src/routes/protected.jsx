@@ -10,6 +10,10 @@ const { ExercisesRoutes } = lazyImport(
 	() => import('features/exercises'),
 	'ExercisesRoutes'
 );
+const { ProgrammRoutes } = lazyImport(
+	() => import('features/programms'),
+	'ProgrammRoutes'
+);
 
 const App = () => {
 	return (
@@ -27,7 +31,7 @@ export const protectedRoutes = [
 		element: <App />,
 		children: [
 			{ path: 'exercises/*', element: <ExercisesRoutes /> },
-			{ path: 'programms', element: <div>Programm</div> },
+			{ path: 'programms/*', element: <ProgrammRoutes /> },
 			{ path: 'schedule', element: <div>Schedule</div> },
 			{ path: 'profile/*', element: <UserRoutes /> },
 			{ path: '', element: <div>dashboard</div> },

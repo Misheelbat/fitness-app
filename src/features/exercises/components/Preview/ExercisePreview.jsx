@@ -69,10 +69,4 @@ export const ExercisePreview = () => {
 	);
 };
 
-//category
-//equipment
-//muscles -  secondaryMuscles
-//name
 //variations
-//description
-//images
