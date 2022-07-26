@@ -5,6 +5,7 @@
 	border-radius: 15px 15px 0 0;
 	background-color: var(--clr-primary);
 	max-width: 800px;
+	min-height: 100%;
 	max-height: calc(100vh - 249.27px);
 	overflow-y: auto;
 }
