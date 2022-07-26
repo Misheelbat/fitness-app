@@ -27,3 +27,17 @@
 .inverted:active {
 	background: #5629c7;
 }
+
+.add {
+	height: 40px;
+	font-size: 1em;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.add::before {
+	display: inline-block;
+	content: '\002B';
+	padding-right: 0.5em;
+	font-size: 1.5rem;
+}

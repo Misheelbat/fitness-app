@@ -31,6 +31,9 @@
 .title {
 	border-bottom: 0.5px solid var(--clr-border);
 	padding-bottom: 0.5em;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .title h3 {
 	font-size: 28px;

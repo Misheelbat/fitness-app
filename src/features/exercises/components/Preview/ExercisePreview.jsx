@@ -6,8 +6,9 @@ import {
 } from 'features/exercises';
 
 import { Tags } from './Tags/Tags';
-import { Spinner } from 'components/Elements';
+import { Spinner, Button } from 'components/Elements';
 import { MuscleDiagram } from './MuscleDiagram/MuscleDiagram';
+
 import styles from './Preview.module.css';
 
 export const ExercisePreview = () => {
@@ -29,6 +30,7 @@ export const ExercisePreview = () => {
 			<div className={styles.preview}>
 				<section className={styles.title}>
 					<h3>{data.name}</h3>
+					<Button buttonType="add">Add to Programm</Button>
 				</section>
 
 				<div className={styles.category}>
