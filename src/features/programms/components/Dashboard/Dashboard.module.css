@@ -7,6 +7,7 @@
 .dashboard > * + * {
 	margin-top: 3rem;
 }
+
 .dashboard h4 {
 	font-size: 20px;
 	font-weight: 400;
@@ -15,10 +16,11 @@
 	width: min-content;
 	margin-bottom: 0.5em;
 	white-space: nowrap;
+	margin-bottom: 1em;
 }
 
-.createTemplateBtn {
-	margin-top: 2em;
+.overview p {
+	margin-bottom: 2rem;
 }
 .createTemplateBtn a {
 	display: block;
@@ -32,4 +34,16 @@
 .createTemplateBtn a:hover {
 	color: var(--clr-grey);
 	background-color: var(--clr-dark-blue);
+}
+
+.workoutsTitle {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.workouts {
+	display: flex;
+	gap: 1.5rem;
+	flex-wrap: wrap;
 }

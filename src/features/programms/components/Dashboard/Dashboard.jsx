@@ -6,7 +6,7 @@ import styles from './Dashboard.module.css';
 export const Dashboard = () => {
 	return (
 		<div className={styles.dashboard}>
-			<div>
+			<div className={styles.overview}>
 				<h4>Overview :</h4>
 				<p>
 					Find the best workout for your goal, experience, desired training
@@ -17,8 +17,15 @@ export const Dashboard = () => {
 				</div>
 			</div>
 			<div>
-				<h4>My Workouts :</h4>
-				<TemplateCard />
+				<div className={styles.workoutsTitle}>
+					<h4>My Workouts :</h4>
+					<div className={styles.createTemplateBtn}>
+						<Link to="prog">See All</Link>
+					</div>
+				</div>
+				<div className={styles.workouts}>
+					<TemplateCard />
+				</div>
 			</div>
 		</div>
 	);

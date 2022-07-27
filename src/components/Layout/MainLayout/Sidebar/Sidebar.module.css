@@ -32,10 +32,10 @@
 .navItem span {
 	display: none;
 	position: absolute;
-	color: white;
+	color: black;
 	top: 50%;
 	padding: 0.8em 1em;
-	background-color: var(--clr-primary);
+	background-color: #fff;
 	border-radius: 5px;
 	transform: translate(4.2rem, -50%);
 	letter-spacing: 1px;
@@ -48,7 +48,7 @@
 	width: 0;
 	border-top: 9px solid transparent;
 	border-bottom: 9px solid transparent;
-	border-right: 9px solid var(--clr-primary);
+	border-right: 9px solid #fff;
 	position: absolute;
 	left: -7px;
 	top: 50%;

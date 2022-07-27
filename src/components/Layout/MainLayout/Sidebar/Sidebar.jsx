@@ -13,7 +13,7 @@ const SideNavItem = () => {
 	const navItems = [
 		{ name: 'Dashboard', to: '.', icon: SquaresFour },
 		{ name: 'Exercises List', to: 'exercises', icon: Barbell },
-		{ name: 'Workout Plans', to: 'programms', icon: CheckSquareOffset },
+		{ name: 'Workout Plans', to: 'workouts', icon: CheckSquareOffset },
 		{ name: 'Schedule', to: 'schedule', icon: CalendarPlus },
 	];
 
