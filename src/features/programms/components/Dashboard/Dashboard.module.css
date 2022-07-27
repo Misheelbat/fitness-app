@@ -4,3 +4,32 @@
 	border-radius: 15px 15px 0 0;
 	padding: 2rem 1rem 2rem 1rem;
 }
+.dashboard > * + * {
+	margin-top: 3rem;
+}
+.dashboard h4 {
+	font-size: 20px;
+	font-weight: 400;
+	border-bottom: 2px solid var(--clr-blue);
+	padding: 0.5rem 0;
+	width: min-content;
+	margin-bottom: 0.5em;
+	white-space: nowrap;
+}
+
+.createTemplateBtn {
+	margin-top: 2em;
+}
+.createTemplateBtn a {
+	display: block;
+	background-color: var(--clr-blue);
+	width: max-content;
+	padding: 10px 20px;
+	border-radius: 4px;
+	transition: background 100ms ease-out;
+}
+.createTemplateBtn a:active,
+.createTemplateBtn a:hover {
+	color: var(--clr-grey);
+	background-color: var(--clr-dark-blue);
+}

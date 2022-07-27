@@ -1,0 +1,37 @@
+.template {
+	background-color: rgb(107, 103, 103);
+	width: 350px;
+	height: 250px;
+	border-radius: 5px;
+	display: flex;
+	overflow: hidden;
+	background-image: url('/public/images/template.png');
+	background-position: center top;
+	background-size: cover;
+	cursor: pointer;
+}
+
+.templateInfo {
+	margin-top: auto;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.75);
+	backdrop-filter: blur(1.5rem) contrast(80%);
+	-webkit-backdrop-filter: blur(1.5rem) contrast(80%);
+	padding: 0.8rem 1.5rem;
+}
+.templateInfo h5 {
+	font-size: 1.5rem;
+	font-weight: 500;
+}
+
+.templateInfo p {
+	font-size: 0.7rem;
+	text-transform: uppercase;
+}
+.templateInfo span {
+	font-size: 1rem;
+	font-weight: 600;
+}
