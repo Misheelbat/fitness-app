@@ -3,7 +3,7 @@ import { Dashboard } from 'features/programms/components';
 
 export const Programms = () => {
 	return (
-		<ContentLayout title="Programms">
+		<ContentLayout title="My Programm Templates">
 			<Dashboard />
 		</ContentLayout>
 	);

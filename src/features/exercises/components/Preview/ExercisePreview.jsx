@@ -30,7 +30,7 @@ export const ExercisePreview = () => {
 			<div className={styles.preview}>
 				<section className={styles.title}>
 					<h3>{data.name}</h3>
-					<Button buttonType="add">Add to Programm</Button>
+					<Button buttonType="add">ADD</Button>
 				</section>
 
 				<div className={styles.category}>

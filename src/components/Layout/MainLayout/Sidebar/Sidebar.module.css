@@ -39,6 +39,8 @@
 	border-radius: 5px;
 	transform: translate(4.2rem, -50%);
 	letter-spacing: 1px;
+	white-space: nowrap;
+	z-index: 1000;
 }
 .navItem span::before {
 	content: '';

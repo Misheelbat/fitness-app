@@ -13,7 +13,7 @@ export const MuscleDiagram = ({ primary = [], secondary = [] }) => {
 	};
 	return (
 		<section className={styles.muscleDiagram}>
-			<h4>Muscles</h4>
+			<h4>Muscle Groups:</h4>
 			<div className={styles.muscles}>
 				<div className={styles.primary}>
 					<p>Primary Muscles:</p>

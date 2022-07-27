@@ -12,8 +12,8 @@ import styles from './Sidebar.module.css';
 const SideNavItem = () => {
 	const navItems = [
 		{ name: 'Dashboard', to: '.', icon: SquaresFour },
-		{ name: 'Exercises', to: 'exercises', icon: Barbell },
-		{ name: 'Programms', to: 'programms', icon: CheckSquareOffset },
+		{ name: 'Exercises List', to: 'exercises', icon: Barbell },
+		{ name: 'Workout Plans', to: 'programms', icon: CheckSquareOffset },
 		{ name: 'Schedule', to: 'schedule', icon: CalendarPlus },
 	];
 
