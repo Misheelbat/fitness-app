@@ -1,0 +1,13 @@
+.tableBody td {
+	border-bottom: 1.5px solid var(--clr-secondary);
+	padding-block: 1em;
+	font-size: 0.85em;
+	color: rgba(250, 250, 250, 0.7);
+}
+.tableBody td:first-of-type {
+	color: var(--clr-blue);
+	padding-left: 1rem;
+}
+.tableBody td span + span {
+	padding-left: 0.5em;
+}

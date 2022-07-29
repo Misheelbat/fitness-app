@@ -1,0 +1,13 @@
+.tableHead {
+	background-color: var(--clr-secondary);
+}
+.tableHead th {
+	font-weight: 400;
+	text-align: start;
+	letter-spacing: 1px;
+	padding-block: 0.5em;
+	padding-right: 0.5em;
+}
+.tableHead th:first-of-type {
+	padding-left: 1rem;
+}
