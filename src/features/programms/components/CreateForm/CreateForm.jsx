@@ -36,7 +36,7 @@ export const CreateForm = () => {
 		getCoreRowModel: getCoreRowModel(),
 	});
 
-	console.log(rowSelection);
+	console.log(table.getSelectedRowModel);
 	return (
 		<div className={styles.createForm}>
 			<div className={styles.createFormHeader}>
