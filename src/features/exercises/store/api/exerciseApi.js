@@ -1,7 +1,7 @@
 import { apiSlice } from 'store/api/apiSlice';
 
 const apiWithTag = apiSlice.enhanceEndpoints({
-	addTagTypes: ['exercises', 'singleExercise'],
+	addTagTypes: ['exercises', 'singleExercise', 'searchedTerm'],
 });
 
 // endpoint for exercises with pagination
@@ -28,8 +28,21 @@ const exerciseApi = apiWithTag.injectEndpoints({
 				},
 			],
 		}),
+		searchExercise: build.mutation({
+			query: (term) => `exercise/search/?language=2&term=${term}`,
+			providesTags: (result, error, arg) => [
+				{
+					type: 'searchedTerm',
+					id: arg,
+				},
+			],
+		}),
 	}),
 	overrideExisting: false,
 });
 
-export const { useGetExercisesQuery, useGetExerciseDetailsQuery } = exerciseApi;
+export const {
+	useGetExercisesQuery,
+	useGetExerciseDetailsQuery,
+	useSearchExerciseMutation,
+} = exerciseApi;

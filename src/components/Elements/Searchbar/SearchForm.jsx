@@ -1,5 +1,8 @@
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 import { MagnifyingGlass } from 'phosphor-react/dist/';
+
+import { useSearchExerciseMutation } from 'features/exercises';
 
 import styles from './SearchForm.module.css';
 
@@ -8,13 +11,20 @@ export const SEARCH_TYPES = {
 };
 
 export const SearchForm = ({ width }) => {
+	const [searchTerm, { isError, error }] = useSearchExerciseMutation({
+		fixedCacheKey: 'search',
+	});
 	const [term, setTerm] = useState('');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log(term);
+		searchTerm(term);
 		setTerm('');
 	};
+
+	if (isError) {
+		toast.error(error.message);
+	}
 	return (
 		<div className={styles.searchForm} style={{ width: width }}>
 			<form onSubmit={handleSubmit}>
