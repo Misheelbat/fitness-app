@@ -1,11 +1,12 @@
 .searchForm {
 	position: relative;
+	width: 250px;
 }
 .searchForm input {
 	color: #fff;
+	width: 100%;
 	font-size: 0.9em;
-	width: 250px;
-	border: 0;
+	border: 1px solid #484c56;
 	border-radius: 0.4em;
 	padding: 0.8em 2em;
 	background-color: var(--clr-secondary);

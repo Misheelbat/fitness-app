@@ -4,6 +4,7 @@ import { Trash } from 'phosphor-react';
 import { Checkbox } from '../components/checkbox/Checkbox';
 
 const columnHelper = createColumnHelper();
+
 export const columns = [
 	columnHelper.accessor('checkbox', {
 		header: ({ table }) => (

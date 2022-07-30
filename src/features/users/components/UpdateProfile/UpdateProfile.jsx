@@ -15,7 +15,7 @@ export const UpdateProfile = () => {
 	return (
 		<ContentLayout title="Update Profile">
 			<div className={styles.updateProfile}>
-				<h3>Update your Personal Infomation</h3>
+				<h3>Account Settings</h3>
 				<UpdateDisplayName placeHolder={currentUser.displayName} />
 				<UpdateEmail placeHolder={currentUser.email} />
 				<UpdatePassword />

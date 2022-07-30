@@ -4,6 +4,7 @@ import { useReactTable, getCoreRowModel } from '@tanstack/react-table';
 import { Button } from 'components/Elements';
 import { TableGrid } from 'components/Table';
 import { columns } from 'features/programms/api';
+import { Modal } from '../Modal/Modal';
 import styles from './CreateForm.module.css';
 
 const Person = [
@@ -25,6 +26,7 @@ const Person = [
 
 export const CreateForm = () => {
 	const [rowSelection, setRowSelection] = useState({});
+	const [isOpen, setIsOpen] = useState(false);
 
 	const table = useReactTable({
 		data: Person,
@@ -36,14 +38,17 @@ export const CreateForm = () => {
 		getCoreRowModel: getCoreRowModel(),
 	});
 
-	console.log(table.getSelectedRowModel);
 	return (
 		<div className={styles.createForm}>
 			<div className={styles.createFormHeader}>
 				<h4>Workouts :</h4>
-				<Button buttonType="add">ADD</Button>
+				<Button buttonType="add" onClick={() => setIsOpen(!isOpen)}>
+					ADD
+				</Button>
 			</div>
+			{isOpen && <Modal control={setIsOpen} />}
 			<TableGrid table={table} />
 		</div>
 	);
 };
+// console.log(table.getSelectedRowModel().flatRows.map((e) => e.original));

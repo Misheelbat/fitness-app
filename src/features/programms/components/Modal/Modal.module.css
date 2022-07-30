@@ -1,0 +1,51 @@
+.modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(0, 0, 0, 0.2);
+	display: flex;
+	justify-content: center;
+}
+
+.modalContainer {
+	margin-top: 15%;
+	min-width: 300px;
+	width: 50%;
+	height: fit-content;
+	background-color: #23262f;
+	border-radius: 10px;
+	padding: 1.5rem 2rem;
+}
+.modalHeader {
+	display: flex;
+	margin-bottom: 2rem;
+}
+.modalHeader h2 {
+	font-weight: 400;
+	font-size: 20px;
+}
+.closeBtn {
+	color: #fff;
+	border: 0;
+	padding: 0;
+	margin-left: auto;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.modalContainer p {
+	font-size: 0.9em;
+	color: var(--clr-off-white);
+	padding-bottom: 0.5em;
+}
+
+.exerciseSearch,
+.sets {
+	margin-bottom: 1rem;
+}
+
+.sets input {
+	width: 100%;
+}
