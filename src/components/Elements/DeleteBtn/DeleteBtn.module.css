@@ -1,0 +1,8 @@
+.deleteBtn {
+	color: var(--clr-off-white);
+	display: flex;
+	border: 0;
+	padding: 0;
+	background-color: transparent;
+	cursor: pointer;
+}

@@ -15,6 +15,7 @@ export function Checkbox({ indeterminate, className = '', ...rest }) {
 			ref={ref}
 			className={className + ' cursor-pointer'}
 			{...rest}
+			style={{ cursor: 'pointer' }}
 		/>
 	);
 }

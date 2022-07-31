@@ -1,6 +1,6 @@
 import { createColumnHelper } from '@tanstack/react-table';
 
-import { Trash } from 'phosphor-react';
+import { DeleteBtn } from 'components/Elements';
 import { Checkbox } from '../components/checkbox/Checkbox';
 
 const columnHelper = createColumnHelper();
@@ -47,13 +47,11 @@ export const columns = [
 		cell: (info) => info.getValue(),
 	}),
 	columnHelper.accessor('delete', {
-		header: '',
-		cell: (e) => (
-			<Trash size={15} weight="bold" onClick={() => del(e.row.original)} />
-		),
+		header: <DeleteBtn />,
+		cell: (e) => <DeleteBtn onClick={() => del(e)} />,
 	}),
 ];
 
 function del(ar) {
-	console.log(ar);
+	console.log(ar.row.original);
 }
