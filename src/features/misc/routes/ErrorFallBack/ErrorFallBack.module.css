@@ -1,8 +1,10 @@
 .errorFallBack {
 	height: 100vh;
 	display: flex;
-	justify-content: center;
+	align-items: center;
 	padding-top: 10vh;
 	background-color: var(--clr-bg);
 	color: #fff;
+	flex-direction: column;
+	gap: 2rem;
 }
