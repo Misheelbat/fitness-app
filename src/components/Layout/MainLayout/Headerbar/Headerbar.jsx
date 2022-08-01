@@ -4,12 +4,14 @@ import { User } from 'phosphor-react/dist/';
 
 import { useAuth } from 'features/auth';
 import { SearchForm } from 'components/Searchbar';
+import { useSearchExerciseMutation } from 'features/exercises';
 
 import styles from './Headerbar.module.css';
 
 const UserNav = () => {
 	const { currentUser, logOut } = useAuth();
 	const [open, setOpen] = useState(false);
+
 	const userNavItems = [
 		{
 			name: 'Your Profile',
@@ -53,9 +55,10 @@ const UserNav = () => {
 };
 
 export default function Headerbar() {
+	const [search, result] = useSearchExerciseMutation();
 	return (
 		<header className={styles.headerbar}>
-			<SearchForm />
+			<SearchForm searchFn={search} results={result} />
 			<UserNav />
 		</header>
 	);

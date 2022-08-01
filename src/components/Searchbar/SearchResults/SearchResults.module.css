@@ -10,11 +10,12 @@
 	overflow-y: auto;
 	background-color: var(--clr-secondary);
 	color: var(--clr-off-white);
+	z-index: 100;
 }
 
 .results {
 	padding-block: 0.9em;
-		padding-left: 1rem;
+	padding-left: 1rem;
 
 	font-size: 0.9em;
 	cursor: pointer;
@@ -29,3 +30,22 @@
 .open {
 	display: block;
 } */
+/* scrollbar */
+.searchResults {
+	scrollbar-width: thin;
+	scrollbar-color: var(--clr-secondary);
+}
+.searchResults::-webkit-scrollbar {
+	width: 9px;
+}
+.searchResults::-webkit-scrollbar-track {
+	background-color: #fff;
+	border-radius: 100vw;
+}
+.searchResults::-webkit-scrollbar-thumb {
+	background-color: #949494;
+	border-radius: 100vw;
+}
+.searchResults::-webkit-scrollbar-thumb:hover {
+	background-color: var(--clr-bg);
+}
