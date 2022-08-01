@@ -2,43 +2,49 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { MagnifyingGlass } from 'phosphor-react/dist/';
 
-import { useSearchExerciseMutation } from 'features/exercises';
-
+import { Spinner } from 'components/Elements';
+import { SearchResults } from './SearchResults/SearchResults';
 import styles from './SearchForm.module.css';
 
 export const SEARCH_TYPES = {
 	max: '100%',
 };
 
-export const SearchForm = ({ width }) => {
-	const [searchTerm, { isError, error }] = useSearchExerciseMutation({
-		fixedCacheKey: 'search',
-	});
+export const SearchForm = ({ width, searchFn, results }) => {
 	const [term, setTerm] = useState('');
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		searchTerm(term);
-		setTerm('');
+		try {
+			if (term) {
+				searchFn(term);
+				setTerm('');
+			}
+		} catch (error) {
+			toast.error(error.message);
+		}
 	};
 
-	if (isError) {
-		toast.error(error.message);
-	}
 	return (
 		<div className={styles.searchForm} style={{ width: width }}>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="search">
-					<MagnifyingGlass />
+					{results?.isLoading ? (
+						<Spinner className={styles.spinn} size="16" />
+					) : (
+						<MagnifyingGlass className={styles.icon} />
+					)}
 					<input
 						id="search"
 						type="search"
-						name={term}
+						name="search"
+						value={term}
 						onChange={(e) => setTerm(e.target.value)}
 						placeholder="Search"
 					/>
 				</label>
 			</form>
+			<SearchResults data={results?.data} />
 		</div>
 	);
 };

@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { User } from 'phosphor-react/dist/';
 import { Link } from 'react-router-dom';
+import { User } from 'phosphor-react/dist/';
 
 import { useAuth } from 'features/auth';
-import { SearchForm } from 'components/Elements';
+import { SearchForm } from 'components/Searchbar';
 
 import styles from './Headerbar.module.css';
 
@@ -27,6 +27,7 @@ const UserNav = () => {
 			},
 		},
 	];
+
 	return (
 		<div className={styles.userNav}>
 			{currentUser && (

@@ -1,0 +1,17 @@
+.searchResults {
+	position: absolute;
+	padding: 0.7rem;
+	max-height: 200px;
+	background-color: var(--clr-secondary);
+	overflow-y: auto;
+	left: 0;
+	width: 100%;
+	border: 1px solid #484c56;
+	border-top: none;
+	margin-top: 0.3rem;
+}
+
+.result {
+	padding-block: 0.3em;
+	font-size: 0.9em;
+}

@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import { useReactTable, getCoreRowModel } from '@tanstack/react-table';
 
 import { Button } from 'components/Elements';
@@ -38,10 +38,7 @@ export const CreateForm = () => {
 		getCoreRowModel: getCoreRowModel(),
 	});
 
-	const closeModal = useCallback(() => {
-		setIsOpen(false);
-	}, []);
-
+	console.log('is rendering');
 	return (
 		<div className={styles.createForm}>
 			<div className={styles.createFormHeader}>
@@ -50,7 +47,7 @@ export const CreateForm = () => {
 					ADD
 				</Button>
 			</div>
-			{isOpen && <Modal close={closeModal} />}
+			{isOpen && <Modal close={setIsOpen} />}
 			<TableGrid table={table} />
 		</div>
 	);
