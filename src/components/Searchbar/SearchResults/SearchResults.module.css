@@ -1,17 +1,31 @@
 .searchResults {
 	position: absolute;
-	padding: 0.7rem;
 	max-height: 200px;
-	background-color: var(--clr-secondary);
-	overflow-y: auto;
 	left: 0;
 	width: 100%;
 	border: 1px solid #484c56;
 	border-top: none;
+	padding-block: 0.7rem;
 	margin-top: 0.3rem;
+	overflow-y: auto;
+	background-color: var(--clr-secondary);
+	color: var(--clr-off-white);
 }
 
-.result {
-	padding-block: 0.3em;
+.results {
+	padding-block: 0.9em;
+		padding-left: 1rem;
+
 	font-size: 0.9em;
+	cursor: pointer;
 }
+.results:hover {
+	background-color: var(--clr-primary);
+	color: #fff;
+}
+/* .closed {
+	display: none;
+}
+.open {
+	display: block;
+} */

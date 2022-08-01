@@ -12,16 +12,19 @@ export const SEARCH_TYPES = {
 
 export const SearchForm = ({ width, searchFn, results }) => {
 	const [term, setTerm] = useState('');
+	const [isOpen, setIsOpen] = useState(false);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		try {
 			if (term) {
 				searchFn(term);
+				setIsOpen(true);
 				setTerm('');
 			}
 		} catch (error) {
 			toast.error(error.message);
+			setTerm('');
 		}
 	};
 
@@ -44,7 +47,11 @@ export const SearchForm = ({ width, searchFn, results }) => {
 					/>
 				</label>
 			</form>
-			<SearchResults data={results?.data} />
+			<SearchResults
+				data={results?.data}
+				setIsOpen={setIsOpen}
+				isOpen={isOpen}
+			/>
 		</div>
 	);
 };

@@ -1,20 +1,27 @@
+import { useRef, useCallback } from 'react';
 import styles from './SearchResults.module.css';
+import { useClickedOutside } from 'hooks/useClickedOutside';
+export const SearchResults = ({ data, setIsOpen, isOpen }) => {
+	const searchRef = useRef();
 
-export const SearchResults = ({ data }) => {
+	const closeSearchResults = useCallback(() => setIsOpen(false), [setIsOpen]);
+
+	useClickedOutside(searchRef, closeSearchResults);
+
 	if (!data) {
 		return null;
 	}
-	if (data.suggestions === undefined) {
-		return <div className={styles.searchResults}>nothing found</div>;
-	}
+
 	return (
-		<div className={styles.searchResults}>
-			{data.suggestions &&
-				data.suggestions.map((ex) => (
-					<div className={styles.result} key={ex.value}>
-						{ex.value}
-					</div>
-				))}
-		</div>
+		isOpen && (
+			<div ref={searchRef} className={styles.searchResults}>
+				{data.suggestions &&
+					data.suggestions.map((ex) => (
+						<div className={styles.results} key={ex.value}>
+							{ex.value ? ex.value : 'Nothing Found'}
+						</div>
+					))}
+			</div>
+		)
 	);
 };
