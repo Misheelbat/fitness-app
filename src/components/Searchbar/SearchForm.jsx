@@ -12,20 +12,19 @@ export const SEARCH_TYPES = {
 
 export const SearchForm = ({ width, searchFn, results }) => {
 	const [term, setTerm] = useState('');
-	const [isOpen, setIsOpen] = useState(false);
+	const [showResults, setShowResults] = useState(false);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		try {
 			if (term) {
 				searchFn(term);
-				setIsOpen(true);
-				setTerm('');
+				setShowResults(true);
 			}
 		} catch (error) {
 			toast.error(error.message);
-			setTerm('');
 		}
+		setTerm('');
 	};
 
 	return (
@@ -33,7 +32,7 @@ export const SearchForm = ({ width, searchFn, results }) => {
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="search">
 					{results?.isLoading ? (
-						<Spinner className={styles.spinn} size="16" />
+						<Spinner size="16" />
 					) : (
 						<MagnifyingGlass className={styles.icon} />
 					)}
@@ -47,11 +46,12 @@ export const SearchForm = ({ width, searchFn, results }) => {
 					/>
 				</label>
 			</form>
-			<SearchResults
-				data={results?.data}
-				setIsOpen={setIsOpen}
-				isOpen={isOpen}
-			/>
+			{showResults && (
+				<SearchResults
+					data={results.data?.suggestions}
+					setShowResults={setShowResults}
+				/>
+			)}
 		</div>
 	);
 };
