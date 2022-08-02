@@ -1,0 +1,34 @@
+.arrowsBtns {
+	display: flex;
+	margin-bottom: 0.5rem;
+}
+.arrowsBtns button {
+	display: flex;
+	color: #fff;
+	border: 0;
+	background-color: var(--clr-blue);
+	cursor: pointer;
+	padding: 5px 8px;
+
+	transition: 0.2s all;
+}
+.arrowsBtns button:nth-child(1) {
+	border-radius: 5px 0 0 5px;
+	border-right: 0.5px solid rgba(250, 250, 250, 0.5);
+}
+.arrowsBtns button:nth-child(2) {
+	border-radius: 0 5px 5px 0;
+}
+
+.arrowsBtns button:disabled {
+	color: var(--clr-grey);
+	background-color: var(--clr-secondary);
+	cursor: not-allowed;
+}
+
+.arrowsBtns button:not(:disabled):hover {
+	background-color: var(--clr-dark-blue);
+}
+.arrowsBtns button:active {
+	transform: scale(0.98);
+}
