@@ -3,7 +3,7 @@ import { SetsBtn } from './SetsBtn/SetsBtn';
 import styles from './Repetitions.module.css';
 import { useState } from 'react';
 
-export const Repetitions = ({ sets = 3 }) => {
+export const Repetitions = ({ sets }) => {
 	const [currentSet, setCurrentSet] = useState(1);
 	const prev = () => {
 		if (currentSet <= 1) return;

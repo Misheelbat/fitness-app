@@ -41,7 +41,7 @@ export const Modal = ({ close }) => {
 						onChange={handleRange}
 					/>
 				</div>
-				<Repetitions />
+				<Repetitions sets={sliderVal} />
 			</div>
 		</div>
 	);
