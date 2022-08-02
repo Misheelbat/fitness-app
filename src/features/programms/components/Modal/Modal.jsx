@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { XCircle } from 'phosphor-react';
 
-import { SearchForm, SEARCH_TYPES } from 'components/Searchbar';
 import { useSearchExerciseMutation } from 'features/exercises';
+import { SearchForm, SEARCH_TYPES } from 'components/Searchbar';
+import { Repetitions } from '../Repetitions/Repetitions';
 import styles from './Modal.module.css';
 
 export const Modal = ({ close }) => {
@@ -22,7 +23,6 @@ export const Modal = ({ close }) => {
 						<XCircle size={20} />
 					</button>
 				</div>
-
 				<div className={styles.exerciseSearch}>
 					<p>Choose an Exercise</p>
 					<SearchForm
@@ -31,7 +31,6 @@ export const Modal = ({ close }) => {
 						results={result}
 					/>
 				</div>
-
 				<div className={styles.sets}>
 					<p>Number of Sets: {sliderVal}</p>
 					<input
@@ -42,10 +41,7 @@ export const Modal = ({ close }) => {
 						onChange={handleRange}
 					/>
 				</div>
-
-				<div className={styles.reps}>
-					<p>Number of Repetitions</p>
-				</div>
+				<Repetitions />
 			</div>
 		</div>
 	);
