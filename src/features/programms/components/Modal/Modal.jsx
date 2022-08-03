@@ -13,7 +13,6 @@ export const Modal = ({ close }) => {
 	const handleRange = (e) => {
 		setSliderVal(e.target.value);
 	};
-
 	return (
 		<div className={styles.modal}>
 			<div className={styles.modalContainer}>

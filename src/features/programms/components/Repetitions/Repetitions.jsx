@@ -5,14 +5,16 @@ import { useState } from 'react';
 
 export const Repetitions = ({ sets }) => {
 	const [currentSet, setCurrentSet] = useState(1);
+
 	const prev = () => {
-		if (currentSet <= 1) return;
+		if (currentSet === 1) return;
 		setCurrentSet((set) => set - 1);
 	};
 	const next = () => {
 		if (currentSet >= sets) return;
 		setCurrentSet((set) => set + 1);
 	};
+	const setsArray = createElements(sets, RepsForm);
 	return (
 		<div>
 			<p>Number of Repetitions:</p>
@@ -20,9 +22,17 @@ export const Repetitions = ({ sets }) => {
 				<p>Set : {currentSet}</p>
 				<SetsBtn prev={prev} next={next} />
 			</div>
-			{[...Array(sets)].map((set, i) => (
-				<RepsForm key={i} active={i + 1 === currentSet ? 'active' : ''} />
+			{setsArray.map((set) => (
+				<RepsForm key={set} active={set === currentSet ? 'active' : ''} />
 			))}
 		</div>
 	);
 };
+
+function createElements(n, element) {
+	const elements = [];
+	for (let i = 1; i <= n; i++) {
+		elements.push(i);
+	}
+	return elements;
+}
