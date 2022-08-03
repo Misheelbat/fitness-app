@@ -1,4 +1,11 @@
 .setsControl {
 	display: flex;
-  gap: 1rem;
+	align-items: center;
+	gap: 1rem;
+	margin-block: 1rem;
+}
+
+.setsControl > div:first-of-type {
+	font-size: 0.9em;
+	color: var(--clr-off-white);
 }

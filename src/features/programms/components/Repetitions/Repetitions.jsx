@@ -1,7 +1,9 @@
+import { useState, useCallback } from 'react';
+
 import { RepsForm } from './RepsForm/RepsForm';
 import { SetsBtn } from './SetsBtn/SetsBtn';
+
 import styles from './Repetitions.module.css';
-import { useState } from 'react';
 
 export const Repetitions = ({ sets }) => {
 	const [currentSet, setCurrentSet] = useState(1);
@@ -14,12 +16,17 @@ export const Repetitions = ({ sets }) => {
 		if (currentSet >= sets) return;
 		setCurrentSet((set) => set + 1);
 	};
-	const setsArray = createElements(sets, RepsForm);
+
+	const setsArray = useCallback(
+		() => createElements(sets, RepsForm),
+		[sets, RepsForm]
+	)();
+	
 	return (
 		<div>
 			<p>Number of Repetitions:</p>
 			<div className={styles.setsControl}>
-				<p>Set : {currentSet}</p>
+				<div>Set : {currentSet}</div>
 				<SetsBtn prev={prev} next={next} />
 			</div>
 			{setsArray.map((set) => (

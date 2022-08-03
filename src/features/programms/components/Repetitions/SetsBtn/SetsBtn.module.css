@@ -1,6 +1,7 @@
 .arrowsBtns {
 	display: flex;
-	margin-bottom: 0.5rem;
+	align-items: center;
+	justify-content: center;
 }
 .arrowsBtns button {
 	display: flex;
