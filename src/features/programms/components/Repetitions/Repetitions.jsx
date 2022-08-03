@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 
 import { RepsForm } from './RepsForm/RepsForm';
 import { SetsBtn } from './SetsBtn/SetsBtn';
+import { createElements } from 'features/programms/utility';
 
 import styles from './Repetitions.module.css';
 
@@ -17,14 +18,10 @@ export const Repetitions = ({ sets }) => {
 		setCurrentSet((set) => set + 1);
 	};
 
-	const setsArray = useCallback(
-		() => createElements(sets, RepsForm),
-		[sets, RepsForm]
-	)();
-	
+	const setsArray = useCallback(() => createElements(sets), [sets])();
+
 	return (
 		<div>
-			<p>Number of Repetitions:</p>
 			<div className={styles.setsControl}>
 				<div>Set : {currentSet}</div>
 				<SetsBtn prev={prev} next={next} />
@@ -35,11 +32,3 @@ export const Repetitions = ({ sets }) => {
 		</div>
 	);
 };
-
-function createElements(n, element) {
-	const elements = [];
-	for (let i = 1; i <= n; i++) {
-		elements.push(i);
-	}
-	return elements;
-}

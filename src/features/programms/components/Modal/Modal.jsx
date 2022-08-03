@@ -13,7 +13,7 @@ export const Modal = ({ close }) => {
 	const handleRange = (e) => {
 		setSliderVal(e.target.value);
 	};
-	
+
 	return (
 		<div className={styles.modal}>
 			<div className={styles.modalContainer}>
@@ -41,7 +41,10 @@ export const Modal = ({ close }) => {
 						onChange={handleRange}
 					/>
 				</div>
-				<Repetitions sets={sliderVal} />
+				<div className={styles.reps}>
+					<p>Number of Repetitions:</p>
+					<Repetitions sets={sliderVal} />
+				</div>
 			</div>
 		</div>
 	);

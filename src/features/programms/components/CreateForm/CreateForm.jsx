@@ -38,7 +38,6 @@ export const CreateForm = () => {
 		getCoreRowModel: getCoreRowModel(),
 	});
 
-	console.log('is rendering');
 	return (
 		<div className={styles.createForm}>
 			<div className={styles.createFormHeader}>

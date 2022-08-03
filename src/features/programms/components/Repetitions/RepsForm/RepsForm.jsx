@@ -3,9 +3,22 @@ import Select from 'react-select';
 import { repUnits, weightUnits } from 'features/programms';
 
 import styles from './RepsForm.module.css';
+import { useState } from 'react';
 export const RepsForm = ({ active }) => {
+	const [repInput, setRepInput] = useState({ reps: '', unit: repUnits[0] });
+	const [weightInput, setWeightInput] = useState({
+		weight: '',
+		unit: weightUnits[0],
+	});
+
+	const handleSubmit = () => {};
+	console.log(repInput, weightInput);
+
 	return (
-		<div className={cx(styles.repsGroup, styles[active])}>
+		<form
+			onSubmit={handleSubmit}
+			className={cx(styles.repsGroup, styles[active])}
+		>
 			<div className={styles.inputGroup}>
 				<div className={styles.inputForm}>
 					<label htmlFor="reps">Reps</label>
@@ -14,6 +27,8 @@ export const RepsForm = ({ active }) => {
 						type="number"
 						id="reps"
 						name="reps"
+						value={repInput.reps}
+						onChange={(e) => setRepInput({ ...repInput, reps: e.target.value })}
 					/>
 				</div>
 				<div className={styles.selectForm}>
@@ -22,7 +37,8 @@ export const RepsForm = ({ active }) => {
 						options={repUnits}
 						styles={customStyles}
 						inputId="repsUnits"
-						defaultValue={repUnits[0]}
+						value={repInput.unit}
+						onChange={(e) => setRepInput({ ...repInput, unit: e })}
 					/>
 				</div>
 			</div>
@@ -30,7 +46,16 @@ export const RepsForm = ({ active }) => {
 			<div className={styles.inputGroup}>
 				<div className={styles.inputForm}>
 					<label htmlFor="weight">Weight</label>
-					<input placeholder="Weight" type="number" id="weight" name="weight" />
+					<input
+						placeholder="Weight"
+						type="number"
+						id="weight"
+						name="weight"
+						value={weightInput.weight}
+						onChange={(e) =>
+							setWeightInput({ ...weightInput, weight: e.target.value })
+						}
+					/>
 				</div>
 				<div className={styles.selectForm}>
 					<label htmlFor="weightUnits">Units</label>
@@ -38,13 +63,15 @@ export const RepsForm = ({ active }) => {
 						styles={customStyles}
 						options={weightUnits}
 						inputId="weightUnits"
-						defaultValue={weightUnits[0]}
+						value={weightInput.unit}
+						onChange={(e) => setWeightInput({ ...weightInput, unit: e })}
 					/>
 				</div>
 			</div>
-		</div>
+		</form>
 	);
 };
+
 const customStyles = {
 	control: (styles) => ({
 		...styles,

@@ -2,17 +2,19 @@
 .mainLayout {
 	background-color: var(--clr-bg);
 	color: #fff;
-	overflow: auto;
+	/* overflow: hidden; */
 }
+
 /* Layout */
 .mainLayout {
 	width: 100%;
-	min-height: 100vh;
+	min-height: 100%;
 	display: flex;
 }
 .content {
+	flex-grow: 1;
 	width: 100%;
-	min-height: 100%;
+	/* min-height: 100%; */
 	display: flex;
 	flex-direction: column;
 }

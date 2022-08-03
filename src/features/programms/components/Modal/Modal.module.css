@@ -1,21 +1,22 @@
 .modal {
 	position: absolute;
 	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
 	background-color: rgba(0, 0, 0, 0.3);
 	display: flex;
 	justify-content: center;
+	height: 100%;
+	width: 100%;
+	/* overflow-y: scroll;
+	-ms-overflow-style: none;  
+  scrollbar-width: none; */
 }
-
+/* .modal::-webkit-scrollbar {
+	display: none;
+} */
 .modalContainer {
-	overflow-y: auto;
-	margin-top: 5%;
 	min-width: 300px;
 	width: 50%;
 	max-width: 455px;
-	/* max-height: fit-content; */
 	height: max-content;
 	background-color: #23262f;
 	border-radius: 10px;
