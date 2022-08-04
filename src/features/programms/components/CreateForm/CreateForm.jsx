@@ -26,7 +26,7 @@ const Person = [
 
 export const CreateForm = () => {
 	const [rowSelection, setRowSelection] = useState({});
-	const [isOpen, setIsOpen] = useState(true);
+	const [isOpen, setIsOpen] = useState(false);
 
 	const table = useReactTable({
 		data: Person,

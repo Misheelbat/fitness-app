@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 
+import { Button } from 'components/Elements';
 import { RepsForm } from './RepsForm/RepsForm';
 import { SetsBtn } from './SetsBtn/SetsBtn';
 import { createElements } from 'features/programms/utility';
@@ -14,11 +15,18 @@ export const Repetitions = ({ sets }) => {
 		setCurrentSet((set) => set - 1);
 	};
 	const next = () => {
-		if (currentSet >= sets) return;
+		if (currentSet === sets) return;
 		setCurrentSet((set) => set + 1);
 	};
-
 	const setsArray = useCallback(() => createElements(sets), [sets])();
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		const formData = new FormData(e.currentTarget);
+		for (const value of formData.values()) {
+			console.log(value);
+		}
+	};
 
 	return (
 		<div>
@@ -26,9 +34,12 @@ export const Repetitions = ({ sets }) => {
 				<div>Set : {currentSet}</div>
 				<SetsBtn prev={prev} next={next} />
 			</div>
-			{setsArray.map((set) => (
-				<RepsForm key={set} active={set === currentSet ? 'active' : ''} />
-			))}
+			<form onSubmit={handleSubmit}>
+				{setsArray.map((set) => (
+					<RepsForm key={set} active={set === currentSet ? 'active' : ''} />
+				))}
+				<Button buttonType="max-width">Save</Button>
+			</form>
 		</div>
 	);
 };

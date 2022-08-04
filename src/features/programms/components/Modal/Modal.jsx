@@ -43,6 +43,9 @@ export const Modal = ({ close }) => {
 				</div>
 				<div className={styles.reps}>
 					<p>Number of Repetitions:</p>
+					<div className={styles.repsInfo}>
+						If you do the same reps for all sets, you can just enter one value
+					</div>
 					<Repetitions sets={sliderVal} />
 				</div>
 			</div>

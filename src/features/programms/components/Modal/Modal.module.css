@@ -6,13 +6,13 @@
 	justify-content: center;
 	height: 100%;
 	width: 100%;
-	/* overflow-y: scroll;
-	-ms-overflow-style: none;  
-  scrollbar-width: none; */
+	overflow-y: scroll;
+	-ms-overflow-style: none;
+	scrollbar-width: none;
 }
-/* .modal::-webkit-scrollbar {
+.modal::-webkit-scrollbar {
 	display: none;
-} */
+}
 .modalContainer {
 	min-width: 300px;
 	width: 50%;
@@ -41,8 +41,9 @@
 
 .modalContainer p {
 	font-size: 1em;
-	color: var(--clr-blue);
+	color: #127df7;
 	padding-bottom: 0.5em;
+	opacity: 1;
 }
 
 .exerciseSearch,
@@ -52,4 +53,8 @@
 
 .sets input {
 	width: 100%;
+}
+
+.repsInfo{
+	font-size: 0.9em;
 }

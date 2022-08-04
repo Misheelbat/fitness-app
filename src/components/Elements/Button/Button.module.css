@@ -1,10 +1,13 @@
 .buttonContainer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	color: #fff;
 	cursor: pointer;
 	white-space: nowrap;
 	font-size: 1.2em;
 	min-width: max-content;
-	height: 44px;
+	height: 40px;
 	border: 0;
 	border-radius: 4px;
 	padding: 10px 20px;
@@ -28,11 +31,7 @@
 }
 
 .add {
-	height: 40px;
 	font-size: 1em;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 .add::before {
 	display: inline-block;
