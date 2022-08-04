@@ -1,18 +1,16 @@
-import { useState } from 'react';
-import { XCircle } from 'phosphor-react';
-
+import { useSelector } from 'react-redux';
 import { useSearchExerciseMutation } from 'features/exercises';
+import { selectSets } from 'features/programms/store';
 import { SearchForm, SEARCH_TYPES } from 'components/Searchbar';
-import { Repetitions } from '../Repetitions/Repetitions';
+import { XCircle } from 'phosphor-react';
+import { Repetitions } from './Repetitions/Repetitions';
+import { Slider } from './Slider/Slider';
+
 import styles from './Modal.module.css';
 
 export const Modal = ({ close }) => {
-	const [sliderVal, setSliderVal] = useState(1);
+	const sets = useSelector(selectSets);
 	const [search, result] = useSearchExerciseMutation();
-
-	const handleRange = (e) => {
-		setSliderVal(e.target.value);
-	};
 
 	return (
 		<div className={styles.modal}>
@@ -32,21 +30,15 @@ export const Modal = ({ close }) => {
 					/>
 				</div>
 				<div className={styles.sets}>
-					<p>Number of Sets: {sliderVal}</p>
-					<input
-						type="range"
-						min="0"
-						max="10"
-						value={sliderVal}
-						onChange={handleRange}
-					/>
+					<p>Number of Sets: {sets}</p>
+					<Slider />
 				</div>
 				<div className={styles.reps}>
 					<p>Number of Repetitions:</p>
 					<div className={styles.repsInfo}>
 						If you do the same reps for all sets, you can just enter one value
 					</div>
-					<Repetitions sets={sliderVal} />
+					<Repetitions sets={sets} />
 				</div>
 			</div>
 		</div>

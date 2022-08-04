@@ -15,7 +15,7 @@ export const Repetitions = ({ sets }) => {
 		setCurrentSet((set) => set - 1);
 	};
 	const next = () => {
-		if (currentSet === sets) return;
+		if (currentSet >= sets) return;
 		setCurrentSet((set) => set + 1);
 	};
 	const setsArray = useCallback(() => createElements(sets), [sets])();
