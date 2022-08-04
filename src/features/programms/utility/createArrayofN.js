@@ -5,3 +5,13 @@ export function createElements(n) {
 	}
 	return elements;
 }
+
+export function extractArray(formData) {
+	const arr = [];
+	const splitArray = [];
+	for (let [key, value] of formData) {
+		arr.push({ [key]: value });
+	}
+	while (arr.length > 0) splitArray.push(arr.splice(0, 4));
+	return splitArray;
+}

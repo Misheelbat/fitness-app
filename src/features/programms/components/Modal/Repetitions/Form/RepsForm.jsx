@@ -6,12 +6,15 @@ import { repUnits, weightUnits } from 'features/programms';
 import styles from './RepsForm.module.css';
 import { unitStyles } from './select-styles';
 
-export const RepsForm = ({ active }) => {
+export const Form = ({ active }) => {
 	const [repInput, setRepInput] = useState({ reps: '', unit: repUnits[0] });
 	const [weightInput, setWeightInput] = useState({
 		weight: '',
 		unit: weightUnits[0],
 	});
+
+	// const a = `${repInput.reps} ${repInput.unit.value}`;
+	// const b = `${weightInput.reps} ${weightInput.unit.value}`;
 
 	return (
 		<div className={cx(styles.repsGroup, styles[active])}>

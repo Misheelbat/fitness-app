@@ -3,7 +3,7 @@ import { useRef, useCallback } from 'react';
 import { useClickedOutside } from 'hooks/useClickedOutside';
 import styles from './SearchResults.module.css';
 
-export const SearchResults = ({ data, setShowResults }) => {
+export const SearchResults = ({ data, setShowResults, selectFn }) => {
 	const searchRef = useRef();
 
 	const closeSearchResults = useCallback(
@@ -20,12 +20,15 @@ export const SearchResults = ({ data, setShowResults }) => {
 			</div>
 		);
 	}
-
 	return (
 		<div ref={searchRef} className={styles.searchResults}>
 			{data &&
 				data.map((ex) => (
-					<div className={styles.results} key={ex.value}>
+					<div
+						className={styles.results}
+						key={ex.value}
+						onClick={() => selectFn(ex)}
+					>
 						{ex.value}
 					</div>
 				))}

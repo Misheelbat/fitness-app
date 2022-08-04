@@ -6,13 +6,15 @@ import styles from './Slider.module.css';
 export const Slider = () => {
 	const sliderVal = useSelector(selectSets);
 	const dispatch = useDispatch();
+
 	const handleRange = (e) => {
 		dispatch(setSets(e.target.value));
 	};
-	console.log(sliderVal);
+
 	return (
 		<input
 			className={styles.slider}
+			name="slider"
 			type="range"
 			min="1"
 			max="10"

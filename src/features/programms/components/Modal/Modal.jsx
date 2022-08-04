@@ -1,10 +1,11 @@
 import { useSelector } from 'react-redux';
-import { useSearchExerciseMutation } from 'features/exercises';
 import { selectSets } from 'features/programms/store';
-import { SearchForm, SEARCH_TYPES } from 'components/Searchbar';
+import { useSearchExerciseMutation } from 'features/exercises';
+
+import { Slider } from './Slider/Slider';
 import { XCircle } from 'phosphor-react';
 import { Repetitions } from './Repetitions/Repetitions';
-import { Slider } from './Slider/Slider';
+import { SearchForm, SEARCH_TYPES } from 'components/Searchbar';
 
 import styles from './Modal.module.css';
 
@@ -12,6 +13,9 @@ export const Modal = ({ close }) => {
 	const sets = useSelector(selectSets);
 	const [search, result] = useSearchExerciseMutation();
 
+	const selectExercise = (e) => {
+		console.log(e);
+	};
 	return (
 		<div className={styles.modal}>
 			<div className={styles.modalContainer}>
@@ -27,6 +31,7 @@ export const Modal = ({ close }) => {
 						width={SEARCH_TYPES.max}
 						searchFn={search}
 						results={result}
+						selectFn={selectExercise}
 					/>
 				</div>
 				<div className={styles.sets}>
