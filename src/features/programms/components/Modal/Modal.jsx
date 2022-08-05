@@ -9,10 +9,6 @@ import styles from './Modal.module.css';
 export const Modal = ({ close }) => {
 	const [sliderValue, setSliderValue] = useState(1);
 
-	const handleClick = (e) => {
-		e.preventDefault();
-	};
-
 	return (
 		<div className={styles.modal}>
 			<div className={styles.modalContainer}>
@@ -23,7 +19,7 @@ export const Modal = ({ close }) => {
 					</button>
 				</div>
 
-				<div className={styles.exerciseSearch}>
+				<div className={styles.search}>
 					<p className={styles.modalTitle}>Choose an Exercise</p>
 					<SelectExercise />
 				</div>
@@ -38,10 +34,8 @@ export const Modal = ({ close }) => {
 					<div className={styles.repsInfo}>
 						If you do the same reps for all sets, you can just enter one value
 					</div>
-					<Repetitions sets={sliderValue} />
+					<Repetitions sets={Number(sliderValue)} />
 				</div>
-
-				<button onClick={handleClick}>add</button>
 			</div>
 		</div>
 	);

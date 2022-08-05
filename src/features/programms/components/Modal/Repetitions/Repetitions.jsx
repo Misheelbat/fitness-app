@@ -7,17 +7,8 @@ import { createElements, extractArray } from 'features/programms/utility';
 
 import styles from './Repetitions.module.css';
 
-export const Repetitions = ({ sets, repsFormRef }) => {
+export const Repetitions = ({ sets }) => {
 	const [currentSet, setCurrentSet] = useState(1);
-
-	const prev = () => {
-		if (currentSet === 1) return;
-		setCurrentSet((set) => set - 1);
-	};
-	const next = () => {
-		if (currentSet >= sets) return;
-		setCurrentSet((set) => set + 1);
-	};
 
 	const setsArray = createElements(sets);
 
@@ -32,15 +23,13 @@ export const Repetitions = ({ sets, repsFormRef }) => {
 		<div>
 			<div className={styles.setsControl}>
 				<div>Set : {currentSet}</div>
-				<SetsBtn prev={prev} next={next} />
+				<SetsBtn page={currentSet} setPage={setCurrentSet} total={sets} />
 			</div>
 			<form onSubmit={handleSubmit}>
 				{setsArray.map((set) => (
 					<Form key={set} active={set === currentSet ? 'active' : ''} />
 				))}
-				<Button ref={repsFormRef} buttonType="max-width">
-					Save
-				</Button>
+				<Button buttonType="max-width">Save</Button>
 			</form>
 		</div>
 	);
