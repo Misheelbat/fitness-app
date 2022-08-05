@@ -41,7 +41,7 @@ export const CreateForm = () => {
 	return (
 		<div className={styles.createForm}>
 			<div className={styles.createFormHeader}>
-				<h4>Workouts :</h4>
+				<h4 className={styles.createFormTitle}>Workouts :</h4>
 				<Button buttonType="add" onClick={() => setIsOpen(!isOpen)}>
 					ADD
 				</Button>

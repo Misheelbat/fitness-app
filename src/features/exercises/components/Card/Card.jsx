@@ -9,8 +9,10 @@ export const Card = ({ exercise, equipments, exId }) => {
 	const equipment = useMemo(() => extractEquipment(equipments), [equipments]);
 
 	const handleClick = () => {
+		if (!exId) return;
 		dispatch(setExercise(exId));
 	};
+	
 	return (
 		<div className={styles.card} onClick={handleClick}>
 			<img src="/images/logo.png" alt="exercise" />

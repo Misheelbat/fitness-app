@@ -1,21 +1,18 @@
-import { useSelector } from 'react-redux';
-import { selectSets } from 'features/programms/store';
-import { useSearchExerciseMutation } from 'features/exercises';
+import { useState } from 'react';
+import { XCircle } from 'phosphor-react';
 
 import { Slider } from './Slider/Slider';
-import { XCircle } from 'phosphor-react';
 import { Repetitions } from './Repetitions/Repetitions';
-import { SearchForm, SEARCH_TYPES } from 'components/Searchbar';
-
+import { SelectExercise } from './selectExercise/SelectExercise';
 import styles from './Modal.module.css';
 
 export const Modal = ({ close }) => {
-	const sets = useSelector(selectSets);
-	const [search, result] = useSearchExerciseMutation();
+	const [sliderValue, setSliderValue] = useState(1);
 
-	const selectExercise = (e) => {
-		console.log(e);
+	const handleClick = (e) => {
+		e.preventDefault();
 	};
+
 	return (
 		<div className={styles.modal}>
 			<div className={styles.modalContainer}>
@@ -25,26 +22,26 @@ export const Modal = ({ close }) => {
 						<XCircle size={20} />
 					</button>
 				</div>
+
 				<div className={styles.exerciseSearch}>
-					<p>Choose an Exercise</p>
-					<SearchForm
-						width={SEARCH_TYPES.max}
-						searchFn={search}
-						results={result}
-						selectFn={selectExercise}
-					/>
+					<p className={styles.modalTitle}>Choose an Exercise</p>
+					<SelectExercise />
 				</div>
+
 				<div className={styles.sets}>
-					<p>Number of Sets: {sets}</p>
-					<Slider />
+					<p className={styles.modalTitle}>Number of Sets: {sliderValue}</p>
+					<Slider sliderValue={sliderValue} setSliderValue={setSliderValue} />
 				</div>
+
 				<div className={styles.reps}>
-					<p>Number of Repetitions:</p>
+					<p className={styles.modalTitle}>Number of Repetitions:</p>
 					<div className={styles.repsInfo}>
 						If you do the same reps for all sets, you can just enter one value
 					</div>
-					<Repetitions sets={sets} />
+					<Repetitions sets={sliderValue} />
 				</div>
+
+				<button onClick={handleClick}>add</button>
 			</div>
 		</div>
 	);

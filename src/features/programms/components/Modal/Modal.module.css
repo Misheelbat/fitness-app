@@ -39,7 +39,7 @@
 	background-color: transparent;
 }
 
-.modalContainer p {
+.modalContainer .modalTitle {
 	font-size: 1em;
 	color: #127df7;
 	padding-bottom: 0.5em;
@@ -52,5 +52,6 @@
 }
 
 .repsInfo {
-	font-size: 0.9em;
+	font-size: 0.8em;
+	color: var(--clr-off-white);
 }

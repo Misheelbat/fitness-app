@@ -1,14 +1,8 @@
-import { useSelector, useDispatch } from 'react-redux';
-
-import { selectSets, setSets } from 'features/programms/store';
 import styles from './Slider.module.css';
 
-export const Slider = () => {
-	const sliderVal = useSelector(selectSets);
-	const dispatch = useDispatch();
-
+export const Slider = ({ sliderValue, setSliderValue }) => {
 	const handleRange = (e) => {
-		dispatch(setSets(e.target.value));
+		setSliderValue(e.target.value);
 	};
 
 	return (
@@ -18,7 +12,7 @@ export const Slider = () => {
 			type="range"
 			min="1"
 			max="10"
-			value={sliderVal}
+			value={sliderValue}
 			onChange={handleRange}
 		/>
 	);

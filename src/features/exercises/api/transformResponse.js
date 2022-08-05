@@ -12,7 +12,11 @@ export function extractCategory(categories) {
 
 export function extractEquipment(data) {
 	if (data.length === 0) return '';
-	return data.map((d) => equipment[d]);
+	return data.map((d) => {
+		let eq = d;
+		if (typeof d === 'object' && d !== null) eq = d.id;
+		return equipment[eq];
+	});
 }
 
 export function calcCurrentNumber(allNumber, page) {

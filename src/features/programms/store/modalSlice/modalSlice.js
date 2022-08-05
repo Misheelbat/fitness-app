@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	sets: 1,
+	searchResultId: null,
 };
 
 const exerciseSlice = createSlice({
@@ -11,8 +12,11 @@ const exerciseSlice = createSlice({
 		setSets: (state, action) => {
 			state.sets = action.payload;
 		},
+		setSearchResult: (state, action) => {
+			state.searchResultId = action.payload.id;
+		},
 	},
 });
-export const { setSets } = exerciseSlice.actions;
+export const { setSets, setSearchResult } = exerciseSlice.actions;
 
 export const modalReducer = exerciseSlice.reducer;

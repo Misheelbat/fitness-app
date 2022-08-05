@@ -7,7 +7,7 @@ import { createElements, extractArray } from 'features/programms/utility';
 
 import styles from './Repetitions.module.css';
 
-export const Repetitions = ({ sets }) => {
+export const Repetitions = ({ sets, repsFormRef }) => {
 	const [currentSet, setCurrentSet] = useState(1);
 
 	const prev = () => {
@@ -38,7 +38,9 @@ export const Repetitions = ({ sets }) => {
 				{setsArray.map((set) => (
 					<Form key={set} active={set === currentSet ? 'active' : ''} />
 				))}
-				<Button buttonType="max-width">Save</Button>
+				<Button ref={repsFormRef} buttonType="max-width">
+					Save
+				</Button>
 			</form>
 		</div>
 	);

@@ -11,11 +11,11 @@
 	box-shadow: inset 4px 0px 0px rgba(34, 103, 220, 0.8);
 	cursor: pointer;
 }
-.card h4 {
+.card .cardInfo h4 {
 	color: var(--clr-blue);
 	font-weight: 400;
 }
-.cardInfo {
+.card .cardInfo {
 	padding-right: 0.5em;
 }
 .card .cardInfo p {

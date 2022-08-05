@@ -13,6 +13,11 @@ export const SearchResults = ({ data, setShowResults, selectFn }) => {
 
 	useClickedOutside(searchRef, closeSearchResults);
 
+	const handleClick = (exercise) => {
+		closeSearchResults();
+		selectFn(exercise);
+	};
+
 	if (!data) {
 		return (
 			<div ref={searchRef} className={styles.searchResults}>
@@ -27,7 +32,7 @@ export const SearchResults = ({ data, setShowResults, selectFn }) => {
 					<div
 						className={styles.results}
 						key={ex.value}
-						onClick={() => selectFn(ex)}
+						onClick={() => handleClick(ex.data)}
 					>
 						{ex.value}
 					</div>
