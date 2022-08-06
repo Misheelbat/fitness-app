@@ -16,7 +16,7 @@ const exerciseSlice = createSlice({
 			state.searchResultId = action.payload.id;
 		},
 		addExerciseToWorkout: (state, action) => {
-			console.log(state.searchResultId);
+			console.log({ [state.searchResultId]: '2/2' });
 		},
 	},
 });
