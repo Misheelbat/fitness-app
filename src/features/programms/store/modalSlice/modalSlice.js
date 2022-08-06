@@ -15,8 +15,12 @@ const exerciseSlice = createSlice({
 		setSearchResult: (state, action) => {
 			state.searchResultId = action.payload.id;
 		},
+		addExerciseToWorkout: (state, action) => {
+			console.log(state.searchResultId);
+		},
 	},
 });
-export const { setSets, setSearchResult } = exerciseSlice.actions;
+export const { setSets, setSearchResult, addExerciseToWorkout } =
+	exerciseSlice.actions;
 
 export const modalReducer = exerciseSlice.reducer;

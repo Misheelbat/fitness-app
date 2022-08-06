@@ -33,7 +33,13 @@ export const SelectExercise = () => {
 				selectFn={selectFn}
 			/>
 			<div className={styles.searchResult}>
-				{data && <Card exercise={data.name} equipments={data.equipment} />}
+				{data && (
+					<Card
+						loading={isFetching}
+						exercise={data.name}
+						equipments={data.equipment}
+					/>
+				)}
 			</div>
 		</div>
 	);

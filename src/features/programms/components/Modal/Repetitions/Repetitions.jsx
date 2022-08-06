@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { addExerciseToWorkout } from 'features/programms/store';
 
 import { Button } from 'components/Elements';
 import { Form } from './Form/RepsForm';
@@ -8,6 +11,7 @@ import { createElements, extractArray } from 'features/programms/utility';
 import styles from './Repetitions.module.css';
 
 export const Repetitions = ({ sets }) => {
+	const dispatch = useDispatch();
 	const [currentSet, setCurrentSet] = useState(1);
 
 	const setsArray = createElements(sets);
@@ -17,6 +21,7 @@ export const Repetitions = ({ sets }) => {
 		const formData = new FormData(e.currentTarget);
 		const a = extractArray(formData);
 		console.log(a);
+		dispatch(addExerciseToWorkout());
 	};
 
 	return (

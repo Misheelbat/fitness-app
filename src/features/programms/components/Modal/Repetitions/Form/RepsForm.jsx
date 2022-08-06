@@ -22,6 +22,7 @@ export const Form = ({ active }) => {
 				<div className={styles.inputForm}>
 					<label htmlFor="reps">Reps</label>
 					<input
+						required
 						placeholder="Repititions"
 						type="number"
 						id="reps"
@@ -47,6 +48,7 @@ export const Form = ({ active }) => {
 				<div className={styles.inputForm}>
 					<label htmlFor="weight">Weight</label>
 					<input
+						required
 						placeholder="Weight"
 						type="number"
 						id="weight"

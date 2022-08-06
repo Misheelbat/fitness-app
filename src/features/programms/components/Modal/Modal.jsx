@@ -34,7 +34,7 @@ export const Modal = ({ close }) => {
 					<div className={styles.repsInfo}>
 						If you do the same reps for all sets, you can just enter one value
 					</div>
-					<Repetitions sets={Number(sliderValue)} />
+					<Repetitions  sets={Number(sliderValue)} />
 				</div>
 			</div>
 		</div>

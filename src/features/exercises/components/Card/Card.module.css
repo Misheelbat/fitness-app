@@ -11,6 +11,10 @@
 	box-shadow: inset 4px 0px 0px rgba(34, 103, 220, 0.8);
 	cursor: pointer;
 }
+.cardLoader {
+	padding-right: 5.5rem;
+	margin: 0 auto;
+}
 .card .cardInfo h4 {
 	color: var(--clr-blue);
 	font-weight: 400;
