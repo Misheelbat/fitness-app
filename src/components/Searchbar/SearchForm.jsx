@@ -24,7 +24,6 @@ export const SearchForm = ({ width, searchFn, results, selectFn }) => {
 		} catch (error) {
 			toast.error(error.message);
 		}
-		setTerm('');
 	};
 
 	return (
@@ -37,6 +36,7 @@ export const SearchForm = ({ width, searchFn, results, selectFn }) => {
 						<MagnifyingGlass className={styles.icon} />
 					)}
 					<input
+						onFocus={() => setShowResults(true)}
 						id="search"
 						type="search"
 						name="search"
@@ -48,6 +48,7 @@ export const SearchForm = ({ width, searchFn, results, selectFn }) => {
 			</form>
 			{showResults && (
 				<SearchResults
+					loading={results.isFetching}
 					data={results.data?.suggestions}
 					setShowResults={setShowResults}
 					selectFn={selectFn}

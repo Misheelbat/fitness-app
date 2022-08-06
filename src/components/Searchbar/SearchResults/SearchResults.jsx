@@ -19,12 +19,17 @@ export const SearchResults = ({ data, setShowResults, selectFn }) => {
 	};
 
 	if (!data) {
+		return null;
+	}
+
+	if (data.length === 0) {
 		return (
 			<div ref={searchRef} className={styles.searchResults}>
 				<div className={styles.results}>Nothing Found</div>
 			</div>
 		);
 	}
+	
 	return (
 		<div ref={searchRef} className={styles.searchResults}>
 			{data &&
