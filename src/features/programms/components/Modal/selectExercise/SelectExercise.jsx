@@ -20,8 +20,8 @@ export const SelectExercise = () => {
 		skip: id === null,
 	});
 
-	const selectFn = (e) => {
-		dispatch(setSearchResult(e));
+	const selectFn = (exerciseId) => {
+		dispatch(setSearchResult(exerciseId));
 	};
 
 	return (

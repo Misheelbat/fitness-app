@@ -29,7 +29,7 @@ export const SearchResults = ({ data, setShowResults, selectFn }) => {
 			</div>
 		);
 	}
-	
+
 	return (
 		<div ref={searchRef} className={styles.searchResults}>
 			{data &&

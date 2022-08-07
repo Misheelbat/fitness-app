@@ -1,3 +1,5 @@
+import { unitStyles } from '../components/Modal/Repetitions/Form/select-styles';
+
 export function createElements(n) {
 	const elements = [];
 	for (let i = 1; i <= n; i++) {
@@ -7,11 +9,26 @@ export function createElements(n) {
 }
 
 export function extractArray(formData) {
-	const arr = [];
-	const splitArray = [];
+	const data = { reps: [], weight: [], weightUnit: [], repsUnit: [] };
 	for (let [key, value] of formData) {
-		arr.push({ [key]: value });
+		switch (key) {
+			case 'reps':
+				data.reps.push(value);
+				break;
+			case 'repsUnits':
+				if (data.repsUnit.includes(value)) break;
+				data.repsUnit.push(value);
+				break;
+			case 'weight':
+				data.weight.push(value);
+				break;
+			case 'weightUnits':
+				if (data.weightUnit.includes(value)) break;
+				data.weightUnit.push(value);
+				break;
+			default:
+				break;
+		}
 	}
-	while (arr.length > 0) splitArray.push(arr.splice(0, 4));
-	return splitArray;
+	return data;
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { addExerciseToWorkout } from 'features/programms/store';
 
@@ -19,9 +19,9 @@ export const Repetitions = ({ sets }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const formData = new FormData(e.currentTarget);
-		const a = extractArray(formData);
-		console.log(a);
-		dispatch(addExerciseToWorkout());
+		const reps = extractArray(formData);
+		console.log(reps);
+		dispatch(addExerciseToWorkout(reps));
 	};
 
 	return (
