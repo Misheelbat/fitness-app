@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { XCircle } from 'phosphor-react';
 
-import { Slider } from './Slider/Slider';
-import { Repetitions } from './Repetitions/Repetitions';
-import { SelectExercise } from './selectExercise/SelectExercise';
+import { Sets } from './Sets/Sets';
+import { Reps } from './Reps/Reps';
+import { SearchExercise } from './Search/SearchExercise';
 import styles from './Modal.module.css';
 
 export const Modal = ({ close }) => {
@@ -12,30 +12,30 @@ export const Modal = ({ close }) => {
 	return (
 		<div className={styles.modal}>
 			<div className={styles.modalContainer}>
-				<div className={styles.modalHeader}>
+				<section className={styles.modalHeader}>
 					<h2>Add an Exercise</h2>
 					<button onClick={() => close(false)} className={styles.closeBtn}>
 						<XCircle size={20} />
 					</button>
-				</div>
+				</section>
 
-				<div className={styles.search}>
+				<section className={styles.search}>
 					<p className={styles.modalTitle}>Choose an Exercise</p>
-					<SelectExercise />
-				</div>
+					<SearchExercise />
+				</section>
 
-				<div className={styles.sets}>
+				<section className={styles.sets}>
 					<p className={styles.modalTitle}>Number of Sets: {sliderValue}</p>
-					<Slider sliderValue={sliderValue} setSliderValue={setSliderValue} />
-				</div>
+					<Sets sliderValue={sliderValue} setSliderValue={setSliderValue} />
+				</section>
 
-				<div className={styles.reps}>
+				<section className={styles.reps}>
 					<p className={styles.modalTitle}>Number of Repetitions:</p>
 					<div className={styles.repsInfo}>
 						If you do the same reps for all sets, you can just enter one value
 					</div>
-					<Repetitions  sets={Number(sliderValue)} />
-				</div>
+					<Reps sets={Number(sliderValue)} />
+				</section>
 			</div>
 		</div>
 	);

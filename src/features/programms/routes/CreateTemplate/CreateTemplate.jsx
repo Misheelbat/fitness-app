@@ -1,10 +1,10 @@
 import { ContentLayout } from 'components/Layout';
-import { CreateForm } from '../../components/CreateForm/CreateForm';
+import { WorkoutTemplate } from '../../components/WorkoutTemplate/WorkoutTemplate';
 
 export const CreateTemplate = () => {
 	return (
-		<ContentLayout title="Create Template">
-			<CreateForm />
+		<ContentLayout title="Create Template" link={'../'}>
+			<WorkoutTemplate />
 		</ContentLayout>
 	);
 };

@@ -9,9 +9,9 @@ import {
 import { SearchForm, SEARCH_TYPES } from 'components/Searchbar';
 import { Card } from 'features/exercises';
 
-import styles from './SelectExercise.module.css';
+import styles from './SearchExercise.module.css';
 
-export const SelectExercise = () => {
+export const SearchExercise = () => {
 	const dispatch = useDispatch();
 	const id = useSelector(selectSearchResult);
 	const [search, result] = useSearchExerciseMutation();

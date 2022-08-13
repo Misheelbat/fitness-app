@@ -3,10 +3,10 @@ import cx from 'classnames';
 import Select from 'react-select';
 import { repUnits, weightUnits } from 'features/programms';
 
-import styles from './RepsForm.module.css';
+import styles from './RepsFormInput.module.css';
 import { unitStyles } from './select-styles';
 
-export const Form = ({ active }) => {
+export const RepsFormInput = ({ active }) => {
 	const [repInput, setRepInput] = useState({ reps: '', unit: repUnits[0] });
 	const [weightInput, setWeightInput] = useState({
 		weight: '',

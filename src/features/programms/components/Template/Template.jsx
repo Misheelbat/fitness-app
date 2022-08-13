@@ -1,6 +1,6 @@
-import styles from './TemplateCard.module.css';
+import styles from './Template.module.css';
 
-export const TemplateCard = () => {
+export const Template = () => {
 	return (
 		<div className={styles.template}>
 			<div className={styles.templateInfo}>

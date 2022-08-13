@@ -1,4 +1,4 @@
-import { unitStyles } from '../components/Modal/Repetitions/Form/select-styles';
+import { unitStyles } from '../components/Modal/Reps/RepsFormInput/select-styles';
 
 export function createElements(n) {
 	const elements = [];

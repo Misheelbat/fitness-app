@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-import { TemplateCard } from '../TemplateCard/TemplateCard';
+import { Template } from '../Template/Template';
 import styles from './Dashboard.module.css';
 
 export const Dashboard = () => {
@@ -13,7 +13,7 @@ export const Dashboard = () => {
 					style and equipment access.
 				</p>
 				<div className={styles.createTemplateBtn}>
-					<Link to="createTemplate">Create workout Template</Link>
+					<Link to="createTemplate">Create Template</Link>
 				</div>
 			</div>
 			<div>
@@ -24,7 +24,7 @@ export const Dashboard = () => {
 					</div>
 				</div>
 				<div className={styles.workouts}>
-					<TemplateCard />
+					<Template />
 				</div>
 			</div>
 		</div>

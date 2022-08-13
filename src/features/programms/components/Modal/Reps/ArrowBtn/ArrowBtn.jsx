@@ -1,7 +1,7 @@
 import { CaretLeft, CaretRight } from 'phosphor-react';
-import styles from './SetsBtn.module.css';
+import styles from './ArrowBtn.module.css';
 
-export const SetsBtn = ({ page, setPage, total }) => {
+export const ArrowBtn = ({ page, setPage, total }) => {
 	const prevPage = () => {
 		if (page === 1) return;
 		setPage(page - 1);
@@ -10,7 +10,7 @@ export const SetsBtn = ({ page, setPage, total }) => {
 		if (page === total) return;
 		setPage(page + 1);
 	};
-	
+
 	return (
 		<div className={styles.arrowsBtns}>
 			<button onClick={prevPage} disabled={page === 1}>

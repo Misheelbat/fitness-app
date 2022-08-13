@@ -5,7 +5,7 @@ import { Button } from 'components/Elements';
 import { TableGrid } from 'components/Table';
 import { columns } from 'features/programms/api';
 import { Modal } from '../Modal/Modal';
-import styles from './CreateForm.module.css';
+import styles from './WorkoutTemplate.module.css';
 
 const Person = [
 	{
@@ -24,7 +24,7 @@ const Person = [
 	},
 ];
 
-export const CreateForm = () => {
+export const WorkoutTemplate = () => {
 	const [rowSelection, setRowSelection] = useState({});
 	const [isOpen, setIsOpen] = useState(false);
 

@@ -9,6 +9,7 @@
 	display: flex;
 	align-items: center;
 	font-weight: 400;
+	justify-content: space-between;
 }
 .header h1 {
 	font-weight: 400;
@@ -19,4 +20,27 @@
 	flex-grow: 1;
 	border-radius: 1rem 1rem 0 0;
 	/* background-color: var(--clr-primary); */
+}
+
+.navBtn {
+	background-color: var(--clr-purple);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: #fff;
+	cursor: pointer;
+	white-space: nowrap;
+	font-size: 1.2em;
+	min-width: max-content;
+	height: 40px;
+	border: 0;
+	border-radius: 4px;
+	padding: 10px 20px;
+	transition: background 100ms ease-out;
+}
+
+.navBtn:active,
+.navBtn:hover {
+	color: var(--clr-grey);
+	background-color: var(--clr-dark-purple);
 }

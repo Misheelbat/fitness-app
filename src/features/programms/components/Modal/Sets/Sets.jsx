@@ -1,6 +1,6 @@
-import styles from './Slider.module.css';
+import styles from './Sets.module.css';
 
-export const Slider = ({ sliderValue, setSliderValue }) => {
+export const Sets = ({ sliderValue, setSliderValue }) => {
 	const handleRange = (e) => {
 		setSliderValue(e.target.value);
 	};
@@ -8,7 +8,7 @@ export const Slider = ({ sliderValue, setSliderValue }) => {
 	return (
 		<input
 			className={styles.slider}
-			name="slider"
+			name="NumberOfSets"
 			type="range"
 			min="1"
 			max="10"

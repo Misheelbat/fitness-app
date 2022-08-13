@@ -24,7 +24,7 @@
 }
 .createTemplateBtn a {
 	display: block;
-	background-color: var(--clr-blue);
+	background-color: var(--clr-purple);
 	width: max-content;
 	padding: 10px 20px;
 	border-radius: 4px;
@@ -33,6 +33,13 @@
 .createTemplateBtn a:active,
 .createTemplateBtn a:hover {
 	color: var(--clr-grey);
+	background-color: var(--clr-dark-purple);
+}
+.workoutsTitle .createTemplateBtn a {
+	background-color: var(--clr-blue);
+}
+.workoutsTitle .createTemplateBtn a:active,
+.workoutsTitle .createTemplateBtn a:hover {
 	background-color: var(--clr-dark-blue);
 }
 
