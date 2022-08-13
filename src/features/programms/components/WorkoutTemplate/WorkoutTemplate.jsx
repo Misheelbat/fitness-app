@@ -7,34 +7,12 @@ import { columns } from 'features/programms/api';
 import { Modal } from '../Modal/Modal';
 import styles from './WorkoutTemplate.module.css';
 
-const Person = [
-	{
-		name: 'Bent Over Barbell Row',
-		category: 'Back',
-		equipments: ['Barbell'],
-		sets: 4,
-		reps: 10,
-	},
-	{
-		name: 'Bench Press',
-		category: 'Chest',
-		equipments: ['Bench', 'Barbell'],
-		sets: 4,
-		reps: 10,
-	},
-];
-
-export const WorkoutTemplate = () => {
-	const [rowSelection, setRowSelection] = useState({});
+export const WorkoutTemplate = ({ data }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const table = useReactTable({
-		data: Person,
+		data,
 		columns,
-		state: {
-			rowSelection,
-		},
-		onRowSelectionChange: setRowSelection,
 		getCoreRowModel: getCoreRowModel(),
 	});
 

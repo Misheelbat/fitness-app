@@ -18,6 +18,7 @@ const exerciseSlice = createSlice({
 				workoutsAdapter.addOne(state, {
 					id: state.searchResultId,
 					reps: action.payload,
+					// add name
 				});
 			}
 		},
