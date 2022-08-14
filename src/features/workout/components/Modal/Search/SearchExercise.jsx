@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 
-import { setSearchResult, selectSearchResult } from 'features/programms/store';
+import { setSearchResult, selectSearchResult } from 'features/workout/store';
 import {
 	useSearchExerciseMutation,
 	useGetExerciseDetailsQuery,

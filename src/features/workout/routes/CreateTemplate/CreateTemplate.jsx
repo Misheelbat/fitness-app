@@ -19,9 +19,10 @@ const Person = [
 ];
 
 export const CreateTemplate = () => {
+	// pass empty array
 	return (
 		<ContentLayout title="Create Template" link={'../'}>
-			<WorkoutTemplate data={Person} />
+			<WorkoutTemplate />
 		</ContentLayout>
 	);
 };

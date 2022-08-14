@@ -5,7 +5,12 @@ import {
 	loginAuthUserWithEmailAndPassword,
 	loginAnonymously,
 } from 'features/auth';
-import { onAuthStateListener, signoutUser, resetPassWithEmail } from 'utils';
+import {
+	onAuthStateListener,
+	signoutUser,
+	resetPassWithEmail,
+	createUserDocFromAuth,
+} from 'utils';
 
 import { PageSpinner } from 'components/Elements';
 
@@ -46,8 +51,9 @@ export const AuthProvider = ({ children }) => {
 				if (user.providerData.length === 0) {
 					setCurrentUser({ displayName: 'Guest', email: 'Guest' });
 				} else {
-					const { displayName, email } = user;
-					setCurrentUser({ displayName, email });
+					const { displayName, email, uid } = user;
+					setCurrentUser({ displayName, email, uid });
+					createUserDocFromAuth(user);
 				}
 
 				setIsLoading(true);
@@ -73,4 +79,10 @@ export const AuthProvider = ({ children }) => {
 			{isLoading ? children : <PageSpinner />}
 		</AuthContext.Provider>
 	);
+};
+
+const dummby = {
+	name: '',
+	id: [],
+	entity: { id: '', reps: '' },
 };

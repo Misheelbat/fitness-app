@@ -3,11 +3,11 @@ import { useReactTable, getCoreRowModel } from '@tanstack/react-table';
 
 import { Button } from 'components/Elements';
 import { TableGrid } from 'components/Table';
-import { columns } from 'features/programms/api';
+import { columns } from 'features/workout/api';
 import { Modal } from '../Modal/Modal';
 import styles from './WorkoutTemplate.module.css';
 
-export const WorkoutTemplate = ({ data }) => {
+export const WorkoutTemplate = ({ data = [] }) => {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const table = useReactTable({

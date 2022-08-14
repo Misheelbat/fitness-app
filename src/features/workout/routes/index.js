@@ -4,7 +4,7 @@ import { CreateTemplate } from './CreateTemplate/CreateTemplate';
 import { Workout } from './Workout/Workout';
 import { Workouts } from './Workouts/Workouts';
 
-export const ProgrammRoutes = () => {
+export const WorkoutRoutes = () => {
 	return (
 		<Routes>
 			<Route path="" element={<Workouts />} />

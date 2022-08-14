@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import cx from 'classnames';
 import Select from 'react-select';
-import { repUnits, weightUnits } from 'features/programms';
+import { repUnits, weightUnits } from 'features/workout';
 
 import styles from './RepsFormInput.module.css';
 import { unitStyles } from './select-styles';

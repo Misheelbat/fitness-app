@@ -4,6 +4,7 @@ import { Template } from '../Template/Template';
 import styles from './Dashboard.module.css';
 
 export const Dashboard = () => {
+	// Firestore.collection("workoutPlan").docs()
 	return (
 		<div className={styles.dashboard}>
 			<div className={styles.overview}>
@@ -24,7 +25,7 @@ export const Dashboard = () => {
 					</div>
 				</div>
 				<div className={styles.workouts}>
-					<Template />
+					<Template id="1" />
 				</div>
 			</div>
 		</div>
