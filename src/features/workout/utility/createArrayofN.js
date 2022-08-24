@@ -1,6 +1,5 @@
-import { unitStyles } from '../components/Modal/Reps/RepsFormInput/select-styles';
 
-export function createElements(n) {
+export function createArray(n) {
 	const elements = [];
 	for (let i = 1; i <= n; i++) {
 		elements.push(i);
@@ -8,7 +7,7 @@ export function createElements(n) {
 	return elements;
 }
 
-export function extractArray(formData) {
+export function extractSetsData(formData) {
 	const data = { reps: [], weight: [], weightUnit: [], repsUnit: [] };
 	for (let [key, value] of formData) {
 		switch (key) {

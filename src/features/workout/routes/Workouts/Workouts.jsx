@@ -3,7 +3,7 @@ import { Dashboard } from '../../components/Dashboard/Dashboard';
 
 export const Workouts = () => {
 	return (
-		<ContentLayout title="My Workout Templates">
+		<ContentLayout title="My Workouts">
 			<Dashboard />
 		</ContentLayout>
 	);

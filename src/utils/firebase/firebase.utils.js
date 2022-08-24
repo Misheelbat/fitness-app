@@ -18,7 +18,6 @@ import {
 	query,
 	getDocs,
 	updateDoc,
-	arrayUnion,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -30,10 +29,13 @@ const firebaseConfig = {
 	appId: process.env.REACT_APP_FIREBASE_APP_ID,
 };
 
+// init firestore
 const firebaseApp = initializeApp(firebaseConfig);
 
+//init auth
 export const auth = getAuth(firebaseApp);
 
+//init firestoreDb
 const firestoreDb = getFirestore();
 
 // if (window.location.hostname === 'localhost') {
@@ -41,7 +43,6 @@ const firestoreDb = getFirestore();
 // }
 
 // Firebase Functions
-
 export const signoutUser = () => signOut(auth);
 
 export const onAuthStateListener = (callback) =>
@@ -63,7 +64,7 @@ export const getCurrentUser = () => {
 	});
 };
 
-// database
+// save user to db
 export const createUserDocFromAuth = async (userAuth) => {
 	if (!userAuth) return;
 	const userDocRef = doc(firestoreDb, 'users', userAuth.uid);

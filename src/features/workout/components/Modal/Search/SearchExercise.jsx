@@ -14,8 +14,7 @@ import styles from './SearchExercise.module.css';
 export const SearchExercise = () => {
 	const dispatch = useDispatch();
 	const id = useSelector(selectSearchResult);
-	const [search, result] = useSearchExerciseMutation();
-
+	const [searchFn, result] = useSearchExerciseMutation();
 	const { data, isFetching } = useGetExerciseDetailsQuery(id, {
 		skip: id === null,
 	});
@@ -28,7 +27,7 @@ export const SearchExercise = () => {
 		<div>
 			<SearchForm
 				width={SEARCH_TYPES.max}
-				searchFn={search}
+				searchFn={searchFn}
 				results={result}
 				selectFn={selectFn}
 			/>

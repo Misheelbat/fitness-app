@@ -1,20 +1,24 @@
 import { useState } from 'react';
 import cx from 'classnames';
 import Select from 'react-select';
-import { repUnits, weightUnits } from 'features/workout';
+
+import {
+	REP_UNIT_DEFAULT_VALUE,
+	WEIGHT_UNITS_DEFAULT_VALUE,
+} from 'features/workout';
 
 import styles from './RepsFormInput.module.css';
-import { unitStyles } from './select-styles';
+import { selectorStyles } from './select-styles';
 
 export const RepsFormInput = ({ active }) => {
-	const [repInput, setRepInput] = useState({ reps: '', unit: repUnits[0] });
+	const [repInput, setRepInput] = useState({
+		reps: '',
+		unit: REP_UNIT_DEFAULT_VALUE[0],
+	});
 	const [weightInput, setWeightInput] = useState({
 		weight: '',
-		unit: weightUnits[0],
+		unit: WEIGHT_UNITS_DEFAULT_VALUE[0],
 	});
-
-	// const a = `${repInput.reps} ${repInput.unit.value}`;
-	// const b = `${weightInput.reps} ${weightInput.unit.value}`;
 
 	return (
 		<div className={cx(styles.repsGroup, styles[active])}>
@@ -32,11 +36,11 @@ export const RepsFormInput = ({ active }) => {
 					/>
 				</div>
 				<div className={styles.selectForm}>
-					<label htmlFor="repsUnits">Units</label>
+					<label htmlFor="repsUnit">Units</label>
 					<Select
-						options={repUnits}
+						options={REP_UNIT_DEFAULT_VALUE}
 						name="repsUnits"
-						styles={unitStyles}
+						styles={selectorStyles}
 						inputId="repsUnits"
 						value={repInput.unit}
 						onChange={(e) => setRepInput({ ...repInput, unit: e })}
@@ -60,10 +64,10 @@ export const RepsFormInput = ({ active }) => {
 					/>
 				</div>
 				<div className={styles.selectForm}>
-					<label htmlFor="weightUnits">Units</label>
+					<label htmlFor="weightsUnit">Units</label>
 					<Select
-						styles={unitStyles}
-						options={weightUnits}
+						styles={selectorStyles}
+						options={WEIGHT_UNITS_DEFAULT_VALUE}
 						inputId="weightUnits"
 						name="weightUnits"
 						value={weightInput.unit}

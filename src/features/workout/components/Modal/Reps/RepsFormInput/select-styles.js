@@ -1,4 +1,4 @@
-export const unitStyles = {
+export const selectorStyles = {
 	control: (styles) => ({
 		...styles,
 		backgroundColor: '#1c1f2e',
