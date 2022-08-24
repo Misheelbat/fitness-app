@@ -14,7 +14,9 @@ const exerciseSlice = createSlice({
 			state.searchResultId = action.payload.id;
 		},
 		addExerciseToWorkout: (state, action) => {
-			if (state.searchResultId) {
+			if (!state.searchResultId) {
+				throw new Error('Please select an exercise');
+			} else {
 				workoutsAdapter.addOne(state, {
 					id: state.searchResultId,
 					reps: action.payload,

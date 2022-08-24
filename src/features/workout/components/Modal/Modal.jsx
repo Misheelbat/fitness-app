@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { XCircle } from 'phosphor-react';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { addExerciseToWorkout } from 'features/workout/store';
 
 import { Sets } from './Sets/Sets';
 import { Reps } from './Reps/Reps';
@@ -11,15 +14,21 @@ import styles from './Modal.module.css';
 import { extractSetsData } from 'features/workout/utility';
 
 export const Modal = ({ close }) => {
+	const dispatch = useDispatch();
+
 	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
 
-	const handleSubmit = (e) => {
+	const handleSubmit =  (e) => {
 		e.preventDefault();
-		const formData = new FormData(e.currentTarget);
-		const reps = extractSetsData(formData);
-		console.log(reps);
+		try {
+			const formData = new FormData(e.currentTarget);
+			const reps = extractSetsData(formData);
+			dispatch(addExerciseToWorkout(reps));
+		} catch (error) {
+			toast.error(error.message);
+		}
 	};
-	
+
 	return (
 		<div className={styles.modal}>
 			<div className={styles.modalContainer}>
