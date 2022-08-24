@@ -20,6 +20,7 @@ export const SearchForm = ({ width, searchFn, results, selectFn }) => {
 			if (term) {
 				searchFn(term);
 				setShowResults(true);
+				setTerm('');
 			}
 		} catch (error) {
 			toast.error(error.message);

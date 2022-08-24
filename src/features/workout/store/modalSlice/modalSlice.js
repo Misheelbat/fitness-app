@@ -12,6 +12,7 @@ const exerciseSlice = createSlice({
 	reducers: {
 		setSearchResult: (state, action) => {
 			state.searchResultId = action.payload.id;
+			
 		},
 		addExerciseToWorkout: (state, action) => {
 			if (!state.searchResultId) {
@@ -22,6 +23,7 @@ const exerciseSlice = createSlice({
 					reps: action.payload,
 					// add name
 				});
+				state.searchResultId = null;
 			}
 		},
 	},

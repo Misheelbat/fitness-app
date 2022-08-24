@@ -32,7 +32,7 @@ export const SearchExercise = () => {
 				selectFn={selectFn}
 			/>
 			<div className={styles.searchResult}>
-				{data && (
+				{id && !isFetching && (
 					<Card
 						loading={isFetching}
 						exercise={data.name}

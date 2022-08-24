@@ -1,4 +1,3 @@
-
 export function createArray(n) {
 	const elements = [];
 	for (let i = 1; i <= n; i++) {
@@ -7,7 +6,7 @@ export function createArray(n) {
 	return elements;
 }
 
-export function extractSetsData(formData) {
+export function extractRepsData(formData) {
 	const data = { reps: [], weight: [], weightUnit: [], repsUnit: [] };
 	for (let [key, value] of formData) {
 		switch (key) {

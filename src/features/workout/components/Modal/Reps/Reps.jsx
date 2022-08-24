@@ -17,7 +17,10 @@ export const Reps = ({ sets }) => {
 				<ArrowBtn page={currentSet} setPage={setCurrentSet} total={sets} />
 			</div>
 			{setsArray.map((set) => (
-				<RepsFormInput key={set} active={set === currentSet ? 'active' : ''} />
+				<RepsFormInput
+					key={set}
+					active={set === currentSet ? 'active' : null}
+				/>
 			))}
 		</div>
 	);

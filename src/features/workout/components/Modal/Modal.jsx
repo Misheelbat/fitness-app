@@ -1,29 +1,34 @@
 import { useState } from 'react';
-import { XCircle } from 'phosphor-react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import { addExerciseToWorkout } from 'features/workout/store';
 
-import { Sets } from './Sets/Sets';
 import { Reps } from './Reps/Reps';
+import { Sets } from './Sets/Sets';
+import { XCircle } from 'phosphor-react';
 import { Button } from 'components/Elements';
 import { SearchExercise } from './Search/SearchExercise';
-import { SETS_DEFAULT_VALUE } from 'features/workout';
 
+import {
+	extractRepsData,
+	addExerciseToWorkout,
+	SETS_DEFAULT_VALUE,
+} from 'features/workout';
 import styles from './Modal.module.css';
-import { extractSetsData } from 'features/workout/utility';
 
 export const Modal = ({ close }) => {
 	const dispatch = useDispatch();
 
 	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
 
-	const handleSubmit =  (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
 		try {
 			const formData = new FormData(e.currentTarget);
-			const reps = extractSetsData(formData);
+			const reps = extractRepsData(formData);
 			dispatch(addExerciseToWorkout(reps));
+			setSliderValue(SETS_DEFAULT_VALUE);
+			toast.success('Added Exercise to Workout');
+			close(false);
 		} catch (error) {
 			toast.error(error.message);
 		}
@@ -57,6 +62,7 @@ export const Modal = ({ close }) => {
 						</div>
 						<Reps sets={Number(sliderValue)} />
 					</section>
+
 					<Button type="submit" buttonType="max-width">
 						Save
 					</Button>
