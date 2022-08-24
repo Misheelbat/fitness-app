@@ -19,7 +19,10 @@ export const WorkoutTemplate = ({ data = [] }) => {
 	return (
 		<div className={styles.createForm}>
 			<div className={styles.createFormHeader}>
-				<h4 className={styles.createFormTitle}>Workouts :</h4>
+				<div className={styles.createFormTitleContainer}>
+					<h4 className={styles.createFormTitle}>Workout :</h4>
+					<Button onClick={() => setIsOpen(!isOpen)}>SAVE</Button>
+				</div>
 				<Button buttonType="add" onClick={() => setIsOpen(!isOpen)}>
 					ADD
 				</Button>
