@@ -1,10 +1,30 @@
 import { Link } from 'react-router-dom';
 
+import { useGetWorkoutsQuery } from 'features/workout/store';
 import { Template } from '../Template/Template';
+import { PageSpinner } from 'components/Elements';
 import styles from './Dashboard.module.css';
 
 export const Dashboard = () => {
-	// Firestore.collection("workoutPlan").docs()
+	const { data, isFetching } = useGetWorkoutsQuery();
+
+	let content;
+
+	if (isFetching) {
+		content = (
+			<PageSpinner
+				variant="secondary"
+				styles={{ height: '100%', width: '100%' }}
+			/>
+		);
+	} else if (!data) {
+		content = <div>Nothing Found...</div>;
+	} else {
+		content = data.id.map((workout) => (
+			<Template key={workout} title={workout} />
+		));
+	}
+
 	return (
 		<div className={styles.dashboard}>
 			<div className={styles.overview}>
@@ -17,6 +37,7 @@ export const Dashboard = () => {
 					<Link to="createTemplate">Create Template</Link>
 				</div>
 			</div>
+
 			<div>
 				<div className={styles.workoutsTitle}>
 					<h4>My Workouts :</h4>
@@ -24,9 +45,7 @@ export const Dashboard = () => {
 						<Link to="prog">See All</Link>
 					</div>
 				</div>
-				<div className={styles.workouts}>
-					<Template id="1" />
-				</div>
+				<div className={styles.workouts}>{content}</div>
 			</div>
 		</div>
 	);

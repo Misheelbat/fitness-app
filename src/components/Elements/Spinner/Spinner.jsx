@@ -9,7 +9,7 @@ export const Spinner = ({ size = '30', variant = '' }) => {
 	);
 };
 
-export const PageSpinner = ({ size = '80', variant = 'primary' }) => {
+export const PageSpinner = ({ size = '80', variant = 'primary', styles }) => {
 	return (
 		<div
 			data-testid="loading"
@@ -17,6 +17,7 @@ export const PageSpinner = ({ size = '80', variant = 'primary' }) => {
 				display: 'grid',
 				placeContent: 'center',
 				height: '100vh',
+				...styles,
 			}}
 		>
 			<Spinner size={size} variant={variant} />

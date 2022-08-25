@@ -97,7 +97,6 @@ export const addCollectionAndDocs = async (docsToAdd) => {
 
 export const addWorkout = async (docsToAdd) => {
 	const key = auth.currentUser.uid;
-	const collectionRef = collection(firestoreDb, 'users');
 	const docRef = doc(firestoreDb, 'users', key);
 	await updateDoc(docRef, {
 		workout: docsToAdd,
@@ -105,14 +104,16 @@ export const addWorkout = async (docsToAdd) => {
 	console.log('batch done');
 };
 
-export const getWorkoutsDoc = async () => {
-	const collectionRef = collection(firestoreDb, 'workout');
-	const q = query(collectionRef);
-	const querySnapshot = await getDocs(q);
-	const workoutsMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-		const { id, items } = docSnapshot.data();
-		acc[id] = items;
-		return acc;
-	}, {});
-	return workoutsMap;
+export const getWorkoutsFromDoc = async () => {
+	const key = auth.currentUser.uid;
+	const docRef = doc(firestoreDb, 'users', key);
+	const docSnap = await getDoc(docRef);
+
+	if (docSnap.exists()) {
+		const workoutsMap = docSnap.data();
+		return workoutsMap.workout;
+	} else {
+		console.log('No such document!');
+	}
+	return;
 };

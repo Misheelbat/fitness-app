@@ -1,4 +1,8 @@
-import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import {
+	createSlice,
+	createEntityAdapter,
+	createAsyncThunk,
+} from '@reduxjs/toolkit';
 
 const workoutsAdapter = createEntityAdapter();
 
@@ -12,7 +16,6 @@ const exerciseSlice = createSlice({
 	reducers: {
 		setSearchResult: (state, action) => {
 			state.searchResultId = action.payload.id;
-			
 		},
 		addExerciseToWorkout: (state, action) => {
 			if (!state.searchResultId) {
@@ -21,7 +24,6 @@ const exerciseSlice = createSlice({
 				workoutsAdapter.addOne(state, {
 					id: state.searchResultId,
 					reps: action.payload,
-					// add name
 				});
 				state.searchResultId = null;
 			}
