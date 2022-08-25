@@ -6,11 +6,11 @@ import { PageSpinner } from 'components/Elements';
 import styles from './Dashboard.module.css';
 
 export const Dashboard = () => {
-	const { data, isFetching } = useGetWorkoutsQuery();
+	const { data, isLoading } = useGetWorkoutsQuery();
 
 	let content;
 
-	if (isFetching) {
+	if (isLoading) {
 		content = (
 			<PageSpinner
 				variant="secondary"
@@ -19,7 +19,7 @@ export const Dashboard = () => {
 		);
 	} else if (!data) {
 		content = <div>Nothing Found...</div>;
-	} else {
+	} else  {
 		content = data.id.map((workout) => (
 			<Template key={workout} title={workout} />
 		));
