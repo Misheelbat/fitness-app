@@ -1,22 +1,20 @@
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import { ContentLayout } from 'components/Layout';
-import { PageSpinner } from 'components/Elements';
 import { WorkoutTemplate } from '../../components/WorkoutTemplate/WorkoutTemplate';
 
-import { useGetWorkoutsQuery } from 'features/workout/store';
+import { selectWorkoutById } from 'features/workout/store';
 
 export const Workout = () => {
 	const { id } = useParams();
-	const { data, isLoading } = useGetWorkoutsQuery();
+	const data = useSelector((state) => selectWorkoutById(state, id));
 
 	let content;
-	if (isLoading) {
-		content = <PageSpinner variant="secondary" />;
-	} else if (!data) {
-		content = <WorkoutTemplate redData={'no data'} />;
+	if (!data) {
+		content = <WorkoutTemplate />;
 	} else if (data) {
-		content = <WorkoutTemplate redData={data.entities[id]} />;
+		content = <WorkoutTemplate data={data.workouts} />;
 	}
 
 	return <ContentLayout title="Programm">{content}</ContentLayout>;

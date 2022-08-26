@@ -51,4 +51,3 @@ export const Dashboard = () => {
 	);
 };
 
-// call api from user

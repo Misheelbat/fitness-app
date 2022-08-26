@@ -1,3 +1,4 @@
+// default value for weight/rep unit, in react-select format
 export const REP_UNIT_DEFAULT_VALUE = [
 	{ value: 'Repetitions', label: 'Reps' },
 	{ value: 'Max Reps', label: 'Max Reps' },
@@ -8,6 +9,7 @@ export const WEIGHT_UNITS_DEFAULT_VALUE = [
 	{ value: 'Body Weight', label: 'Body Weight' },
 ];
 
+// default value for number of exercise sets
 export const SETS_DEFAULT_VALUE = 1;
 
 const mockdataDb = {
@@ -67,3 +69,20 @@ const mockdataDb = {
 		},
 	},
 };
+
+const Person = [
+	{
+		name: 'Bent Over Barbell Row',
+		category: 'Back',
+		equipments: ['Barbell'],
+		sets: 4,
+		reps: 10,
+	},
+	{
+		name: 'Bench Press',
+		category: 'Chest',
+		equipments: ['Bench', 'Barbell'],
+		sets: 4,
+		reps: 10,
+	},
+];

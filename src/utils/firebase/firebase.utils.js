@@ -15,8 +15,6 @@ import {
 	setDoc,
 	collection,
 	writeBatch,
-	query,
-	getDocs,
 	updateDoc,
 } from 'firebase/firestore';
 
@@ -104,7 +102,7 @@ export const addWorkout = async (docsToAdd) => {
 	console.log('batch done');
 };
 
-export const getWorkoutsFromDoc = async () => {
+export const getWorkoutsFromDb = async () => {
 	const key = auth.currentUser.uid;
 	const docRef = doc(firestoreDb, 'users', key);
 	const docSnap = await getDoc(docRef);
