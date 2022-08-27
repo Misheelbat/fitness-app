@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useGetTableDataQuery } from 'features/workout/store';
 
-export const Row = ({ rowInfo }) => {
+export const Row = ({ rowData }) => {
 	const [exercise, setExercise] = useState({});
-	const { data, isLoading } = useGetTableDataQuery(rowInfo);
+	const { data, isLoading } = useGetTableDataQuery(rowData);
 
 	useEffect(() => {
 		if (!isLoading) {
@@ -13,8 +13,8 @@ export const Row = ({ rowInfo }) => {
 
 	return (
 		<tr>
-			{Object.values(exercise).map((v) => (
-				<td key={v + rowInfo.id}>{v}</td>
+			{Object.values(exercise).map((value) => (
+				<td key={value + rowData.id}>{value}</td>
 			))}
 		</tr>
 	);

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
+import { Modal } from '../Modal/Modal';
 import { Button } from 'components/Elements';
 import { TableGrid } from './WTable/TableGrid/TableGrid';
-import { Modal } from '../Modal/Modal';
 import styles from './WorkoutTemplate.module.css';
 
 export const WorkoutTemplate = ({ data = '' }) => {

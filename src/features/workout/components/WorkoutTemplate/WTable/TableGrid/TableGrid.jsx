@@ -7,7 +7,7 @@ export let TableGrid = ({ data }) => {
 	return (
 		<table className={styles.tableGrid}>
 			<TableHead />
-			<TableBody data={data.reps} />
+			<TableBody data={data} />
 		</table>
 	);
 };

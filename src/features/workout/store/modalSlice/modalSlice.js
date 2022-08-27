@@ -30,8 +30,13 @@ const workoutsSlice = createSlice({
 		builder.addMatcher(
 			apiSlice.endpoints.getWorkouts.matchFulfilled,
 			(state, { payload }) => {
-				const workoutEntries = payload.id.map((workout) => {
-					return { id: workout, workouts: setsAdapter.getInitialState() };
+				const workoutEntries = payload.ids.map((workout) => {
+					return {
+						id: workout,
+						exercises: setsAdapter.getInitialState(
+							payload.entities[workout].exercises
+						),
+					};
 				});
 				workoutsAdapter.setAll(state, workoutEntries);
 			}

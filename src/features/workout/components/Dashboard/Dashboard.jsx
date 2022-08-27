@@ -19,8 +19,8 @@ export const Dashboard = () => {
 		);
 	} else if (!data) {
 		content = <div>Nothing Found...</div>;
-	} else  {
-		content = data.id.map((workout) => (
+	} else {
+		content = data.ids.map((workout) => (
 			<Template key={workout} title={workout} />
 		));
 	}
@@ -50,4 +50,3 @@ export const Dashboard = () => {
 		</div>
 	);
 };
-
