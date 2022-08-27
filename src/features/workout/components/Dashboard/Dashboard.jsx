@@ -17,8 +17,8 @@ export const Dashboard = () => {
 				styles={{ height: '100%', width: '100%' }}
 			/>
 		);
-	} else if (!data) {
-		content = <div>Nothing Found...</div>;
+	} else if (Object.entries(data).length === 0) {
+		content = <div>Nothing here yet...</div>;
 	} else {
 		content = data.ids.map((workout) => (
 			<Template key={workout} title={workout} />

@@ -1,0 +1,21 @@
+.titleForm input {
+	display: inline-block;
+	color: #fff;
+	font-size: 1.1em;
+	border: 0;
+	border-radius: 0.4em;
+	background-color: var(--clr-secondary);
+	font-family: 'Poppins', sans-serif;
+	padding: 0.2rem 0.5rem;
+	width: max-content;
+	border: 1px solid #484c56;
+}
+.titleForm {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+input[aria-disabled='false'] {
+	background-color: var(--clr-off-white);
+	color: black;
+}

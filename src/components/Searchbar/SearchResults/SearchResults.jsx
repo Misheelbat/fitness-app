@@ -37,7 +37,7 @@ export const SearchResults = ({ data, setShowResults, selectFn }) => {
 					<div
 						className={styles.results}
 						key={ex.value}
-						onClick={() => handleClick(ex.data)}
+						onClick={() => handleClick(ex.data.id)}
 					>
 						{ex.value}
 					</div>

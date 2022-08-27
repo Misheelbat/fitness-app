@@ -12,32 +12,36 @@ const workoutsSlice = createSlice({
 	initialState,
 	reducers: {
 		setSearchResult: (state, action) => {
-			state.searchResultId = action.payload.id;
+			state.searchResultId = action.payload;
 		},
-		addExerciseToWorkout: (state, action) => {
+		addExerciseToWorkout: (state, { payload }) => {
 			if (!state.searchResultId) {
 				throw new Error('Please select an exercise');
 			} else {
-				setsAdapter.addOne(state, {
+				setsAdapter.updateOne(state, {
 					id: state.searchResultId,
-					reps: action.payload,
+					reps: payload.reps,
 				});
 				state.searchResultId = null;
 			}
+		},
+		addNewWorkout: (state, action) => {
+			const workout = { id: '', exercises: action.payload };
+			workoutsAdapter.addOne(state, workout);
 		},
 	},
 	extraReducers: (builder) => {
 		builder.addMatcher(
 			apiSlice.endpoints.getWorkouts.matchFulfilled,
 			(state, { payload }) => {
-				const workoutEntries = payload.ids.map((workout) => {
-					return {
-						id: workout,
-						exercises: setsAdapter.getInitialState(
-							payload.entities[workout].exercises
-						),
-					};
-				});
+				if (Object.entries(payload).length === 0) return;
+
+				const workoutEntries = payload.ids.map((workout) => ({
+					id: workout,
+					exercises: setsAdapter.getInitialState(
+						payload.entities[workout].exercises
+					),
+				}));
 				workoutsAdapter.setAll(state, workoutEntries);
 			}
 		);

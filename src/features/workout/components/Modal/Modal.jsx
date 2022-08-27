@@ -15,7 +15,7 @@ import {
 } from 'features/workout';
 import styles from './Modal.module.css';
 
-export const Modal = ({ close }) => {
+export const Modal = ({ close, title }) => {
 	const dispatch = useDispatch();
 
 	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
@@ -25,11 +25,12 @@ export const Modal = ({ close }) => {
 		try {
 			const formData = new FormData(e.currentTarget);
 			const reps = extractRepsData(formData);
-			dispatch(addExerciseToWorkout(reps));
+			dispatch(addExerciseToWorkout({ title, reps }));
 			setSliderValue(SETS_DEFAULT_VALUE);
 			toast.success('Added Exercise to Workout');
-			close(false);
+			// close(false);
 		} catch (error) {
+			console.log(error);
 			toast.error(error.message);
 		}
 	};
