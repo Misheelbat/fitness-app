@@ -1,10 +1,14 @@
 import { apiSlice } from 'store/api/apiSlice';
-import { updateUserDisplayName } from 'features/users';
+import {
+	updateUserDisplayName,
+	updateUserEmail,
+	updateUserPassword,
+} from 'features/users';
 
 const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['name'] });
 
 // endpoint for updating profile data
-const userApi = apiWithTag.injectEndpoints({
+export const userApi = apiWithTag.injectEndpoints({
 	endpoints: (build) => ({
 		changeName: build.query({
 			async queryFn(name) {
@@ -16,7 +20,31 @@ const userApi = apiWithTag.injectEndpoints({
 				}
 			},
 		}),
+		changePassword: build.query({
+			async queryFn(pass) {
+				try {
+					await updateUserPassword(pass);
+					return { data: 'Password updated!' };
+				} catch (err) {
+					return { error: err.message };
+				}
+			},
+		}),
+		changeEmail: build.query({
+			async queryFn(email) {
+				try {
+					await updateUserEmail(email);
+					return { data: { email } };
+				} catch (err) {
+					return { error: err.message };
+				}
+			},
+		}),
 	}),
 });
 
-export const { useLazyChangeNameQuery } = userApi;
+export const {
+	useLazyChangeNameQuery,
+	useLazyChangeEmailQuery,
+	useLazyChangePasswordQuery,
+} = userApi;

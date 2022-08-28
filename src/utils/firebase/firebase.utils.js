@@ -1,9 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import {
 	getAuth,
-	signOut,
 	onAuthStateChanged,
-	sendPasswordResetEmail,
 	// eslint-disable-next-line
 	connectAuthEmulator,
 } from 'firebase/auth';
@@ -40,12 +38,8 @@ const firestoreDb = getFirestore();
 // 	connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
 // }
 
-// Firebase Functions
-
-export const onAuthStateListener = (callback) =>
-	onAuthStateChanged(auth, callback);
-
-export const getCurrentUser = () => {
+// check if user session exist
+export const checkUserSession = () => {
 	return new Promise((resolve, reject) => {
 		const unsubscribe = onAuthStateChanged(
 			auth,
@@ -68,13 +62,18 @@ export const createUserDocFromAuth = async (userAuth) => {
 		const { displayName, email } = userAuth;
 		const createdAt = new Date();
 		try {
-			await setDoc(userDocRef, { displayName, email, createdAt, workout: [] });
+			await setDoc(userDocRef, {
+				displayName,
+				email,
+				createdAt,
+				workout: [],
+			});
 		} catch (error) {
 			console.log('could not save user to db', error.message);
 		}
 	}
 
-	return userDocRef;
+	return userSnapshot;
 };
 
 export const addCollectionAndDocs = async (docsToAdd) => {

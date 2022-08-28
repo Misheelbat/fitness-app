@@ -5,7 +5,7 @@ import { Profile } from './Profile/Profile';
 export const UserRoutes = () => {
 	return (
 		<Routes>
-			<Route index element={<Profile />}></Route>
+			<Route index element={<Profile />} />
 			<Route path="update" element={<UpdateProfile />} />
 		</Routes>
 	);

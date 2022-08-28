@@ -1,25 +1,32 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { useLazyChangeNameQuery } from 'features/users';
-import { apiSlice } from 'store/api/apiSlice';
+import { authApi } from '../api/authApiSlice';
+import { userApi } from 'features/users';
 
 const initialState = {
 	displayName: '',
 	email: '',
 	uid: null,
 };
+
 const authSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {},
 	extraReducers: (builder) => {
 		builder.addMatcher(
-			apiSlice.endpoints.changeName.matchFulfilled,
+			userApi.endpoints.changeEmail.matchFulfilled,
+			(state, { payload }) => {
+				state.email = payload.email;
+			}
+		);
+		builder.addMatcher(
+			userApi.endpoints.changeName.matchFulfilled,
 			(state, { payload }) => {
 				state.displayName = payload.displayName;
 			}
 		);
 		builder.addMatcher(
-			apiSlice.endpoints.register.matchFulfilled,
+			authApi.endpoints.register.matchFulfilled,
 			(state, { payload }) => {
 				state.displayName = payload.displayName;
 				state.email = payload.email;
@@ -27,7 +34,7 @@ const authSlice = createSlice({
 			}
 		);
 		builder.addMatcher(
-			apiSlice.endpoints.login.matchFulfilled,
+			authApi.endpoints.login.matchFulfilled,
 			(state, { payload }) => {
 				state.displayName = payload.displayName;
 				state.email = payload.email;
@@ -35,7 +42,7 @@ const authSlice = createSlice({
 			}
 		);
 		builder.addMatcher(
-			apiSlice.endpoints.signOut.matchFulfilled,
+			authApi.endpoints.signOut.matchFulfilled,
 			(state, action) => {
 				state.displayName = '';
 				state.email = '';
@@ -43,7 +50,15 @@ const authSlice = createSlice({
 			}
 		);
 		builder.addMatcher(
-			apiSlice.endpoints.loginAnonym.matchFulfilled,
+			authApi.endpoints.loginAnonym.matchFulfilled,
+			(state, { payload }) => {
+				state.displayName = payload.displayName;
+				state.email = payload.email;
+				state.uid = payload.uid;
+			}
+		);
+		builder.addMatcher(
+			authApi.endpoints.isUserAuthenticated.matchFulfilled,
 			(state, { payload }) => {
 				state.displayName = payload.displayName;
 				state.email = payload.email;

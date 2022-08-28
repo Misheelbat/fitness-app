@@ -7,8 +7,10 @@ import {
 	loginAnonymously,
 } from 'features/auth/api';
 
+import { checkUserSession, createUserDocFromAuth } from 'utils';
+
 const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['user'] });
-const authApi = apiWithTag.injectEndpoints({
+export const authApi = apiWithTag.injectEndpoints({
 	endpoints: (build) => ({
 		register: build.query({
 			async queryFn(credentials) {
@@ -97,6 +99,21 @@ const authApi = apiWithTag.injectEndpoints({
 				}
 			},
 		}),
+		isUserAuthenticated: build.query({
+			async queryFn() {
+				try {
+					const userAuth = await checkUserSession();
+					if (!userAuth) return { data: {} };
+
+					const userSnapshot = await createUserDocFromAuth(userAuth);
+					const { displayName, email } = userSnapshot.data();
+
+					return { data: { displayName, email, uid: userAuth.uid } };
+				} catch (err) {
+					return { error: err.message };
+				}
+			},
+		}),
 	}),
 });
 
@@ -106,4 +123,5 @@ export const {
 	useLazyRegisterQuery,
 	useLazyLoginQuery,
 	useLazyLoginAnonymQuery,
+	useLazyIsUserAuthenticatedQuery,
 } = authApi;

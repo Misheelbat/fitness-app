@@ -1,31 +1,29 @@
 import { useState } from 'react';
-import { useMutation } from 'react-query';
 import cx from 'classnames';
 import { toast } from 'react-toastify';
 
-import { updateUserPassword } from 'features/users';
-import { transformErrMSg } from 'utils';
 import { Button } from 'components/Elements';
 
+import { transformErrMSg } from 'utils';
+import { useLazyChangePasswordQuery } from 'features/users';
 import styles from './UpdatePassword.module.css';
 
 export const UpdatePassword = () => {
-	const { isLoading, mutate } = useMutation(updateUserPassword);
+	const [update, { isLoading }] = useLazyChangePasswordQuery();
 	const [pass, setPass] = useState('');
 	const [confirmPass, setConfirmPass] = useState('');
 
 	const handlePassword = async () => {
 		if (pass !== confirmPass) {
-			throw new Error('(/Passwords do not match)');
+			toast.error('Passwords do not match');
+			return;
 		}
-		mutate(pass, {
-			onSuccess: () => {
-				toast.success('Successfully update Password', {
-					onClose: () => window.location.reload(),
-				});
-			},
-			onError: (err) => toast.error(transformErrMSg(err.message)),
-		});
+		try {
+			await update(pass);
+			toast.success('Successfully update Password');
+		} catch (error) {
+			toast.error(transformErrMSg(error));
+		}
 	};
 
 	return (

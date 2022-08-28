@@ -1,5 +1,5 @@
-import { updateProfile, updateEmail, updatePassword } from 'firebase/auth';
 import { auth } from 'utils';
+import { updateProfile, updateEmail, updatePassword } from 'firebase/auth';
 
 export const updateUserEmail = async (email) => {
 	if (email === auth.currentUser.email) {

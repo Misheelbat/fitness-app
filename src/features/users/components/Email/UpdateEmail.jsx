@@ -1,26 +1,23 @@
 import { useState } from 'react';
-import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 
-import { updateUserEmail } from 'features/users';
 import { Button } from 'components/Elements';
-import { transformErrMSg } from 'utils';
 
+import { transformErrMSg } from 'utils';
+import { useLazyChangeEmailQuery } from 'features/users';
 import styles from './UpdateEmail.module.css';
 
 export const UpdateEmail = ({ placeHolder = 'email' }) => {
-	const { isLoading, mutate } = useMutation(updateUserEmail);
+	const [update, { isLoading }] = useLazyChangeEmailQuery();
 	const [email, setEmail] = useState('');
 
 	const handleEmail = async () => {
-		mutate(email, {
-			onSuccess: () => {
-				toast.success('Successfully update Email', {
-					onClose: () => window.location.reload(),
-				});
-			},
-			onError: (err) => toast.error(transformErrMSg(err.message)),
-		});
+		try {
+			await update(email);
+			toast.success('Successfully update Email');
+		} catch (error) {
+			toast.error(transformErrMSg(error));
+		}
 	};
 
 	return (
