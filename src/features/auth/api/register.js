@@ -7,12 +7,13 @@ export const registerWithEmailAndPassword = async ({
 	password,
 	confirmPassword,
 }) => {
-	if (!email || !password) return;
-	if (password !== confirmPassword) {
-		throw new Error('(/Passwords do not match)');
+	if (!email || !password) {
+		throw new Error('(/Password or Email missing!)');
+	} else if (password !== confirmPassword) {
+		throw new Error('(/Passwords do not match!)');
 	}
 	const { user } = await createUserWithEmailAndPassword(auth, email, password);
 	await updateProfile(user, { displayName });
 	await user.reload();
-	return;
+	return user;
 };

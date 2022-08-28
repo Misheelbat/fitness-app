@@ -3,6 +3,7 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { tabReducer, exerciseReducer } from 'features/exercises';
 import { modalReducer } from 'features/workout';
+import { authReducer } from 'features/auth';
 import { apiSlice } from './api/apiSlice';
 
 export const reduxStore = configureStore({
@@ -10,6 +11,7 @@ export const reduxStore = configureStore({
 		tab: tabReducer,
 		exercise: exerciseReducer,
 		modalForm: modalReducer,
+		user: authReducer,
 		[apiSlice.reducerPath]: apiSlice.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>

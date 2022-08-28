@@ -2,9 +2,8 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { useAuth } from 'features/auth';
 import { transformErrMSg } from 'utils';
-
+import { useLazyRegisterQuery } from 'features/auth';
 import { Button, BUTTON_TYPES } from 'components/Elements';
 
 import styles from './RegisterForm.module.css';
@@ -17,23 +16,19 @@ const defaultFormFields = {
 };
 
 export const RegisterForm = ({ onSuccess }) => {
-	const { register, setCurrentUser } = useAuth();
+	const [register, { isLoading }] = useLazyRegisterQuery();
 	const [formFields, setFormFields] = useState(defaultFormFields);
-	const [isLoading, setIsLoading] = useState(false);
 	const { displayName, email, password, confirmPassword } = formFields;
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			setIsLoading(true);
 			await register(formFields);
-			setCurrentUser({ displayName, email });
 			toast.success('Welcome');
 			onSuccess();
 		} catch (error) {
 			toast.error(transformErrMSg(error.message));
 		}
-		setIsLoading(false);
 	};
 
 	const handleFormInput = (e) => {

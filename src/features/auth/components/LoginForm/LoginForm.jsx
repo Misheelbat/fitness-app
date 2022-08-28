@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { useAuth } from 'features/auth';
+import { useLazyLoginQuery } from 'features/auth';
 import { transformErrMSg } from 'utils';
 
 import { Button, BUTTON_TYPES } from 'components/Elements';
@@ -16,9 +16,8 @@ const defaultFormFields = {
 };
 
 export const LoginForm = ({ onSuccess }) => {
-	const { login } = useAuth();
+	const [login, { isLoading }] = useLazyLoginQuery();
 	const [formFields, setFormFields] = useState(defaultFormFields);
-	const [isLoading, setIsLoading] = useState(false);
 	const { email, password } = formFields;
 
 	const handleFormInput = (e) => {
@@ -29,14 +28,12 @@ export const LoginForm = ({ onSuccess }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			setIsLoading(true);
-			await login(formFields);
+			await login(formFields).unwrap();
 			toast.success('Welcome');
 			onSuccess();
 		} catch (error) {
-			toast.error(transformErrMSg(error.message));
+			toast.error(transformErrMSg(error));
 		}
-		setIsLoading(false);
 	};
 
 	return (

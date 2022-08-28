@@ -1,6 +1,7 @@
 import { useRoutes } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
-import { useAuth } from 'features/auth';
+import { selectDisplayName } from 'features/auth';
 import { Landing } from 'features/misc';
 import { PageSpinner } from 'components/Elements';
 
@@ -8,7 +9,7 @@ import { protectedRoutes } from './protected';
 import { publicRoutes } from './public';
 
 export const AppRoutes = () => {
-	const { currentUser } = useAuth();
+	const user = useSelector(selectDisplayName);
 
 	const commenRoutes = [
 		{
@@ -17,8 +18,8 @@ export const AppRoutes = () => {
 			children: [{ path: '/*', element: <PageSpinner /> }],
 		},
 	];
-
-	const routes = currentUser?.displayName ? protectedRoutes : publicRoutes;
+	console.log(user);
+	const routes = user ? protectedRoutes : publicRoutes;
 
 	const element = useRoutes([...routes, ...commenRoutes]);
 	return <>{element}</>;

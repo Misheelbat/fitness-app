@@ -1,4 +1,4 @@
-.titleForm input {
+/* .titleForm input {
 	display: inline-block;
 	color: #fff;
 	font-size: 1.1em;
@@ -9,13 +9,44 @@
 	padding: 0.2rem 0.5rem;
 	width: max-content;
 	border: 1px solid #484c56;
+} */
+.titleForm input {
+	display: block;
+	color: white;
+	width: 100%;
+	max-width: 250px;
+	font-size: 1em;
+	padding: 0 1em;
+	height: 35px;
+	border: 0;
+	border-radius: 0.5em;
+	background-color: var(--clr-secondary);
+	border: 2px solid rgba(250, 250, 250, 0.05);
 }
 .titleForm {
 	display: flex;
 	align-items: center;
 	gap: 1rem;
 }
-input[aria-disabled='false'] {
+.titleForm input[aria-disabled='false'] {
 	background-color: var(--clr-off-white);
 	color: black;
+}
+
+.titleForm button {
+	border: 0;
+	border-radius: 50%;
+	width: 30px;
+	height: 30px;
+	background-color: transparent;
+}
+.titleForm button svg {
+	color: white;
+	transition: transform 100ms linear;
+}
+.titleForm button:hover svg {
+	color: var(--clr-grey);
+}
+.titleForm button:active svg {
+	transform: scale(1.1);
 }

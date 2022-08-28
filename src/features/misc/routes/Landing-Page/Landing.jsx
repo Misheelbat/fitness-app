@@ -1,6 +1,7 @@
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useAuth } from 'features/auth';
+import { selectDisplayName } from 'features/auth';
 import { Head } from 'components/Head';
 import { Button } from 'components/Elements';
 
@@ -8,10 +9,10 @@ import styles from './Landing.module.css';
 
 export const Landing = () => {
 	const navigate = useNavigate();
-	const { currentUser } = useAuth();
+	const user = useSelector(selectDisplayName);
 
 	const handleStart = () => {
-		if (currentUser) {
+		if (user) {
 			navigate('/app');
 		} else {
 			navigate('/auth/login');

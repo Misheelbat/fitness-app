@@ -41,7 +41,6 @@ const firestoreDb = getFirestore();
 // }
 
 // Firebase Functions
-export const signoutUser = () => signOut(auth);
 
 export const onAuthStateListener = (callback) =>
 	onAuthStateChanged(auth, callback);

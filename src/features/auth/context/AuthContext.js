@@ -1,13 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import {
-	registerWithEmailAndPassword,
-	loginAuthUserWithEmailAndPassword,
-	loginAnonymously,
-} from 'features/auth';
+import { loginAnonymously } from 'features/auth';
 import {
 	onAuthStateListener,
-	signoutUser,
 	resetPassWithEmail,
 	createUserDocFromAuth,
 } from 'utils';
@@ -24,16 +19,7 @@ export const AuthProvider = ({ children }) => {
 	const [currentUser, setCurrentUser] = useState();
 	const [isLoading, setIsLoading] = useState(false);
 
-	const register = (data) => {
-		return registerWithEmailAndPassword(data);
-	};
-
-	const login = (data) => {
-		return loginAuthUserWithEmailAndPassword(data);
-	};
-
 	const logOut = () => {
-		signoutUser();
 		window.location.assign(window.location.origin);
 	};
 
@@ -69,8 +55,6 @@ export const AuthProvider = ({ children }) => {
 		resetPassword,
 		setCurrentUser,
 		loginAsGuest,
-		register,
-		login,
 		logOut,
 	};
 
@@ -79,10 +63,4 @@ export const AuthProvider = ({ children }) => {
 			{isLoading ? children : <PageSpinner />}
 		</AuthContext.Provider>
 	);
-};
-
-const dummby = {
-	name: '',
-	id: [],
-	entity: { id: '', reps: '' },
 };
