@@ -14,10 +14,10 @@ export const userApi = apiWithTag.injectEndpoints({
 			async queryFn(name) {
 				try {
 					await updateUserDisplayName(name);
-					return { data: { displayName: name } };
 				} catch (err) {
 					return { error: err.message };
 				}
+				return { data: { displayName: name } };
 			},
 		}),
 		changePassword: build.query({
