@@ -1,26 +1,24 @@
 import { useState } from 'react';
-import { useMutation } from 'react-query';
 import { toast } from 'react-toastify';
 
-import { updateUserDisplayName } from 'features/users';
 import { Button } from 'components/Elements';
+
+import { useLazyChangeNameQuery } from 'features/users/store/api/userApi';
 import { transformErrMSg } from 'utils';
 
 import styles from './updateDisplayName.module.css';
 
 export const UpdateDisplayName = ({ placeHolder = 'username' }) => {
-	const { isLoading, mutate } = useMutation(updateUserDisplayName);
+	const [updateDisplayName, { isLoading }] = useLazyChangeNameQuery();
 	const [displayName, setDisplayName] = useState('');
 
 	const handleDisplayName = async () => {
-		mutate(displayName, {
-			onSuccess: () => {
-				toast.success('Successfully update Username', {
-					onClose: () => window.location.reload(),
-				});
-			},
-			onError: (err) => toast.error(transformErrMSg(err.message)),
-		});
+		try {
+			await updateDisplayName(displayName).unwrap();
+			toast.success('Successfully update Username');
+		} catch (error) {
+			toast.error(transformErrMSg(error));
+		}
 	};
 
 	return (

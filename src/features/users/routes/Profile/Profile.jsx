@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { Pen } from 'phosphor-react';
 
-import { useAuth } from 'features/auth';
+import { selectDisplayName, selectEmail } from 'features/auth';
 import { ContentLayout } from 'components/Layout';
 
 import styles from './Profile.module.css';
@@ -16,15 +17,17 @@ const Entry = ({ label, value }) => {
 };
 
 export const Profile = () => {
-	const { currentUser } = useAuth();
+	const displayName = useSelector(selectDisplayName);
+	const email = useSelector(selectEmail);
+
 	return (
 		<ContentLayout title="Profile">
 			<div className={styles.profile}>
 				<h3>Personal information</h3>
 				<div>
 					<dl>
-						<Entry label="Username" value={currentUser.displayName} />
-						<Entry label="Email Adress" value={currentUser.email} />
+						<Entry label="Username" value={displayName} />
+						<Entry label="Email Adress" value={email} />
 					</dl>
 					<Link to="./update" className={styles.updateProfile}>
 						<Pen />

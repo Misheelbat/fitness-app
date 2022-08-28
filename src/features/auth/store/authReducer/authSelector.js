@@ -6,3 +6,4 @@ export const selectDisplayName = createSelector(
 	[selectAuth],
 	(user) => user.displayName
 );
+export const selectEmail = createSelector([selectAuth], (user) => user.email);

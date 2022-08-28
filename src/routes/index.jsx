@@ -18,9 +18,8 @@ export const AppRoutes = () => {
 			children: [{ path: '/*', element: <PageSpinner /> }],
 		},
 	];
-	console.log(user);
-	const routes = user ? protectedRoutes : publicRoutes;
 
+	const routes = user ? protectedRoutes : publicRoutes;
 	const element = useRoutes([...routes, ...commenRoutes]);
 	return <>{element}</>;
 };

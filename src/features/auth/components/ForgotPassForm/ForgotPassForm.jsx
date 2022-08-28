@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { useAuth } from 'features/auth';
-import { Button, BUTTON_TYPES } from 'components/Elements';
+import { useLazyResetPasswordQuery } from 'features/auth';
 import { transformErrMSg } from 'utils';
+
+import { Button, BUTTON_TYPES } from 'components/Elements';
 
 import styles from './ForgotPassForm.module.css';
 
 export const ForgotPassForm = () => {
-	const { resetPassword } = useAuth();
+	const [resetPassword, { isLoading }] = useLazyResetPasswordQuery();
 	const [email, setEmail] = useState('');
-	const [isLoading, setIsLoading] = useState('');
 
 	const handleFormInput = (e) => {
 		setEmail(e.target.value);
@@ -20,13 +20,11 @@ export const ForgotPassForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			setIsLoading(true);
-			await resetPassword(email);
+			await resetPassword(email).unwrap();
 			toast.success('Check your Email for further Instructions');
 		} catch (error) {
-			toast.error(transformErrMSg(error.message));
+			toast.error(transformErrMSg(error));
 		}
-		setIsLoading(false);
 	};
 
 	return (

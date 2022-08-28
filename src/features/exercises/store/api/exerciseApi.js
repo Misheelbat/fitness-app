@@ -4,9 +4,9 @@ const apiWithTag = apiSlice.enhanceEndpoints({
 	addTagTypes: ['exercises', 'singleExercise', 'searchedTerm'],
 });
 
-// endpoint for exercises with pagination
 const exerciseApi = apiWithTag.injectEndpoints({
 	endpoints: (build) => ({
+		// endpoint for fetching exercises with pagination
 		getExercises: build.query({
 			query: ({ category, subCategory, page = 0 }) => {
 				const offset = page * 5;

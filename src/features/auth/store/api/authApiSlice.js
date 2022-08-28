@@ -3,6 +3,8 @@ import {
 	registerWithEmailAndPassword,
 	loginAuthUserWithEmailAndPassword,
 	signoutUser,
+	resetPassWithEmail,
+	loginAnonymously,
 } from 'features/auth/api';
 
 const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['user'] });
@@ -52,6 +54,28 @@ const authApi = apiWithTag.injectEndpoints({
 			],
 			invalidatesTags: [{ type: 'user' }],
 		}),
+		loginAnonym: build.query({
+			async queryFn() {
+				try {
+					const data = await loginAnonymously();
+					return {
+						data: {
+							displayName: 'Guest',
+							email: 'Guest',
+							uid: data.user.uid,
+						},
+					};
+				} catch (err) {
+					return { error: err.message };
+				}
+			},
+			providesTags: (result, error, arg) => [
+				{
+					type: 'user',
+				},
+			],
+			invalidatesTags: [{ type: 'user' }],
+		}),
 		signOut: build.query({
 			async queryFn() {
 				try {
@@ -63,8 +87,23 @@ const authApi = apiWithTag.injectEndpoints({
 			},
 			invalidatesTags: [{ type: 'user' }],
 		}),
+		resetPassword: build.query({
+			async queryFn(email) {
+				try {
+					await resetPassWithEmail(email);
+					return { data: 'Password reset email sent' };
+				} catch (err) {
+					return { error: err.message };
+				}
+			},
+		}),
 	}),
 });
 
-export const { useLazySignOutQuery, useLazyRegisterQuery, useLazyLoginQuery } =
-	authApi;
+export const {
+	useLazyResetPasswordQuery,
+	useLazySignOutQuery,
+	useLazyRegisterQuery,
+	useLazyLoginQuery,
+	useLazyLoginAnonymQuery,
+} = authApi;

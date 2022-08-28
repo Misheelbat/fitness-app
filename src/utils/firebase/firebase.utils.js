@@ -45,9 +45,6 @@ const firestoreDb = getFirestore();
 export const onAuthStateListener = (callback) =>
 	onAuthStateChanged(auth, callback);
 
-export const resetPassWithEmail = (email) =>
-	sendPasswordResetEmail(auth, email);
-
 export const getCurrentUser = () => {
 	return new Promise((resolve, reject) => {
 		const unsubscribe = onAuthStateChanged(

@@ -1,25 +1,21 @@
-import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { useAuth } from 'features/auth';
+import { useLazyLoginAnonymQuery } from 'features/auth';
 import { transformErrMSg } from 'utils';
 
 import { Button, BUTTON_TYPES } from 'components/Elements';
 
 export const LoginGuest = ({ onSuccess }) => {
-	const { loginAsGuest } = useAuth();
-	const [isLoading, setIsLoading] = useState(false);
+	const [loginAsGuest, { isLoading }] = useLazyLoginAnonymQuery();
 
 	const handleClick = async () => {
 		try {
-			setIsLoading(true);
-			await loginAsGuest();
+			await loginAsGuest().unwrap();
 			toast.success('Welcome Guest!');
 			onSuccess();
 		} catch (error) {
 			toast.error(transformErrMSg(error.message));
 		}
-		setIsLoading(false);
 	};
 
 	return (

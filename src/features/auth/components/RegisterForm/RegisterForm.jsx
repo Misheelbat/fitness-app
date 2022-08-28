@@ -23,11 +23,11 @@ export const RegisterForm = ({ onSuccess }) => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await register(formFields);
+			await register(formFields).unwrap();
 			toast.success('Welcome');
 			onSuccess();
 		} catch (error) {
-			toast.error(transformErrMSg(error.message));
+			toast.error(transformErrMSg(error));
 		}
 	};
 

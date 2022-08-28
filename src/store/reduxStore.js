@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
+import { apiSlice } from './api/apiSlice';
 import { tabReducer, exerciseReducer } from 'features/exercises';
 import { modalReducer } from 'features/workout';
 import { authReducer } from 'features/auth';
-import { apiSlice } from './api/apiSlice';
 
 export const reduxStore = configureStore({
 	reducer: {

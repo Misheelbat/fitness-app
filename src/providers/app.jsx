@@ -7,7 +7,6 @@ import { QueryClientProvider } from 'react-query';
 import { Provider } from 'react-redux';
 
 import { reduxStore } from 'store';
-import { AuthProvider } from 'features/auth';
 import { ToastProvider } from 'components/ToastContainer';
 import { queryClient } from 'lib';
 
@@ -20,13 +19,11 @@ export const AppProvider = ({ children }) => {
 			<ErrorBoundary FallbackComponent={ErrorFallBack}>
 				<HelmetProvider>
 					<QueryClientProvider client={queryClient}>
-						<AuthProvider>
-							<Provider store={reduxStore}>
-								<BrowserRouter>{children}</BrowserRouter>
-								<ToastProvider />
-							</Provider>
-							{/* <ReactQueryDevtools /> */}
-						</AuthProvider>
+						<Provider store={reduxStore}>
+							<BrowserRouter>{children}</BrowserRouter>
+							<ToastProvider />
+						</Provider>
+						{/* <ReactQueryDevtools /> */}
 					</QueryClientProvider>
 				</HelmetProvider>
 			</ErrorBoundary>
