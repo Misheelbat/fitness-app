@@ -19,6 +19,7 @@ export const TitleForm = ({ title, setTitle }) => {
 		<div className={styles.titleForm}>
 			<form onSubmit={handleTitleSubmit}>
 				<input
+					required
 					aria-disabled={active}
 					value={title}
 					type="text"

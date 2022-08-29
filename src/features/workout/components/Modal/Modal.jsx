@@ -1,37 +1,45 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 
+import { useAddExerciseToWorkoutMutation } from 'features/workout';
+import { extractRepsData, SETS_DEFAULT_VALUE } from 'features/workout';
+import { selectSearchResult } from 'features/workout';
 import { Reps } from './Reps/Reps';
 import { Sets } from './Sets/Sets';
 import { XCircle } from 'phosphor-react';
 import { Button } from 'components/Elements';
 import { SearchExercise } from './Search/SearchExercise';
 
-import {
-	extractRepsData,
-	addExerciseToWorkout,
-	SETS_DEFAULT_VALUE,
-} from 'features/workout';
 import styles from './Modal.module.css';
 
 export const Modal = ({ close, title }) => {
-	const dispatch = useDispatch();
-
+	const exId = useSelector(selectSearchResult);
+	const [addNewExerciseToWorkout, { isLoading }] =
+		useAddExerciseToWorkoutMutation();
 	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			if (!title) {
+				toast.error('Please select a Workout title');
+				close(false);
+				return;
+			}
 			const formData = new FormData(e.currentTarget);
 			const reps = extractRepsData(formData);
-			dispatch(addExerciseToWorkout({ title, reps }));
+
+			await addNewExerciseToWorkout({
+				title,
+				data: { id: exId, reps },
+			}).unwrap();
+
 			setSliderValue(SETS_DEFAULT_VALUE);
 			toast.success('Added Exercise to Workout');
-			// close(false);
+			close(false);
 		} catch (error) {
-			console.log(error);
-			toast.error(error.message);
+			toast.error(error);
 		}
 	};
 
@@ -64,7 +72,7 @@ export const Modal = ({ close, title }) => {
 						<Reps sets={Number(sliderValue)} />
 					</section>
 
-					<Button type="submit" buttonType="max-width">
+					<Button isLoading={isLoading} type="submit" buttonType="max-width">
 						Save
 					</Button>
 				</form>

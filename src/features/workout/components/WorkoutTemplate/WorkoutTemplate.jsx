@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+
+import { useCreateWorkoutMutation } from 'features/workout/store';
 
 import { Modal } from '../Modal/Modal';
 import { Button } from 'components/Elements';
@@ -8,9 +10,9 @@ import { TitleForm } from './TitleForm/TitleForm';
 import styles from './WorkoutTemplate.module.css';
 
 export const WorkoutTemplate = ({ data = '' }) => {
-	const dispatch = useDispatch();
 	const [openModal, setOpenModal] = useState(false);
-	const [workoutTitle, setWorkoutTitle] = useState('Core Blast');
+	const [workoutTitle, setWorkoutTitle] = useState('');
+	const [createWorkout, { isLoading }] = useCreateWorkoutMutation();
 
 	useEffect(() => {
 		if (data.id) {
@@ -19,7 +21,16 @@ export const WorkoutTemplate = ({ data = '' }) => {
 	}, [data.id]);
 
 	const save = async () => {
-		console.log('save');
+		try {
+			if (!workoutTitle) {
+				toast.error('Please select a Workout title');
+				return;
+			}
+			await createWorkout(workoutTitle).unwrap();
+			console.log('saved');
+		} catch (error) {
+			toast.error(error);
+		}
 	};
 	return (
 		<div className={styles.createForm}>
@@ -29,14 +40,16 @@ export const WorkoutTemplate = ({ data = '' }) => {
 						<h4 className={styles.createFormTitle}>Workout :</h4>
 						<TitleForm title={workoutTitle} setTitle={setWorkoutTitle} />
 					</div>
-					<Button onClick={() => save()}>SAVE</Button>
+					<Button isLoading={isLoading} onClick={save}>
+						SAVE
+					</Button>
 				</div>
 				<Button buttonType="add" onClick={() => setOpenModal(!openModal)}>
 					ADD
 				</Button>
 			</div>
 			{openModal && <Modal title={workoutTitle} close={setOpenModal} />}
-			{data ? <TableGrid data={data?.exercises} /> : <div>'nothing found'</div>}
+			<TableGrid data={data?.exercises} />
 		</div>
 	);
 };

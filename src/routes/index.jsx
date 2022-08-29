@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useLazyIsUserAuthenticatedQuery } from 'features/auth';
 
+import { useLazyIsUserAuthenticatedQuery } from 'features/auth';
 import { selectDisplayName } from 'features/auth';
+
 import { Landing } from 'features/misc';
 import { PageSpinner } from 'components/Elements';
 
@@ -12,10 +13,10 @@ import { publicRoutes } from './public';
 
 export const AppRoutes = () => {
 	const user = useSelector(selectDisplayName);
-	const [trigger, { isFetching }] = useLazyIsUserAuthenticatedQuery();
+	const [checkUserSession, { isFetching }] = useLazyIsUserAuthenticatedQuery();
 
 	useEffect(() => {
-		trigger();
+		checkUserSession();
 		// eslint-disable-next-line
 	}, []);
 

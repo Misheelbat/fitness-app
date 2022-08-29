@@ -11,7 +11,7 @@ export function extractCategory(categories) {
 }
 
 export function extractEquipment(data) {
-	if (data.length === 0) return '';
+	if (data.length && data.length === 0) return 'No Equipment';
 	return data.map((d) => {
 		let eq = d;
 		if (typeof d === 'object' && d !== null) eq = d.id;
@@ -25,16 +25,3 @@ export function calcCurrentNumber(allNumber, page) {
 	return currentNumber;
 }
 
-// export const extractExercise = (data) => {
-// 	const exercises = data.results.map((ex) => {
-// 		const eqwith = equipments.find((eq) => eq.id === ex.equipment[0]);
-// 		return {
-// 			name: ex.name,
-// 			equipment: eqwith ? eqwith.name : '',
-// 			id: ex.exercise_base,
-// 		};
-// 	});
-
-// 	const isNext = data.next ? true : false;
-// 	return { count: data.count, exercises, isNext };
-// };

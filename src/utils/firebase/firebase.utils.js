@@ -11,9 +11,8 @@ import {
 	doc,
 	getDoc,
 	setDoc,
-	collection,
-	writeBatch,
 	updateDoc,
+	arrayUnion,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -32,7 +31,7 @@ const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
 
 //init firestoreDb
-const firestoreDb = getFirestore();
+export const firestoreDb = getFirestore();
 
 // if (window.location.hostname === 'localhost') {
 // 	connectAuthEmulator(auth, 'http://localhost:9099', { disableWarnings: true });
@@ -66,7 +65,7 @@ export const createUserDocFromAuth = async (userAuth) => {
 				displayName,
 				email,
 				createdAt,
-				workout: [],
+				workout: {},
 			});
 		} catch (error) {
 			console.log('could not save user to db', error.message);
@@ -76,25 +75,15 @@ export const createUserDocFromAuth = async (userAuth) => {
 	return userSnapshot;
 };
 
-export const addCollectionAndDocs = async (docsToAdd) => {
-	const key = auth.currentUser.uid;
-	const collectionRef = collection(firestoreDb, key);
-	const batch = writeBatch(firestoreDb);
-	docsToAdd.forEach((object) => {
-		const docRef = doc(collectionRef, object.title);
-		batch.set(docRef, object);
-	});
-	await batch.commit();
-	console.log('batch done');
-};
-
-export const addWorkout = async (docsToAdd) => {
+export const addWorkout = async (id) => {
 	const key = auth.currentUser.uid;
 	const docRef = doc(firestoreDb, 'users', key);
+
 	await updateDoc(docRef, {
-		workout: docsToAdd,
+		'workout.ids': arrayUnion(id),
+		[`workout.entities.${id}`]: { id, exercises: { ids: [], entities: {} } },
 	});
-	console.log('batch done');
+	console.log('addWorkout done');
 };
 
 export const getWorkoutsFromDb = async () => {
@@ -109,4 +98,14 @@ export const getWorkoutsFromDb = async () => {
 		console.log('No such document!');
 	}
 	return;
+};
+
+export const addExercise = async ({ title, data }) => {
+	const key = auth.currentUser.uid;
+	const docRef = doc(firestoreDb, 'users', key);
+	await updateDoc(docRef, {
+		[`workout.entities.${title}.exercises.ids`]: arrayUnion(data.id),
+		[`workout.entities.${title}.exercises.entities.${data.id}`]: data,
+	});
+	console.log('addExerciseToWorkout done');
 };

@@ -1,33 +1,18 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
-import { apiSlice } from 'store/api/apiSlice';
-const workoutsAdapter = createEntityAdapter();
-const setsAdapter = createEntityAdapter();
 
-const initialState = workoutsAdapter.getInitialState({
-	searchResultId: null,
-});
+import { apiSlice } from 'store/api/apiSlice';
+import { workoutApi } from '../api/workoutsApi';
+
+const workoutsAdapter = createEntityAdapter();
+const exerciseAdaptar = createEntityAdapter();
+const initialState = workoutsAdapter.getInitialState({ searchResultId: null });
 
 const workoutsSlice = createSlice({
-	name: 'modalForm',
+	name: 'workouts',
 	initialState,
 	reducers: {
 		setSearchResult: (state, action) => {
 			state.searchResultId = action.payload;
-		},
-		addExerciseToWorkout: (state, { payload }) => {
-			if (!state.searchResultId) {
-				throw new Error('Please select an exercise');
-			} else {
-				setsAdapter.updateOne(state, {
-					id: state.searchResultId,
-					reps: payload.reps,
-				});
-				state.searchResultId = null;
-			}
-		},
-		addNewWorkout: (state, action) => {
-			const workout = { id: '', exercises: action.payload };
-			workoutsAdapter.addOne(state, workout);
 		},
 	},
 	extraReducers: (builder) => {
@@ -38,20 +23,39 @@ const workoutsSlice = createSlice({
 
 				const workoutEntries = payload.ids.map((workout) => ({
 					id: workout,
-					exercises: setsAdapter.getInitialState(
+					exercises: exerciseAdaptar.getInitialState(
 						payload.entities[workout].exercises
 					),
 				}));
 				workoutsAdapter.setAll(state, workoutEntries);
 			}
 		);
+		builder.addMatcher(
+			workoutApi.endpoints.createWorkout.matchFulfilled,
+			(state, { payload }) => {
+				const workout = {
+					id: payload,
+					exercises: exerciseAdaptar.getInitialState(),
+				};
+				workoutsAdapter.addOne(state, workout);
+			}
+		);
+		builder.addMatcher(
+			workoutApi.endpoints.addExerciseToWorkout.matchFulfilled,
+			(state, { payload }) => {
+				workoutsAdapter.addOne(state.entities[payload.title].exercises, {
+					id: state.searchResultId,
+					reps: payload.data.reps,
+				});
+				state.searchResultId = null;
+			}
+		);
 	},
 });
 
 export const { selectAll, selectById: selectWorkoutById } =
-	workoutsAdapter.getSelectors((state) => state.modalForm);
+	workoutsAdapter.getSelectors((state) => state.workouts);
 
-export const { setSets, setSearchResult, addExerciseToWorkout } =
-	workoutsSlice.actions;
+export const { setSearchResult } = workoutsSlice.actions;
 
-export const modalReducer = workoutsSlice.reducer;
+export const workoutsReducer = workoutsSlice.reducer;
