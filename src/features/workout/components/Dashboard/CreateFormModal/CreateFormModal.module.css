@@ -1,0 +1,16 @@
+.createFormContainer {
+	position: absolute;
+	inset: 0;
+	background-color: #000000e1;
+	margin-top: 0;
+	z-index: 100;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.createFormModal {
+	width: 400px;
+	height: 500px;
+	background-color: red;
+}

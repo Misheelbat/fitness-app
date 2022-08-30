@@ -13,6 +13,9 @@ import {
 	setDoc,
 	updateDoc,
 	arrayUnion,
+	arrayRemove,
+	writeBatch,
+	deleteField,
 } from 'firebase/firestore';
 
 const firebaseConfig = {
@@ -108,4 +111,22 @@ export const addExercise = async ({ title, data }) => {
 		[`workout.entities.${title}.exercises.entities.${data.id}`]: data,
 	});
 	console.log('addExerciseToWorkout done');
+};
+
+export const changeWorkoutTitle = async ({ id, data }) => {
+	const key = auth.currentUser.uid;
+	const docRef = doc(firestoreDb, 'users', key);
+	const batch = writeBatch(firestoreDb);
+
+	batch.update(docRef, {
+		'workout.ids': arrayRemove(id),
+	});
+	batch.update(docRef, {
+		'workout.ids': arrayUnion(data.id),
+		[`workout.entities.${data.id}`]: data,
+		[`workout.entities.${id}`]: deleteField(),
+	});
+
+	await batch.commit();
+	console.log('changeWorkoutTitle done');
 };

@@ -1,6 +1,11 @@
 import { apiSlice } from 'store/api/apiSlice';
 
-import { getWorkoutsFromDb, addWorkout, addExercise } from 'utils';
+import {
+	getWorkoutsFromDb,
+	addWorkout,
+	addExercise,
+	changeWorkoutTitle,
+} from 'utils';
 import { extractEquipment } from 'features/exercises';
 
 const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['workouts'] });
@@ -68,6 +73,23 @@ export const workoutApi = apiWithTag.injectEndpoints({
 			},
 			invalidatesTags: ['workouts'],
 		}),
+		updateWorkoutTitle: build.mutation({
+			async queryFn(args) {
+				try {
+					if (!args.id || !args.data.id) {
+						return { error: 'Please enter the new title' };
+					}
+					await changeWorkoutTitle(args);
+					return { data: args };
+				} catch (err) {
+					console.log(err);
+					return {
+						error: err.message,
+					};
+				}
+			},
+			invalidatesTags: ['workouts'],
+		}),
 	}),
 });
 
@@ -77,4 +99,5 @@ export const {
 	useGetTableDataQuery,
 	useCreateWorkoutMutation,
 	useAddExerciseToWorkoutMutation,
+	useUpdateWorkoutTitleMutation,
 } = workoutApi;

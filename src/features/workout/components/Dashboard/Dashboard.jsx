@@ -1,12 +1,15 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { useGetWorkoutsQuery } from 'features/workout/store';
-import { Template } from '../Template/Template';
-import { PageSpinner } from 'components/Elements';
+import { WorkoutCard } from '../WorkoutCard/WorkoutCard';
+import { PageSpinner, Button } from 'components/Elements';
+import { CreateFormModal } from './CreateFormModal/CreateFormModal';
 import styles from './Dashboard.module.css';
 
 export const Dashboard = () => {
 	const { data, isLoading } = useGetWorkoutsQuery();
+	const [open, setOpen] = useState(false);
 
 	let content;
 
@@ -21,7 +24,7 @@ export const Dashboard = () => {
 		content = <div>Nothing here yet...</div>;
 	} else {
 		content = data.ids.map((workout) => (
-			<Template key={workout} title={workout} />
+			<WorkoutCard key={workout} title={workout} />
 		));
 	}
 
@@ -33,12 +36,12 @@ export const Dashboard = () => {
 					Find the best workout for your goal, experience, desired training
 					style and equipment access.
 				</p>
-				<div className={styles.createTemplateBtn}>
-					<Link to="createTemplate">Create Template</Link>
+				<div>
+					<Button onClick={() => setOpen(!open)}>Create Workout</Button>
 				</div>
 			</div>
-
-			<div>
+			{open && <CreateFormModal close={setOpen} />}
+			<div className={styles.workoutsContainer}>
 				<div className={styles.workoutsTitle}>
 					<h4>My Workouts :</h4>
 					<div className={styles.createTemplateBtn}>

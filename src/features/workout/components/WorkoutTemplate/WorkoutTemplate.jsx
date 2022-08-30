@@ -13,7 +13,7 @@ export const WorkoutTemplate = ({ data = '' }) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [workoutTitle, setWorkoutTitle] = useState('');
 	const [createWorkout, { isLoading }] = useCreateWorkoutMutation();
-
+	
 	useEffect(() => {
 		if (data.id) {
 			setWorkoutTitle(data.id);
@@ -38,13 +38,17 @@ export const WorkoutTemplate = ({ data = '' }) => {
 				<div className={styles.createFormTitleContainer}>
 					<div className={styles.createFormTitleHeader}>
 						<h4 className={styles.createFormTitle}>Workout :</h4>
-						<TitleForm title={workoutTitle} setTitle={setWorkoutTitle} />
+						<TitleForm
+							initialTitle={data?.id}
+							title={workoutTitle}
+							setTitle={setWorkoutTitle}
+						/>
 					</div>
 					<Button isLoading={isLoading} onClick={save}>
 						SAVE
 					</Button>
 				</div>
-				<Button buttonType="add" onClick={() => setOpenModal(!openModal)}>
+				<Button buttonType="button" onClick={() => setOpenModal(!openModal)}>
 					ADD
 				</Button>
 			</div>

@@ -14,17 +14,17 @@ import { SearchExercise } from './Search/SearchExercise';
 import styles from './Modal.module.css';
 
 export const Modal = ({ close, title }) => {
+	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
+
 	const exId = useSelector(selectSearchResult);
 	const [addNewExerciseToWorkout, { isLoading }] =
 		useAddExerciseToWorkoutMutation();
-	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			if (!title) {
 				toast.error('Please select a Workout title');
-				close(false);
 				return;
 			}
 			const formData = new FormData(e.currentTarget);

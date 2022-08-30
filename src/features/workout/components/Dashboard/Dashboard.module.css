@@ -1,11 +1,14 @@
 .dashboard {
-	background-color: var(--clr-primary);
+	position: relative;
 	height: 100%;
-	border-radius: 15px 15px 0 0;
 	padding: 2rem 1rem 2rem 1rem;
-}
-.dashboard > * + * {
-	margin-top: 3rem;
+	border-radius: 15px 15px 0 0;
+	background-color: var(--clr-primary);
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 3rem;
+	overflow: hidden;
 }
 
 .dashboard h4 {
@@ -54,4 +57,3 @@
 	gap: 1.5rem;
 	flex-wrap: wrap;
 }
-
