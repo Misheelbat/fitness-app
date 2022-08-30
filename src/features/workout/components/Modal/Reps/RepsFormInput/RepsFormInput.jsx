@@ -7,8 +7,8 @@ import {
 	WEIGHT_UNITS_DEFAULT_VALUE,
 } from 'features/workout';
 
-import styles from './RepsFormInput.module.css';
 import { selectorStyles } from './select-styles';
+import styles from './RepsFormInput.module.css';
 
 export const RepsFormInput = ({ active }) => {
 	const [repInput, setRepInput] = useState({

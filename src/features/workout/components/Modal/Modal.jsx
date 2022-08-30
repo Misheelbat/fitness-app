@@ -2,9 +2,13 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 
-import { useAddExerciseToWorkoutMutation } from 'features/workout';
-import { extractRepsData, SETS_DEFAULT_VALUE } from 'features/workout';
-import { selectSearchResult } from 'features/workout';
+import {
+	extractRepsData,
+	SETS_DEFAULT_VALUE,
+	selectSearchResult,
+	useAddExerciseToWorkoutMutation,
+} from 'features/workout';
+
 import { Reps } from './Reps/Reps';
 import { Sets } from './Sets/Sets';
 import { XCircle } from 'phosphor-react';
@@ -16,23 +20,23 @@ import styles from './Modal.module.css';
 export const Modal = ({ close, title }) => {
 	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
 
-	const exId = useSelector(selectSearchResult);
+	const selectedExId = useSelector(selectSearchResult);
 	const [addNewExerciseToWorkout, { isLoading }] =
 		useAddExerciseToWorkoutMutation();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		if (!title) {
+			toast.error('Please select a Workout title');
+			return;
+		}
 		try {
-			if (!title) {
-				toast.error('Please select a Workout title');
-				return;
-			}
 			const formData = new FormData(e.currentTarget);
 			const reps = extractRepsData(formData);
 
 			await addNewExerciseToWorkout({
 				title,
-				data: { id: exId, reps },
+				data: { id: selectedExId, reps },
 			}).unwrap();
 
 			setSliderValue(SETS_DEFAULT_VALUE);

@@ -7,7 +7,7 @@ import { TableGrid } from './WTable/TableGrid/TableGrid';
 import { TitleForm } from './TitleForm/TitleForm';
 import styles from './WorkoutTemplate.module.css';
 
-export const WorkoutTemplate = ({ data = '' }) => {
+export const WorkoutTemplate = ({ data }) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [workoutTitle, setWorkoutTitle] = useState('');
 
@@ -17,9 +17,6 @@ export const WorkoutTemplate = ({ data = '' }) => {
 		}
 	}, [data.id]);
 
-	const save = async () => {
-		console.log('saved');
-	};
 	return (
 		<div className={styles.createForm}>
 			<div className={styles.createFormHeader}>
@@ -32,7 +29,6 @@ export const WorkoutTemplate = ({ data = '' }) => {
 							setTitle={setWorkoutTitle}
 						/>
 					</div>
-					<Button onClick={save}>SAVE</Button>
 				</div>
 				<Button buttonType="button" onClick={() => setOpenModal(!openModal)}>
 					ADD

@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { useGetWorkoutsQuery } from 'features/workout/store';
-import { WorkoutCard } from '../WorkoutCard/WorkoutCard';
 import { PageSpinner, Button } from 'components/Elements';
+import { WorkoutCard } from '../WorkoutCard/WorkoutCard';
 import { CreateFormModal } from './CreateFormModal/CreateFormModal';
+
 import styles from './Dashboard.module.css';
+const loadingStyle = { height: '100%', width: '100%' };
 
 export const Dashboard = () => {
 	const { data, isLoading } = useGetWorkoutsQuery();
@@ -14,12 +15,7 @@ export const Dashboard = () => {
 	let content;
 
 	if (isLoading) {
-		content = (
-			<PageSpinner
-				variant="secondary"
-				styles={{ height: '100%', width: '100%' }}
-			/>
-		);
+		content = <PageSpinner variant="secondary" styles={loadingStyle} />;
 	} else if (Object.entries(data).length === 0) {
 		content = <div>Nothing here yet...</div>;
 	} else {
@@ -42,12 +38,12 @@ export const Dashboard = () => {
 			</div>
 			{open && <CreateFormModal close={setOpen} />}
 			<div className={styles.workoutsContainer}>
-				<div className={styles.workoutsTitle}>
-					<h4>My Workouts :</h4>
+				<h4>My Workouts :</h4>
+				{/* <div className={styles.workoutsTitle}>
 					<div className={styles.createTemplateBtn}>
 						<Link to="prog">See All</Link>
 					</div>
-				</div>
+				</div> */}
 				<div className={styles.workouts}>{content}</div>
 			</div>
 		</div>
