@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import { useCreateWorkoutMutation } from 'features/workout/store';
-
 import { Modal } from '../Modal/Modal';
 import { Button } from 'components/Elements';
 import { TableGrid } from './WTable/TableGrid/TableGrid';
@@ -12,8 +10,7 @@ import styles from './WorkoutTemplate.module.css';
 export const WorkoutTemplate = ({ data = '' }) => {
 	const [openModal, setOpenModal] = useState(false);
 	const [workoutTitle, setWorkoutTitle] = useState('');
-	const [createWorkout, { isLoading }] = useCreateWorkoutMutation();
-	
+
 	useEffect(() => {
 		if (data.id) {
 			setWorkoutTitle(data.id);
@@ -21,16 +18,7 @@ export const WorkoutTemplate = ({ data = '' }) => {
 	}, [data.id]);
 
 	const save = async () => {
-		try {
-			if (!workoutTitle) {
-				toast.error('Please select a Workout title');
-				return;
-			}
-			await createWorkout(workoutTitle).unwrap();
-			console.log('saved');
-		} catch (error) {
-			toast.error(error);
-		}
+		console.log('saved');
 	};
 	return (
 		<div className={styles.createForm}>
@@ -44,9 +32,7 @@ export const WorkoutTemplate = ({ data = '' }) => {
 							setTitle={setWorkoutTitle}
 						/>
 					</div>
-					<Button isLoading={isLoading} onClick={save}>
-						SAVE
-					</Button>
+					<Button onClick={save}>SAVE</Button>
 				</div>
 				<Button buttonType="button" onClick={() => setOpenModal(!openModal)}>
 					ADD

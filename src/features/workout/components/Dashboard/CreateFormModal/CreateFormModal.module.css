@@ -1,16 +1,49 @@
 .createFormContainer {
 	position: absolute;
 	inset: 0;
-	background-color: #000000e1;
+	background-color: rgba(0, 0, 0, 0.4);
 	margin-top: 0;
 	z-index: 100;
 	display: flex;
 	justify-content: center;
-	align-items: center;
 }
 
 .createFormModal {
-	width: 400px;
-	height: 500px;
-	background-color: red;
+	margin-top: 5rem;
+	min-width: 300px;
+	width: 50%;
+	max-width: 455px;
+	height: max-content;
+	background-color: #23262f;
+	border-radius: 10px;
+	padding: 1.5rem 2rem;
+	display: flex;
+	flex-direction: column;
+}
+
+.closeBtn {
+	color: #fff;
+	border: 0;
+	padding: 0;
+	margin-left: auto;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.createFormModal form {
+	display: flex;
+	flex-direction: column;
+}
+.createFormModal form input {
+	color: #fff;
+	width: 100%;
+	font-size: 0.9em;
+	border: 1px solid #484c56;
+	border-radius: 0.4em;
+	padding: 0.8em 2em;
+	background-color: var(--clr-secondary);
+	font-family: 'Poppins', sans-serif;
+}
+.createFormModal form > * + * {
+	margin-top: 1rem;
 }
