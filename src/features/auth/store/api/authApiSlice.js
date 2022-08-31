@@ -14,10 +14,10 @@ export const authApi = apiWithTag.injectEndpoints({
 	endpoints: (build) => ({
 		register: build.mutation({
 			async queryFn(credentials) {
+				console.log('register ran');
 				try {
 					const userAuth = await registerWithEmailAndPassword(credentials);
 					if (!userAuth) return { error: '(/could not register)' };
-					await createUserDocFromAuth(userAuth);
 					return {
 						data: {
 							displayName: userAuth.displayName,
@@ -32,8 +32,10 @@ export const authApi = apiWithTag.injectEndpoints({
 			providesTags: (result, error, arg) => [
 				{
 					type: 'user',
+					id: result.uid,
 				},
 			],
+			invalidatesTags: [{ type: 'user' }],
 		}),
 		login: build.mutation({
 			async queryFn(credentials) {
@@ -53,9 +55,9 @@ export const authApi = apiWithTag.injectEndpoints({
 			providesTags: (result, error, arg) => [
 				{
 					type: 'user',
+					id: result.uid,
 				},
 			],
-			invalidatesTags: [{ type: 'user' }],
 		}),
 		loginAnonym: build.mutation({
 			async queryFn() {
@@ -77,7 +79,6 @@ export const authApi = apiWithTag.injectEndpoints({
 					type: 'user',
 				},
 			],
-			invalidatesTags: [{ type: 'user' }],
 		}),
 		signOut: build.mutation({
 			async queryFn() {
@@ -102,6 +103,7 @@ export const authApi = apiWithTag.injectEndpoints({
 		}),
 		isUserAuthenticated: build.query({
 			async queryFn() {
+				console.log('isUserAuthenticated ran');
 				try {
 					const userAuth = await checkUserSession();
 					if (!userAuth) return { error: 'User not logged in!' };
@@ -113,6 +115,12 @@ export const authApi = apiWithTag.injectEndpoints({
 					return { error: err.message };
 				}
 			},
+			providesTags: (result, error, arg) => [
+				{
+					type: 'user',
+					id: result?.uid,
+				},
+			],
 		}),
 	}),
 });
