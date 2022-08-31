@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 import { transformErrMSg } from 'utils';
-import { useLazyRegisterQuery } from 'features/auth';
+import { useRegisterMutation } from 'features/auth';
 import { Button, BUTTON_TYPES } from 'components/Elements';
 
 import styles from './RegisterForm.module.css';
@@ -16,7 +16,7 @@ const defaultFormFields = {
 };
 
 export const RegisterForm = ({ onSuccess }) => {
-	const [register, { isLoading }] = useLazyRegisterQuery();
+	const [register, { isLoading }] = useRegisterMutation();
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { displayName, email, password, confirmPassword } = formFields;
 

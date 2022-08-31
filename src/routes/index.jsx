@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { useLazyIsUserAuthenticatedQuery } from 'features/auth';
-import { selectDisplayName } from 'features/auth';
+import { reduxStore } from 'store';
+import { selectDisplayName, authApi, useIsUserAuthenticatedQuery } from 'features/auth';
 
 import { Landing } from 'features/misc';
 import { PageSpinner } from 'components/Elements';
@@ -13,11 +13,14 @@ import { publicRoutes } from './public';
 
 export const AppRoutes = () => {
 	const user = useSelector(selectDisplayName);
-	const [checkUserSession, { isFetching }] = useLazyIsUserAuthenticatedQuery();
+	const { isLoading } = useIsUserAuthenticatedQuery();
 
 	useEffect(() => {
-		checkUserSession();
-		// eslint-disable-next-line
+		const userLogged = reduxStore.dispatch(authApi.endpoints.isUserAuthenticated.initiate());
+
+		return () => {
+			userLogged.unsubscribe();
+		};
 	}, []);
 
 	const commenRoutes = [
@@ -30,5 +33,5 @@ export const AppRoutes = () => {
 
 	const routes = user ? protectedRoutes : publicRoutes;
 	const element = useRoutes([...routes, ...commenRoutes]);
-	return <>{isFetching ? <PageSpinner /> : element}</>;
+	return <>{isLoading ? <PageSpinner /> : element}</>;
 };

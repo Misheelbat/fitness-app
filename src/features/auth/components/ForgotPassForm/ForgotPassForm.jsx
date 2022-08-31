@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { useLazyResetPasswordQuery } from 'features/auth';
+import { useResetPasswordMutation } from 'features/auth';
 import { transformErrMSg } from 'utils';
 
 import { Button, BUTTON_TYPES } from 'components/Elements';
@@ -10,7 +10,7 @@ import { Button, BUTTON_TYPES } from 'components/Elements';
 import styles from './ForgotPassForm.module.css';
 
 export const ForgotPassForm = () => {
-	const [resetPassword, { isLoading }] = useLazyResetPasswordQuery();
+	const [resetPassword, { isLoading }] = useResetPasswordMutation();
 	const [email, setEmail] = useState('');
 
 	const handleFormInput = (e) => {

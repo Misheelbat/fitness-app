@@ -68,7 +68,7 @@ export const createUserDocFromAuth = async (userAuth) => {
 				displayName,
 				email,
 				createdAt,
-				workout: {},
+				workout: { ids: [], entities: {} },
 			});
 		} catch (error) {
 			console.log('could not save user to db', error.message);
@@ -107,6 +107,7 @@ export const addExercise = async ({ title, data }) => {
 	const key = auth.currentUser.uid;
 	const docRef = doc(firestoreDb, 'users', key);
 	await updateDoc(docRef, {
+		[`workout.entities.${title}.id`]: title,
 		[`workout.entities.${title}.exercises.ids`]: arrayUnion(data.id),
 		[`workout.entities.${title}.exercises.entities.${data.id}`]: data,
 	});

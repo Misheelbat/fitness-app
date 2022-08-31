@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { useLazyLoginQuery } from 'features/auth';
+import { useLoginMutation } from 'features/auth';
 import { transformErrMSg } from 'utils';
 
 import { Button, BUTTON_TYPES } from 'components/Elements';
@@ -16,7 +16,7 @@ const defaultFormFields = {
 };
 
 export const LoginForm = ({ onSuccess }) => {
-	const [login, { isLoading }] = useLazyLoginQuery();
+	const [login, { isLoading }] = useLoginMutation();
 	const [formFields, setFormFields] = useState(defaultFormFields);
 	const { email, password } = formFields;
 

@@ -1,14 +1,11 @@
 import { apiSlice } from 'store/api/apiSlice';
 
-import {
-	getWorkoutsFromDb,
-	addWorkout,
-	addExercise,
-	changeWorkoutTitle,
-} from 'utils';
+import { getWorkoutsFromDb, addWorkout, addExercise, changeWorkoutTitle } from 'utils';
 import { extractEquipment } from 'features/exercises';
 
-const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['workouts'] });
+const apiWithTag = apiSlice.enhanceEndpoints({
+	addTagTypes: ['workouts', 'exData'],
+});
 
 // endpoint for fetching available subCategory options
 export const workoutApi = apiWithTag.injectEndpoints({
@@ -22,17 +19,18 @@ export const workoutApi = apiWithTag.injectEndpoints({
 					return { error: err.message };
 				}
 			},
-			providesTags: (result, error, arg) => [
-				{
-					type: 'workouts',
-				},
-			],
+			providesTags: (result, error, arg) => {
+				if (result?.ids) {
+					return [{ type: 'workout', id: 'LIST' }, ...result.ids.map((id) => ({ type: 'workout', id }))];
+				}
+				return [{ type: 'workout', id: 'LIST' }];
+			},
 		}),
 		getTableData: build.query({
 			query: (arg) => `exerciseinfo/${arg.id}`,
 			providesTags: (result, error, arg) => [
 				{
-					type: 'sets',
+					type: 'exData',
 					id: arg.id,
 				},
 			],
@@ -55,7 +53,7 @@ export const workoutApi = apiWithTag.injectEndpoints({
 					return { error: err.message };
 				}
 			},
-			invalidatesTags: ['workouts'],
+			invalidatesTags: [{ type: 'workout', id: 'LIST' }],
 		}),
 		addExerciseToWorkout: build.mutation({
 			async queryFn(args) {
@@ -71,7 +69,7 @@ export const workoutApi = apiWithTag.injectEndpoints({
 					};
 				}
 			},
-			invalidatesTags: ['workouts'],
+			invalidatesTags: [{ type: 'workout', id: 'LIST' }],
 		}),
 		updateWorkoutTitle: build.mutation({
 			async queryFn(args) {
@@ -88,7 +86,7 @@ export const workoutApi = apiWithTag.injectEndpoints({
 					};
 				}
 			},
-			invalidatesTags: ['workouts'],
+			invalidatesTags: (result, error, arg) => [{ type: 'workout', id: arg.id }],
 		}),
 	}),
 });

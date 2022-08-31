@@ -1,36 +1,26 @@
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { useState } from 'react';
 
 import { Modal } from '../Modal/Modal';
 import { Button } from 'components/Elements';
 import { TableGrid } from './WTable/TableGrid/TableGrid';
-import { TitleForm } from './TitleForm/TitleForm';
+import { Title } from './Title/Title';
 import styles from './WorkoutTemplate.module.css';
 
 export const WorkoutTemplate = ({ data }) => {
 	const [openModal, setOpenModal] = useState(false);
-	const [workoutTitle, setWorkoutTitle] = useState('');
+	const [workoutTitle, setWorkoutTitle] = useState(data.id);
 
-	useEffect(() => {
-		if (data.id) {
-			setWorkoutTitle(data.id);
-		}
-	}, [data.id]);
-
+	const onModalOpen = () => setOpenModal(!openModal);
 	return (
 		<div className={styles.createForm}>
 			<div className={styles.createFormHeader}>
 				<div className={styles.createFormTitleContainer}>
 					<div className={styles.createFormTitleHeader}>
 						<h4 className={styles.createFormTitle}>Workout :</h4>
-						<TitleForm
-							initialTitle={data?.id}
-							title={workoutTitle}
-							setTitle={setWorkoutTitle}
-						/>
+						<Title data={data} title={workoutTitle} setTitle={setWorkoutTitle} />
 					</div>
 				</div>
-				<Button buttonType="button" onClick={() => setOpenModal(!openModal)}>
+				<Button buttonType="button" onClick={onModalOpen}>
 					ADD
 				</Button>
 			</div>

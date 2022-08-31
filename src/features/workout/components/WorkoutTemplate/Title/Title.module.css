@@ -28,9 +28,10 @@
 	align-items: center;
 	gap: 1rem;
 }
-.titleForm input[aria-disabled='false'] {
-	background-color: var(--clr-off-white);
-	color: black;
+.titleForm form {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
 }
 
 .titleForm button {
@@ -39,14 +40,23 @@
 	width: 30px;
 	height: 30px;
 	background-color: transparent;
+	cursor: pointer;
 }
-.titleForm button svg {
-	color: white;
+.titleForm form button:disabled .saveIcon {
+	color: var(--clr-grey);
 	transition: transform 100ms linear;
 }
-.titleForm button:hover svg {
-	color: var(--clr-grey);
+
+.titleForm button:disabled {
+	cursor: not-allowed;
 }
-.titleForm button:active svg {
+.titleForm form button .saveIcon {
+	color: var(--clr-blue);
+	transition: transform 100ms ease-out;
+}
+.titleForm form button:disabled .saveIcon {
 	transform: scale(1.1);
+}
+.titleForm form button:active .saveIcon {
+	transform: scale(0.9);
 }

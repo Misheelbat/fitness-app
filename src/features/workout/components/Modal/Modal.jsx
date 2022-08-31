@@ -1,13 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
 
-import {
-	extractRepsData,
-	SETS_DEFAULT_VALUE,
-	selectSearchResult,
-	useAddExerciseToWorkoutMutation,
-} from 'features/workout';
+import { extractRepsData, SETS_DEFAULT_VALUE, useAddExerciseToWorkoutMutation } from 'features/workout';
 
 import { Reps } from './Reps/Reps';
 import { Sets } from './Sets/Sets';
@@ -19,15 +13,25 @@ import styles from './Modal.module.css';
 
 export const Modal = ({ close, title }) => {
 	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
+	const [selectedExId, setSelectedExId] = useState(null);
+	const [addNewExerciseToWorkout, { isLoading, isSuccess }] = useAddExerciseToWorkoutMutation();
 
-	const selectedExId = useSelector(selectSearchResult);
-	const [addNewExerciseToWorkout, { isLoading }] =
-		useAddExerciseToWorkoutMutation();
+	useEffect(() => {
+		if (isSuccess) {
+			setSliderValue(SETS_DEFAULT_VALUE);
+			toast.success('Added Exercise to Workout');
+			close(false);
+		}
+	}, [isSuccess, close]);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (!title) {
 			toast.error('Please select a Workout title');
+			return;
+		}
+		if (!selectedExId) {
+			toast.error('Please select an Exercise');
 			return;
 		}
 		try {
@@ -38,10 +42,6 @@ export const Modal = ({ close, title }) => {
 				title,
 				data: { id: selectedExId, reps },
 			}).unwrap();
-
-			setSliderValue(SETS_DEFAULT_VALUE);
-			toast.success('Added Exercise to Workout');
-			close(false);
 		} catch (error) {
 			toast.error(error);
 		}
@@ -59,7 +59,7 @@ export const Modal = ({ close, title }) => {
 
 				<section className={styles.search}>
 					<p className={styles.modalTitle}>Choose an Exercise</p>
-					<SearchExercise />
+					<SearchExercise selectFn={setSelectedExId} id={selectedExId} />
 				</section>
 
 				<form onSubmit={handleSubmit}>
@@ -70,9 +70,7 @@ export const Modal = ({ close, title }) => {
 
 					<section className={styles.reps}>
 						<p className={styles.modalTitle}>Number of Repetitions:</p>
-						<div className={styles.repsInfo}>
-							If you do the same reps for all sets, you can just enter one value
-						</div>
+						<div className={styles.repsInfo}>If you do the same reps for all sets, you can just enter one value</div>
 						<Reps sets={Number(sliderValue)} />
 					</section>
 

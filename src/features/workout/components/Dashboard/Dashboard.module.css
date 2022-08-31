@@ -6,7 +6,7 @@
 	background-color: var(--clr-primary);
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	/* justify-content: space-between; */
 	gap: 3rem;
 	overflow: hidden;
 }
@@ -22,34 +22,12 @@
 	margin-bottom: 1em;
 }
 
+.overview,
+.workoutsContainer {
+	flex-basis: 100%;
+}
 .overview p {
 	margin-bottom: 2rem;
-}
-.createTemplateBtn a {
-	display: block;
-	background-color: var(--clr-purple);
-	width: max-content;
-	padding: 10px 20px;
-	border-radius: 4px;
-	transition: background 100ms ease-out;
-}
-.createTemplateBtn a:active,
-.createTemplateBtn a:hover {
-	color: var(--clr-grey);
-	background-color: var(--clr-dark-purple);
-}
-.workoutsTitle .createTemplateBtn a {
-	background-color: var(--clr-blue);
-}
-.workoutsTitle .createTemplateBtn a:active,
-.workoutsTitle .createTemplateBtn a:hover {
-	background-color: var(--clr-dark-blue);
-}
-
-.workoutsTitle {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
 }
 
 .workouts {

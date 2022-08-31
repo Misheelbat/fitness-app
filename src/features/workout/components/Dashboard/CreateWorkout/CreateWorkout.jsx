@@ -5,9 +5,9 @@ import { toast } from 'react-toastify';
 import { useCreateWorkoutMutation } from 'features/workout/store';
 
 import { Button } from 'components/Elements';
-import styles from './CreateFormModal.module.css';
+import styles from './CreateWorkout.module.css';
 
-export const CreateFormModal = ({ close }) => {
+export const CreateWorkout = ({ close }) => {
 	const [title, setTitle] = useState('');
 	const [createWorkout, { isLoading }] = useCreateWorkoutMutation();
 

@@ -1,11 +1,13 @@
 import { useNavigate } from 'react-router-dom';
-import styles from './WorkoutCard.module.css';
+import styles from './Card.module.css';
 
-export const WorkoutCard = ({ title }) => {
+export const Card = ({ title }) => {
 	const navigate = useNavigate();
+
 	const handleClick = () => {
 		navigate(title);
 	};
+
 	return (
 		<div className={styles.template} onClick={handleClick}>
 			<div className={styles.templateInfo}>

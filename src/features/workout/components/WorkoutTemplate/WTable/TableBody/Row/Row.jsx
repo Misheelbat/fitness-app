@@ -6,7 +6,7 @@ export const Row = ({ rowData }) => {
 	const { data, isLoading } = useGetTableDataQuery(rowData);
 
 	useEffect(() => {
-		if (!isLoading) {
+		if (data && !isLoading) {
 			setExercise(data);
 		}
 	}, [data, isLoading]);

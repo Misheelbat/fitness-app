@@ -1,12 +1,12 @@
 import { toast } from 'react-toastify';
 
-import { useLazyLoginAnonymQuery } from 'features/auth';
+import { useLoginAnonymMutation } from 'features/auth';
 import { transformErrMSg } from 'utils';
 
 import { Button, BUTTON_TYPES } from 'components/Elements';
 
 export const LoginGuest = ({ onSuccess }) => {
-	const [loginAsGuest, { isLoading }] = useLazyLoginAnonymQuery();
+	const [loginAsGuest, { isLoading }] = useLoginAnonymMutation();
 
 	const handleClick = async () => {
 		try {

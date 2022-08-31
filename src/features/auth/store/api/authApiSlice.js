@@ -12,15 +12,17 @@ import { checkUserSession, createUserDocFromAuth } from 'utils';
 const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['user'] });
 export const authApi = apiWithTag.injectEndpoints({
 	endpoints: (build) => ({
-		register: build.query({
+		register: build.mutation({
 			async queryFn(credentials) {
 				try {
-					const data = await registerWithEmailAndPassword(credentials);
+					const userAuth = await registerWithEmailAndPassword(credentials);
+					if (!userAuth) return { error: '(/could not register)' };
+					await createUserDocFromAuth(userAuth);
 					return {
 						data: {
-							displayName: data.displayName,
-							email: data.email,
-							uid: data.uid,
+							displayName: userAuth.displayName,
+							email: userAuth.email,
+							uid: userAuth.uid,
 						},
 					};
 				} catch (err) {
@@ -32,9 +34,8 @@ export const authApi = apiWithTag.injectEndpoints({
 					type: 'user',
 				},
 			],
-			invalidatesTags: [{ type: 'user' }],
 		}),
-		login: build.query({
+		login: build.mutation({
 			async queryFn(credentials) {
 				try {
 					const data = await loginAuthUserWithEmailAndPassword(credentials);
@@ -56,7 +57,7 @@ export const authApi = apiWithTag.injectEndpoints({
 			],
 			invalidatesTags: [{ type: 'user' }],
 		}),
-		loginAnonym: build.query({
+		loginAnonym: build.mutation({
 			async queryFn() {
 				try {
 					const data = await loginAnonymously();
@@ -78,7 +79,7 @@ export const authApi = apiWithTag.injectEndpoints({
 			],
 			invalidatesTags: [{ type: 'user' }],
 		}),
-		signOut: build.query({
+		signOut: build.mutation({
 			async queryFn() {
 				try {
 					await signoutUser();
@@ -89,7 +90,7 @@ export const authApi = apiWithTag.injectEndpoints({
 			},
 			invalidatesTags: [{ type: 'user' }],
 		}),
-		resetPassword: build.query({
+		resetPassword: build.mutation({
 			async queryFn(email) {
 				try {
 					await resetPassWithEmail(email);
@@ -103,8 +104,7 @@ export const authApi = apiWithTag.injectEndpoints({
 			async queryFn() {
 				try {
 					const userAuth = await checkUserSession();
-					if (!userAuth) return { data: {} };
-
+					if (!userAuth) return { error: 'User not logged in!' };
 					const userSnapshot = await createUserDocFromAuth(userAuth);
 					const { displayName, email } = userSnapshot.data();
 
@@ -118,10 +118,10 @@ export const authApi = apiWithTag.injectEndpoints({
 });
 
 export const {
-	useLazyResetPasswordQuery,
-	useLazySignOutQuery,
-	useLazyRegisterQuery,
-	useLazyLoginQuery,
-	useLazyLoginAnonymQuery,
-	useLazyIsUserAuthenticatedQuery,
+	useResetPasswordMutation,
+	useSignOutMutation,
+	useRegisterMutation,
+	useLoginMutation,
+	useLoginAnonymMutation,
+	useIsUserAuthenticatedQuery,
 } = authApi;

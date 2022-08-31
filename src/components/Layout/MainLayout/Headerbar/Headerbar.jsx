@@ -3,15 +3,14 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { User } from 'phosphor-react/dist/';
 
-import { useAuth } from 'features/auth';
-import { selectDisplayName, useLazySignOutQuery } from 'features/auth';
+import { selectDisplayName, useSignOutMutation } from 'features/auth';
 import { SearchForm } from 'components/Searchbar';
 import { useSearchExerciseMutation } from 'features/exercises';
 
 import styles from './Headerbar.module.css';
 
 const UserNav = () => {
-	const [logOut] = useLazySignOutQuery();
+	const [logOut] = useSignOutMutation();
 	const user = useSelector(selectDisplayName);
 	const [open, setOpen] = useState(false);
 
@@ -27,8 +26,8 @@ const UserNav = () => {
 			name: 'Signout',
 			to: '../',
 			onClick: async () => {
-				setOpen(false);
 				await logOut();
+				setOpen(false);
 			},
 		},
 	];
