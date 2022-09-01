@@ -1,0 +1,16 @@
+.deleteBtn {
+	color: rgba(250, 250, 250, 0.7);
+	padding: 0;
+	border: 0;
+	display: flex;
+	background-color: transparent;
+	cursor: pointer;
+	transition: transform 100ms ease-out;
+}
+.deleteBtn:hover {
+	color: var(--clr-blue);
+}
+
+.deleteBtn:active {
+	transform: scale(1.1);
+}

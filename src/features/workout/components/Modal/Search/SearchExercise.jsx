@@ -15,7 +15,7 @@ export const SearchExercise = ({ selectFn, id }) => {
 		<div>
 			<SearchForm width={SEARCH_TYPES.max} searchFn={searchFn} results={result} selectFn={selectFn} />
 			<div className={styles.searchResult}>
-				{id && !isFetching && <Card loading={isFetching} exercise={data.name} equipments={data.equipment} />}
+				{id && <Card loading={isFetching} exercise={data?.name} equipments={data?.equipment} />}
 			</div>
 		</div>
 	);

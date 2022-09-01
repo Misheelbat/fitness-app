@@ -1,10 +1,10 @@
 import { apiSlice } from 'store/api/apiSlice';
 import {
+	signoutUser,
+	loginAnonymously,
+	resetPassWithEmail,
 	registerWithEmailAndPassword,
 	loginAuthUserWithEmailAndPassword,
-	signoutUser,
-	resetPassWithEmail,
-	loginAnonymously,
 } from 'features/auth/api';
 
 import { checkUserSession, createUserDocFromAuth } from 'utils';
@@ -14,10 +14,10 @@ export const authApi = apiWithTag.injectEndpoints({
 	endpoints: (build) => ({
 		register: build.mutation({
 			async queryFn(credentials) {
-				console.log('register ran');
 				try {
 					const userAuth = await registerWithEmailAndPassword(credentials);
 					if (!userAuth) return { error: '(/could not register)' };
+					await createUserDocFromAuth(userAuth);
 					return {
 						data: {
 							displayName: userAuth.displayName,
@@ -32,10 +32,8 @@ export const authApi = apiWithTag.injectEndpoints({
 			providesTags: (result, error, arg) => [
 				{
 					type: 'user',
-					id: result.uid,
 				},
 			],
-			invalidatesTags: [{ type: 'user' }],
 		}),
 		login: build.mutation({
 			async queryFn(credentials) {
@@ -55,7 +53,6 @@ export const authApi = apiWithTag.injectEndpoints({
 			providesTags: (result, error, arg) => [
 				{
 					type: 'user',
-					id: result.uid,
 				},
 			],
 		}),
@@ -79,6 +76,7 @@ export const authApi = apiWithTag.injectEndpoints({
 					type: 'user',
 				},
 			],
+			invalidatesTags: [{ type: 'user' }],
 		}),
 		signOut: build.mutation({
 			async queryFn() {
@@ -107,9 +105,12 @@ export const authApi = apiWithTag.injectEndpoints({
 				try {
 					const userAuth = await checkUserSession();
 					if (!userAuth) return { error: 'User not logged in!' };
+
 					const userSnapshot = await createUserDocFromAuth(userAuth);
 					const { displayName, email } = userSnapshot.data();
-
+					if (!displayName || !email) {
+						return { data: { displayName: 'Guest', email: 'guest@email.com', uid: userAuth.uid } };
+					}
 					return { data: { displayName, email, uid: userAuth.uid } };
 				} catch (err) {
 					return { error: err.message };
@@ -118,7 +119,6 @@ export const authApi = apiWithTag.injectEndpoints({
 			providesTags: (result, error, arg) => [
 				{
 					type: 'user',
-					id: result?.uid,
 				},
 			],
 		}),
@@ -132,4 +132,5 @@ export const {
 	useLoginMutation,
 	useLoginAnonymMutation,
 	useIsUserAuthenticatedQuery,
+	useLazyIsUserAuthenticatedQuery,
 } = authApi;

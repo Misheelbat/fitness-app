@@ -131,3 +131,15 @@ export const changeWorkoutTitle = async ({ id, data }) => {
 	await batch.commit();
 	console.log('changeWorkoutTitle done');
 };
+
+export const deleteExerciseFromDoc = async ({ id, workout }) => {
+	const key = auth.currentUser.uid;
+	const docRef = doc(firestoreDb, 'users', key);
+
+	await updateDoc(docRef, {
+		[`workout.entities.${workout}.exercises.ids`]: arrayRemove(id),
+		[`workout.entities.${workout}.exercises.entities.${id}`]: deleteField(),
+	});
+
+	console.log('deleteExerciseFromDoc done');
+};

@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
-import { reduxStore } from 'store';
-import { selectDisplayName, authApi, useIsUserAuthenticatedQuery } from 'features/auth';
+import { selectDisplayName, useLazyIsUserAuthenticatedQuery } from 'features/auth';
 
 import { Landing } from 'features/misc';
 import { PageSpinner } from 'components/Elements';
@@ -13,25 +12,21 @@ import { publicRoutes } from './public';
 
 export const AppRoutes = () => {
 	const user = useSelector(selectDisplayName);
-	const { isLoading } = useIsUserAuthenticatedQuery();
+	const [isUserAuthenticated, { isLoading }] = useLazyIsUserAuthenticatedQuery();
 
 	useEffect(() => {
-		const userLogged = reduxStore.dispatch(authApi.endpoints.isUserAuthenticated.initiate());
-
-		return () => {
-			userLogged.unsubscribe();
-		};
-	}, []);
+		isUserAuthenticated();
+	}, [isUserAuthenticated]);
 
 	const commenRoutes = [
 		{
 			path: '',
-			element: <Landing />,
+			element: isLoading ? <PageSpinner /> : <Landing />,
 			children: [{ path: '/*', element: <PageSpinner /> }],
 		},
 	];
 
 	const routes = user ? protectedRoutes : publicRoutes;
 	const element = useRoutes([...routes, ...commenRoutes]);
-	return <>{isLoading ? <PageSpinner /> : element}</>;
+	return <>{element}</>;
 };

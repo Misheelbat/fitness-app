@@ -1,11 +1,11 @@
 import { Row } from './Row/Row';
 
 import styles from './TableBody.module.css';
-export const TableBody = ({ data }) => {
+export const TableBody = ({ data, workout }) => {
 	return (
 		<tbody className={styles.tableBody}>
 			{data.ids.map((exerciseId) => (
-				<Row key={exerciseId} rowData={data.entities[exerciseId]} />
+				<Row key={exerciseId} rowData={data.entities[exerciseId]} workout={workout} />
 			))}
 		</tbody>
 	);

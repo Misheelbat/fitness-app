@@ -1,6 +1,6 @@
 import { apiSlice } from 'store/api/apiSlice';
 
-import { getWorkoutsFromDb, addWorkout, addExercise, changeWorkoutTitle } from 'utils';
+import { getWorkoutsFromDb, addWorkout, addExercise, changeWorkoutTitle, deleteExerciseFromDoc } from 'utils';
 import { extractEquipment } from 'features/exercises';
 
 const apiWithTag = apiSlice.enhanceEndpoints({
@@ -88,6 +88,23 @@ export const workoutApi = apiWithTag.injectEndpoints({
 			},
 			invalidatesTags: (result, error, arg) => [{ type: 'workout', id: arg.id }],
 		}),
+		deleteExerciseFromWorkout: build.mutation({
+			async queryFn(args) {
+				if (!args.id) {
+					return { error: 'Exercise not found' };
+				}
+				try {
+					await deleteExerciseFromDoc(args);
+					return { data: `${args.id} deleted` };
+				} catch (err) {
+					console.log(err);
+					return {
+						error: err.message,
+					};
+				}
+			},
+			invalidatesTags: (result, error, arg) => [{ type: 'workout', id: arg.workout }],
+		}),
 	}),
 });
 
@@ -98,4 +115,5 @@ export const {
 	useCreateWorkoutMutation,
 	useAddExerciseToWorkoutMutation,
 	useUpdateWorkoutTitleMutation,
+	useDeleteExerciseFromWorkoutMutation,
 } = workoutApi;

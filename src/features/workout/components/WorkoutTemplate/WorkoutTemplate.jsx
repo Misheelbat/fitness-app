@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Modal } from '../Modal/Modal';
 import { Button } from 'components/Elements';
-import { TableGrid } from './WTable/TableGrid/TableGrid';
+import { TableGrid } from './WTable';
 import { Title } from './Title/Title';
 import styles from './WorkoutTemplate.module.css';
 
@@ -20,12 +20,12 @@ export const WorkoutTemplate = ({ data }) => {
 						<Title data={data} title={workoutTitle} setTitle={setWorkoutTitle} />
 					</div>
 				</div>
-				<Button buttonType="button" onClick={onModalOpen}>
+				<Button type="button" buttonType="add" onClick={onModalOpen}>
 					ADD
 				</Button>
 			</div>
 			{openModal && <Modal title={workoutTitle} close={setOpenModal} />}
-			<TableGrid data={data?.exercises} />
+			<TableGrid data={data?.exercises} workout={data.id} />
 		</div>
 	);
 };
