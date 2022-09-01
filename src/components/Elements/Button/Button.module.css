@@ -22,6 +22,15 @@
 .buttonContainer:active {
 	transform: scale(0.95);
 }
+
+.buttonContainer:disabled {
+	cursor: not-allowed;
+	background-color: var(--clr-primary);
+}
+.buttonContainer[aria-disabled='true'] {
+	cursor: not-allowed;
+	background-color: var(--clr-primary);
+}
 .max-width {
 	width: 100%;
 }

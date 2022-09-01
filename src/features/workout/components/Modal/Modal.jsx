@@ -12,8 +12,8 @@ import { SearchExercise } from './Search/SearchExercise';
 import styles from './Modal.module.css';
 
 export const Modal = ({ close, title }) => {
-	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
 	const [selectedExId, setSelectedExId] = useState(null);
+	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
 	const [addNewExerciseToWorkout, { isLoading, isSuccess }] = useAddExerciseToWorkoutMutation();
 
 	useEffect(() => {
@@ -24,20 +24,17 @@ export const Modal = ({ close, title }) => {
 		}
 	}, [isSuccess, close]);
 
+	const canSave = [title, selectedExId].every(Boolean);
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!title) {
-			toast.error('Please select a Workout title');
+		if (!canSave) {
+			toast.error('Please select an exercise');
 			return;
 		}
-		if (!selectedExId) {
-			toast.error('Please select an Exercise');
-			return;
-		}
+		const formData = new FormData(e.currentTarget);
+		const reps = extractRepsData(formData);
 		try {
-			const formData = new FormData(e.currentTarget);
-			const reps = extractRepsData(formData);
-
 			await addNewExerciseToWorkout({
 				title,
 				data: { id: selectedExId, reps },
@@ -74,7 +71,7 @@ export const Modal = ({ close, title }) => {
 						<Reps sets={Number(sliderValue)} />
 					</section>
 
-					<Button isLoading={isLoading} type="submit" buttonType="max-width">
+					<Button isLoading={isLoading} type="submit" buttonType="max-width" aria-disabled={!canSave}>
 						Save
 					</Button>
 				</form>

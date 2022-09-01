@@ -12,7 +12,7 @@ export const Confirm = ({ close, title, onDeleteClick }) => {
 		onDeleteClick();
 		close(false);
 	};
-	
+
 	return (
 		<div className={styles.confirmContainer} onClick={onModalClick}>
 			<div className={styles.confirmModal}>
@@ -22,6 +22,7 @@ export const Confirm = ({ close, title, onDeleteClick }) => {
 						<XCircle size={20} />
 					</button>
 				</div>
+
 				<Button onClick={onDelete} buttonType="max-width">
 					Delete
 				</Button>
