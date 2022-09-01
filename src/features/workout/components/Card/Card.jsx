@@ -20,6 +20,7 @@ export const Card = ({ title }) => {
 		e.stopPropagation();
 		setOpen(true);
 	};
+
 	const onDeleteClick = async () => {
 		try {
 			await deleteWorkout(title).unwrap();
@@ -31,7 +32,9 @@ export const Card = ({ title }) => {
 	return (
 		<div className={styles.template} onClick={handleNavigate}>
 			<div className={styles.templateContainer}>
-				<button onClick={handleDeleteClick}>{isLoading ? <Spinner /> : <Trash size={20} weight="bold" />}</button>
+				<button onClick={handleDeleteClick} disabled={isLoading}>
+					{isLoading ? <Spinner /> : <Trash size={20} weight="bold" />}
+				</button>
 				<div className={styles.templateInfo}>
 					<h5>{title}</h5>
 				</div>

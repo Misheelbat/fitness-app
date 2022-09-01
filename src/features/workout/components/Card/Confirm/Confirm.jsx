@@ -1,6 +1,4 @@
-import { useState } from 'react';
 import { XCircle } from 'phosphor-react';
-import { toast } from 'react-toastify';
 
 import { Button } from 'components/Elements';
 import styles from './Confirm.module.css';
@@ -14,6 +12,7 @@ export const Confirm = ({ close, title, onDeleteClick }) => {
 		onDeleteClick();
 		close(false);
 	};
+	
 	return (
 		<div className={styles.confirmContainer} onClick={onModalClick}>
 			<div className={styles.confirmModal}>
