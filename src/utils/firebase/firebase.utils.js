@@ -103,17 +103,6 @@ export const getWorkoutsFromDb = async () => {
 	return;
 };
 
-export const addExercise = async ({ title, data }) => {
-	const key = auth.currentUser.uid;
-	const docRef = doc(firestoreDb, 'users', key);
-	await updateDoc(docRef, {
-		[`workout.entities.${title}.id`]: title,
-		[`workout.entities.${title}.exercises.ids`]: arrayUnion(data.id),
-		[`workout.entities.${title}.exercises.entities.${data.id}`]: data,
-	});
-	console.log('addExerciseToWorkout done');
-};
-
 export const changeWorkoutTitle = async ({ id, data }) => {
 	const key = auth.currentUser.uid;
 	const docRef = doc(firestoreDb, 'users', key);
@@ -132,6 +121,17 @@ export const changeWorkoutTitle = async ({ id, data }) => {
 	console.log('changeWorkoutTitle done');
 };
 
+export const addExercise = async ({ title, data }) => {
+	const key = auth.currentUser.uid;
+	const docRef = doc(firestoreDb, 'users', key);
+	await updateDoc(docRef, {
+		[`workout.entities.${title}.id`]: title,
+		[`workout.entities.${title}.exercises.ids`]: arrayUnion(data.id),
+		[`workout.entities.${title}.exercises.entities.${data.id}`]: data,
+	});
+	console.log('addExerciseToWorkout done');
+};
+
 export const deleteExerciseFromDoc = async ({ id, workout }) => {
 	const key = auth.currentUser.uid;
 	const docRef = doc(firestoreDb, 'users', key);
@@ -139,6 +139,18 @@ export const deleteExerciseFromDoc = async ({ id, workout }) => {
 	await updateDoc(docRef, {
 		[`workout.entities.${workout}.exercises.ids`]: arrayRemove(id),
 		[`workout.entities.${workout}.exercises.entities.${id}`]: deleteField(),
+	});
+
+	console.log('deleteExerciseFromDoc done');
+};
+
+export const deleteWorkoutFromDoc = async (id) => {
+	const key = auth.currentUser.uid;
+	const docRef = doc(firestoreDb, 'users', key);
+
+	await updateDoc(docRef, {
+		[`workout.ids`]: arrayRemove(id),
+		[`workout.entities.${id}`]: deleteField(),
 	});
 
 	console.log('deleteExerciseFromDoc done');

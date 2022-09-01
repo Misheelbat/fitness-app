@@ -14,10 +14,13 @@
 	background-color: var(--clr-blue);
 	transition: background 100ms ease-out;
 }
-.buttonContainer:active,
+
 .buttonContainer:hover {
 	color: var(--clr-grey);
 	background-color: var(--clr-dark-blue);
+}
+.buttonContainer:active {
+	transform: scale(0.95);
 }
 .max-width {
 	width: 100%;
