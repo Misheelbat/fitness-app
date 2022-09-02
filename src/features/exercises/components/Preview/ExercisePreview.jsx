@@ -1,9 +1,6 @@
 import { useSelector } from 'react-redux';
 
-import {
-	selectExerciseId,
-	useGetExerciseDetailsQuery,
-} from 'features/exercises';
+import { selectExerciseId, useGetExerciseDetailsQuery } from 'features/exercises';
 
 import { Tags } from './Tags/Tags';
 import { Spinner, Button } from 'components/Elements';
@@ -44,7 +41,7 @@ export const ExercisePreview = () => {
 					</div>
 				</div>
 
-				{data.images.length > 1 && (
+				{data.images.length !== 0 && (
 					<section className={styles.illustration}>
 						<h4>Illustrations:</h4>
 						<div className={styles.images}>
@@ -60,10 +57,7 @@ export const ExercisePreview = () => {
 					<div dangerouslySetInnerHTML={{ __html: data.description }}></div>
 				</section>
 
-				<MuscleDiagram
-					primary={data.muscles}
-					secondary={data.muscles_secondary}
-				/>
+				<MuscleDiagram primary={data.muscles} secondary={data.muscles_secondary} />
 			</div>
 		)
 	);

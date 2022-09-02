@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { User } from 'phosphor-react/dist/';
 
-import { selectDisplayName, useSignOutMutation } from 'features/auth';
 import { SearchForm } from 'components/Searchbar';
+import { selectDisplayName, useSignOutMutation } from 'features/auth';
 import { useSearchExerciseMutation } from 'features/exercises';
 
 import styles from './Headerbar.module.css';
@@ -32,6 +32,13 @@ const UserNav = () => {
 		},
 	];
 
+	const content = userNavItems.filter((item) => {
+		if (user === 'Guest' && item.name === 'Your Profile') {
+			return false;
+		}
+		return item;
+	});
+
 	return (
 		<div className={styles.userNav}>
 			{user && <span className={styles.userName}>{user}</span>}
@@ -43,7 +50,7 @@ const UserNav = () => {
 				</div>
 				<div className={styles.userNavItems}>
 					{open &&
-						userNavItems.map((item) => (
+						content.map((item) => (
 							<Link key={item.name} to={item.to} onClick={item.onClick}>
 								{item.name}
 							</Link>

@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 import { selectDisplayName, selectEmail } from 'features/auth';
@@ -15,15 +14,12 @@ export const UpdateProfile = () => {
 	const email = useSelector(selectEmail);
 
 	return (
-		<ContentLayout title="Update Profile">
+		<ContentLayout title="Update Profile" link="../">
 			<div className={styles.updateProfile}>
 				<h3>Account Settings</h3>
 				<UpdateDisplayName placeHolder={displayName} />
 				<UpdateEmail placeHolder={email} />
 				<UpdatePassword />
-				<div className={styles.backBtn}>
-					<Link to="..">Go Back</Link>
-				</div>
 			</div>
 		</ContentLayout>
 	);
