@@ -9,9 +9,9 @@ import { XCircle } from 'phosphor-react';
 import { Button } from 'components/Elements';
 import { SearchExercise } from './Search/SearchExercise';
 
-import styles from './Modal.module.css';
+import styles from './AddExerciseModal.module.css';
 
-export const Modal = ({ close, title }) => {
+export const AddExerciseModal = ({ close, title }) => {
 	const [selectedExId, setSelectedExId] = useState(null);
 	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
 	const [addNewExerciseToWorkout, { isLoading, isSuccess }] = useAddExerciseToWorkoutMutation();
