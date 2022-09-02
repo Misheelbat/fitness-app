@@ -1,13 +1,13 @@
 import { apiSlice } from 'store/api/apiSlice';
 
 import {
-	getWorkoutsFromDb,
-	addWorkout,
 	addExercise,
+	addWorkout,
+	getWorkoutsFromDb,
 	changeWorkoutTitle,
 	deleteExerciseFromDoc,
 	deleteWorkoutFromDoc,
-} from 'utils';
+} from 'features/workout';
 import { extractEquipment } from 'features/exercises';
 
 const apiWithTag = apiSlice.enhanceEndpoints({
@@ -133,12 +133,11 @@ export const workoutApi = apiWithTag.injectEndpoints({
 });
 
 export const {
-	useLazyGetWorkoutsQuery,
 	useGetWorkoutsQuery,
 	useGetTableDataQuery,
 	useCreateWorkoutMutation,
-	useAddExerciseToWorkoutMutation,
-	useUpdateWorkoutTitleMutation,
-	useDeleteExerciseFromWorkoutMutation,
 	useDeleteWorkoutMutation,
+	useUpdateWorkoutTitleMutation,
+	useAddExerciseToWorkoutMutation,
+	useDeleteExerciseFromWorkoutMutation,
 } = workoutApi;

@@ -7,7 +7,7 @@ import {
 	loginAuthUserWithEmailAndPassword,
 } from 'features/auth/api';
 
-import { checkUserSession, createUserDocFromAuth } from 'utils';
+import { checkUserSession, createUserDocFromAuth } from 'features/users';
 
 const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['user'] });
 export const authApi = apiWithTag.injectEndpoints({
