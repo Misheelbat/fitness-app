@@ -16,7 +16,8 @@ export const AppRoutes = () => {
 
 	useEffect(() => {
 		isUserAuthenticated();
-	}, [isUserAuthenticated]);
+		//disable es-lint
+	}, []);
 
 	const commenRoutes = [
 		{
