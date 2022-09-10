@@ -15,8 +15,8 @@ export const AppRoutes = () => {
 	const [isUserAuthenticated, { isLoading }] = useLazyIsUserAuthenticatedQuery();
 
 	useEffect(() => {
-		isUserAuthenticated(); 
-		//disable es-lint  
+		isUserAuthenticated();
+		// eslint-disable-next-line
 	}, []);
 
 	const commenRoutes = [
