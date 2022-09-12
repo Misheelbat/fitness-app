@@ -3,7 +3,7 @@ import styles from './Cell.module.css';
 
 export const Cell = ({ onClick, children, className, isActive = false }) => {
 	return (
-		<div onClick={!isActive ? onClick : undefined} className={cx(styles.cell, className)}>
+		<div onClick={!isActive ? onClick : undefined} className={cx(styles.cell, className, isActive ? styles.active : null)}>
 			{children}
 		</div>
 	);

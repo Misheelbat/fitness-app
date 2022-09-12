@@ -27,20 +27,21 @@ export const Calendar = () => {
 	};
 
 	return (
-		<div>
+		<div className={styles.calendar}>
 			<Button onClick={handleSetToday}>Today</Button>
 			<div className={styles.col}>
-				<Cell onClick={prevYear}>{'<<'}</Cell>
-				<Cell onClick={prevMonth}>{'<'}</Cell>
-				<Cell className={styles.spanThree}>{format(currentDate, 'LLLL yyyy')}</Cell>
-				<Cell onClick={nextMonth}>{'>'}</Cell>
-				<Cell onClick={nextYear}>{'>>'}</Cell>
-
-				{weeks.map((week) => (
-					<Cell key={week} className={styles.weeks}>
-						{week}
-					</Cell>
-				))}
+				<div className={styles.colHeader}>
+					<Cell onClick={prevYear}>{'<<'}</Cell>
+					<Cell onClick={prevMonth}>{'<'}</Cell>
+					<Cell className={styles.spanThree}>{format(currentDate, 'LLLL yyyy')}</Cell>
+					<Cell onClick={nextMonth}>{'>'}</Cell>
+					<Cell onClick={nextYear}>{'>>'}</Cell>
+				</div>
+				<div className={styles.weeks}>
+					{weeks.map((week) => (
+						<Cell key={week}>{week}</Cell>
+					))}
+				</div>
 
 				{Array.from({ length: prefixDays }).map((_, index) => (
 					<Cell key={index} />
