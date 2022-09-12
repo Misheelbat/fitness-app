@@ -1,0 +1,17 @@
+.col {
+	max-width: 50%;
+	display: grid;
+	grid-template-columns: repeat(7, 1fr);
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+.spanThree {
+	grid-column: span 3 / span 3;
+}
+.weeks {
+	font-size: 0.75rem;
+	line-height: 1rem;
+	font-weight: 700;
+	text-transform: uppercase;
+}

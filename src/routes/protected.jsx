@@ -27,7 +27,7 @@ export const protectedRoutes = [
 		children: [
 			{ path: 'exercises/*', element: <ExercisesRoutes /> },
 			{ path: 'workouts/*', element: <WorkoutRoutes /> },
-			{ path: 'schedule', element: <ScheduleRoutes /> },
+			{ path: 'schedule/*', element: <ScheduleRoutes /> },
 			{ path: 'profile/*', element: <UserRoutes /> },
 			{ path: '', element: <div>dashboard</div> },
 			{ path: '*', element: <Navigate to="." /> },
