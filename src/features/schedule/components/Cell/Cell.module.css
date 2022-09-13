@@ -1,8 +1,41 @@
 .cell {
+	position: relative;
 	padding-block: 1.5rem;
 	border-bottom: 0.2px solid var(--clr-border);
 	height: 100%;
 }
 .active {
-	color: red;
+	color: #db524e;
+}
+.card {
+	position: absolute;
+	inset: 0.2rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #121b37;
+	border-radius: 0.3rem;
+	border-left: 3px solid var(--clr-purple);
+	overflow: hidden;
+}
+.card span:first-of-type {
+	position: absolute;
+	font-size: 0.8em;
+	right: 0.2rem;
+	top: 0.2rem;
+	color: var(--clr-blue);
+}
+@media (max-width: 800px) {
+	.card {
+		font-size: 0.8em;
+	}
+}
+@media (max-width: 600px) {
+	.card span:nth-of-type(2) {
+		display: none;
+	}
+	.card span:first-of-type {
+		position: initial;
+		font-size: 1.2em;
+	}
 }

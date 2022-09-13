@@ -18,8 +18,8 @@
 }
 .colHeader > * {
 	flex-grow: 1;
-	border-right: 0;
-	border-bottom: 0;
+	border: 0;
+	background-color: var(--clr-primary);
 }
 .spanThree {
 	grid-column: span 3;
@@ -38,15 +38,17 @@
 .weeks > * {
 	background-color: var(--clr-secondary);
 	flex-grow: 1;
-	border-right: 0;
-	border-bottom: 0;
+	border: 0;
+	border-block: 0.2px solid var(--clr-border);
 }
 
 .weeks > *:first-child {
 	border-top-left-radius: 10px;
 	background-color: var(--clr-secondary);
+	border-left: 0.2px solid var(--clr-border);
 }
 .weeks > *:last-child {
 	border-top-right-radius: 10px;
+	border-right: 0.2px solid var(--clr-border);
 }
 

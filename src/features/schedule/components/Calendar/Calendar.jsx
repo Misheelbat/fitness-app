@@ -6,25 +6,40 @@ import styles from './Calendar.module.css';
 import { Button } from 'components/Elements';
 
 const weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const dummyEvents = { '14Sep2022': 'Core', '21Sep2022': 'Full Body wokrout' };
 export const Calendar = () => {
 	const [currentDate, setCurrentDate] = useState(new Date());
 	const startDate = startOfMonth(currentDate);
 	const endDate = endOfMonth(currentDate);
-	const numDays = differenceInDays(endDate, startDate) + 1;
+	const nDaysOfMonth = differenceInDays(endDate, startDate) + 1;
 
 	const prefixDays = startDate.getDay();
 	const suffixDays = 6 - endDate.getDay();
 
-	const handleSetToday = () => setCurrentDate(new Date());
 	const prevMonth = () => setCurrentDate(sub(currentDate, { months: 1 }));
 	const nextMonth = () => setCurrentDate(add(currentDate, { months: 1 }));
 	const prevYear = () => setCurrentDate(sub(currentDate, { years: 1 }));
 	const nextYear = () => setCurrentDate(add(currentDate, { years: 1 }));
 
-	const handleClickDate = (index) => {
-		const date = setDate(currentDate, index);
+	const handleSetToday = () => setCurrentDate(new Date());
+	const handleClickDate = (dayOfMonth) => {
+		const date = setDate(currentDate, dayOfMonth);
 		setCurrentDate(date);
 	};
+
+	const monthAndYear = format(currentDate, 'LLLyyyy');
+
+	const calendarDays = Array.from({ length: nDaysOfMonth }).map((_, index) => {
+		const dayOfMonth = index + 1;
+		const fullDate = dayOfMonth + monthAndYear;
+
+		const isCurrentDate = dayOfMonth === currentDate.getDate();
+		return (
+			<Cell key={dayOfMonth} event={dummyEvents[fullDate]} isActive={isCurrentDate} onClick={() => handleClickDate(dayOfMonth)}>
+				{dayOfMonth}
+			</Cell>
+		);
+	});
 
 	return (
 		<div className={styles.calendar}>
@@ -46,18 +61,7 @@ export const Calendar = () => {
 				{Array.from({ length: prefixDays }).map((_, index) => (
 					<Cell key={index} />
 				))}
-
-				{Array.from({ length: numDays }).map((_, index) => {
-					const date = index + 1;
-					const isCurrentDate = date === currentDate.getDate();
-
-					return (
-						<Cell key={date} isActive={isCurrentDate} onClick={() => handleClickDate(date)}>
-							{date}
-						</Cell>
-					);
-				})}
-
+				{calendarDays}
 				{Array.from({ length: suffixDays }).map((_, index) => (
 					<Cell key={index} />
 				))}
