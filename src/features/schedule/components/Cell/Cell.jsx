@@ -3,12 +3,21 @@ import cx from 'classnames';
 import styles from './Cell.module.css';
 
 export let Cell = ({ onClick, children, className, isActive = false, event }) => {
+	let content;
+	if (event) {
+		content = (
+			<div className={cx(styles.card, styles[event.status])}>
+				<span>{children}</span>
+				<span>{event.name}</span>
+			</div>
+		);
+	} else {
+		content = children;
+	}
+
 	return (
 		<div onClick={!isActive ? onClick : undefined} className={cx(styles.cell, className, isActive ? styles.active : null)}>
-			<div className={event ? styles.card : null}>
-				<span>{children}</span>
-				{event && <span>{event}</span>}
-			</div>
+			{content}
 		</div>
 	);
 };

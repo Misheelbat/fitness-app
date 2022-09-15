@@ -5,26 +5,47 @@
 	height: 100%;
 }
 .active {
-	color: #db524e;
+	color: var(--clr-blue);
 }
 .card {
+	font-size: 0.8em;
 	position: absolute;
 	inset: 0.2rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	background-color: #121b37;
-	border-radius: 0.3rem;
+	border-radius: 0 0.3rem 0.3rem 0;
 	border-left: 3px solid var(--clr-purple);
 	overflow: hidden;
 }
 .card span:first-of-type {
 	position: absolute;
-	font-size: 0.8em;
+	font-size: 1em;
 	right: 0.2rem;
 	top: 0.2rem;
-	color: var(--clr-blue);
 }
+
+.tobeCompleted {
+	border-left-color: orange;
+}
+.complete {
+	border-left-color: #27ae60;
+}
+.incomplete {
+	border-left-color: #c7302b;
+}
+
+.tobeCompleted span:first-of-type {
+	color: orange;
+}
+.complete span:first-of-type {
+	color: #27ae60;
+}
+.incomplete span:first-of-type {
+	color: #c7302b;
+}
+
 @media (max-width: 800px) {
 	.card {
 		font-size: 0.8em;

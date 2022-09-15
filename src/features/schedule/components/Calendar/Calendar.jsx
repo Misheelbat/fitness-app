@@ -1,13 +1,12 @@
 import { useState } from 'react';
 import { add, differenceInDays, endOfMonth, format, setDate, startOfMonth, sub } from 'date-fns';
+
 import { Cell } from '../Cell/Cell';
-
-import styles from './Calendar.module.css';
 import { Button } from 'components/Elements';
+import { weeks } from 'features/schedule/assets/calendar_default';
+import styles from './Calendar.module.css';
 
-const weeks = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const dummyEvents = { '14Sep2022': 'Core', '21Sep2022': 'Full Body wokrout' };
-export const Calendar = () => {
+export const Calendar = ({ event }) => {
 	const [currentDate, setCurrentDate] = useState(new Date());
 	const startDate = startOfMonth(currentDate);
 	const endDate = endOfMonth(currentDate);
@@ -35,7 +34,7 @@ export const Calendar = () => {
 
 		const isCurrentDate = dayOfMonth === currentDate.getDate();
 		return (
-			<Cell key={dayOfMonth} event={dummyEvents[fullDate]} isActive={isCurrentDate} onClick={() => handleClickDate(dayOfMonth)}>
+			<Cell key={dayOfMonth} event={event[fullDate]} isActive={isCurrentDate} onClick={() => handleClickDate(dayOfMonth)}>
 				{dayOfMonth}
 			</Cell>
 		);
