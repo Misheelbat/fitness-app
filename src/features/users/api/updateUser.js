@@ -49,6 +49,7 @@ export const createUserDocFromAuth = async (userAuth) => {
 				email,
 				createdAt,
 				workout: { ids: [], entities: {} },
+				schedules: {},
 			});
 		} catch (error) {
 			console.log('could not save user to db', error.message);

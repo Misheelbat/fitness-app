@@ -29,13 +29,12 @@ export const Calendar = ({ event }) => {
 	const monthAndYear = format(currentDate, 'LLLyyyy');
 
 	const calendarDays = Array.from({ length: nDaysOfMonth }).map((_, index) => {
-		const dayOfMonth = index + 1;
-		const fullDate = dayOfMonth + monthAndYear;
-
-		const isCurrentDate = dayOfMonth === currentDate.getDate();
+		const dayNumber = index + 1;
+		const fullDate = dayNumber + monthAndYear;
+		const isCurrentDate = dayNumber === currentDate.getDate();
 		return (
-			<Cell key={dayOfMonth} event={event[fullDate]} isActive={isCurrentDate} onClick={() => handleClickDate(dayOfMonth)}>
-				{dayOfMonth}
+			<Cell key={dayNumber} event={event[fullDate]} isActive={isCurrentDate} onClick={() => handleClickDate(dayNumber)}>
+				{dayNumber}
 			</Cell>
 		);
 	});
