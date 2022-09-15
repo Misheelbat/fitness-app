@@ -10,11 +10,13 @@ export const schedulesApi = apiWithTag.injectEndpoints({
 			async queryFn() {
 				try {
 					const schedules = await getSchedulesFromDb();
+					console.log('get schedules ran');
 					return { data: schedules };
 				} catch (err) {
 					return { error: err.message };
 				}
 			},
+			providesTags: [{ type: 'schedule', id: 'LIST' }],
 		}),
 		addEventToSchedule: build.mutation({
 			async queryFn(arg) {
@@ -25,6 +27,7 @@ export const schedulesApi = apiWithTag.injectEndpoints({
 					return { error: err.message };
 				}
 			},
+			invalidatesTags: [{ type: 'schedule', id: 'LIST' }],
 		}),
 	}),
 });
