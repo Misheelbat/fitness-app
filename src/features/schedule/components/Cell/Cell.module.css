@@ -6,8 +6,8 @@
 	cursor: pointer;
 }
 .active {
-	color: var(--clr-blue);
 	outline: 1px solid var(--clr-blue);
+	background-color: var(--clr-bg);
 }
 .card {
 	font-size: 0.8em;

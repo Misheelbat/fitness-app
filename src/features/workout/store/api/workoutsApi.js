@@ -28,7 +28,10 @@ export const workoutApi = apiWithTag.injectEndpoints({
 			},
 			providesTags: (result, error, arg) => {
 				if (result?.ids) {
-					return [{ type: 'workout', id: 'LIST' }, ...result.ids.map((id) => ({ type: 'workout', id }))];
+					return [
+						{ type: 'workout', id: 'LIST' },
+						...result.ids.map((id) => ({ type: 'workout', id })),
+					];
 				}
 				return [{ type: 'workout', id: 'LIST' }];
 			},
@@ -134,6 +137,7 @@ export const workoutApi = apiWithTag.injectEndpoints({
 
 export const {
 	useGetWorkoutsQuery,
+	useLazyGetWorkoutsQuery,
 	useGetTableDataQuery,
 	useCreateWorkoutMutation,
 	useDeleteWorkoutMutation,
