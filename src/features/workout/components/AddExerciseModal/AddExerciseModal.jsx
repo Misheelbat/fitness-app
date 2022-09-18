@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
-import { extractRepsData, SETS_DEFAULT_VALUE, useAddExerciseToWorkoutMutation } from 'features/workout';
+import {
+	extractRepsData,
+	SETS_DEFAULT_VALUE,
+	useAddExerciseToWorkoutMutation,
+} from 'features/workout';
 
 import { Reps } from './Reps/Reps';
 import { Sets } from './Sets/Sets';
@@ -67,11 +71,18 @@ export const AddExerciseModal = ({ close, title }) => {
 
 					<section className={styles.reps}>
 						<p className={styles.modalTitle}>Number of Repetitions:</p>
-						<div className={styles.repsInfo}>If you do the same reps for all sets, you can just enter one value</div>
+						<div className={styles.repsInfo}>
+							If you do the same reps for all sets, you can just enter one value
+						</div>
 						<Reps sets={Number(sliderValue)} />
 					</section>
 
-					<Button isLoading={isLoading} type="submit" buttonType="max-width" aria-disabled={!canSave}>
+					<Button
+						isLoading={isLoading}
+						type="submit"
+						buttonType="max-width"
+						aria-disabled={!canSave}
+					>
 						Save
 					</Button>
 				</form>

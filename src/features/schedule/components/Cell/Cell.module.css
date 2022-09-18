@@ -3,9 +3,11 @@
 	padding-block: 1.5rem;
 	border-bottom: 0.2px solid var(--clr-border);
 	height: 100%;
+	cursor: pointer;
 }
 .active {
 	color: var(--clr-blue);
+	outline: 1px solid var(--clr-blue);
 }
 .card {
 	font-size: 0.8em;

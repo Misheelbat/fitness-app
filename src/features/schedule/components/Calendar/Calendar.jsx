@@ -5,7 +5,7 @@ import { Button } from 'components/Elements';
 import { weekDays } from 'features/schedule/assets/calendar_default';
 import styles from './Calendar.module.css';
 
-export const Calendar = ({ event = {}, value, onDateChange }) => {
+export const Calendar = ({ events = {}, value, onDateChange }) => {
 	const startDate = startOfMonth(value);
 	const endDate = endOfMonth(value);
 	const daysInCurrentMonth = differenceInDays(endDate, startDate) + 1;
@@ -30,7 +30,12 @@ export const Calendar = ({ event = {}, value, onDateChange }) => {
 		const fullDate = dayNumber + monthAndYear;
 		const isCurrentDate = dayNumber === value.getDate();
 		return (
-			<Cell key={dayNumber} event={event[fullDate]} isActive={isCurrentDate} onClick={() => handleClickDate(dayNumber)}>
+			<Cell
+				key={dayNumber}
+				event={events[fullDate]}
+				isActive={isCurrentDate}
+				onClick={() => handleClickDate(dayNumber)}
+			>
 				{dayNumber}
 			</Cell>
 		);
