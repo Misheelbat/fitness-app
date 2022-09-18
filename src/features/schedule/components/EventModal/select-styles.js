@@ -3,8 +3,8 @@ export const selectorStyles = {
 		...styles,
 		backgroundColor: '#1c1f2e',
 		fontSize: '14px',
-		border: 'none',
-		padding: '2px',
+		border: '0',
+		minHeight: '30px',
 		cursor: 'pointer',
 	}),
 
