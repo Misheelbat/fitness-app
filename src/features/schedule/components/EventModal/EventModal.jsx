@@ -55,6 +55,7 @@ export const EventModal = ({ close, selectedDate, event = {} }) => {
 						<XCircle size={20} />
 					</button>
 				</div>
+
 				<div className={styles.eventModalContent}>
 					<div>Select from your Workouts</div>
 					<Select
@@ -66,7 +67,9 @@ export const EventModal = ({ close, selectedDate, event = {} }) => {
 					<Button onClick={selectWorkout} buttonType="max-width" isLoading={isAddEventLoading}>
 						Select
 					</Button>
+
 					<span>-- or --</span>
+					
 					<form onSubmit={createNewWorkout}>
 						<input ref={newWorkoutTitleRef} type="text" placeholder="Create a new Workout" />
 						<Button isLoading={isLoading} buttonType="max-width">

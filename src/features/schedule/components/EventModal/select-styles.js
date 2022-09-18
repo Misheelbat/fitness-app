@@ -6,6 +6,7 @@ export const selectorStyles = {
 		border: '0',
 		minHeight: '30px',
 		cursor: 'pointer',
+		textAlign: 'left',
 	}),
 
 	singleValue: (styles) => ({
@@ -27,6 +28,7 @@ export const selectorStyles = {
 		minWidth: 'max-content',
 		width: '100%',
 		cursor: 'pointer',
+		textAlign: 'left',
 	}),
 	container: (styles) => ({
 		...styles,
