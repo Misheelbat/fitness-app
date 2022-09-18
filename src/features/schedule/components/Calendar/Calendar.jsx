@@ -1,37 +1,34 @@
-import { useState } from 'react';
 import { add, differenceInDays, endOfMonth, format, setDate, startOfMonth, sub } from 'date-fns';
 
 import { Cell } from '../Cell/Cell';
 import { Button } from 'components/Elements';
-import { weeks } from 'features/schedule/assets/calendar_default';
+import { weekDays } from 'features/schedule/assets/calendar_default';
 import styles from './Calendar.module.css';
 
-export const Calendar = ({ event }) => {
-	const [currentDate, setCurrentDate] = useState(new Date());
-	const startDate = startOfMonth(currentDate);
-	const endDate = endOfMonth(currentDate);
-	const nDaysOfMonth = differenceInDays(endDate, startDate) + 1;
-
+export const Calendar = ({ event = {}, value, onDateChange }) => {
+	const startDate = startOfMonth(value);
+	const endDate = endOfMonth(value);
+	const daysInCurrentMonth = differenceInDays(endDate, startDate) + 1;
 	const prefixDays = startDate.getDay();
 	const suffixDays = 6 - endDate.getDay();
 
-	const prevMonth = () => setCurrentDate(sub(currentDate, { months: 1 }));
-	const nextMonth = () => setCurrentDate(add(currentDate, { months: 1 }));
-	const prevYear = () => setCurrentDate(sub(currentDate, { years: 1 }));
-	const nextYear = () => setCurrentDate(add(currentDate, { years: 1 }));
+	const prevMonth = () => onDateChange(sub(value, { months: 1 }));
+	const nextMonth = () => onDateChange(add(value, { months: 1 }));
+	const prevYear = () => onDateChange(sub(value, { years: 1 }));
+	const nextYear = () => onDateChange(add(value, { years: 1 }));
 
-	const handleSetToday = () => setCurrentDate(new Date());
+	const handleSetToday = () => onDateChange(new Date());
 	const handleClickDate = (dayOfMonth) => {
-		const date = setDate(currentDate, dayOfMonth);
-		setCurrentDate(date);
+		const date = setDate(value, dayOfMonth);
+		onDateChange(date);
 	};
 
-	const monthAndYear = format(currentDate, 'LLLyyyy');
+	const monthAndYear = format(value, 'LLLyyyy');
 
-	const calendarDays = Array.from({ length: nDaysOfMonth }).map((_, index) => {
+	const calendarDays = Array.from({ length: daysInCurrentMonth }).map((_, index) => {
 		const dayNumber = index + 1;
 		const fullDate = dayNumber + monthAndYear;
-		const isCurrentDate = dayNumber === currentDate.getDate();
+		const isCurrentDate = dayNumber === value.getDate();
 		return (
 			<Cell key={dayNumber} event={event[fullDate]} isActive={isCurrentDate} onClick={() => handleClickDate(dayNumber)}>
 				{dayNumber}
@@ -46,12 +43,12 @@ export const Calendar = ({ event }) => {
 				<div className={styles.colHeader}>
 					<Cell onClick={prevYear}>{'<<'}</Cell>
 					<Cell onClick={prevMonth}>{'<'}</Cell>
-					<Cell className={styles.spanThree}>{format(currentDate, 'LLLL yyyy')}</Cell>
+					<Cell className={styles.spanThree}>{format(value, 'LLLL yyyy')}</Cell>
 					<Cell onClick={nextMonth}>{'>'}</Cell>
 					<Cell onClick={nextYear}>{'>>'}</Cell>
 				</div>
 				<div className={styles.weeks}>
-					{weeks.map((week) => (
+					{weekDays.map((week) => (
 						<Cell key={week}>{week}</Cell>
 					))}
 				</div>

@@ -46,6 +46,10 @@
 	color: #c7302b;
 }
 
+.eventName:hover {
+	color: var(--clr-purple);
+}
+
 @media (max-width: 800px) {
 	.card {
 		font-size: 0.8em;
