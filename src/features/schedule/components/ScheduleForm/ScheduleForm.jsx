@@ -18,7 +18,6 @@ export const ScheduleForm = () => {
 			const today = new Date();
 			Object.values(schedules).forEach(async (event) => {
 				if (event.status !== 'tobeCompleted') return;
-
 				if (isBefore(new Date(event.id), today)) {
 					await updateEventStatus({ id: event.id, status: 'incomplete' });
 				}
