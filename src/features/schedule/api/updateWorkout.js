@@ -1,4 +1,11 @@
-import { doc, getDoc, updateDoc, arrayUnion, arrayRemove, writeBatch, deleteField } from 'firebase/firestore';
+import {
+	doc,
+	getDoc,
+	updateDoc,
+	arrayUnion,
+	arrayRemove,
+	deleteField,
+} from 'firebase/firestore';
 import { auth, firestoreDb } from 'utils';
 
 export const addEvent = async (data) => {
@@ -25,22 +32,14 @@ export const getSchedulesFromDb = async () => {
 	return;
 };
 
-export const changeWorkoutTitle = async ({ id, data }) => {
+export const changeEventStatus = async ({ id, status }) => {
 	const key = auth.currentUser.uid;
 	const docRef = doc(firestoreDb, 'users', key);
-	const batch = writeBatch(firestoreDb);
 
-	batch.update(docRef, {
-		'workout.ids': arrayRemove(id),
+	await updateDoc(docRef, {
+		[`schedules.${id}.status`]: status,
 	});
-	batch.update(docRef, {
-		'workout.ids': arrayUnion(data.id),
-		[`workout.entities.${data.id}`]: data,
-		[`workout.entities.${id}`]: deleteField(),
-	});
-
-	await batch.commit();
-	console.log('changeWorkoutTitle done');
+	console.log('changeEventStatus done');
 };
 
 export const addExercise = async ({ title, data }) => {

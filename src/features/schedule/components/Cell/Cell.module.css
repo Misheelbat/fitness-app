@@ -1,9 +1,13 @@
 .cell {
 	position: relative;
-	padding-block: 1.5rem;
+	display: block;
+	min-height: 66px;
 	border-bottom: 0.2px solid var(--clr-border);
 	height: 100%;
 	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .active {
 	outline: 1px solid var(--clr-blue);
@@ -13,13 +17,13 @@
 	font-size: 0.8em;
 	position: absolute;
 	inset: 0.2rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
 	background-color: #121b37;
 	border-radius: 0 0.3rem 0.3rem 0;
 	border-left: 3px solid var(--clr-purple);
 	overflow: hidden;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .card span:first-of-type {
 	position: absolute;
