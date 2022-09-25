@@ -1,5 +1,10 @@
 import { apiSlice } from 'store/api/apiSlice';
-import { getSchedulesFromDb, addEvent, changeEventStatus } from '../api/updateWorkout';
+import {
+	getSchedulesFromDb,
+	addEvent,
+	changeEventStatus,
+	deleteEventFromSchedules,
+} from '../api/updateWorkout';
 
 const apiWithTag = apiSlice.enhanceEndpoints({ addTagTypes: ['schedule'] });
 
@@ -15,7 +20,16 @@ export const schedulesApi = apiWithTag.injectEndpoints({
 					return { error: err.message };
 				}
 			},
-			providesTags: [{ type: 'schedule', id: 'LIST' }],
+			providesTags: (result, error, arg) => {
+				const schedules = Object.keys(result);
+				if (schedules.length !== 0) {
+					return [
+						{ type: 'schedule', id: 'LIST' },
+						...schedules.map((date) => ({ type: 'schedule', id: date })),
+					];
+				}
+				return [{ type: 'schedule', id: 'LIST' }];
+			},
 		}),
 		addEventToSchedule: build.mutation({
 			async queryFn(arg) {
@@ -37,10 +51,25 @@ export const schedulesApi = apiWithTag.injectEndpoints({
 					return { error: err.message };
 				}
 			},
-			invalidatesTags: [{ type: 'schedule', id: 'LIST' }],
+			invalidatesTags: (result, error, arg) => [{ type: 'schedule', id: arg.id }],
+		}),
+		deleteEvent: build.mutation({
+			async queryFn(id) {
+				try {
+					await deleteEventFromSchedules(id);
+					return { data: 'event deleted' };
+				} catch (err) {
+					return { error: err.message };
+				}
+			},
+			invalidatesTags: (result, error, arg) => [{ type: 'schedule', id: 'LIST' }],
 		}),
 	}),
 });
 
-export const { useGetSchedulesQuery, useAddEventToScheduleMutation, useUpdateEventStatusMutation } =
-	schedulesApi;
+export const {
+	useGetSchedulesQuery,
+	useAddEventToScheduleMutation,
+	useUpdateEventStatusMutation,
+	useDeleteEventMutation,
+} = schedulesApi;

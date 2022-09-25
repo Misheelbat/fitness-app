@@ -1,11 +1,4 @@
-import {
-	doc,
-	getDoc,
-	updateDoc,
-	arrayUnion,
-	arrayRemove,
-	deleteField,
-} from 'firebase/firestore';
+import { doc, getDoc, updateDoc, deleteField } from 'firebase/firestore';
 import { auth, firestoreDb } from 'utils';
 
 export const addEvent = async (data) => {
@@ -42,37 +35,11 @@ export const changeEventStatus = async ({ id, status }) => {
 	console.log('changeEventStatus done');
 };
 
-export const addExercise = async ({ title, data }) => {
-	const key = auth.currentUser.uid;
-	const docRef = doc(firestoreDb, 'users', key);
-	await updateDoc(docRef, {
-		[`workout.entities.${title}.id`]: title,
-		[`workout.entities.${title}.exercises.ids`]: arrayUnion(data.id),
-		[`workout.entities.${title}.exercises.entities.${data.id}`]: data,
-	});
-	console.log('addExerciseToWorkout done');
-};
-
-export const deleteExerciseFromDoc = async ({ id, workout }) => {
+export const deleteEventFromSchedules = async (id) => {
 	const key = auth.currentUser.uid;
 	const docRef = doc(firestoreDb, 'users', key);
 
 	await updateDoc(docRef, {
-		[`workout.entities.${workout}.exercises.ids`]: arrayRemove(id),
-		[`workout.entities.${workout}.exercises.entities.${id}`]: deleteField(),
+		[`schedules.${id}`]: deleteField(),
 	});
-
-	console.log('deleteExerciseFromDoc done');
-};
-
-export const deleteWorkoutFromDoc = async (id) => {
-	const key = auth.currentUser.uid;
-	const docRef = doc(firestoreDb, 'users', key);
-
-	await updateDoc(docRef, {
-		[`workout.ids`]: arrayRemove(id),
-		[`workout.entities.${id}`]: deleteField(),
-	});
-
-	console.log('deleteExerciseFromDoc done');
 };

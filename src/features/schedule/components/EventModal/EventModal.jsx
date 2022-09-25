@@ -37,9 +37,10 @@ export const EventModal = ({ close, selectedDate, event = {} }) => {
 			toast.success('Event added to Calendar');
 			close(false);
 		} catch (error) {
-			toast.error(error.message);
+			toast.error(error);
 		}
 	};
+
 	return (
 		<div className={styles.eventModalContainer}>
 			<div className={styles.eventModal}>
