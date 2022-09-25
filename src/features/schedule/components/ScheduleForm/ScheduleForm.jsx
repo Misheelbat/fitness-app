@@ -13,13 +13,15 @@ import { EventModal } from '../EventModal/EventModal';
 import styles from './ScheduleForm.module.css';
 
 export const ScheduleForm = () => {
-	const [deleteEvent] = useDeleteEventMutation();
 	const [openModal, setOpenModal] = useState(false);
 	const [currentDate, setCurrentDate] = useState(new Date());
+
+	const [deleteEvent] = useDeleteEventMutation();
 	const [updateEventStatus] = useUpdateEventStatusMutation();
 	const { data: schedules, isSuccess } = useGetSchedulesQuery();
 
 	const selectedDate = format(currentDate, 'dLLLyyyy');
+	const isActive = schedules?.hasOwnProperty(selectedDate);
 
 	useEffect(() => {
 		if (isSuccess && schedules) {
@@ -46,7 +48,7 @@ export const ScheduleForm = () => {
 			toast.error(error);
 		}
 	};
-	const isActive = schedules?.hasOwnProperty(selectedDate);
+
 	return (
 		<div className={styles.scheduleForm}>
 			<button onClick={() => setOpenModal(true)}>open modal</button>

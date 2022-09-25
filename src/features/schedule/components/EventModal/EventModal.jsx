@@ -4,7 +4,7 @@ import { useState, useRef } from 'react';
 import { XCircle } from 'phosphor-react';
 
 import { Button } from 'components/Elements';
-import { useAddEventToScheduleMutation } from 'features/schedule';
+import { useAddEventToScheduleMutation, default_status_options } from 'features/schedule';
 import { useGetWorkoutsQuery, useCreateWorkoutMutation } from 'features/workout';
 
 import styles from './EventModal.module.css';
@@ -15,7 +15,12 @@ export const EventModal = ({ close, selectedDate, event = {} }) => {
 	const { data: workouts } = useGetWorkoutsQuery();
 	const [createWorkout, { isLoading }] = useCreateWorkoutMutation();
 	const [addEventToCalendar, { isLoading: isAddEventLoading }] = useAddEventToScheduleMutation();
+
 	const [workoutOption, setWorkoutOption] = useState({ value: event?.name, label: event?.name });
+	const [statusOption, setStatusOption] = useState({
+		label: event?.status,
+		value: event?.status,
+	});
 
 	const createNewWorkout = async (e) => {
 		e.preventDefault();
@@ -50,6 +55,18 @@ export const EventModal = ({ close, selectedDate, event = {} }) => {
 						<XCircle size={20} />
 					</button>
 				</div>
+
+				{event?.status && (
+					<div>
+						status:
+						<Select
+							value={statusOption}
+							options={default_status_options}
+							onChange={(e) => setStatusOption(e)}
+							styles={selectorStyles}
+						/>
+					</div>
+				)}
 
 				<div className={styles.eventModalContent}>
 					<div>Select from your Workouts</div>
