@@ -55,6 +55,7 @@ export const schedulesApi = apiWithTag.injectEndpoints({
 		}),
 		deleteEvent: build.mutation({
 			async queryFn(id) {
+				if (!id) return { error: 'No date selected' };
 				try {
 					await deleteEventFromSchedules(id);
 					return { data: 'event deleted' };

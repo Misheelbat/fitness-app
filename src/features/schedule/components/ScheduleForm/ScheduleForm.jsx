@@ -38,6 +38,7 @@ export const ScheduleForm = () => {
 	}, [isSuccess, schedules, updateEventStatus]);
 
 	const handleDeleteEvent = async () => {
+		if (!schedules[selectedDate]) return;
 		try {
 			await deleteEvent(selectedDate).unwrap();
 			toast.success('Event Deleted');
@@ -45,11 +46,13 @@ export const ScheduleForm = () => {
 			toast.error(error);
 		}
 	};
-
+	const isActive = schedules?.hasOwnProperty(selectedDate);
 	return (
 		<div className={styles.scheduleForm}>
 			<button onClick={() => setOpenModal(true)}>open modal</button>
-			<button onClick={handleDeleteEvent}>Delete</button>
+			<button disabled={!isActive} onClick={handleDeleteEvent}>
+				Delete
+			</button>
 			<Calendar events={schedules} value={currentDate} onDateChange={setCurrentDate} />
 			{openModal && (
 				<EventModal

@@ -6,3 +6,6 @@
 	background-color: var(--clr-primary);
 	position: relative;
 }
+.scheduleForm button:disabled {
+	cursor: not-allowed;
+}
