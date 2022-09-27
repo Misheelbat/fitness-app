@@ -30,11 +30,11 @@
 	background-color: transparent;
 }
 
-.createFormModal form {
+.createWorkoutForm {
 	display: flex;
 	flex-direction: column;
 }
-.createFormModal form input {
+.createWorkoutForm input {
 	color: #fff;
 	width: 100%;
 	font-size: 0.9em;
@@ -44,6 +44,6 @@
 	background-color: var(--clr-secondary);
 	font-family: 'Poppins', sans-serif;
 }
-.createFormModal form > * + * {
+.createWorkoutForm > * + * {
 	margin-top: 1rem;
 }

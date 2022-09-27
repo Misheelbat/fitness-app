@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { AddExerciseModal } from '../AddExerciseModal/AddExerciseModal';
+import { AddExercise } from '../AddExerciseModal/AddExercise';
 import { Button } from 'components/Elements';
 import { TableGrid } from './Table';
 import { Title } from './Title/Title';
@@ -24,7 +24,7 @@ export const WorkoutTemplate = ({ data }) => {
 					ADD
 				</Button>
 			</div>
-			{openModal && <AddExerciseModal title={workoutTitle} close={setOpenModal} />}
+			{openModal && <AddExercise title={workoutTitle} close={setOpenModal} />}
 			<TableGrid data={data?.exercises} workout={data?.id} />
 		</div>
 	);
