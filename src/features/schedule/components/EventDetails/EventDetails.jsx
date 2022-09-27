@@ -1,16 +1,16 @@
+import { useState } from 'react';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
-import { useState } from 'react';
 
 import { Button } from 'components/Elements';
 import { useAddEventToScheduleMutation, default_status_options } from 'features/schedule';
 import { useGetWorkoutsQuery } from 'features/workout';
 import { CreateWorkout } from 'features/workout/components/Dashboard/CreateWorkout/CreateWorkout';
 
-import styles from './EventModal.module.css';
+import styles from './EventDetails.module.css';
 import { selectorStyles } from './select-styles';
 
-export const EventModal = ({ selectedDate, event = {} }) => {
+export const EventDetails = ({ selectedDate, event = {} }) => {
 	const { data: workouts } = useGetWorkoutsQuery();
 	const [addEventToCalendar, { isLoading: isAddEventLoading }] = useAddEventToScheduleMutation();
 
@@ -35,19 +35,19 @@ export const EventModal = ({ selectedDate, event = {} }) => {
 
 	return (
 		<div>
-			{event?.status && (
-				<div>
-					status:
-					<Select
-						value={statusOption}
-						options={default_status_options}
-						onChange={(e) => setStatusOption(e)}
-						styles={selectorStyles}
-					/>
-				</div>
-			)}
-
 			<div className={styles.eventModalContent}>
+				{event?.status && (
+					<>
+						<div>status:</div>
+						<Select
+							value={statusOption}
+							options={default_status_options}
+							onChange={(e) => setStatusOption(e)}
+							styles={selectorStyles}
+						/>
+					</>
+				)}
+
 				<div>Select from your Workouts</div>
 				<Select
 					value={workoutOption}
@@ -58,7 +58,9 @@ export const EventModal = ({ selectedDate, event = {} }) => {
 				<Button onClick={selectWorkout} buttonType="max-width" isLoading={isAddEventLoading}>
 					Select
 				</Button>
+
 				<span>-- or --</span>
+
 				<CreateWorkout />
 			</div>
 		</div>

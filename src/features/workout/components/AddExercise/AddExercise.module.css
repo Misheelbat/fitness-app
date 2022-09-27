@@ -1,0 +1,34 @@
+
+.modalHeader {
+	display: flex;
+	margin-bottom: 2rem;
+}
+.modalHeader h2 {
+	font-weight: 400;
+	font-size: 20px;
+}
+.closeBtn {
+	color: #fff;
+	border: 0;
+	padding: 0;
+	margin-left: auto;
+	cursor: pointer;
+	background-color: transparent;
+}
+
+.modalTitle {
+	font-size: 1em;
+	color: #127df7;
+	padding-bottom: 0.5em;
+	opacity: 1;
+}
+
+.search,
+.sets {
+	margin-bottom: 1rem;
+}
+
+.repsInfo {
+	font-size: 0.8em;
+	color: var(--clr-off-white);
+}

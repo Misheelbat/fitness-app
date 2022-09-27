@@ -9,7 +9,7 @@ import {
 } from 'features/schedule';
 
 import { Calendar } from '../Calendar/Calendar';
-import { EventModal } from '../EventModal/EventModal';
+import { EventDetails } from '../EventDetails/EventDetails';
 import styles from './ScheduleForm.module.css';
 import { Modal } from 'components/Layout';
 
@@ -52,7 +52,7 @@ export const ScheduleForm = () => {
 	return (
 		<div className={styles.scheduleForm}>
 			<Modal aria-label="calendar day">
-				{schedules && <EventModal selectedDate={selectedDate} event={schedules[selectedDate]} />}
+				{schedules && <EventDetails selectedDate={selectedDate} event={schedules[selectedDate]} />}
 			</Modal>
 			<button disabled={!isActive} onClick={handleDeleteEvent}>
 				Delete

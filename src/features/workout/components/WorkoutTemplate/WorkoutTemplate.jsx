@@ -1,16 +1,15 @@
 import { useState } from 'react';
 
-import { AddExercise } from '../AddExerciseModal/AddExercise';
-import { Button } from 'components/Elements';
+import { AddExercise } from '../AddExercise/AddExercise';
+import { Modal } from 'components/Layout';
 import { TableGrid } from './Table';
 import { Title } from './Title/Title';
+
 import styles from './WorkoutTemplate.module.css';
 
 export const WorkoutTemplate = ({ data }) => {
-	const [openModal, setOpenModal] = useState(false);
 	const [workoutTitle, setWorkoutTitle] = useState(data?.id);
 
-	const onModalOpen = () => setOpenModal(!openModal);
 	return (
 		<div className={styles.createForm}>
 			<div className={styles.createFormHeader}>
@@ -20,11 +19,10 @@ export const WorkoutTemplate = ({ data }) => {
 						<Title data={data} title={workoutTitle} setTitle={setWorkoutTitle} />
 					</div>
 				</div>
-				<Button type="button" buttonType="add" onClick={onModalOpen}>
-					ADD
-				</Button>
+				<Modal aria-label="add exercise to workout form">
+					<AddExercise title={workoutTitle} />
+				</Modal>
 			</div>
-			{openModal && <AddExercise title={workoutTitle} close={setOpenModal} />}
 			<TableGrid data={data?.exercises} workout={data?.id} />
 		</div>
 	);
