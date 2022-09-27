@@ -4,9 +4,9 @@ import Select from 'react-select';
 
 import {
 	setSubCategory,
-	useGetCategoryQuery,
-	selectCategoryUrl,
 	selectSubCategory,
+	selectCategoryUrl,
+	useGetCategoryQuery,
 } from 'features/exercises';
 
 import styles from './dropdownstyle';

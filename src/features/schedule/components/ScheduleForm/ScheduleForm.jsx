@@ -11,9 +11,9 @@ import {
 import { Calendar } from '../Calendar/Calendar';
 import { EventModal } from '../EventModal/EventModal';
 import styles from './ScheduleForm.module.css';
+import { Modal } from 'components/Layout';
 
 export const ScheduleForm = () => {
-	const [openModal, setOpenModal] = useState(false);
 	const [currentDate, setCurrentDate] = useState(new Date());
 
 	const [deleteEvent] = useDeleteEventMutation();
@@ -51,18 +51,13 @@ export const ScheduleForm = () => {
 
 	return (
 		<div className={styles.scheduleForm}>
-			<button onClick={() => setOpenModal(true)}>open modal</button>
+			<Modal aria-label="calendar day">
+				{schedules && <EventModal selectedDate={selectedDate} event={schedules[selectedDate]} />}
+			</Modal>
 			<button disabled={!isActive} onClick={handleDeleteEvent}>
 				Delete
 			</button>
 			<Calendar events={schedules} value={currentDate} onDateChange={setCurrentDate} />
-			{openModal && (
-				<EventModal
-					close={setOpenModal}
-					selectedDate={selectedDate}
-					event={schedules[selectedDate]}
-				/>
-			)}
 		</div>
 	);
 };
