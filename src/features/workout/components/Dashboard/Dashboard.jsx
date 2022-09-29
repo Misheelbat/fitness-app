@@ -1,9 +1,9 @@
 import { useGetWorkoutsQuery } from 'features/workout/store';
 
 import { Card } from '../Card/Card';
-import { PageSpinner } from 'components/Elements';
-import { CreateWorkout } from './CreateWorkout/CreateWorkout';
 import { Modal } from 'components/Layout';
+import { PageSpinner } from 'components/Elements';
+import { CreateWorkout } from '../CreateWorkout/CreateWorkout';
 
 import styles from './Dashboard.module.css';
 const loadingStyle = { height: '100%', width: '100%' };

@@ -1,28 +1,12 @@
-
-.eventModalContent {
-	text-align: center;
-}
-.eventModalContent input {
-	color: #fff;
-	width: 100%;
-	padding: 0.8em 1.5em;
-	margin-bottom: 1rem;
-	border: 0;
-	border-radius: 0.4em;
-	font-size: 0.9em;
-	background-color: var(--clr-secondary);
-	font-family: 'Poppins', sans-serif;
-}
-.eventModalContent input:focus {
-	outline: 1px solid var(--clr-blue);
-}
-.eventModalContent input::placeholder {
-	text-align: center;
-}
-.eventModalContent > * {
-	margin-bottom: 1rem;
-}
 .eventModalContent span {
-	display: block;
-	padding-block: 1rem;
+	text-align: center;
+}
+
+.eventModalContent section {
+	margin-bottom: 1rem;
+}
+
+.eventSubHeader {
+	color: var(--clr-blue);
+	padding-bottom: 1rem;
 }

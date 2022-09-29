@@ -2,7 +2,7 @@ import { add, differenceInDays, endOfMonth, format, setDate, startOfMonth, sub }
 
 import { Cell } from '../Cell/Cell';
 import { Button } from 'components/Elements';
-import { weekDays } from 'features/schedule/assets/calendar_default';
+import { weekDays } from 'features/schedule/assets/default_week_days';
 import styles from './Calendar.module.css';
 
 export const Calendar = ({ events = {}, value, onDateChange }) => {

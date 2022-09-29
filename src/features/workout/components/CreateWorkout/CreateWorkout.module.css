@@ -7,6 +7,9 @@
 	display: flex;
 	justify-content: center;
 }
+.createWorkoutForm label {
+	color: var(--clr-blue);
+}
 
 .createFormModal {
 	margin-top: 5rem;
@@ -46,4 +49,11 @@
 }
 .createWorkoutForm > * + * {
 	margin-top: 1rem;
+}
+
+.createWorkoutForm input:focus {
+	outline: 1px solid var(--clr-blue);
+}
+.createWorkoutForm input::placeholder {
+	text-align: center;
 }

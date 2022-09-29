@@ -8,9 +8,6 @@ const customStyles = {
 		border: 'none',
 		padding: '2px',
 		cursor: 'pointer',
-		'&:hover': {
-			color: 'red',
-		},
 	}),
 
 	singleValue: (styles) => ({
