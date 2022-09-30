@@ -21,7 +21,7 @@ export const ScheduleForm = () => {
 	const { data: schedules, isSuccess } = useGetSchedulesQuery();
 
 	const selectedDate = format(currentDate, 'dLLLyyyy');
-	const isActive = schedules?.hasOwnProperty(selectedDate);
+	const canDeleteEvent = schedules?.hasOwnProperty(selectedDate);
 
 	useEffect(() => {
 		if (isSuccess && schedules) {
@@ -51,12 +51,17 @@ export const ScheduleForm = () => {
 
 	return (
 		<div className={styles.scheduleForm}>
-			<Modal aria-label="calendar day">
-				{schedules && <EventDetails selectedDate={selectedDate} event={schedules[selectedDate]} />}
-			</Modal>
-			<button disabled={!isActive} onClick={handleDeleteEvent}>
-				Delete
-			</button>
+			<div className={styles.scheduleFormControls}>
+				<Modal aria-label="calendar day details">
+					{schedules && (
+						<EventDetails selectedDate={selectedDate} event={schedules[selectedDate]} />
+					)}
+				</Modal>
+				<button disabled={!canDeleteEvent} onClick={handleDeleteEvent}>
+					Delete
+				</button>
+			</div>
+
 			<Calendar events={schedules} value={currentDate} onDateChange={setCurrentDate} />
 		</div>
 	);

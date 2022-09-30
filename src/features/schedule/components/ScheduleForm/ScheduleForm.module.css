@@ -9,3 +9,6 @@
 .scheduleForm button:disabled {
 	cursor: not-allowed;
 }
+.scheduleFormControls {
+	border-bottom: 1px solid var(--clr-border);
+}

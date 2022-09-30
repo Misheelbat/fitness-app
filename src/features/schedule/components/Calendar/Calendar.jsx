@@ -43,15 +43,15 @@ export const Calendar = ({ events = {}, value, onDateChange }) => {
 
 	return (
 		<div className={styles.calendar}>
-			<Button onClick={handleSetToday}>Today</Button>
+			{/* <Button onClick={handleSetToday}>Today</Button> */}
+			<div className={styles.colHeader}>
+				<div onClick={prevYear}>{'<<'}</div>
+				<div onClick={prevMonth}>{'<'}</div>
+				<div onClick={nextMonth}>{'>'}</div>
+				<div onClick={nextYear}>{'>>'}</div>
+				<div className={styles.spanThree}>{format(value, 'LLLL yyyy')}</div>
+			</div>
 			<div className={styles.col}>
-				<div className={styles.colHeader}>
-					<Cell onClick={prevYear}>{'<<'}</Cell>
-					<Cell onClick={prevMonth}>{'<'}</Cell>
-					<Cell className={styles.spanThree}>{format(value, 'LLLL yyyy')}</Cell>
-					<Cell onClick={nextMonth}>{'>'}</Cell>
-					<Cell onClick={nextYear}>{'>>'}</Cell>
-				</div>
 				<div className={styles.weeks}>
 					{weekDays.map((week) => (
 						<Cell key={week}>{week}</Cell>
