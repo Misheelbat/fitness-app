@@ -24,8 +24,14 @@ export const CreateWorkout = () => {
 	};
 	return (
 		<form onSubmit={handleSubmit} className={styles.createWorkoutForm}>
-			<label htmlFor="title">Please Enter a Title</label>
-			<input type="text" name="title" id="title" placeholder="Workout title" ref={titleRef} />
+			<label htmlFor="title">Create a new Workout</label>
+			<input
+				type="text"
+				name="title"
+				id="title"
+				placeholder="Please enter a Workout title"
+				ref={titleRef}
+			/>
 			<Button type="submit" buttonType="max-width" isLoading={isLoading}>
 				Create
 			</Button>

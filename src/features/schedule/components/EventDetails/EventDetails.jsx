@@ -22,7 +22,10 @@ export const EventDetails = ({ selectedDate, event = {} }) => {
 		value: event.status ? event.status : default_status_options[2].value,
 	});
 
+	const canSave = [selectedDate, workoutOption.value, statusOption.value].every(Boolean);
+
 	const selectWorkout = async () => {
+		if (!canSave) return;
 		try {
 			await addEventToCalendar({
 				id: selectedDate,
@@ -36,37 +39,41 @@ export const EventDetails = ({ selectedDate, event = {} }) => {
 	};
 
 	return (
-		<div>
-			<div className={styles.eventModalContent}>
-				<section>
-					<div className={styles.eventSubHeader}>Select a Workout</div>
-					<Select
-						value={workoutOption}
-						options={workouts?.ids.map((id) => ({ value: id, label: id }))}
-						onChange={(e) => setWorkoutOption(e)}
-						styles={selectorStyles}
-						hideSelectedOptions={true}
-					/>
-				</section>
+		<div className={styles.eventModalContent}>
+			<section>
+				<div className={styles.eventSubHeader}>Select a Workout</div>
+				<Select
+					value={workoutOption}
+					options={workouts?.ids.map((id) => ({ value: id, label: id }))}
+					onChange={(e) => setWorkoutOption(e)}
+					styles={selectorStyles}
+					hideSelectedOptions={true}
+					noOptionsMessage={() => 'No Workouts Found'}
+				/>
+			</section>
 
-				<section>
-					<div className={styles.eventSubHeader}>Status:</div>
-					<Select
-						value={statusOption}
-						options={default_status_options}
-						onChange={(e) => setStatusOption(e)}
-						styles={selectorStyles}
-						hideSelectedOptions={true}
-					/>
-					<Button onClick={selectWorkout} buttonType="max-width" isLoading={isAddEventLoading}>
-						Select
-					</Button>
-				</section>
+			<section>
+				<div className={styles.eventSubHeader}>Set Workout Status:</div>
+				<Select
+					value={statusOption}
+					options={default_status_options}
+					onChange={(e) => setStatusOption(e)}
+					styles={selectorStyles}
+					hideSelectedOptions={true}
+				/>
+				<Button
+					disabled={!canSave}
+					onClick={selectWorkout}
+					buttonType="max-width"
+					isLoading={isAddEventLoading}
+				>
+					Select
+				</Button>
+			</section>
 
-				<span>-- or --</span>
+			<span>-- or --</span>
 
-				<CreateWorkout />
-			</div>
+			<CreateWorkout />
 		</div>
 	);
 };

@@ -1,12 +1,16 @@
-.eventModalContent span {
-	text-align: center;
-}
-
-.eventModalContent section {
-	margin-bottom: 1rem;
+.eventModalContent > section + section {
+	margin-top: 1.5rem;
 }
 
 .eventSubHeader {
 	color: var(--clr-blue);
-	padding-bottom: 1rem;
+	padding-bottom: 0.5rem;
+}
+.eventModalContent > section button {
+	margin-top: 0.5rem;
+}
+.eventModalContent > span {
+	display: block;
+	text-align: center;
+	padding-block: 1.5rem;
 }
