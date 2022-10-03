@@ -61,9 +61,11 @@ export const ScheduleForm = () => {
 						)}
 					</Modal.Content>
 				</Modal>
+
 				<Button disabled={!canDeleteEvent} onClick={handleDeleteEvent}>
 					Delete
 				</Button>
+				
 				<div className={styles.statusLegend}>
 					<span className={styles.complete}>Completed</span>
 					<span className={styles.notComplete}>Not Completed</span>

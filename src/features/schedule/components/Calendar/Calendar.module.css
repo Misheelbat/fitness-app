@@ -20,6 +20,11 @@
 	border: 0;
 	color: aliceblue;
 	cursor: pointer;
+	font-weight: bold;
+	transition: transform 100ms linear;
+}
+.colHeader button:hover {
+	transform: scale(1.2);
 }
 
 .weeks {
