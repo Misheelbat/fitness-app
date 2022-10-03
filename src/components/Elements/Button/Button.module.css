@@ -25,7 +25,8 @@
 
 .buttonContainer:disabled {
 	cursor: not-allowed;
-	background-color: var(--clr-primary);
+	background-color: var(--clr-secondary);
+	color: var(--clr-grey);
 }
 .buttonContainer[aria-disabled='true'] {
 	cursor: not-allowed;
@@ -48,6 +49,5 @@
 .add::before {
 	display: inline-block;
 	content: '\002B';
-	padding-right: 0.5em;
 	font-size: 1.5rem;
 }

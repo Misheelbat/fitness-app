@@ -1,9 +1,9 @@
 import { useState } from 'react';
 
-import { AddExercise } from '../AddExercise/AddExercise';
-import { Modal } from 'components/Layout';
 import { TableGrid } from './Table';
 import { Title } from './Title/Title';
+import { Modal } from 'components/Layout';
+import { AddExercise } from '../AddExercise/AddExercise';
 
 import styles from './WorkoutTemplate.module.css';
 
@@ -19,8 +19,11 @@ export const WorkoutTemplate = ({ data }) => {
 						<Title data={data} title={workoutTitle} setTitle={setWorkoutTitle} />
 					</div>
 				</div>
-				<Modal aria-label="add exercise to workout form">
-					<AddExercise title={workoutTitle} />
+				<Modal>
+					<Modal.Title>Add Exercise</Modal.Title>
+					<Modal.Content contentLabel="add exercise to workout form">
+						<AddExercise title={workoutTitle} />
+					</Modal.Content>
 				</Modal>
 			</div>
 			<TableGrid data={data?.exercises} workout={data?.id} />

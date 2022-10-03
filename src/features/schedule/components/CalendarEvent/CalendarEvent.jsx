@@ -6,10 +6,10 @@ import { Button } from 'components/Elements';
 import { useGetWorkoutsQuery, CreateWorkout } from 'features/workout';
 import { useAddEventToScheduleMutation, default_status_options } from 'features/schedule';
 
-import styles from './EventDetails.module.css';
+import styles from './CalendarEvent.module.css';
 import selectorStyles from './select-styles';
 
-export const EventDetails = ({ selectedDate, event = {} }) => {
+export const CalendarEvent = ({ selectedDate, event = {} }) => {
 	const { data: workouts } = useGetWorkoutsQuery();
 	const [addEventToCalendar, { isLoading: isAddEventLoading }] = useAddEventToScheduleMutation();
 

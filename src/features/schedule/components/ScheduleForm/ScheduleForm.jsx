@@ -8,10 +8,11 @@ import {
 	useUpdateEventStatusMutation,
 } from 'features/schedule';
 
-import { Calendar } from '../Calendar/Calendar';
-import { EventDetails } from '../EventDetails/EventDetails';
-import styles from './ScheduleForm.module.css';
+import { Button } from 'components/Elements';
 import { Modal } from 'components/Layout';
+import { Calendar } from '../Calendar/Calendar';
+import { CalendarEvent } from '../CalendarEvent/CalendarEvent';
+import styles from './ScheduleForm.module.css';
 
 export const ScheduleForm = () => {
 	const [currentDate, setCurrentDate] = useState(new Date());
@@ -40,7 +41,7 @@ export const ScheduleForm = () => {
 	}, [isSuccess, schedules, updateEventStatus]);
 
 	const handleDeleteEvent = async () => {
-		if (!schedules[selectedDate]) return;
+		if (!canDeleteEvent) return;
 		try {
 			await deleteEvent(selectedDate).unwrap();
 			toast.success('Event Deleted');
@@ -52,15 +53,18 @@ export const ScheduleForm = () => {
 	return (
 		<div className={styles.scheduleForm}>
 			<div className={styles.scheduleFormControls}>
-				<Modal aria-label="calendar day details">
-					{schedules && (
-						<EventDetails selectedDate={selectedDate} event={schedules[selectedDate]} />
-					)}
+				<Modal>
+					<Modal.Title buttonType="add" />
+					<Modal.Content contentLabel="calendar day details">
+						{schedules && (
+							<CalendarEvent selectedDate={selectedDate} event={schedules[selectedDate]} />
+						)}
+					</Modal.Content>
 				</Modal>
-				<button disabled={!canDeleteEvent} onClick={handleDeleteEvent}>
+				<Button disabled={!canDeleteEvent} onClick={handleDeleteEvent}>
 					Delete
-				</button>
-				<div className={styles.legend}>
+				</Button>
+				<div className={styles.statusLegend}>
 					<span className={styles.complete}>Completed</span>
 					<span className={styles.notComplete}>Not Completed</span>
 					<span className={styles.tobeComplete}>To be Completed</span>

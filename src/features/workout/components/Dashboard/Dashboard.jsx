@@ -38,8 +38,11 @@ export const Dashboard = () => {
 					access.
 				</p>
 
-				<Modal aria-label="create a new workout">
-					<CreateWorkout />
+				<Modal>
+					<Modal.Title>Create new Workout</Modal.Title>
+					<Modal.Content contentLabel="create a new workout">
+						<CreateWorkout />
+					</Modal.Content>
 				</Modal>
 			</div>
 
