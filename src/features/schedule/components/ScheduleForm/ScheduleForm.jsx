@@ -60,6 +60,11 @@ export const ScheduleForm = () => {
 				<button disabled={!canDeleteEvent} onClick={handleDeleteEvent}>
 					Delete
 				</button>
+				<div className={styles.legend}>
+					<span className={styles.complete}>Completed</span>
+					<span className={styles.notComplete}>Not Completed</span>
+					<span className={styles.tobeComplete}>To be Completed</span>
+				</div>
 			</div>
 
 			<Calendar events={schedules} value={currentDate} onDateChange={setCurrentDate} />

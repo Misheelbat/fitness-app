@@ -8,7 +8,7 @@ export const Modal = ({ children, ...rest }) => {
 	const [openModal, setOpenModal] = useState('closed');
 
 	return (
-		<div>
+		<>
 			<button onClick={() => setOpenModal('open')}>open</button>
 			<Dialog isOpen={openModal === 'open'} {...rest} className={styles.modalContainer}>
 				<button onClick={() => setOpenModal('close')} className={styles.modalCloseBtn}>
@@ -16,6 +16,6 @@ export const Modal = ({ children, ...rest }) => {
 				</button>
 				{children}
 			</Dialog>
-		</div>
+		</>
 	);
 };

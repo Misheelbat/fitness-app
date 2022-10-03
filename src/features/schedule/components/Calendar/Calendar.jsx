@@ -45,11 +45,11 @@ export const Calendar = ({ events = {}, value, onDateChange }) => {
 		<div className={styles.calendar}>
 			{/* <Button onClick={handleSetToday}>Today</Button> */}
 			<div className={styles.colHeader}>
-				<div onClick={prevYear}>{'<<'}</div>
-				<div onClick={prevMonth}>{'<'}</div>
-				<div onClick={nextMonth}>{'>'}</div>
-				<div onClick={nextYear}>{'>>'}</div>
+				<button onClick={prevYear}>{'<<'}</button>
+				<button onClick={prevMonth}>{'<'}</button>
 				<div className={styles.spanThree}>{format(value, 'LLLL yyyy')}</div>
+				<button onClick={nextMonth}>{'>'}</button>
+				<button onClick={nextYear}>{'>>'}</button>
 			</div>
 			<div className={styles.col}>
 				<div className={styles.weeks}>

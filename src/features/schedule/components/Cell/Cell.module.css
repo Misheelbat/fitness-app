@@ -34,22 +34,15 @@
 
 .tobeCompleted {
 	border-left-color: orange;
-}
-.complete {
-	border-left-color: #27ae60;
-}
-.incomplete {
-	border-left-color: #c7302b;
-}
-
-.tobeCompleted span:first-of-type {
 	color: orange;
 }
-.complete span:first-of-type {
-	color: #27ae60;
+.complete {
+	border-left-color: var(--clr-green);
+	color: var(--clr-green);
 }
-.incomplete span:first-of-type {
-	color: #c7302b;
+.incomplete {
+	border-left-color: var(--clr-red);
+	color: var(--clr-red);
 }
 
 .eventName:hover {
