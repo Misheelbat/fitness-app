@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import {
@@ -17,14 +17,7 @@ import styles from './AddExercise.module.css';
 export const AddExercise = ({ title }) => {
 	const [selectedExId, setSelectedExId] = useState(null);
 	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
-	const [addNewExerciseToWorkout, { isLoading, isSuccess }] = useAddExerciseToWorkoutMutation();
-
-	useEffect(() => {
-		if (isSuccess) {
-			setSliderValue(SETS_DEFAULT_VALUE);
-			toast.success('Added Exercise to Workout');
-		}
-	}, [isSuccess]);
+	const [addNewExerciseToWorkout, { isLoading }] = useAddExerciseToWorkoutMutation();
 
 	const canSave = [title, selectedExId].every(Boolean);
 
@@ -36,11 +29,13 @@ export const AddExercise = ({ title }) => {
 		}
 		const formData = new FormData(e.currentTarget);
 		const reps = extractRepsData(formData);
+
 		try {
 			await addNewExerciseToWorkout({
 				title,
 				data: { id: selectedExId, reps },
 			}).unwrap();
+			toast.success('Added Exercise to Workout');
 		} catch (error) {
 			toast.error(error);
 		}

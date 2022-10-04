@@ -22,11 +22,13 @@ export const Card = ({ loading, exercise = '', equipments = [], exId }) => {
 			</div>
 		);
 	}
-	if (exercise) {
+	if (exercise && !loading) {
 		content = (
 			<div className={styles.cardInfo}>
 				<h4>{exercise}</h4>
-				<div className={styles.equipment}>{equipment && equipment.map((e) => <p key={e}>{e},</p>)}</div>
+				<div className={styles.equipment}>
+					{equipment && equipment.map((e) => <p key={e}>{e},</p>)}
+				</div>
 			</div>
 		);
 	}
