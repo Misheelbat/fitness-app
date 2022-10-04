@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 
 import { Button } from 'components/Elements';
 import { useGetWorkoutsQuery, CreateWorkout } from 'features/workout';
-import { useAddEventToScheduleMutation, default_status_options } from 'features/schedule';
+import { useAddEventToScheduleMutation, default_event_status } from 'features/schedule';
 
 import styles from './CalendarEvent.module.css';
 import selectorStyles from './select-styles';
@@ -18,8 +18,8 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 		label: event?.name,
 	});
 	const [statusOption, setStatusOption] = useState({
-		label: event.status ? event.status : default_status_options[2].label,
-		value: event.status ? event.status : default_status_options[2].value,
+		label: event.status ? event.status : default_event_status[2].label,
+		value: event.status ? event.status : default_event_status[2].value,
 	});
 
 	const canSave = [selectedDate, workoutOption.value, statusOption.value].every(Boolean);
@@ -41,7 +41,7 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 	return (
 		<div className={styles.eventModalContent}>
 			<section>
-				<div className={styles.eventSubHeader}>Select a Workout</div>
+				<div className={styles.eventSubHeader}>Select a Workout for: {selectedDate}</div>
 				<Select
 					value={workoutOption}
 					options={workouts?.ids.map((id) => ({ value: id, label: id }))}
@@ -56,7 +56,7 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 				<div className={styles.eventSubHeader}>Set Workout Status:</div>
 				<Select
 					value={statusOption}
-					options={default_status_options}
+					options={default_event_status}
 					onChange={(e) => setStatusOption(e)}
 					styles={selectorStyles}
 					hideSelectedOptions={true}
