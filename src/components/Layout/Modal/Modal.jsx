@@ -1,8 +1,7 @@
 import { useState, createContext, useContext } from 'react';
 
 import { Dialog } from '@reach/dialog';
-import { XCircle } from 'phosphor-react';
-import { Button } from 'components/Elements';
+import { Button, DeleteBtn } from 'components/Elements';
 
 // react dialog css must be imported before styles.module
 import '@reach/dialog/styles.css';
@@ -34,9 +33,13 @@ Modal.Content = function ModalContent({ contentLabel = 'Modal Content', children
 			className={styles.modalContainer}
 			{...rest}
 		>
-			<button onClick={() => setOpenModal('close')} className={styles.modalCloseBtn}>
-				<XCircle size={20} />
-			</button>
+			<DeleteBtn
+				onClick={() => setOpenModal('close')}
+				x={true}
+				btnClassName={styles.modalCloseBtn}
+				size={20}
+			/>
+
 			{children}
 		</Dialog>
 	);

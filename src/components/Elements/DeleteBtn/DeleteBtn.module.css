@@ -6,3 +6,10 @@
 	background-color: transparent;
 	cursor: pointer;
 }
+.deleteBtn:hover {
+	color: var(--clr-blue);
+}
+
+.deleteBtn:active {
+	transform: scale(1.1);
+}
