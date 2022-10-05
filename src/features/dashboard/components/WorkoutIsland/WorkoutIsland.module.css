@@ -1,3 +1,10 @@
-.nextWorkout {
+.workoutDone {
 	color: var(--clr-green);
+}
+.workoutLeft {
+	color: var(--clr-red);
+}
+.workoutDone,
+.workoutLeft {
+	flex-basis: 100%;
 }
