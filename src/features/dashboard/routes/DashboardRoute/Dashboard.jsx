@@ -3,7 +3,7 @@ import { Dashboard } from '../../components/Dashboard/Dashboard';
 
 export const DashboardRoute = () => {
 	return (
-		<ContentLayout title="Dashboard">
+		<ContentLayout title="My Dashboard">
 			<Dashboard />
 		</ContentLayout>
 	);

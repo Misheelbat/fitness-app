@@ -1,0 +1,10 @@
+.exercisesDone {
+	color: var(--clr-green);
+}
+.exercisesLeft {
+	color: var(--clr-red);
+}
+.exercisesDone,
+.exercisesLeft {
+	flex-basis: 100%;
+}

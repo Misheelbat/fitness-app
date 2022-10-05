@@ -1,0 +1,25 @@
+.island {
+	background-color: var(--clr-primary);
+	width: 250px;
+	max-width: 250px;
+	height: 130px;
+	max-height: 130px;
+	border-radius: 15px;
+	padding: 1rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.islandTitle,
+.islandFooter {
+	font-size: 0.8em;
+	color: var(--clr-grey);
+}
+
+.islandContent {
+	font-size: 1.5em;
+}
+.islandFooter {
+	display: flex;
+	justify-content: space-between;
+}

@@ -1,10 +1,6 @@
 .mainDashboard {
 	height: 100%;
-	padding: 2rem 1rem 2rem 1rem;
-	border-radius: 15px 15px 0 0;
-	background-color: var(--clr-primary);
 	display: flex;
-	flex-direction: column;
-	gap: 3rem;
+	gap: 1rem;
 	overflow: hidden;
 }
