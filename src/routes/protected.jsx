@@ -9,6 +9,7 @@ const { UserRoutes } = lazyImport(() => import('features/users'), 'UserRoutes');
 const { ExercisesRoutes } = lazyImport(() => import('features/exercises'), 'ExercisesRoutes');
 const { WorkoutRoutes } = lazyImport(() => import('features/workout'), 'WorkoutRoutes');
 const { ScheduleRoutes } = lazyImport(() => import('features/schedule'), 'ScheduleRoutes');
+const { DashboardRoute } = lazyImport(() => import('features/dashboard'), 'DashboardRoute');
 
 const App = () => {
 	return (
@@ -29,7 +30,7 @@ export const protectedRoutes = [
 			{ path: 'workouts/*', element: <WorkoutRoutes /> },
 			{ path: 'schedule/*', element: <ScheduleRoutes /> },
 			{ path: 'profile/*', element: <UserRoutes /> },
-			{ path: '', element: <div>dashboard</div> },
+			{ path: '', element: <DashboardRoute /> },
 			{ path: '*', element: <Navigate to="." /> },
 		],
 	},

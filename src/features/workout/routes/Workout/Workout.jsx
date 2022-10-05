@@ -1,9 +1,10 @@
 import { useParams } from 'react-router-dom';
 
+import { useGetWorkoutsQuery } from 'features/workout/store';
+
 import { ContentLayout } from 'components/Layout';
 import { WorkoutTemplate } from '../../components/WorkoutTemplate/WorkoutTemplate';
 import { PageSpinner } from 'components/Elements';
-import { useGetWorkoutsQuery } from 'features/workout/store';
 
 const loadingStyle = { height: '100%', width: '100%' };
 export const Workout = () => {
