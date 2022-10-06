@@ -12,6 +12,7 @@ import { Button } from 'components/Elements';
 import { Modal } from 'components/Layout';
 import { Calendar } from '../Calendar/Calendar';
 import { CalendarEvent } from '../CalendarEvent/CalendarEvent';
+import { DATE_FORMAT } from 'assets/date_format';
 import styles from './ScheduleForm.module.css';
 
 export const ScheduleForm = () => {
@@ -21,7 +22,7 @@ export const ScheduleForm = () => {
 	const [updateEventStatus] = useUpdateEventStatusMutation();
 	const { data: schedules, isSuccess } = useGetSchedulesQuery();
 
-	const selectedDate = format(currentDate, 'dLLLyyyy');
+	const selectedDate = format(currentDate, DATE_FORMAT);
 	const canDeleteEvent = schedules?.hasOwnProperty(selectedDate);
 
 	useEffect(() => {
@@ -65,7 +66,7 @@ export const ScheduleForm = () => {
 				<Button disabled={!canDeleteEvent} onClick={handleDeleteEvent}>
 					Delete
 				</Button>
-				
+
 				<div className={styles.statusLegend}>
 					<span className={styles.complete}>Completed</span>
 					<span className={styles.notComplete}>Not Completed</span>

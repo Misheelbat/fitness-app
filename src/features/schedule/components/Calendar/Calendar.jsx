@@ -1,7 +1,6 @@
 import { add, differenceInDays, endOfMonth, format, setDate, startOfMonth, sub } from 'date-fns';
 
 import { Cell } from '../Cell/Cell';
-import { Button } from 'components/Elements';
 import { weekDays } from 'features/schedule/assets/default_week_days';
 import styles from './Calendar.module.css';
 
@@ -17,7 +16,6 @@ export const Calendar = ({ events = {}, value, onDateChange }) => {
 	const prevYear = () => onDateChange(sub(value, { years: 1 }));
 	const nextYear = () => onDateChange(add(value, { years: 1 }));
 
-	const handleSetToday = () => onDateChange(new Date());
 	const handleClickDate = (dayOfMonth) => {
 		const date = setDate(value, dayOfMonth);
 		onDateChange(date);
@@ -26,7 +24,7 @@ export const Calendar = ({ events = {}, value, onDateChange }) => {
 	const monthAndYear = format(value, 'LLLyyyy');
 
 	const calendarDays = Array.from({ length: daysInCurrentMonth }).map((_, index) => {
-		const dayNumber = index + 1;
+		let dayNumber = index + 1;
 		const fullDate = dayNumber + monthAndYear;
 		const isCurrentDate = dayNumber === value.getDate();
 		return (
