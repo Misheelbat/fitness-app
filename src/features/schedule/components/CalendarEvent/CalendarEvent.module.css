@@ -6,6 +6,10 @@
 	color: var(--clr-blue);
 	padding-bottom: 0.5rem;
 }
+.eventSubHeader span {
+	color: white;
+	padding-left: 1rem;
+}
 .eventModalContent > section button {
 	margin-top: 0.5rem;
 }

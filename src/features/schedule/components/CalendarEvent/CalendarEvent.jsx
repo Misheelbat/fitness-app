@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
+import { format } from 'date-fns';
 
 import { Button } from 'components/Elements';
 import { useGetWorkoutsQuery, CreateWorkout } from 'features/workout';
@@ -41,7 +42,9 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 	return (
 		<div className={styles.eventModalContent}>
 			<section>
-				<div className={styles.eventSubHeader}>Select a Workout for: {selectedDate}</div>
+				<div className={styles.eventSubHeader}>
+					Select a Workout for: <span>{format(new Date(selectedDate), "ccc ',' dd LLL yyyy")}</span>
+				</div>
 				<Select
 					value={workoutOption}
 					options={workouts?.ids.map((id) => ({ value: id, label: id }))}
