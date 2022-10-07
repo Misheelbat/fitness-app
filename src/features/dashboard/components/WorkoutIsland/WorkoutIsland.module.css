@@ -8,3 +8,7 @@
 .workoutLeft {
 	flex-basis: 100%;
 }
+.contentContainer {
+	display: flex;
+	gap: 1rem;
+}

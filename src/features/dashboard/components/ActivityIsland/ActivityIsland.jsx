@@ -1,10 +1,10 @@
 import { format, compareDesc } from 'date-fns';
 import { useGetSchedulesQuery } from 'features/schedule';
+import { nearestFutureEventDateFn } from 'features/dashboard/utility';
 
 import { Island } from '../Island/Island';
 
 import { DATE_FORMAT } from 'assets/date_format';
-import { nearestFutureEventDateFn } from 'features/dashboard/utility';
 import styles from './ActivityIsland.module.css';
 
 export const ActivityIsland = () => {
