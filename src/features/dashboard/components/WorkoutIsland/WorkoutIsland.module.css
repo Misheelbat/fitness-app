@@ -2,13 +2,18 @@
 	color: var(--clr-green);
 }
 .workoutLeft {
+	color: orange;
+}
+.workoutMissed {
 	color: var(--clr-red);
 }
 .workoutDone,
-.workoutLeft {
+.workoutLeft,
+.workoutMissed {
 	flex-basis: 100%;
 }
 .contentContainer {
 	display: flex;
 	gap: 1rem;
+	align-items: center;
 }

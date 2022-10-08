@@ -40,7 +40,7 @@
 	border-left-color: var(--clr-green);
 	color: var(--clr-green);
 }
-.incomplete {
+.inComplete {
 	border-left-color: var(--clr-red);
 	color: var(--clr-red);
 }

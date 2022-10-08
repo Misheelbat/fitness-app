@@ -32,7 +32,7 @@ export const ScheduleForm = () => {
 				if (event.status !== 'tobeCompleted') return;
 				if (isBefore(new Date(event.id), today)) {
 					try {
-						await updateEventStatus({ id: event.id, status: 'incomplete' });
+						await updateEventStatus({ id: event.id, status: 'inComplete' });
 					} catch (error) {
 						toast.error(error);
 					}
