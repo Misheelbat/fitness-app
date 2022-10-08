@@ -12,6 +12,7 @@ export const WorkoutIsland = () => {
 	const handleChange = (e) => {
 		setValue(e);
 	};
+	
 	return (
 		<Island>
 			<Island.Title>Workouts</Island.Title>
@@ -19,7 +20,7 @@ export const WorkoutIsland = () => {
 				<div className={styles.contentContainer}>
 					<Select
 						value={value}
-						options={defaultValue}
+						options={defaultSelectValue}
 						onChange={handleChange}
 						styles={customStyles}
 					/>
@@ -33,7 +34,7 @@ export const WorkoutIsland = () => {
 		</Island>
 	);
 };
-export const defaultValue = [
+export const defaultSelectValue = [
 	{ label: 'Week', value: 'week' },
 	{ label: 'Month', value: 'month' },
 	{ label: 'Year', value: 'year' },
