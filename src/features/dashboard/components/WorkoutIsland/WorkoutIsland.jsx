@@ -8,6 +8,10 @@ import { Island } from '../Island/Island';
 import customStyles from './react-select.styles';
 import styles from './WorkoutIsland.module.css';
 
+const completedWorkout = (e) => e === 'complete';
+const inCompletedWorkout = (e) => e === 'inComplete';
+const tobeCompletedWorkout = (e) => e === 'tobeCompleted';
+
 export const WorkoutIsland = () => {
 	const { data: schedules, isSuccess } = useGetSchedulesQuery();
 
@@ -16,17 +20,21 @@ export const WorkoutIsland = () => {
 		setValue(e);
 	};
 	let nOfWorkout = [];
-	let nDoneWorkout = [];
-	let nMissedWorkout = [];
-	let nLeftWorkout = [];
+	let nCompletedWorkouts = 0;
+	let nIncompletedWorkouts = 0;
+	let nTobeCompletedWorkouts = 0;
 
 	if (isSuccess) {
 		nOfWorkout = Object.values(schedules).filter((event) => {
-			return isThisWeek(new Date(event.id), { weekStartsOn: 1 });
+			if (isThisWeek(new Date(event.id), { weekStartsOn: 1 })) {
+				if (completedWorkout(event.status)) nCompletedWorkouts++;
+				if (inCompletedWorkout(event.status)) nIncompletedWorkouts++;
+				if (tobeCompletedWorkout(event.status)) nTobeCompletedWorkouts++;
+				return true;
+			} else {
+				return false;
+			}
 		});
-		nDoneWorkout = nOfWorkout.filter((e) => e.status === 'complete');
-		nMissedWorkout = nOfWorkout.filter((e) => e.status === 'inComplete');
-		nLeftWorkout = nOfWorkout.filter((e) => e.status === 'tobeCompleted');
 	}
 	return (
 		<Island>
@@ -43,9 +51,9 @@ export const WorkoutIsland = () => {
 				</div>
 			</Island.Content>
 			<Island.Footer>
-				<span className={styles.workoutDone}>Done: {nDoneWorkout.length}</span>
-				<span className={styles.workoutLeft}>Left: {nLeftWorkout.length}</span>
-				<span className={styles.workoutMissed}>Missed: {nMissedWorkout.length}</span>
+				<span className={styles.workoutDone}>Done: {nCompletedWorkouts}</span>
+				<span className={styles.workoutLeft}>Left: {nTobeCompletedWorkouts}</span>
+				<span className={styles.workoutMissed}>Missed: {nIncompletedWorkouts}</span>
 			</Island.Footer>
 		</Island>
 	);
