@@ -2,7 +2,7 @@ import { memo } from 'react';
 import cx from 'classnames';
 import styles from './Cell.module.css';
 
-export let Cell = ({ onClick, children, className, isActive = false, event }) => {
+export let Cell = ({ onClick, children, isActive = false, event }) => {
 	let content = children;
 	if (event) {
 		content = (
@@ -15,7 +15,7 @@ export let Cell = ({ onClick, children, className, isActive = false, event }) =>
 	return (
 		<div
 			onClick={!isActive ? onClick : undefined}
-			className={cx(styles.cell, className, isActive ? styles.active : null)}
+			className={cx(styles.cell, isActive ? styles.active : null)}
 		>
 			{content}
 		</div>

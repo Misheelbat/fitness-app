@@ -18,7 +18,7 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 		value: event?.name,
 		label: event?.name,
 	});
-	
+
 	const [statusOption, setStatusOption] = useState({
 		label: event.status ? event.status : DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.label,
 		value: event.status ? event.status : DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.value,
@@ -26,7 +26,8 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 
 	const canSave = [selectedDate, workoutOption.value, statusOption.value].every(Boolean);
 
-	const selectWorkout = async () => {
+	const selectWorkout = async (e) => {
+		e.preventDefault();
 		if (!canSave) return;
 		try {
 			await addEventToCalendar({
@@ -42,38 +43,41 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 
 	return (
 		<div className={styles.eventModalContent}>
-			<section>
-				<div className={styles.eventSubHeader}>
-					Select a Workout for: <span>{format(new Date(selectedDate), "ccc ',' dd LLL yyyy")}</span>
-				</div>
-				<Select
-					value={workoutOption}
-					options={workouts?.ids.map((id) => ({ value: id, label: id }))}
-					onChange={(e) => setWorkoutOption(e)}
-					styles={selectorStyles}
-					hideSelectedOptions={true}
-					noOptionsMessage={() => 'No Workouts Found'}
-				/>
-			</section>
+			<form onSubmit={selectWorkout}>
+				<section>
+					<div className={styles.eventSubHeader}>
+						Select a Workout for:{' '}
+						<span>{format(new Date(selectedDate), "ccc ',' dd LLL yyyy")}</span>
+					</div>
+					<Select
+						value={workoutOption}
+						options={workouts?.ids.map((id) => ({ value: id, label: id }))}
+						onChange={(e) => setWorkoutOption(e)}
+						styles={selectorStyles}
+						hideSelectedOptions={true}
+						noOptionsMessage={() => 'No Workouts Found'}
+					/>
+				</section>
 
-			<section>
-				<div className={styles.eventSubHeader}>Set Workout Status:</div>
-				<Select
-					value={statusOption}
-					options={Object.values(DEFAULT_EVENT_STATUS_OPTIONS)}
-					onChange={(e) => setStatusOption(e)}
-					styles={selectorStyles}
-					hideSelectedOptions={true}
-				/>
-				<Button
-					disabled={!canSave}
-					onClick={selectWorkout}
-					buttonType="max-width"
-					isLoading={isAddEventLoading}
-				>
-					Select
-				</Button>
-			</section>
+				<section>
+					<div className={styles.eventSubHeader}>Set Workout Status:</div>
+					<Select
+						value={statusOption}
+						options={Object.values(DEFAULT_EVENT_STATUS_OPTIONS)}
+						onChange={(e) => setStatusOption(e)}
+						styles={selectorStyles}
+						hideSelectedOptions={true}
+					/>
+					<Button
+						disabled={!canSave}
+						type="submit"
+						buttonType="max-width"
+						isLoading={isAddEventLoading}
+					>
+						Select
+					</Button>
+				</section>
+			</form>
 
 			<span>-- or --</span>
 

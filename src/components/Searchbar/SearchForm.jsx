@@ -14,11 +14,11 @@ export const SearchForm = ({ width, searchFn, results, selectFn }) => {
 	const [term, setTerm] = useState('');
 	const [showResults, setShowResults] = useState(false);
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
 			if (term) {
-				searchFn(term);
+				await searchFn(term);
 				setShowResults(true);
 				setTerm('');
 			}
@@ -31,11 +31,7 @@ export const SearchForm = ({ width, searchFn, results, selectFn }) => {
 		<div className={styles.searchForm} style={{ width: width }}>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="search">
-					{results?.isLoading ? (
-						<Spinner size="16" />
-					) : (
-						<MagnifyingGlass className={styles.icon} />
-					)}
+					{results?.isLoading ? <Spinner size="16" /> : <MagnifyingGlass className={styles.icon} />}
 					<input
 						onFocus={() => setShowResults(true)}
 						id="search"

@@ -1,4 +1,4 @@
-.eventModalContent > section + section {
+.eventModalContent form > section + section {
 	margin-top: 1.5rem;
 }
 
@@ -10,7 +10,7 @@
 	color: white;
 	padding-left: 1rem;
 }
-.eventModalContent > section button {
+.eventModalContent form > section button {
 	margin-top: 0.5rem;
 }
 .eventModalContent > span {

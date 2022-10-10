@@ -20,13 +20,13 @@ export const Dashboard = () => {
 		content = <p>{error}</p>;
 	}
 
-	if (isSuccess) {
+	if (isSuccess && workouts) {
 		const { ids } = workouts;
-		content = ids.length ? (
-			ids.map((workoutId) => <Card key={workoutId} cardName={workoutId} />)
-		) : (
-			<div>Nothing here yet...</div>
-		);
+		if (ids.length) {
+			content = ids.map((workoutId) => <Card key={workoutId} cardName={workoutId} />);
+		} else {
+			content = <div>Nothing here yet...</div>;
+		}
 	}
 
 	return (
