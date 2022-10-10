@@ -3,6 +3,7 @@ import { format, isBefore } from 'date-fns';
 import { toast } from 'react-toastify';
 
 import {
+	EVENT_STATUS,
 	useGetSchedulesQuery,
 	useDeleteEventMutation,
 	useUpdateEventStatusMutation,
@@ -29,10 +30,10 @@ export const ScheduleForm = () => {
 		if (isSuccess && schedules) {
 			const today = new Date();
 			Object.values(schedules).forEach(async (event) => {
-				if (event.status !== 'tobeCompleted') return;
+				if (event.status !== EVENT_STATUS.tobeCompleted) return;
 				if (isBefore(new Date(event.id), today)) {
 					try {
-						await updateEventStatus({ id: event.id, status: 'inComplete' });
+						await updateEventStatus({ id: event.id, status: EVENT_STATUS.inComplete });
 					} catch (error) {
 						toast.error(error);
 					}

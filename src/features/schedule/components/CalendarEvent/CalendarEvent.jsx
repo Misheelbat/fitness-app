@@ -5,7 +5,7 @@ import { format } from 'date-fns';
 
 import { Button } from 'components/Elements';
 import { useGetWorkoutsQuery, CreateWorkout } from 'features/workout';
-import { useAddEventToScheduleMutation, default_event_status } from 'features/schedule';
+import { useAddEventToScheduleMutation, DEFAULT_EVENT_STATUS_OPTIONS } from 'features/schedule';
 
 import styles from './CalendarEvent.module.css';
 import selectorStyles from './select-styles';
@@ -18,9 +18,10 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 		value: event?.name,
 		label: event?.name,
 	});
+	
 	const [statusOption, setStatusOption] = useState({
-		label: event.status ? event.status : default_event_status[2].label,
-		value: event.status ? event.status : default_event_status[2].value,
+		label: event.status ? event.status : DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.label,
+		value: event.status ? event.status : DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.value,
 	});
 
 	const canSave = [selectedDate, workoutOption.value, statusOption.value].every(Boolean);
@@ -59,7 +60,7 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 				<div className={styles.eventSubHeader}>Set Workout Status:</div>
 				<Select
 					value={statusOption}
-					options={default_event_status}
+					options={Object.values(DEFAULT_EVENT_STATUS_OPTIONS)}
 					onChange={(e) => setStatusOption(e)}
 					styles={selectorStyles}
 					hideSelectedOptions={true}
