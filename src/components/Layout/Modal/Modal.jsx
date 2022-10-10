@@ -48,7 +48,7 @@ Modal.Content = function ModalContent({ contentLabel = 'Modal Content', children
 Modal.Title = function ModalTitle({ children, ...rest }) {
 	const { setOpenModal } = useToggleContext();
 	return (
-		<Button onClick={() => setOpenModal('open')} {...rest}>
+		<Button onClick={() => setOpenModal('open')} aria-label="open modal button" {...rest}>
 			{children}
 		</Button>
 	);

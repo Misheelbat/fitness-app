@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 import { selectExerciseId, useGetExerciseDetailsQuery } from 'features/exercises';
 
 import { Tags } from './Tags/Tags';
-import { Spinner, Button } from 'components/Elements';
+import { Spinner } from 'components/Elements';
 import { MuscleDiagram } from './MuscleDiagram/MuscleDiagram';
-
+import { Modal } from 'components/Layout';
+import { AddExercise } from 'features/workout/components/AddExercise/AddExercise';
 import styles from './Preview.module.css';
 
 export const ExercisePreview = () => {
@@ -27,7 +28,12 @@ export const ExercisePreview = () => {
 			<div className={styles.preview}>
 				<section className={styles.title}>
 					<h3>{data.name}</h3>
-					<Button buttonType="add" />
+					<Modal>
+						<Modal.Title buttonType="add" />
+						<Modal.Content contentLabel="add exercise to a workout">
+							<AddExercise ExId={id} />
+						</Modal.Content>
+					</Modal>
 				</section>
 
 				<div className={styles.category}>

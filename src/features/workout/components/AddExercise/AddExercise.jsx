@@ -11,15 +11,22 @@ import { Reps } from './Reps/Reps';
 import { Sets } from './Sets/Sets';
 import { Button } from 'components/Elements';
 import { SearchExercise } from './Search/SearchExercise';
+import { SelectWorkout } from './SelectWorkout/SelectWorkout';
 
 import styles from './AddExercise.module.css';
 
-export const AddExercise = ({ title }) => {
-	const [selectedExId, setSelectedExId] = useState(null);
+export const AddExercise = ({ title = null, ExId }) => {
+	const [selectedExId, setSelectedExId] = useState(ExId);
 	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
+
+	const [defaultOption, setDefaultOption] = useState({
+		value: title,
+		label: title,
+	});
+
 	const [addNewExerciseToWorkout, { isLoading }] = useAddExerciseToWorkoutMutation();
 
-	const canSave = [title, selectedExId].every(Boolean);
+	const canSave = [defaultOption.value, selectedExId].every(Boolean);
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -32,7 +39,7 @@ export const AddExercise = ({ title }) => {
 
 		try {
 			await addNewExerciseToWorkout({
-				title,
+				title: defaultOption.value,
 				data: { id: selectedExId, reps },
 			}).unwrap();
 			toast.success('Added Exercise to Workout');
@@ -45,6 +52,11 @@ export const AddExercise = ({ title }) => {
 		<div>
 			<section className={styles.modalHeader}>
 				<h2>Add an Exercise</h2>
+			</section>
+
+			<section className={styles.selectWorkout}>
+				<p className={styles.modalTitle}>Choose a Workout</p>
+				<SelectWorkout defaultOption={defaultOption} setDefaultOption={setDefaultOption} />
 			</section>
 
 			<section className={styles.search}>
