@@ -10,8 +10,13 @@ import styles from './WorkoutIsland.module.css';
 
 export const WorkoutIsland = () => {
 	const [timeFrame, setTimeFrame] = useState(DEFAULT_TIMEFRAMES.week);
-	const { workoutNumber, nCompletedWorkouts, nIncompletedWorkouts, nTobeCompletedWorkouts } =
-		useGetWorkoutStats(timeFrame);
+	const {
+		workoutNumber,
+		nCompletedWorkouts,
+		nIncompletedWorkouts,
+		nTobeCompletedWorkouts,
+		restDays,
+	} = useGetWorkoutStats(timeFrame);
 
 	const handleChange = (e) => {
 		setTimeFrame(e.value);
@@ -35,7 +40,7 @@ export const WorkoutIsland = () => {
 						onChange={handleChange}
 						styles={customStyles}
 					/>
-					<span>{`: ${workoutNumber} / ${7 - workoutNumber} RD`}</span>
+					<span>{`: ${workoutNumber} / ${restDays} RD`}</span>
 				</div>
 			</Island.Content>
 			<Island.Footer>

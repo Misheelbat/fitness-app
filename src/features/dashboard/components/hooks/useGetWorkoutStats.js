@@ -1,72 +1,89 @@
-import { isThisWeek, isThisMonth, isThisYear } from 'date-fns';
+import { isThisWeek, isThisMonth, isThisYear, getDaysInMonth, getDaysInYear } from 'date-fns';
 
 import { useGetSchedulesQuery, EVENT_STATUS } from 'features/schedule';
 import { DEFAULT_TIMEFRAMES } from 'features/dashboard/assets';
 
-const completedWorkout = (e) => e === EVENT_STATUS.complete;
-const inCompletedWorkout = (e) => e === EVENT_STATUS.inComplete;
-const tobeCompletedWorkout = (e) => e === EVENT_STATUS.tobeCompleted;
-
 export const useGetWorkoutStats = (timeFrame = DEFAULT_TIMEFRAMES.week) => {
 	const { data: schedules, isSuccess } = useGetSchedulesQuery();
-	let nOfWorkout = [];
+
+	let workoutsInTimeFrame = [];
 	let nCompletedWorkouts = 0;
 	let nIncompletedWorkouts = 0;
 	let nTobeCompletedWorkouts = 0;
+	let restDays = 7;
 
 	if (!isSuccess || !schedules)
 		return {
-			workoutNumber: nOfWorkout.length,
+			workoutNumber: workoutsInTimeFrame.length,
 			nCompletedWorkouts,
 			nIncompletedWorkouts,
 			nTobeCompletedWorkouts,
+			restDays,
 		};
 
+	const calcWorkoutStats = (status) => {
+		if (status === EVENT_STATUS.complete) {
+			nCompletedWorkouts++;
+			return;
+		}
+		if (status === EVENT_STATUS.inComplete) {
+			nIncompletedWorkouts++;
+			return;
+		}
+		if (status === EVENT_STATUS.tobeCompleted) {
+			nTobeCompletedWorkouts++;
+			return;
+		}
+	};
+
+	const allEventsInCalendar = Object.values(schedules);
 	switch (timeFrame) {
 		case DEFAULT_TIMEFRAMES.week:
-			nOfWorkout = Object.values(schedules).filter((event) => {
+			workoutsInTimeFrame = allEventsInCalendar.filter((event) => {
 				if (isThisWeek(new Date(event.id), { weekStartsOn: 1 })) {
-					if (completedWorkout(event.status)) nCompletedWorkouts++;
-					if (inCompletedWorkout(event.status)) nIncompletedWorkouts++;
-					if (tobeCompletedWorkout(event.status)) nTobeCompletedWorkouts++;
+					calcWorkoutStats(event.status);
 					return true;
 				} else {
 					return false;
 				}
 			});
+			restDays = restDays - workoutsInTimeFrame.length;
 			break;
+
 		case DEFAULT_TIMEFRAMES.month:
-			nOfWorkout = Object.values(schedules).filter((event) => {
+			workoutsInTimeFrame = allEventsInCalendar.filter((event) => {
 				if (isThisMonth(new Date(event.id), { weekStartsOn: 1 })) {
-					if (completedWorkout(event.status)) nCompletedWorkouts++;
-					if (inCompletedWorkout(event.status)) nIncompletedWorkouts++;
-					if (tobeCompletedWorkout(event.status)) nTobeCompletedWorkouts++;
+					calcWorkoutStats(event.status);
 					return true;
 				} else {
 					return false;
 				}
 			});
+			const numberOfDaysInCurrentMonth = getDaysInMonth(new Date());
+			restDays = numberOfDaysInCurrentMonth - workoutsInTimeFrame.length;
 			break;
+
 		case DEFAULT_TIMEFRAMES.year:
-			nOfWorkout = Object.values(schedules).filter((event) => {
+			workoutsInTimeFrame = allEventsInCalendar.filter((event) => {
 				if (isThisYear(new Date(event.id), { weekStartsOn: 1 })) {
-					if (completedWorkout(event.status)) nCompletedWorkouts++;
-					if (inCompletedWorkout(event.status)) nIncompletedWorkouts++;
-					if (tobeCompletedWorkout(event.status)) nTobeCompletedWorkouts++;
+					calcWorkoutStats(event.status);
 					return true;
 				} else {
 					return false;
 				}
 			});
+			const numberOfDaysInCurrentYear = getDaysInYear(new Date());
+			restDays = numberOfDaysInCurrentYear - workoutsInTimeFrame.length;
 			break;
 
 		default:
 			break;
 	}
 	return {
-		workoutNumber: nOfWorkout.length,
+		workoutNumber: workoutsInTimeFrame.length,
 		nCompletedWorkouts,
 		nIncompletedWorkouts,
 		nTobeCompletedWorkouts,
+		restDays,
 	};
 };
