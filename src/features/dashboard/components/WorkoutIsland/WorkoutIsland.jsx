@@ -11,11 +11,11 @@ import styles from './WorkoutIsland.module.css';
 export const WorkoutIsland = () => {
 	const [timeFrame, setTimeFrame] = useState(DEFAULT_TIMEFRAMES.week);
 	const {
+		restDays,
 		workoutNumber,
 		nCompletedWorkouts,
 		nIncompletedWorkouts,
 		nTobeCompletedWorkouts,
-		restDays,
 	} = useGetWorkoutStats(timeFrame);
 
 	const handleChange = (e) => {
