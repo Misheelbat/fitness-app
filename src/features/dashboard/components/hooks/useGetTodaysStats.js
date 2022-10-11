@@ -9,7 +9,7 @@ export const useGetTodaysStats = () => {
 
 	let todaysActivity = 'Rest Day';
 	let nextWorkoutDate = 'No Workout found in Calendar';
-	if (!isSuccess) return { todaysActivity, nextWorkoutDate };
+	if (!isSuccess || !schedules) return { todaysActivity, nextWorkoutDate };
 
 	if (isSuccess) {
 		if (schedules[today]) todaysActivity = schedules[today];

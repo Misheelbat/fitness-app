@@ -36,10 +36,10 @@ export const useGetWorkoutStats = (timeFrame = DEFAULT_TIMEFRAMES.week) => {
 		}
 	};
 
-	const allEventsInCalendar = Object.values(schedules);
+	const allWorkoutsInCalendar = Object.values(schedules);
 	switch (timeFrame) {
 		case DEFAULT_TIMEFRAMES.week:
-			workoutsInTimeFrame = allEventsInCalendar.filter((event) => {
+			workoutsInTimeFrame = allWorkoutsInCalendar.filter((event) => {
 				if (isThisWeek(new Date(event.id), { weekStartsOn: 1 })) {
 					calcWorkoutStats(event.status);
 					return true;
