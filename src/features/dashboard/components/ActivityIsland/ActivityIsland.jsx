@@ -1,4 +1,4 @@
-import { useGetTodaysStats } from '../hooks/useGetTodaysStats';
+import { useGetTodaysStats } from 'features/dashboard/hooks';
 import { Island } from '../Island/Island';
 
 import styles from './ActivityIsland.module.css';

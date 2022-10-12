@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useGetWorkoutStats } from '../hooks/useGetWorkoutStats';
+import { useGetWorkoutStats } from 'features/dashboard/hooks';
 import { DEFAULT_TIMEFRAMES } from 'features/dashboard/assets';
 
 import Select from 'react-select';

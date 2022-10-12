@@ -24,7 +24,7 @@ export const Calendar = ({ events = {}, value, onDateChange }) => {
 	const monthAndYear = format(value, 'LLLyyyy');
 
 	const calendarDays = Array.from({ length: daysInCurrentMonth }).map((_, index) => {
-		let dayNumber = index + 1;
+		const dayNumber = index + 1;
 		const fullDate = dayNumber + monthAndYear;
 		const isCurrentDate = dayNumber === value.getDate();
 		return (

@@ -1,2 +1,3 @@
 export * from './routes';
 export * from './assets';
+export * from './hooks';
