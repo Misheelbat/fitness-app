@@ -17,7 +17,7 @@ export const CreateWorkout = () => {
 		}
 		try {
 			await createWorkout(workoutTitle).unwrap();
-			toast.success('New workout created!');
+			toast.success('New workout created!', { toastId: workoutTitle });
 		} catch (error) {
 			toast.error(error);
 		}

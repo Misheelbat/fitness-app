@@ -46,7 +46,7 @@ export const ScheduleForm = () => {
 		if (!canDeleteEvent) return;
 		try {
 			await deleteEvent(selectedDate).unwrap();
-			toast.success('Event Deleted');
+			toast.success('Event Deleted', { toastId: selectedDate });
 		} catch (error) {
 			toast.error(error);
 		}

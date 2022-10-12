@@ -24,7 +24,7 @@ export const Card = ({ cardName }) => {
 	const onDeleteClick = async () => {
 		try {
 			await deleteWorkout(cardName).unwrap();
-			toast.success(`${cardName} deleted`);
+			toast.success(`${cardName} deleted`, { toastId: cardName });
 		} catch (error) {
 			toast.success(error);
 		}

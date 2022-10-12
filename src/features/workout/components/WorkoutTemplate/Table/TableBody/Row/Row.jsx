@@ -21,7 +21,7 @@ export const Row = ({ rowData, workout }) => {
 	const onDeleteClick = async () => {
 		try {
 			await deleteExercise({ id: rowData.id, workout }).unwrap();
-			toast.success(`${exercise.name} deleted`);
+			toast.success(`${exercise.name} deleted`, { toastId: rowData.id });
 		} catch (error) {
 			toast.error('oops something went wrong...');
 		}
