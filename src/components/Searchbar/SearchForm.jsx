@@ -10,7 +10,7 @@ export const SEARCH_TYPES = {
 	max: '100%',
 };
 
-export const SearchForm = ({ width, searchFn, results, selectFn }) => {
+export const SearchForm = ({ width, searchFn, results, selectExerciseFn }) => {
 	const [term, setTerm] = useState('');
 	const [showResults, setShowResults] = useState(false);
 
@@ -48,7 +48,7 @@ export const SearchForm = ({ width, searchFn, results, selectFn }) => {
 					loading={results.isFetching}
 					data={results.data?.suggestions}
 					setShowResults={setShowResults}
-					selectFn={selectFn}
+					selectExerciseFn={selectExerciseFn}
 				/>
 			)}
 		</div>

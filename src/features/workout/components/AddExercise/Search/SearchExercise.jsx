@@ -5,23 +5,23 @@ import { Card } from 'features/exercises';
 import { DeleteBtn } from 'components/Elements';
 import styles from './SearchExercise.module.css';
 
-export const SearchExercise = ({ selectFn, id }) => {
+export const SearchExercise = ({ selectExerciseFn, id }) => {
 	const [searchFn, result] = useSearchExerciseMutation();
 	const { data, isFetching } = useGetExerciseDetailsQuery(id, {
-		skip: id === null,
+		skip: !id,
 	});
 
 	const resetSearch = () => {
-		selectFn(null);
+		selectExerciseFn(null);
 	};
-	
+
 	return (
 		<div>
 			<SearchForm
 				width={SEARCH_TYPES.max}
 				searchFn={searchFn}
 				results={result}
-				selectFn={selectFn}
+				selectExerciseFn={selectExerciseFn}
 			/>
 			<div className={styles.searchResult}>
 				{id && (

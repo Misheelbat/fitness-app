@@ -56,7 +56,7 @@ export const AddExercise = ({ title = null, ExId }) => {
 
 			<section className={styles.search}>
 				<p className={styles.modalTitle}>Choose an Exercise</p>
-				<SearchExercise selectFn={setSelectedExId} id={selectedExId} />
+				<SearchExercise selectExerciseFn={setSelectedExId} id={selectedExId} />
 			</section>
 
 			<form onSubmit={handleSubmit}>

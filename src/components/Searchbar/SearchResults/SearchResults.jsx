@@ -16,8 +16,12 @@ export const SearchResults = ({ data, setShowResults, selectFn, loading }) => {
 
 	let content;
 	if (loading) content = <Spinner />;
-	if (!data) return;
+	if (!data) return null;
+
+	// search found nothing
 	if (data && data.length === 0) content = <div className={styles.results}>Nothing Found</div>;
+
+	// search found data
 	if (data && data.length !== 0) {
 		content = data.map((ex) => (
 			<div className={styles.results} key={ex.value} onClick={() => handleClick(ex.data.id)}>
