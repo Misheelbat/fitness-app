@@ -7,11 +7,12 @@ export const SelectWorkout = ({ defaultOption, setDefaultOption }) => {
 	const { data: workouts } = useGetWorkoutsQuery();
 	return (
 		<Select
-			value={defaultOption.value ? defaultOption : ''}
+			value={defaultOption.value ? defaultOption : null}
 			options={workouts?.ids.map((id) => ({ value: id, label: id }))}
 			onChange={(e) => setDefaultOption(e)}
 			hideSelectedOptions={true}
 			noOptionsMessage={() => 'No Workouts Found'}
+			placeholder={'Select a Workout'}
 			styles={styles}
 		/>
 	);

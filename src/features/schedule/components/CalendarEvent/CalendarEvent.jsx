@@ -35,7 +35,7 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 				name: workoutOption.value,
 				status: statusOption.value,
 			}).unwrap();
-			toast.success('Event added to Calendar');
+			toast.success('Event added to Calendar', { toastId: selectedDate });
 		} catch (error) {
 			toast.error(error);
 		}
@@ -50,12 +50,13 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 						<span>{format(new Date(selectedDate), "ccc ',' dd LLL yyyy")}</span>
 					</div>
 					<Select
-						value={workoutOption}
+						value={workoutOption.value ? workoutOption : null}
 						options={workouts?.ids.map((id) => ({ value: id, label: id }))}
 						onChange={(e) => setWorkoutOption(e)}
 						styles={selectorStyles}
 						hideSelectedOptions={true}
 						noOptionsMessage={() => 'No Workouts Found'}
+						placeholder={'Select a Workout...'}
 					/>
 				</section>
 
@@ -68,8 +69,9 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 						styles={selectorStyles}
 						hideSelectedOptions={true}
 					/>
+
 					<Button
-						disabled={!canSave}
+						aria-disabled={!canSave}
 						type="submit"
 						buttonType="max-width"
 						isLoading={isAddEventLoading}

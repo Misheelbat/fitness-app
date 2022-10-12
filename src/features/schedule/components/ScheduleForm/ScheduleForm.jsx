@@ -19,7 +19,7 @@ import styles from './ScheduleForm.module.css';
 export const ScheduleForm = () => {
 	const [currentDate, setCurrentDate] = useState(new Date());
 
-	const [deleteEvent] = useDeleteEventMutation();
+	const [deleteEvent, { isLoading: isDeleteLoading }] = useDeleteEventMutation();
 	const [updateEventStatus] = useUpdateEventStatusMutation();
 	const { data: schedules, isSuccess } = useGetSchedulesQuery();
 
@@ -64,7 +64,11 @@ export const ScheduleForm = () => {
 					</Modal.Content>
 				</Modal>
 
-				<Button disabled={!canDeleteEvent} onClick={handleDeleteEvent}>
+				<Button
+					aria-disabled={!canDeleteEvent}
+					isLoading={isDeleteLoading}
+					onClick={handleDeleteEvent}
+				>
 					Delete
 				</Button>
 

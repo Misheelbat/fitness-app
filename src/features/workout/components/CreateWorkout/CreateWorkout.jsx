@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { useCreateWorkoutMutation } from 'features/workout/store';
@@ -7,16 +7,16 @@ import { Button } from 'components/Elements';
 import styles from './CreateWorkout.module.css';
 
 export const CreateWorkout = () => {
-	const titleRef = useRef();
+	const [workoutTitle, setWorkoutTitle] = useState('');
 	const [createWorkout, { isLoading }] = useCreateWorkoutMutation();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		if (!titleRef.current.value) {
+		if (!workoutTitle) {
 			return toast.error('Please enter a Workout title!');
 		}
 		try {
-			await createWorkout(titleRef.current.value).unwrap();
+			await createWorkout(workoutTitle).unwrap();
 			toast.success('New workout created!');
 		} catch (error) {
 			toast.error(error);
@@ -30,9 +30,15 @@ export const CreateWorkout = () => {
 				name="title"
 				id="title"
 				placeholder="Please enter a Workout title"
-				ref={titleRef}
+				value={workoutTitle}
+				onChange={(e) => setWorkoutTitle(e.target.value)}
 			/>
-			<Button type="submit" buttonType="max-width" isLoading={isLoading}>
+			<Button
+				type="submit"
+				buttonType="max-width"
+				isLoading={isLoading}
+				aria-disabled={!workoutTitle}
+			>
 				Create
 			</Button>
 		</form>

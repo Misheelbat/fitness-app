@@ -6,9 +6,10 @@ export const ToastProvider = () => {
 	return (
 		<ToastContainer
 			className={styles.toastContainer}
-			autoClose="500"
-			pauseOnHover="false"
-			pauseOnFocusLoss="false"
+			autoClose={500}
+			pauseOnHover={false}
+			pauseOnFocusLoss={false}
+			draggable={false}
 			limit="1"
 			theme="colored"
 		/>

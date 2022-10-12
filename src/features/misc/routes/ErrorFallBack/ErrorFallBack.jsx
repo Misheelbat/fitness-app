@@ -4,7 +4,7 @@ import styles from './ErrorFallBack.module.css';
 
 export const ErrorFallBack = () => {
 	const refreshPage = () => {
-		window.location.assign(window.location.origin);
+		window.location.reload(false);
 	};
 	return (
 		<div className={styles.errorFallBack}>

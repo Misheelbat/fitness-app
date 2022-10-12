@@ -23,15 +23,13 @@
 	transform: scale(0.95);
 }
 
-.buttonContainer:disabled {
+.buttonContainer:disabled,
+.buttonContainer[aria-disabled='true'] {
 	cursor: not-allowed;
 	background-color: var(--clr-secondary);
 	color: var(--clr-grey);
 }
-.buttonContainer[aria-disabled='true'] {
-	cursor: not-allowed;
-	background-color: var(--clr-primary);
-}
+
 .max-width {
 	width: 100%;
 }

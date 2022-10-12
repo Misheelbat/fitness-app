@@ -51,7 +51,7 @@ export const useGetWorkoutStats = (timeFrame = DEFAULT_TIMEFRAMES.week) => {
 			break;
 
 		case DEFAULT_TIMEFRAMES.month:
-			workoutsInTimeFrame = allEventsInCalendar.filter((event) => {
+			workoutsInTimeFrame = allWorkoutsInCalendar.filter((event) => {
 				if (isThisMonth(new Date(event.id), { weekStartsOn: 1 })) {
 					calcWorkoutStats(event.status);
 					return true;
@@ -64,7 +64,7 @@ export const useGetWorkoutStats = (timeFrame = DEFAULT_TIMEFRAMES.week) => {
 			break;
 
 		case DEFAULT_TIMEFRAMES.year:
-			workoutsInTimeFrame = allEventsInCalendar.filter((event) => {
+			workoutsInTimeFrame = allWorkoutsInCalendar.filter((event) => {
 				if (isThisYear(new Date(event.id), { weekStartsOn: 1 })) {
 					calcWorkoutStats(event.status);
 					return true;

@@ -1,11 +1,7 @@
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
-import {
-	extractRepsData,
-	SETS_DEFAULT_VALUE,
-	useAddExerciseToWorkoutMutation,
-} from 'features/workout';
+import { extractRepsData, useAddExerciseToWorkoutMutation } from 'features/workout';
 
 import { Reps } from './Reps/Reps';
 import { Sets } from './Sets/Sets';
@@ -17,7 +13,7 @@ import styles from './AddExercise.module.css';
 
 export const AddExercise = ({ title = null, ExId }) => {
 	const [selectedExId, setSelectedExId] = useState(ExId);
-	const [sliderValue, setSliderValue] = useState(SETS_DEFAULT_VALUE);
+	const [sliderValue, setSliderValue] = useState(1);
 
 	const [defaultOption, setDefaultOption] = useState({
 		value: title,
@@ -36,13 +32,12 @@ export const AddExercise = ({ title = null, ExId }) => {
 		}
 		const formData = new FormData(e.currentTarget);
 		const reps = extractRepsData(formData);
-
 		try {
 			await addNewExerciseToWorkout({
 				title: defaultOption.value,
 				data: { id: selectedExId, reps },
 			}).unwrap();
-			toast.success('Added Exercise to Workout');
+			toast.success('Added Exercise to Workout', { toastId: selectedExId });
 		} catch (error) {
 			toast.error(error);
 		}

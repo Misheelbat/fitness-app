@@ -10,7 +10,7 @@ export const WEIGHT_UNITS_DEFAULT_VALUE = [
 ];
 
 // default value for number of exercise sets
-export const SETS_DEFAULT_VALUE = 1;
+// export const SETS_DEFAULT_VALUE = 1;
 
 // workout table headers
 export const CATEGORIES_DEFAULT_VALUE = ['Name', 'Category', 'Equipment', 'Sets', 'Reps', 'Edit'];
