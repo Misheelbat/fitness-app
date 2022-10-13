@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { User } from 'phosphor-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 
+import { User } from 'phosphor-react';
 import { SearchBar } from 'components/Searchbar/SearchBar';
+
+import { setExercise } from 'features/exercises';
 import { selectDisplayName, useSignOutMutation } from 'features/auth';
 
 import styles from './Headerbar.module.css';
@@ -61,9 +63,19 @@ const UserNav = () => {
 };
 
 export default function Headerbar() {
+	const dispatch = useDispatch();
+
+	const navigate = useNavigate();
+
+	const handleClick = (exId) => {
+		if (!exId) return;
+		dispatch(setExercise(exId));
+		navigate(`exercises/${exId}`);
+	};
+
 	return (
 		<header className={styles.headerbar}>
-			<SearchBar />
+			<SearchBar onResultsClick={handleClick} />
 			<UserNav />
 		</header>
 	);

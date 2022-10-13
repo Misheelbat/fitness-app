@@ -19,6 +19,7 @@ export const SearchResults = ({ data, onClick, loading }) => {
 	}
 
 	const handleClick = (exercise) => {
+		console.log(exercise);
 		onClick(exercise);
 	};
 	return <div className={styles.searchResults}>{content}</div>;

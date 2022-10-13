@@ -1,16 +1,14 @@
-import { useSelector } from 'react-redux';
-
-import { selectExerciseId, useGetExerciseDetailsQuery } from 'features/exercises';
+import { useGetExerciseDetailsQuery } from 'features/exercises';
 
 import { Tags } from './Tags/Tags';
+import { Modal } from 'components/Layout';
 import { Spinner } from 'components/Elements';
 import { MuscleDiagram } from './MuscleDiagram/MuscleDiagram';
-import { Modal } from 'components/Layout';
 import { AddExercise } from 'features/workout/components/AddExercise/AddExercise';
+
 import styles from './Preview.module.css';
 
-export const ExercisePreview = () => {
-	const id = useSelector(selectExerciseId);
+export const ExercisePreview = ({ id }) => {
 	const { data, isFetching } = useGetExerciseDetailsQuery(id, {
 		skip: id === null,
 	});

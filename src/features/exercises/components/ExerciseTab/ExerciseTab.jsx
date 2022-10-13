@@ -1,4 +1,5 @@
-import { defaultTabs } from 'features/exercises';
+import { useSelector } from 'react-redux';
+import { defaultTabs, selectExerciseId } from 'features/exercises';
 
 import { TabList, Tab, TabPanel } from 'components/Elements';
 import { ExerciseList } from '../ExerciseList/ExerciseList';
@@ -7,6 +8,8 @@ import { ExercisePreview } from '../Preview/ExercisePreview';
 import styles from './ExerciseTab.module.css';
 
 export const ExerciseTab = ({ tabs = defaultTabs }) => {
+	const id = useSelector(selectExerciseId);
+
 	return (
 		<div className={styles.tabs}>
 			<TabList aria-label="Exercises categories">
@@ -20,7 +23,7 @@ export const ExerciseTab = ({ tabs = defaultTabs }) => {
 				<TabPanel>
 					<ExerciseList />
 				</TabPanel>
-				<ExercisePreview />
+				<ExercisePreview id={id} />
 			</div>
 		</div>
 	);
