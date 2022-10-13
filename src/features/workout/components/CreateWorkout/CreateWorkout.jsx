@@ -18,17 +18,18 @@ export const CreateWorkout = () => {
 		try {
 			await createWorkout(workoutTitle).unwrap();
 			toast.success('New workout created!', { toastId: workoutTitle });
+			setWorkoutTitle('');
 		} catch (error) {
 			toast.error(error);
 		}
 	};
 	return (
 		<form onSubmit={handleSubmit} className={styles.createWorkoutForm}>
-			<label htmlFor="title">Create a new Workout</label>
+			<label htmlFor="workout title">Create a new Workout</label>
 			<input
 				type="text"
 				name="title"
-				id="title"
+				id="workout title"
 				placeholder="Please enter a Workout title"
 				value={workoutTitle}
 				onChange={(e) => setWorkoutTitle(e.target.value)}

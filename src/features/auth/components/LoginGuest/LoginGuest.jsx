@@ -14,16 +14,12 @@ export const LoginGuest = ({ onSuccess }) => {
 			toast.success('Welcome Guest!');
 			onSuccess();
 		} catch (error) {
-			toast.error(transformErrMSg(error.message));
+			toast.error(transformErrMSg(error));
 		}
 	};
 
 	return (
-		<Button
-			onClick={handleClick}
-			isLoading={isLoading}
-			buttonType={BUTTON_TYPES.max}
-		>
+		<Button onClick={handleClick} isLoading={isLoading} buttonType={BUTTON_TYPES.max}>
 			Login as Guest
 		</Button>
 	);
