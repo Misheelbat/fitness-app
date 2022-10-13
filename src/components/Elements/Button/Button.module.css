@@ -12,7 +12,7 @@
 	border-radius: 4px;
 	padding: 10px 20px;
 	background-color: var(--clr-blue);
-	transition: background 100ms ease-out;
+	transition: background-color 100ms ease-out;
 }
 
 .buttonContainer:hover {

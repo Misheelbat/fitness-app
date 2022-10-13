@@ -1,19 +1,7 @@
-import { useRef, useCallback } from 'react';
-
-import { useClickedOutside } from 'hooks/useClickedOutside';
-import styles from './SearchResults.module.css';
 import { Spinner } from 'components/Elements';
+import styles from './SearchResults.module.css';
 
-export const SearchResults = ({ data, setShowResults, selectFn, loading }) => {
-	const searchRef = useRef();
-	const closeSearchResults = useCallback(() => setShowResults(false), [setShowResults]);
-	useClickedOutside(searchRef, closeSearchResults);
-
-	const handleClick = (exercise) => {
-		closeSearchResults();
-		selectFn(exercise);
-	};
-
+export const SearchResults = ({ data, onClick, loading }) => {
 	let content;
 	if (loading) content = <Spinner />;
 	if (!data) return null;
@@ -24,15 +12,14 @@ export const SearchResults = ({ data, setShowResults, selectFn, loading }) => {
 	// search found data
 	if (data && data.length !== 0) {
 		content = data.map((ex) => (
-			<div className={styles.results} key={ex.value} onClick={() => handleClick(ex.data.id)}>
+			<div className={styles.results} key={ex.data.id} onClick={() => handleClick(ex.data.id)}>
 				{ex.value}
 			</div>
 		));
 	}
 
-	return (
-		<div ref={searchRef} className={styles.searchResults}>
-			{content}
-		</div>
-	);
+	const handleClick = (exercise) => {
+		onClick(exercise);
+	};
+	return <div className={styles.searchResults}>{content}</div>;
 };

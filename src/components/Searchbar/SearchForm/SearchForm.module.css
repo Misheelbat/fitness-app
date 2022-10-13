@@ -1,0 +1,33 @@
+.searchForm {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.searchForm input {
+	color: #fff;
+	width: 100%;
+	font-size: 0.9em;
+	border: 1px solid #484c56;
+	border-radius: 0.4em;
+	padding: 0.6em 2em;
+	background-color: var(--clr-secondary);
+	font-family: 'Poppins', sans-serif;
+}
+
+.searchForm button {
+	position: absolute;
+	z-index: 10;
+	right: 0.5rem;
+	color: white;
+	padding: 0;
+	border: 0;
+	background-color: transparent;
+	cursor: pointer;
+	transition: transform 100ms linear;
+}
+.searchForm button:hover {
+	color: var(--clr-blue);
+}
+.searchForm button:active {
+	transform: scale(1.2);
+}
