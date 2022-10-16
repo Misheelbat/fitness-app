@@ -1,4 +1,3 @@
-
 import { ActivityIsland } from '../ActivityIsland/ActivityIsland';
 import { ExerciseIsland } from '../ExerciseIsland/ExerciseIsland';
 import { WorkoutIsland } from '../WorkoutIsland/WorkoutIsland';

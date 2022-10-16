@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { User } from 'phosphor-react';
+import { User, List } from 'phosphor-react';
 import { SearchBar } from 'components/Searchbar/SearchBar';
 
 import { setExercise } from 'features/exercises';
@@ -13,14 +13,14 @@ import styles from './Headerbar.module.css';
 const UserNav = () => {
 	const [logOut] = useSignOutMutation();
 	const user = useSelector(selectDisplayName);
-	const [open, setOpen] = useState(false);
+	const [openUserMenu, setOpenUserMenu] = useState(false);
 
 	const userNavItems = [
 		{
 			name: 'Your Profile',
 			to: './profile',
 			onClick: () => {
-				setOpen(false);
+				setOpenUserMenu(false);
 			},
 		},
 		{
@@ -28,7 +28,7 @@ const UserNav = () => {
 			to: '../',
 			onClick: async () => {
 				await logOut();
-				setOpen(false);
+				setOpenUserMenu(false);
 			},
 		},
 	];
@@ -45,12 +45,12 @@ const UserNav = () => {
 			{user && <span className={styles.userName}>{user}</span>}
 			<div>
 				<div>
-					<button aria-label="open user menu" onClick={() => setOpen(!open)}>
+					<button aria-label="open user menu" onClick={() => setOpenUserMenu(!openUserMenu)}>
 						<User size="35" />
 					</button>
 				</div>
 				<div className={styles.userNavItems}>
-					{open &&
+					{openUserMenu &&
 						content.map((item) => (
 							<Link key={item.name} to={item.to} onClick={item.onClick}>
 								{item.name}
@@ -62,9 +62,8 @@ const UserNav = () => {
 	);
 };
 
-export default function Headerbar() {
+export default function Headerbar({ mobileNavToggle, setMobileNavToggle }) {
 	const dispatch = useDispatch();
-
 	const navigate = useNavigate();
 
 	const handleClick = (exId) => {
@@ -74,7 +73,10 @@ export default function Headerbar() {
 	};
 
 	return (
-		<header className={styles.headerbar}>
+		<header data-nav={mobileNavToggle} className={styles.headerbar}>
+			<button className={styles.mobileNav} onClick={() => setMobileNavToggle((open) => !open)}>
+				<List size={20} weight="thin" />
+			</button>
 			<SearchBar onResultsClick={handleClick} />
 			<UserNav />
 		</header>

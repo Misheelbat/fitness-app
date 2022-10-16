@@ -1,11 +1,6 @@
 import { NavLink } from 'react-router-dom';
 
-import {
-	SquaresFour,
-	Barbell,
-	CheckSquareOffset,
-	CalendarPlus,
-} from 'phosphor-react';
+import { SquaresFour, Barbell, CheckSquareOffset, CalendarPlus } from 'phosphor-react';
 
 import styles from './Sidebar.module.css';
 
@@ -20,12 +15,7 @@ const SideNavItem = () => {
 	return (
 		<>
 			{navItems.map((item, index) => (
-				<NavLink
-					key={item.name}
-					to={item.to}
-					className={styles.navItem}
-					end={index === 0}
-				>
+				<NavLink key={item.name} to={item.to} className={styles.navItem} end={index === 0}>
 					<item.icon size="32" />
 					<span>{item.name}</span>
 				</NavLink>
@@ -34,9 +24,9 @@ const SideNavItem = () => {
 	);
 };
 
-export const Sidebar = () => {
+export const Sidebar = ({ mobileNavToggle }) => {
 	return (
-		<section className={styles.sidebar}>
+		<section data-nav={mobileNavToggle} className={styles.sidebar}>
 			<nav>
 				<SideNavItem />
 			</nav>

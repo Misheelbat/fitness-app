@@ -51,8 +51,26 @@
 .userNavItems a:hover {
 	background-color: var(--clr-bg);
 }
+
+.mobileNav {
+	color: white;
+	background-color: transparent;
+	display: none;
+	padding: 0;
+	border: 0;
+	margin-inline: 8.5px;
+	position: absolute;
+	top: 30px;
+	left: 0;
+	z-index: 1000;
+}
 @media (max-width: 550px) {
 	.userName {
 		display: none;
+	}
+}
+@media (max-width: 900px) {
+	.mobileNav {
+		display: block;
 	}
 }

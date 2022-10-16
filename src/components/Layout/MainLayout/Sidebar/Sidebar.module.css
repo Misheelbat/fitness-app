@@ -1,10 +1,9 @@
 /* Typography */
 .sidebar {
 	color: #fff;
-}
-.sidebar nav {
 	background-color: var(--clr-primary);
 }
+
 /* Layout */
 .sidebar {
 	min-width: 5rem;
@@ -69,4 +68,14 @@
 }
 .navItem[aria-current='page'] svg {
 	color: #000;
+}
+
+@media (max-width: 900px) {
+	.sidebar[data-nav='false'] {
+		min-width: 0;
+	}
+
+	.sidebar[data-nav='false'] nav {
+		display: none;
+	}
 }
