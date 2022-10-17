@@ -3,9 +3,14 @@
 	flex-direction: column;
 	width: 100%;
 	justify-content: center;
-	align-items: center;
+	/* align-items: center; */
 	gap: 15px;
 }
 /* max-height: calc(
 		100vh - 80px - 96px - 41.38px - 96px - 40px - 87.33px - 34px
 	); */
+.mobileView {
+	background-color: transparent;
+	padding: 0;
+	max-width: 100%;
+}

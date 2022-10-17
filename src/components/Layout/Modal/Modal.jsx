@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from 'react';
-
+import cx from 'classnames';
 import { Dialog } from '@reach/dialog';
 import { Button, DeleteBtn } from 'components/Elements';
 
@@ -23,14 +23,19 @@ export const Modal = ({ children }) => {
 	return <ToggleContext.Provider value={value}>{children}</ToggleContext.Provider>;
 };
 
-Modal.Content = function ModalContent({ contentLabel = 'Modal Content', children, ...rest }) {
+Modal.Content = function ModalContent({
+	contentLabel = 'Modal Content',
+	addClassName,
+	children,
+	...rest
+}) {
 	const { openModal, setOpenModal } = useToggleContext();
 
 	return (
 		<Dialog
 			aria-label={contentLabel}
 			isOpen={openModal === 'open'}
-			className={styles.modalContainer}
+			className={cx(styles.modalContainer, addClassName)}
 			{...rest}
 		>
 			<DeleteBtn
@@ -45,11 +50,11 @@ Modal.Content = function ModalContent({ contentLabel = 'Modal Content', children
 	);
 };
 
-Modal.Title = function ModalTitle({ children, ...rest }) {
+Modal.Title = function ModalTitle({ Element = Button, children, ...rest }) {
 	const { setOpenModal } = useToggleContext();
 	return (
-		<Button onClick={() => setOpenModal('open')} aria-label="open modal button" {...rest}>
+		<Element onClick={() => setOpenModal('open')} aria-label="open modal button" {...rest}>
 			{children}
-		</Button>
+		</Element>
 	);
 };

@@ -13,3 +13,12 @@
 .modalCloseBtn {
 	margin-left: auto;
 }
+@media (max-width: 900px) {
+	.modalContainer {
+		width: 90%;
+	}
+	.modalCloseBtn {
+		margin-left: auto;
+		padding-bottom: 1rem;
+	}
+}

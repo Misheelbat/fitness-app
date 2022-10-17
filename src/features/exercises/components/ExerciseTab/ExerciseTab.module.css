@@ -10,3 +10,8 @@
 	padding-top: 2rem;
 	gap: 1rem;
 }
+@media (max-width: 900px) {
+	.tabsPanel {
+		justify-content: center;
+	}
+}

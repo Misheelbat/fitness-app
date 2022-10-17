@@ -34,9 +34,11 @@ export const Card = ({ loading, exercise = '', equipments = [], exId }) => {
 	}
 
 	return (
-		<div className={styles.card} onClick={handleClick}>
-			<img src="/images/logo.png" alt="exercise" />
-			{content}
-		</div>
+		<>
+			<div className={styles.card} onClick={handleClick}>
+				<img src="/images/logo.png" alt="exercise" />
+				{content}
+			</div>
+		</>
 	);
 };
