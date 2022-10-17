@@ -6,5 +6,5 @@ export const defaultTabs = [
 
 export const initialTab = {
 	category: { name: 'Muscles', id: 1, url: 'muscle' },
-	subCategory: { name: null, id: null },
+	subCategory: { value: null, id: null, label: null },
 };

@@ -11,11 +11,11 @@ import {
 
 import styles from './dropdownstyle';
 
-export let Dropdown = ({ resetPage }) => {
+export let SubCategoryDropdown = ({ resetPage }) => {
 	const dispatch = useDispatch();
-	const url = useSelector(selectCategoryUrl);
+	const categoryUrl = useSelector(selectCategoryUrl);
 	const subCategory = useSelector(selectSubCategory);
-	const { data, isLoading, isSuccess } = useGetCategoryQuery(url);
+	const { data, isLoading, isSuccess } = useGetCategoryQuery(categoryUrl);
 
 	const handleChange = (e) => {
 		dispatch(setSubCategory(e));
@@ -46,4 +46,4 @@ export let Dropdown = ({ resetPage }) => {
 	);
 };
 
-Dropdown = memo(Dropdown);
+SubCategoryDropdown = memo(SubCategoryDropdown);

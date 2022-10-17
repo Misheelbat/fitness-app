@@ -27,7 +27,7 @@ export const Card = ({ loading, exercise = '', equipments = [], exId }) => {
 			<div className={styles.cardInfo}>
 				<h4>{exercise}</h4>
 				<div className={styles.equipment}>
-					{equipment && equipment.map((e) => <p key={e}>{e},</p>)}
+					{equipment && equipment.map((name) => <p key={name}>{name},</p>)}
 				</div>
 			</div>
 		);

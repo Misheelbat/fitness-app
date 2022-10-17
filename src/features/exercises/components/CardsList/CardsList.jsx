@@ -9,6 +9,16 @@ export const CardsList = ({ cards = [], isLoading }) => {
 	const matches = useMediaQuery(900);
 	let content;
 
+	if (isLoading) {
+		content = (
+			<div className={styles.cardsList}>
+				<Spinner size="50" variant="primary" />
+			</div>
+		);
+	}
+
+	// if window size is 900px or smaller wrap card component in modal
+	// using the the card itself as modal opening button
 	if (matches && !isLoading) {
 		content = cards.map(({ id, name, equipment }) => (
 			<Modal key={id}>
@@ -21,13 +31,7 @@ export const CardsList = ({ cards = [], isLoading }) => {
 			</Modal>
 		));
 	}
-	if (isLoading) {
-		content = (
-			<div className={styles.cardsList}>
-				<Spinner size="50" variant="primary" />
-			</div>
-		);
-	}
+	// if window size is bigger than 900px render card as it is
 	if (!matches && !isLoading) {
 		content = cards.map(({ id, name, equipment }) => (
 			<Card key={id} exercise={name} equipments={equipment} exId={id} />

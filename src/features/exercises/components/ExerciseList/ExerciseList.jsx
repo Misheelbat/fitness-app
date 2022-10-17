@@ -10,7 +10,7 @@ import {
 import { Counter } from './Counter/Counter';
 import { PageBtn } from './PageBtn/PageBtn';
 import { CardsList } from '../CardsList/CardsList';
-import { Dropdown } from '../Dropdown/Dropdown';
+import { SubCategoryDropdown } from '../Dropdown/SubCategoryDropdown';
 
 import styles from './ExerciseList.module.css';
 
@@ -27,7 +27,7 @@ export const ExerciseList = () => {
 	const resetPage = useCallback(() => setPage(0), []);
 	return (
 		<div className={styles.exerciseList}>
-			<Dropdown resetPage={resetPage} />
+			<SubCategoryDropdown resetPage={resetPage} />
 			<div className={styles.info}>
 				<PageBtn
 					setPage={setPage}
