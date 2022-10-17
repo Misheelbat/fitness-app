@@ -1,4 +1,4 @@
-import { format, closestTo } from 'date-fns';
+import { format, closestTo, parse } from 'date-fns';
 
 import { useGetSchedulesQuery } from 'features/schedule';
 import { DATE_FORMAT } from 'assets/date_format';
@@ -14,7 +14,7 @@ export const useGetTodaysStats = () => {
 	if (isSuccess) {
 		if (schedules[today]) todaysActivity = schedules[today].name;
 		// array of date Object from schedules
-		const schedulesArray = Object.values(schedules).map((n) => new Date(n.id));
+		const schedulesArray = Object.values(schedules).map((n) => parse(n.id, 'dLLLyyyy', new Date()));
 		const closestDate = closestTo(new Date(), schedulesArray);
 		nextWorkoutDate = format(closestDate, "ccc ',' d LLL yyyy");
 	}

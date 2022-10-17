@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
-import { format } from 'date-fns';
+import { format, parse } from 'date-fns';
 
 import { Button } from 'components/Elements';
 import { useGetWorkoutsQuery, CreateWorkout } from 'features/workout';
 import { useAddEventToScheduleMutation, DEFAULT_EVENT_STATUS_OPTIONS } from 'features/schedule';
+import { DATE_FORMAT } from 'assets/date_format';
 
 import styles from './CalendarEvent.module.css';
 import selectorStyles from './select-styles';
@@ -47,7 +48,9 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 				<section>
 					<div className={styles.eventSubHeader}>
 						Select a Workout for:{' '}
-						<span>{format(new Date(selectedDate), "ccc ',' dd LLL yyyy")}</span>
+						<span>
+							{format(parse(selectedDate, DATE_FORMAT, new Date()), "ccc ',' dd LLL yyyy")}
+						</span>
 					</div>
 					<Select
 						value={workoutOption.value ? workoutOption : null}

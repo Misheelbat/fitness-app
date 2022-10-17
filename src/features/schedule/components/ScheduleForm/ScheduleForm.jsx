@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { format, isBefore } from 'date-fns';
+import { format, isBefore, parse } from 'date-fns';
 import { toast } from 'react-toastify';
 
 import {
@@ -31,7 +31,7 @@ export const ScheduleForm = () => {
 			const today = new Date();
 			Object.values(schedules).forEach(async (event) => {
 				if (event.status !== EVENT_STATUS.tobeCompleted) return;
-				if (isBefore(new Date(event.id), today)) {
+				if (isBefore(parse(event.id, DATE_FORMAT, new Date()), today)) {
 					try {
 						await updateEventStatus({ id: event.id, status: EVENT_STATUS.inComplete });
 					} catch (error) {
