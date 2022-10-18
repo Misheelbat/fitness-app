@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { defaultTabs, selectExerciseId } from 'features/exercises';
+import { selectExerciseId } from 'features/exercises';
 import { useMediaQuery } from 'hooks/useMediaQuery ';
 
 import { TabList, Tab, TabPanel } from 'components/Elements';
@@ -7,8 +7,15 @@ import { ExerciseList } from '../ExerciseList/ExerciseList';
 import { ExercisePreview } from '../Preview/ExercisePreview';
 
 import styles from './ExerciseTab.module.css';
+
+const defaultTabs = [
+	{ name: 'Muscles', id: 1, url: 'muscle' },
+	{ name: 'Equipment', id: 2, url: 'equipment' },
+	{ name: 'Category', id: 3, url: 'exercisecategory' },
+];
+
 export const ExerciseTab = ({ tabs = defaultTabs }) => {
-	const matches = useMediaQuery(900);
+	const isMobileWidth = useMediaQuery(900);
 
 	const id = useSelector(selectExerciseId);
 	return (
@@ -24,7 +31,7 @@ export const ExerciseTab = ({ tabs = defaultTabs }) => {
 				<TabPanel>
 					<ExerciseList />
 				</TabPanel>
-				{!matches && <ExercisePreview id={id} />}
+				{!isMobileWidth && <ExercisePreview id={id} />}
 			</div>
 		</div>
 	);

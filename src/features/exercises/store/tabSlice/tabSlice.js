@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { initialTab } from 'features/exercises';
+
+const initialTab = {
+	category: { name: 'Muscles', id: 1, url: 'muscle' },
+	subCategory: { value: null, id: null, label: null },
+};
 
 const tabSlice = createSlice({
 	name: 'tab',
