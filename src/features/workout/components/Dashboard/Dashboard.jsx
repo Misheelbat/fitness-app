@@ -1,6 +1,6 @@
 import { useGetWorkoutsQuery } from 'features/workout/store';
 
-import { Card } from '../Card/Card';
+import { WorkoutPreview } from '../Card/WorkoutPreview';
 import { Modal } from 'components/Layout';
 import { PageSpinner } from 'components/Elements';
 import { CreateWorkout } from '../CreateWorkout/CreateWorkout';
@@ -9,7 +9,13 @@ import styles from './Dashboard.module.css';
 const loadingStyle = { height: '100%', width: '100%' };
 
 export const Dashboard = () => {
-	const { data: workouts, isLoading, isSuccess, isError, error } = useGetWorkoutsQuery();
+	const {
+		data: workouts,
+		isLoading,
+		isSuccess,
+		isError,
+		error,
+	} = useGetWorkoutsQuery();
 
 	let content;
 	if (isLoading) {
@@ -23,7 +29,9 @@ export const Dashboard = () => {
 	if (isSuccess && workouts) {
 		const { ids } = workouts;
 		if (ids.length) {
-			content = ids.map((workoutId) => <Card key={workoutId} cardName={workoutId} />);
+			content = ids.map((workoutId) => (
+				<WorkoutPreview key={workoutId} cardName={workoutId} />
+			));
 		} else {
 			content = <div>Nothing here yet...</div>;
 		}
@@ -34,8 +42,8 @@ export const Dashboard = () => {
 			<div className={styles.overview}>
 				<h4>Overview :</h4>
 				<p>
-					Find the best workout for your goal, experience, desired training style and equipment
-					access.
+					Find the best workout for your goal, experience, desired training
+					style and equipment access.
 				</p>
 
 				<Modal>
