@@ -9,7 +9,8 @@
 	min-height: 5rem;
 	display: flex;
 	align-items: center;
-	padding-inline: 2.5em;
+	padding-left: 2.5rem;
+	padding-right: 2.5rem;
 }
 
 .userNav {
@@ -67,6 +68,10 @@
 @media (max-width: 550px) {
 	.userName {
 		display: none;
+	}
+	.headerbar {
+		padding-left: 2.5rem;
+		padding-right: 1rem;
 	}
 }
 @media (max-width: 900px) {
