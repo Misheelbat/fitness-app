@@ -77,7 +77,7 @@ export default function Headerbar({ mobileNavToggle, setMobileNavToggle }) {
 			<button className={styles.mobileNav} onClick={() => setMobileNavToggle((open) => !open)}>
 				<List size={20} weight="thin" />
 			</button>
-			<SearchBar onResultsClick={handleClick} />
+			<SearchBar className={styles.searchBarInHeader} onResultsClick={handleClick} />
 			<UserNav />
 		</header>
 	);

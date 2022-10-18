@@ -73,6 +73,11 @@
 		padding-left: 2.5rem;
 		padding-right: 1rem;
 	}
+	.searchBarInHeader {
+		width: 100%;
+		max-width: 200px;
+		position: relative;
+	}
 }
 @media (max-width: 900px) {
 	.mobileNav {
