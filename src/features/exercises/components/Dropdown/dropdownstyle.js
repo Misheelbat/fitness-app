@@ -10,6 +10,11 @@ const customStyles = {
 		cursor: 'pointer',
 	}),
 
+	container: (styles) => ({
+		...styles,
+		width: 'fit-content',
+	}),
+
 	singleValue: (styles) => ({
 		...styles,
 		color: 'white',

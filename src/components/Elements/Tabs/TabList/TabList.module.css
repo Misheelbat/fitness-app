@@ -1,5 +1,4 @@
 .tabList {
-	background-color: var(--clr-bg);
 	border-bottom: 0.5px solid var(--clr-border);
 }
 /* .tabList > :first-child {

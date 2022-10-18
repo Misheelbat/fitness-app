@@ -13,6 +13,7 @@
 .modalCloseBtn {
 	margin-left: auto;
 }
+
 @media (max-width: 900px) {
 	.modalContainer {
 		width: 90%;

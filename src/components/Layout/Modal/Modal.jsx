@@ -20,7 +20,9 @@ export const Modal = ({ children }) => {
 	const [openModal, setOpenModal] = useState('closed');
 	const value = { openModal, setOpenModal };
 
-	return <ToggleContext.Provider value={value}>{children}</ToggleContext.Provider>;
+	return (
+		<ToggleContext.Provider value={value}>{children}</ToggleContext.Provider>
+	);
 };
 
 Modal.Content = function ModalContent({
@@ -53,7 +55,11 @@ Modal.Content = function ModalContent({
 Modal.Title = function ModalTitle({ Element = Button, children, ...rest }) {
 	const { setOpenModal } = useToggleContext();
 	return (
-		<Element onClick={() => setOpenModal('open')} aria-label="open modal button" {...rest}>
+		<Element
+			onClick={() => setOpenModal('open')}
+			aria-label="open modal button"
+			{...rest}
+		>
 			{children}
 		</Element>
 	);
