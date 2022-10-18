@@ -7,7 +7,7 @@ import {
 	useGetExercisesQuery,
 } from 'features/exercises';
 
-import { Counter } from './Counter/Counter';
+import { PageCounter } from './Counter/PageCounter';
 import { PageBtn } from './PageBtn/PageBtn';
 import { CardsList } from '../CardsList/CardsList';
 import { SubCategoryDropdown } from '../Dropdown/SubCategoryDropdown';
@@ -34,7 +34,7 @@ export const ExerciseList = () => {
 					totalPages={data?.count}
 					currentPage={page}
 				/>
-				<Counter counter={data?.count} page={page} />
+				<PageCounter counter={data?.count} page={page} />
 			</div>
 			<p className={styles.activeCategory}>
 				{category} - {value}
