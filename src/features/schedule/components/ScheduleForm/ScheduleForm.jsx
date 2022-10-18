@@ -19,7 +19,8 @@ import styles from './ScheduleForm.module.css';
 export const ScheduleForm = () => {
 	const [currentDate, setCurrentDate] = useState(new Date());
 
-	const [deleteEvent, { isLoading: isDeleteLoading }] = useDeleteEventMutation();
+	const [deleteEvent, { isLoading: isDeleteLoading }] =
+		useDeleteEventMutation();
 	const [updateEventStatus] = useUpdateEventStatusMutation();
 	const { data: schedules, isSuccess } = useGetSchedulesQuery();
 
@@ -33,7 +34,10 @@ export const ScheduleForm = () => {
 				if (event.status !== EVENT_STATUS.tobeCompleted) return;
 				if (isBefore(parse(event.id, DATE_FORMAT, new Date()), today)) {
 					try {
-						await updateEventStatus({ id: event.id, status: EVENT_STATUS.inComplete });
+						await updateEventStatus({
+							id: event.id,
+							status: EVENT_STATUS.inComplete,
+						});
 					} catch (error) {
 						toast.error(error);
 					}
@@ -59,7 +63,10 @@ export const ScheduleForm = () => {
 					<Modal.Title buttonType="add" />
 					<Modal.Content contentLabel="calendar day details">
 						{schedules && (
-							<CalendarEvent selectedDate={selectedDate} event={schedules[selectedDate]} />
+							<CalendarEvent
+								selectedDate={selectedDate}
+								event={schedules[selectedDate]}
+							/>
 						)}
 					</Modal.Content>
 				</Modal>
@@ -79,7 +86,11 @@ export const ScheduleForm = () => {
 				</div>
 			</div>
 
-			<Calendar events={schedules} value={currentDate} onDateChange={setCurrentDate} />
+			<Calendar
+				events={schedules}
+				value={currentDate}
+				onDateChange={setCurrentDate}
+			/>
 		</div>
 	);
 };

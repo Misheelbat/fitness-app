@@ -1,5 +1,6 @@
 .scheduleForm {
 	width: 100%;
+	min-width: fit-content;
 	height: 100%;
 	padding: 2rem 1rem 2rem 1rem;
 	border-radius: 15px 15px 0 0;
@@ -24,11 +25,13 @@
 	border: 0.2px solid var(--clr-border);
 	border-radius: 10px;
 	display: flex;
-	gap: 1rem;
+	gap: 0.5em;
+	justify-content: space-between;
 	margin-left: auto;
 }
 .statusLegend span {
 	display: flex;
+
 	justify-content: center;
 	align-items: center;
 	gap: 0.2rem;
@@ -49,4 +52,27 @@
 }
 .statusLegend .tobeComplete::before {
 	background-color: orange;
+}
+
+@media (max-width: 700px) {
+	.scheduleFormControls {
+		flex-wrap: wrap;
+	}
+	.statusLegend {
+		margin-inline: auto;
+		font-size: 0.7rem;
+	}
+	.statusLegend .complete {
+		color: var(--clr-green);
+	}
+	.statusLegend .notComplete {
+		color: var(--clr-red);
+	}
+	.statusLegend .tobeComplete {
+		color: orange;
+	}
+
+	.statusLegend span::before {
+		display: none;
+	}
 }
