@@ -3,7 +3,7 @@ import { XCircle } from 'phosphor-react';
 import { Button } from 'components/Elements';
 import styles from './Confirm.module.css';
 
-export const Confirm = ({ close, title, onDeleteClick }) => {
+export const ConfirmDelete = ({ close, title, onDeleteClick }) => {
 	const onModalClick = async (e) => {
 		e.stopPropagation();
 	};
