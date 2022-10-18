@@ -57,6 +57,7 @@
 @media (max-width: 700px) {
 	.scheduleFormControls {
 		flex-wrap: wrap;
+		gap: 1rem;
 	}
 	.statusLegend {
 		margin-inline: auto;
