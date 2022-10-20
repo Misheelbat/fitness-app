@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { TableGrid } from './Table';
 import { Title } from './Title/Title';
-import { Modal } from 'components/Layout';
+import { Modal } from 'components/Modal/Modal';
 import { AddExercise } from '../AddExercise/AddExercise';
 
 import styles from './WorkoutTemplate.module.css';
@@ -16,7 +16,11 @@ export const WorkoutTemplate = ({ data }) => {
 				<div className={styles.createFormTitleContainer}>
 					<div className={styles.createFormTitleHeader}>
 						<h4 className={styles.createFormTitle}>Workout :</h4>
-						<Title data={data} title={workoutTitle} setTitle={setWorkoutTitle} />
+						<Title
+							data={data}
+							title={workoutTitle}
+							setTitle={setWorkoutTitle}
+						/>
 					</div>
 				</div>
 				<Modal>

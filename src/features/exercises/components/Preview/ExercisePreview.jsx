@@ -1,7 +1,7 @@
 import { useGetExerciseDetailsQuery } from 'features/exercises';
 
 import { Tags } from './Tags/Tags';
-import { Modal } from 'components/Layout';
+import { Modal } from 'components/Modal/Modal';
 import { Spinner } from 'components/Elements';
 import { MuscleDiagram } from './MuscleDiagram/MuscleDiagram';
 import { AddExercise } from 'features/workout/components/AddExercise/AddExercise';
@@ -61,7 +61,10 @@ export const ExercisePreview = ({ id }) => {
 					<div dangerouslySetInnerHTML={{ __html: data.description }}></div>
 				</section>
 
-				<MuscleDiagram primary={data.muscles} secondary={data.muscles_secondary} />
+				<MuscleDiagram
+					primary={data.muscles}
+					secondary={data.muscles_secondary}
+				/>
 			</div>
 		)
 	);

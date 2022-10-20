@@ -1,7 +1,7 @@
 import { useMediaQuery } from 'hooks/useMediaQuery ';
 import { Card } from '../Card/Card';
 import { Spinner } from 'components/Elements';
-import { Modal } from 'components/Layout';
+import { Modal } from 'components/Modal/Modal';
 import { ExercisePreview } from '..';
 
 import styles from './CardsList.module.css';

@@ -1,7 +1,7 @@
 import { useGetWorkoutsQuery } from 'features/workout/store';
 
 import { WorkoutPreview } from '../Card/WorkoutPreview';
-import { Modal } from 'components/Layout';
+import { Modal } from 'components/Modal/Modal';
 import { PageSpinner } from 'components/Elements';
 import { CreateWorkout } from '../CreateWorkout/CreateWorkout';
 

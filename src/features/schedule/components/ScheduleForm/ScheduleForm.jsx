@@ -10,7 +10,7 @@ import {
 } from 'features/schedule';
 
 import { Button } from 'components/Elements';
-import { Modal } from 'components/Layout';
+import { Modal } from 'components/Modal/Modal';
 import { Calendar } from '../Calendar/Calendar';
 import { CalendarEvent } from '../CalendarEvent/CalendarEvent';
 import { DATE_FORMAT } from 'assets/date_format';
