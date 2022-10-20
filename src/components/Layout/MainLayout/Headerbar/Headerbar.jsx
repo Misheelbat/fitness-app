@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { User, List } from 'phosphor-react';
-import { SearchBar } from 'components/Searchbar/SearchBar';
-
 import { setExercise } from 'features/exercises';
 import { selectDisplayName, useSignOutMutation } from 'features/auth';
+
+import { User, List } from 'phosphor-react';
+import { SearchBar } from 'components/Searchbar/SearchBar';
 
 import styles from './Headerbar.module.css';
 
@@ -45,7 +45,10 @@ const UserNav = () => {
 			{user && <span className={styles.userName}>{user}</span>}
 			<div>
 				<div>
-					<button aria-label="open user menu" onClick={() => setOpenUserMenu(!openUserMenu)}>
+					<button
+						aria-label="open user menu"
+						onClick={() => setOpenUserMenu(!openUserMenu)}
+					>
 						<User size="35" />
 					</button>
 				</div>
@@ -62,7 +65,7 @@ const UserNav = () => {
 	);
 };
 
-export default function Headerbar({ mobileNavToggle, setMobileNavToggle }) {
+export default function Headerbar({ openSidebar }) {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
@@ -73,11 +76,20 @@ export default function Headerbar({ mobileNavToggle, setMobileNavToggle }) {
 	};
 
 	return (
-		<header data-nav={mobileNavToggle} className={styles.headerbar}>
-			<button className={styles.mobileNav} onClick={() => setMobileNavToggle((open) => !open)}>
-				<List size={20} weight="thin" />
-			</button>
-			<SearchBar className={styles.searchBarInHeader} onResultsClick={handleClick} />
+		<header className={styles.headerbar}>
+			<div className={styles.navBtn}>
+				<button
+					className={styles.mobileNavBtn}
+					onClick={() => openSidebar(true)}
+				>
+					<List size={20} weight="thin" />
+				</button>
+			</div>
+
+			<SearchBar
+				className={styles.searchBarInHeader}
+				onResultsClick={handleClick}
+			/>
 			<UserNav />
 		</header>
 	);

@@ -16,11 +16,11 @@
 
 .searchForm button {
 	position: absolute;
-	z-index: 10;
+	z-index: 1;
 	right: 0.5rem;
-	color: white;
 	padding: 0;
 	border: 0;
+	color: white;
 	background-color: transparent;
 	cursor: pointer;
 	transition: transform 100ms linear;

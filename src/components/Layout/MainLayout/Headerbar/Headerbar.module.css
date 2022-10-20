@@ -1,17 +1,14 @@
-/* Typography */
+/* Headerbar - headerbar */
 .headerbar {
 	background-color: var(--clr-primary);
-}
-
-/* Layout */
-.headerbar {
 	min-width: 100%;
 	min-height: 5rem;
 	display: flex;
 	align-items: center;
-	padding-left: 2.5rem;
 	padding-right: 2.5rem;
 }
+
+/* UserNav - user menu */
 
 .userNav {
 	position: relative;
@@ -53,34 +50,41 @@
 	background-color: var(--clr-bg);
 }
 
-.mobileNav {
+/* Mobile Sidebar/navbar open btn */
+.mobileNavBtn {
 	color: white;
 	background-color: transparent;
-	display: none;
 	padding: 0;
 	border: 0;
-	margin-inline: 8.5px;
-	position: absolute;
-	top: 30px;
-	left: 0;
-	z-index: 1000;
 }
+.navBtn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 5rem;
+	min-height: 5rem;
+	background-color: var(--clr-primary);
+}
+.navBtn button {
+	display: none;
+}
+@media (max-width: 900px) {
+	.navBtn button {
+		display: initial;
+	}
+}
+
+/* Headerbar small screen */
 @media (max-width: 550px) {
 	.userName {
 		display: none;
 	}
 	.headerbar {
-		padding-left: 2.5rem;
 		padding-right: 1rem;
 	}
 	.searchBarInHeader {
 		width: 100%;
 		max-width: 200px;
 		position: relative;
-	}
-}
-@media (max-width: 900px) {
-	.mobileNav {
-		display: block;
 	}
 }
