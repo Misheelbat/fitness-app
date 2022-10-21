@@ -76,6 +76,8 @@
 }
 .images {
 	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
 	gap: 1rem;
 	margin-top: 1rem;
 	min-width: 0;
@@ -112,5 +114,6 @@
 	.preview,
 	.loading {
 		max-height: max-content;
+		width: 100%;
 	}
 }
