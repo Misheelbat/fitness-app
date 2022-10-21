@@ -61,8 +61,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	min-width: 5rem;
-	min-height: 5rem;
+	min-width: min(15vw, 5rem);
+	min-height: min(15vw, 5rem);
 	background-color: var(--clr-primary);
 }
 .navBtn button {
