@@ -31,6 +31,7 @@ export const CardsList = ({ cards = [], isLoading }) => {
 			</Modal>
 		));
 	}
+	
 	// if window size is bigger than 900px render card as it is
 	if (!isMobileWidth && !isLoading) {
 		content = cards.map(({ id, name, equipment }) => (

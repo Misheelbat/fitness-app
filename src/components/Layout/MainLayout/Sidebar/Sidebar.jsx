@@ -14,7 +14,7 @@ import cx from 'classnames';
 import '@reach/dialog/styles.css';
 import styles from './Sidebar.module.css';
 
-const SideNavItem = ({ className, Onclick }) => {
+const NavItem = ({ className, Onclick }) => {
 	const navItems = [
 		{ name: 'Dashboard', to: '.', icon: SquaresFour },
 		{ name: 'Exercises List', to: 'exercises', icon: Barbell },
@@ -43,7 +43,7 @@ const SideNavItem = ({ className, Onclick }) => {
 export const Sidebar = () => {
 	return (
 		<section className={styles.sidebar}>
-			<SideNavItem />
+			<NavItem />
 		</section>
 	);
 };
@@ -60,7 +60,7 @@ Sidebar.Mobile = function MobileSideBar({ openModal, setOpenModal, ...rest }) {
 			<div className={styles.mobileNavCloseBtn}>
 				<DeleteBtn onClick={close} x={true} size={30} />
 			</div>
-			<SideNavItem className={styles.mobileNavItems} Onclick={close} />
+			<NavItem className={styles.mobileNavItems} Onclick={close} />
 		</Dialog>
 	);
 };

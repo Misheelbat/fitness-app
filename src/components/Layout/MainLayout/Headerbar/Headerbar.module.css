@@ -67,7 +67,16 @@
 }
 .navBtn button {
 	display: none;
+	cursor: pointer;
+	transition: transform 200ms linear;
 }
+.navBtn button:hover {
+	color: var(--clr-blue);
+}
+.navBtn button:active {
+	transform: scale(1.1);
+}
+
 @media (max-width: 900px) {
 	.navBtn button {
 		display: initial;

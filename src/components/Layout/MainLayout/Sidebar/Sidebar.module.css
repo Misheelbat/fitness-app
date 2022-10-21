@@ -81,9 +81,10 @@
 .mobileNav[data-reach-dialog-content] {
 	margin: 0;
 	padding: 1rem;
+	min-height: 100%;
 	width: 300px;
-	height: 100%;
 	background-color: var(--clr-primary);
+	animation: slide-down 250ms ease;
 }
 .mobileNavCloseBtn {
 	padding-bottom: calc(50px + 10vh);
@@ -111,5 +112,13 @@
 @media (min-width: 900px) {
 	[data-reach-dialog-overlay] {
 		display: none;
+	}
+}
+@keyframes slide-down {
+	0% {
+		transform: translateX(-100%);
+	}
+	100% {
+		transform: translateY(0);
 	}
 }
