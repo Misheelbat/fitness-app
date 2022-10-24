@@ -12,22 +12,24 @@ import {
 import { Button } from 'components/Elements';
 import { Modal } from 'components/Modal/Modal';
 import { Calendar } from '../Calendar/Calendar';
-import { CalendarEvent } from '../CalendarEvent/CalendarEvent';
+import { CalendarEventDetails } from '../CalendarEvent/CalendarEvent';
+
 import { DATE_FORMAT } from 'assets/date_format';
 import styles from './ScheduleForm.module.css';
 
 export const ScheduleForm = () => {
 	const [currentDate, setCurrentDate] = useState(new Date());
+	const { data: schedules, isSuccess } = useGetSchedulesQuery();
 
 	const [deleteEvent, { isLoading: isDeleteLoading }] =
 		useDeleteEventMutation();
 	const [updateEventStatus] = useUpdateEventStatusMutation();
-	const { data: schedules, isSuccess } = useGetSchedulesQuery();
 
 	const selectedDate = format(currentDate, DATE_FORMAT);
 	const canDeleteEvent = schedules?.hasOwnProperty(selectedDate);
 
 	useEffect(() => {
+		// if a past event has toBeCompleted status change it to not completed
 		if (isSuccess && schedules) {
 			const today = new Date();
 			Object.values(schedules).forEach(async (event) => {
@@ -37,7 +39,7 @@ export const ScheduleForm = () => {
 						await updateEventStatus({
 							id: event.id,
 							status: EVENT_STATUS.inComplete,
-						});
+						}).unwrap();
 					} catch (error) {
 						toast.error(error);
 					}
@@ -63,7 +65,7 @@ export const ScheduleForm = () => {
 					<Modal.Title buttonType="add" />
 					<Modal.Content contentLabel="calendar day details">
 						{schedules && (
-							<CalendarEvent
+							<CalendarEventDetails
 								selectedDate={selectedDate}
 								event={schedules[selectedDate]}
 							/>

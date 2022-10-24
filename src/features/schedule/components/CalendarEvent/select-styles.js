@@ -25,8 +25,8 @@ const selectorStyles = {
 
 	option: (styles, { isFocused }) => ({
 		...styles,
-		backgroundColor: isFocused ? '#d9d9d9' : null,
-		color: isFocused ? 'black' : null,
+		backgroundColor: isFocused ? '#127df7' : null,
+		color: isFocused ? 'white' : null,
 		minWidth: 'max-content',
 		width: '100%',
 		cursor: 'pointer',

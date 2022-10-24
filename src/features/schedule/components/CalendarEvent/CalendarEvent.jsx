@@ -5,15 +5,19 @@ import { format, parse } from 'date-fns';
 
 import { Button } from 'components/Elements';
 import { useGetWorkoutsQuery, CreateWorkout } from 'features/workout';
-import { useAddEventToScheduleMutation, DEFAULT_EVENT_STATUS_OPTIONS } from 'features/schedule';
+import {
+	useAddEventToScheduleMutation,
+	DEFAULT_EVENT_STATUS_OPTIONS,
+} from 'features/schedule';
 import { DATE_FORMAT } from 'assets/date_format';
 
 import styles from './CalendarEvent.module.css';
 import selectorStyles from './select-styles';
 
-export const CalendarEvent = ({ selectedDate, event = {} }) => {
+export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 	const { data: workouts } = useGetWorkoutsQuery();
-	const [addEventToCalendar, { isLoading: isAddEventLoading }] = useAddEventToScheduleMutation();
+	const [addEventToCalendar, { isLoading: isAddEventLoading }] =
+		useAddEventToScheduleMutation();
 
 	const [workoutOption, setWorkoutOption] = useState({
 		value: event?.name,
@@ -21,11 +25,17 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 	});
 
 	const [statusOption, setStatusOption] = useState({
-		label: event.status ? event.status : DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.label,
-		value: event.status ? event.status : DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.value,
+		label: event.status
+			? event.status
+			: DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.label,
+		value: event.status
+			? event.status
+			: DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.value,
 	});
 
-	const canSave = [selectedDate, workoutOption.value, statusOption.value].every(Boolean);
+	const canSave = [selectedDate, workoutOption.value, statusOption.value].every(
+		Boolean
+	);
 
 	const selectWorkout = async (e) => {
 		e.preventDefault();
@@ -47,9 +57,12 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 			<form onSubmit={selectWorkout}>
 				<section>
 					<div className={styles.eventSubHeader}>
-						Select a Workout for:{' '}
+						Select a Workout for:
 						<span>
-							{format(parse(selectedDate, DATE_FORMAT, new Date()), "ccc ',' dd LLL yyyy")}
+							{format(
+								parse(selectedDate, DATE_FORMAT, new Date()),
+								"ccc ',' dd LLL yyyy"
+							)}
 						</span>
 					</div>
 					<Select
@@ -57,7 +70,6 @@ export const CalendarEvent = ({ selectedDate, event = {} }) => {
 						options={workouts?.ids.map((id) => ({ value: id, label: id }))}
 						onChange={(e) => setWorkoutOption(e)}
 						styles={selectorStyles}
-						hideSelectedOptions={true}
 						noOptionsMessage={() => 'No Workouts Found'}
 						placeholder={'Select a Workout...'}
 					/>
