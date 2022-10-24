@@ -19,6 +19,7 @@ export const UpdateProfile = () => {
 				<h3>Account Settings</h3>
 				<UpdateDisplayName placeHolder={displayName} />
 				<UpdateEmail placeHolder={email} />
+				<br />
 				<UpdatePassword />
 			</div>
 		</ContentLayout>
