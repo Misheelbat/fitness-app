@@ -10,8 +10,12 @@
 	align-items: center;
 }
 .active {
-	outline: 1px solid var(--clr-blue);
-	/* background-color: var(--clr-bg); */
+	border: 2px solid var(--clr-blue);
+	background-color: var(--clr-grey);
+	color: black;
+}
+.active .card {
+	inset: 0;
 }
 .card {
 	font-size: 0.8em;
