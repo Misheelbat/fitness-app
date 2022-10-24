@@ -51,6 +51,7 @@ export const workoutApi = apiWithTag.injectEndpoints({
 					equipments: extractEquipment(response.equipment).join(', '),
 					sets: arg.reps.reps.length,
 					reps: arg.reps.reps.join('/'),
+					weight: [...arg.reps.weight, ...arg.reps.weightUnit].join('/'),
 				};
 			},
 		}),
@@ -96,7 +97,9 @@ export const workoutApi = apiWithTag.injectEndpoints({
 					};
 				}
 			},
-			invalidatesTags: (result, error, arg) => [{ type: 'workout', id: arg.id }],
+			invalidatesTags: (result, error, arg) => [
+				{ type: 'workout', id: arg.id },
+			],
 		}),
 		deleteExerciseFromWorkout: build.mutation({
 			async queryFn(args) {
@@ -113,7 +116,9 @@ export const workoutApi = apiWithTag.injectEndpoints({
 					};
 				}
 			},
-			invalidatesTags: (result, error, arg) => [{ type: 'workout', id: arg.workout }],
+			invalidatesTags: (result, error, arg) => [
+				{ type: 'workout', id: arg.workout },
+			],
 		}),
 		deleteWorkout: build.mutation({
 			async queryFn(arg) {
