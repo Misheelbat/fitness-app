@@ -17,7 +17,7 @@ const useToggleContext = () => {
 };
 
 export const Modal = ({ children }) => {
-	const [openModal, setOpenModal] = useState('closed');
+	const [openModal, setOpenModal] = useState(false);
 	const value = { openModal, setOpenModal };
 
 	return (
@@ -36,12 +36,12 @@ Modal.Content = function ModalContent({
 	return (
 		<Dialog
 			aria-label={contentLabel}
-			isOpen={openModal === 'open'}
+			isOpen={openModal}
 			className={cx(styles.modalContainer, addClassName)}
 			{...rest}
 		>
 			<DeleteBtn
-				onClick={() => setOpenModal('close')}
+				onClick={() => setOpenModal(false)}
 				x={true}
 				btnClassName={styles.modalCloseBtn}
 				size={20}
@@ -56,7 +56,7 @@ Modal.Title = function ModalTitle({ Element = Button, children, ...rest }) {
 	const { setOpenModal } = useToggleContext();
 	return (
 		<Element
-			onClick={() => setOpenModal('open')}
+			onClick={() => setOpenModal(true)}
 			aria-label="open modal button"
 			{...rest}
 		>

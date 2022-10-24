@@ -75,7 +75,7 @@
 }
 
 /* SideNavItem - Navbar-Mobile */
-[data-reach-dialog-overlay] {
+.mobileNav[data-reach-dialog-overlay] {
 	z-index: 1000;
 }
 .mobileNav[data-reach-dialog-content] {
@@ -110,7 +110,7 @@
 }
 
 @media (min-width: 900px) {
-	[data-reach-dialog-overlay] {
+	.mobileNav[data-reach-dialog-overlay] {
 		display: none;
 	}
 }
