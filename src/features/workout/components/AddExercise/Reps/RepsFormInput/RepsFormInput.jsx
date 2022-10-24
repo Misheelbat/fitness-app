@@ -3,17 +3,17 @@ import cx from 'classnames';
 import Select from 'react-select';
 
 import {
-	REP_UNIT_DEFAULT_VALUE,
+	REP_UNITS_DEFAULT_VALUE,
 	WEIGHT_UNITS_DEFAULT_VALUE,
 } from 'features/workout';
 
 import { selectorStyles } from './select-styles';
 import styles from './RepsFormInput.module.css';
 
-export const RepsFormInput = ({ active }) => {
+export const RepsFormInput = ({ isActive }) => {
 	const [repInput, setRepInput] = useState({
 		reps: '',
-		unit: REP_UNIT_DEFAULT_VALUE[0],
+		unit: REP_UNITS_DEFAULT_VALUE[0],
 	});
 	const [weightInput, setWeightInput] = useState({
 		weight: '',
@@ -21,7 +21,7 @@ export const RepsFormInput = ({ active }) => {
 	});
 
 	return (
-		<div className={cx(styles.repsGroup, styles[active])}>
+		<div className={cx(styles.repsGroup, styles[isActive])}>
 			<div className={styles.inputGroup}>
 				<div className={styles.inputForm}>
 					<label htmlFor="reps">Reps</label>
@@ -38,7 +38,7 @@ export const RepsFormInput = ({ active }) => {
 				<div className={styles.selectForm}>
 					<label htmlFor="repsUnit">Units</label>
 					<Select
-						options={REP_UNIT_DEFAULT_VALUE}
+						options={REP_UNITS_DEFAULT_VALUE}
 						name="repsUnits"
 						styles={selectorStyles}
 						inputId="repsUnits"

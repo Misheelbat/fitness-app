@@ -19,7 +19,7 @@ export const Reps = ({ sets }) => {
 			{setsArray.map((set) => (
 				<RepsFormInput
 					key={set}
-					active={set === currentSet ? 'active' : null}
+					isActive={set === currentSet ? 'active' : null}
 				/>
 			))}
 		</div>
