@@ -3,3 +3,11 @@
 	border-spacing: 0;
 }
 
+@media (max-width: 700px) {
+	th[aria-label='Equipment'],
+	td[aria-labelledby='Equipment'],
+	th[aria-label='Category'],
+	td[aria-labelledby='Category'] {
+		display: none;
+	}
+}
