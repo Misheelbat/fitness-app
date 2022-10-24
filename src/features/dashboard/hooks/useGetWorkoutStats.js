@@ -8,7 +8,7 @@ import {
 } from 'date-fns';
 
 import { useGetSchedulesQuery, EVENT_STATUS } from 'features/schedule';
-import { DEFAULT_TIMEFRAMES } from 'features/dashboard/assets';
+import { DEFAULT_TIMEFRAMES } from 'features/dashboard';
 import { DATE_FORMAT } from 'assets/date_format';
 
 export const useGetWorkoutStats = (timeFrame = DEFAULT_TIMEFRAMES.week) => {
@@ -48,7 +48,11 @@ export const useGetWorkoutStats = (timeFrame = DEFAULT_TIMEFRAMES.week) => {
 	switch (timeFrame) {
 		case DEFAULT_TIMEFRAMES.week:
 			workoutsInTimeFrame = allWorkoutsInCalendar.filter((event) => {
-				if (isThisWeek(parse(event.id, DATE_FORMAT, new Date()), { weekStartsOn: 1 })) {
+				if (
+					isThisWeek(parse(event.id, DATE_FORMAT, new Date()), {
+						weekStartsOn: 1,
+					})
+				) {
 					calcWorkoutStats(event.status);
 					return true;
 				} else {
@@ -60,7 +64,11 @@ export const useGetWorkoutStats = (timeFrame = DEFAULT_TIMEFRAMES.week) => {
 
 		case DEFAULT_TIMEFRAMES.month:
 			workoutsInTimeFrame = allWorkoutsInCalendar.filter((event) => {
-				if (isThisMonth(parse(event.id, DATE_FORMAT, new Date()), { weekStartsOn: 1 })) {
+				if (
+					isThisMonth(parse(event.id, DATE_FORMAT, new Date()), {
+						weekStartsOn: 1,
+					})
+				) {
 					calcWorkoutStats(event.status);
 					return true;
 				} else {
@@ -73,7 +81,11 @@ export const useGetWorkoutStats = (timeFrame = DEFAULT_TIMEFRAMES.week) => {
 
 		case DEFAULT_TIMEFRAMES.year:
 			workoutsInTimeFrame = allWorkoutsInCalendar.filter((event) => {
-				if (isThisYear(parse(event.id, DATE_FORMAT, new Date()), { weekStartsOn: 1 })) {
+				if (
+					isThisYear(parse(event.id, DATE_FORMAT, new Date()), {
+						weekStartsOn: 1,
+					})
+				) {
 					calcWorkoutStats(event.status);
 					return true;
 				} else {

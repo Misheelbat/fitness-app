@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useGetWorkoutStats } from 'features/dashboard/hooks';
-import { DEFAULT_TIMEFRAMES } from 'features/dashboard/assets';
-
 import Select from 'react-select';
+
 import { Island } from '../Island/Island';
+import { DEFAULT_TIMEFRAMES } from 'features/dashboard';
+import { useGetWorkoutStats } from 'features/dashboard/hooks';
 
 import customStyles from './react-select.styles';
 import styles from './WorkoutIsland.module.css';
@@ -21,10 +21,12 @@ export const WorkoutIsland = () => {
 	const handleChange = (e) => {
 		setTimeFrame(e.value);
 	};
-	const defaultSelectValue = Object.values(DEFAULT_TIMEFRAMES).map((timeFrame) => ({
-		label: timeFrame,
-		value: timeFrame,
-	}));
+	const defaultSelectValue = Object.values(DEFAULT_TIMEFRAMES).map(
+		(timeFrame) => ({
+			label: timeFrame,
+			value: timeFrame,
+		})
+	);
 
 	return (
 		<Island>
@@ -45,8 +47,12 @@ export const WorkoutIsland = () => {
 			</Island.Content>
 			<Island.Footer>
 				<span className={styles.workoutDone}>Done: {nCompletedWorkouts}</span>
-				<span className={styles.workoutLeft}>Left: {nTobeCompletedWorkouts}</span>
-				<span className={styles.workoutMissed}>Missed: {nIncompletedWorkouts}</span>
+				<span className={styles.workoutLeft}>
+					Left: {nTobeCompletedWorkouts}
+				</span>
+				<span className={styles.workoutMissed}>
+					Missed: {nIncompletedWorkouts}
+				</span>
 			</Island.Footer>
 		</Island>
 	);
