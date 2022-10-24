@@ -8,7 +8,7 @@ import { Trash } from 'phosphor-react';
 import { Spinner } from 'components/Elements';
 import { ConfirmDelete } from './Confirm/ConfirmDelete';
 
-import styles from './Card.module.css';
+import styles from './WorkoutPreview.module.css';
 
 export const WorkoutPreview = ({ cardName }) => {
 	const navigate = useNavigate();

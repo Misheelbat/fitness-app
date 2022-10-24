@@ -1,10 +1,10 @@
 import { ContentLayout } from 'components/Layout';
-import { Dashboard } from '../../components/Dashboard/Dashboard';
+import { MyWorkouts } from '../../components/MyWorkouts/MyWorkouts';
 
 export const Workouts = () => {
 	return (
 		<ContentLayout title="My Workouts">
-			<Dashboard />
+			<MyWorkouts />
 		</ContentLayout>
 	);
 };

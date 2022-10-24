@@ -7,7 +7,7 @@ export const SearchResults = ({ data, onClick, loading }) => {
 	if (!data) return null;
 
 	// search found nothing
-	if (data && data.length === 0) content = <div className={styles.results}>Nothing Found</div>;
+	if (data && data.length === 0) content = <div className={styles.results}>Nothing Found...</div>;
 
 	// search found data
 	if (data && data.length !== 0) {
@@ -19,7 +19,6 @@ export const SearchResults = ({ data, onClick, loading }) => {
 	}
 
 	const handleClick = (exercise) => {
-		console.log(exercise);
 		onClick(exercise);
 	};
 	return <div className={styles.searchResults}>{content}</div>;

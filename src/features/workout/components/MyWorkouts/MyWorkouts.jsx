@@ -1,14 +1,14 @@
 import { useGetWorkoutsQuery } from 'features/workout/store';
 
-import { WorkoutPreview } from '../Card/WorkoutPreview';
 import { Modal } from 'components/Modal/Modal';
 import { PageSpinner } from 'components/Elements';
 import { CreateWorkout } from '../CreateWorkout/CreateWorkout';
+import { WorkoutPreview } from '../WorkoutPreview/WorkoutPreview';
 
-import styles from './Dashboard.module.css';
+import styles from './MyWorkouts.module.css';
 const loadingStyle = { height: '100%', width: '100%' };
 
-export const Dashboard = () => {
+export const MyWorkouts = () => {
 	const {
 		data: workouts,
 		isLoading,
