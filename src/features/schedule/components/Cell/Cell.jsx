@@ -12,6 +12,7 @@ export let Cell = ({ onClick, children, isActive = false, event }) => {
 			</div>
 		);
 	}
+
 	return (
 		<div
 			onClick={!isActive ? onClick : undefined}

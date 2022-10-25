@@ -51,7 +51,9 @@ export const schedulesApi = apiWithTag.injectEndpoints({
 					return { error: err.message };
 				}
 			},
-			invalidatesTags: (result, error, arg) => [{ type: 'schedule', id: arg.id }],
+			invalidatesTags: (result, error, arg) => [
+				{ type: 'schedule', id: arg.id },
+			],
 		}),
 		deleteEvent: build.mutation({
 			async queryFn(id) {
@@ -63,7 +65,9 @@ export const schedulesApi = apiWithTag.injectEndpoints({
 					return { error: err.message };
 				}
 			},
-			invalidatesTags: (result, error, arg) => [{ type: 'schedule', id: 'LIST' }],
+			invalidatesTags: (result, error, arg) => [
+				{ type: 'schedule', id: 'LIST' },
+			],
 		}),
 	}),
 });

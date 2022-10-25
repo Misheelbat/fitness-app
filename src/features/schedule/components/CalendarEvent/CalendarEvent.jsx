@@ -1,14 +1,15 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Select from 'react-select';
 import { toast } from 'react-toastify';
-import { format, parse } from 'date-fns';
+import { format, parse, isBefore } from 'date-fns';
 
-import { Button } from 'components/Elements';
 import { useGetWorkoutsQuery, CreateWorkout } from 'features/workout';
 import {
 	useAddEventToScheduleMutation,
 	DEFAULT_EVENT_STATUS_OPTIONS,
 } from 'features/schedule';
+
+import { Button } from 'components/Elements';
 import { DATE_FORMAT } from 'assets/date_format';
 
 import styles from './CalendarEvent.module.css';
@@ -33,9 +34,28 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 			: DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.value,
 	});
 
-	const canSave = [selectedDate, workoutOption.value, statusOption.value].every(
-		Boolean
+	const [statusOptions, setStatusOptions] = useState(
+		Object.values(DEFAULT_EVENT_STATUS_OPTIONS)
 	);
+
+	const canSave = [
+		selectedDate,
+		workoutOption.value,
+		statusOption?.value,
+	].every(Boolean);
+
+	useEffect(() => {
+		if (isBefore(parse(selectedDate, DATE_FORMAT, new Date()), new Date())) {
+			if (!event.status) setStatusOption(null);
+
+			const options = Object.values(DEFAULT_EVENT_STATUS_OPTIONS).filter(
+				(status) =>
+					status.value !== DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.value
+			);
+			setStatusOptions(options);
+		}
+		// eslint-disable-next-line
+	}, [selectedDate]);
 
 	const selectWorkout = async (e) => {
 		e.preventDefault();
@@ -79,10 +99,11 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 					<div className={styles.eventSubHeader}>Set Workout Status:</div>
 					<Select
 						value={statusOption}
-						options={Object.values(DEFAULT_EVENT_STATUS_OPTIONS)}
+						options={statusOptions}
 						onChange={(e) => setStatusOption(e)}
 						styles={selectorStyles}
 						hideSelectedOptions={true}
+						placeholder={'Select a Workout Status...'}
 					/>
 
 					<Button

@@ -1,4 +1,12 @@
-import { add, differenceInDays, endOfMonth, format, setDate, startOfMonth, sub } from 'date-fns';
+import {
+	add,
+	sub,
+	format,
+	setDate,
+	endOfMonth,
+	startOfMonth,
+	differenceInDays,
+} from 'date-fns';
 
 import { Cell } from '../Cell/Cell';
 import { weekDays } from 'features/schedule/assets/default_week_days';
@@ -23,25 +31,26 @@ export const Calendar = ({ events = {}, value, onDateChange }) => {
 
 	const monthAndYear = format(value, 'LLLyyyy');
 
-	const calendarDays = Array.from({ length: daysInCurrentMonth }).map((_, index) => {
-		const dayNumber = index + 1;
-		const fullDate = dayNumber + monthAndYear;
-		const isCurrentDate = dayNumber === value.getDate();
-		return (
-			<Cell
-				key={dayNumber}
-				event={events[fullDate]}
-				isActive={isCurrentDate}
-				onClick={() => handleClickDate(dayNumber)}
-			>
-				{dayNumber}
-			</Cell>
-		);
-	});
+	const calendarDays = Array.from({ length: daysInCurrentMonth }).map(
+		(_, index) => {
+			const dayNumber = index + 1;
+			const fullDate = dayNumber + monthAndYear;
+			const isCurrentDate = dayNumber === value.getDate();
+			return (
+				<Cell
+					key={dayNumber}
+					event={events[fullDate]}
+					isActive={isCurrentDate}
+					onClick={() => handleClickDate(dayNumber)}
+				>
+					{dayNumber}
+				</Cell>
+			);
+		}
+	);
 
 	return (
 		<div className={styles.calendar}>
-			{/* <Button onClick={handleSetToday}>Today</Button> */}
 			<div className={styles.colHeader}>
 				<button onClick={prevYear}>{'<<'}</button>
 				<button onClick={prevMonth}>{'<'}</button>
@@ -49,6 +58,7 @@ export const Calendar = ({ events = {}, value, onDateChange }) => {
 				<button onClick={nextMonth}>{'>'}</button>
 				<button onClick={nextYear}>{'>>'}</button>
 			</div>
+			
 			<div className={styles.col}>
 				<div className={styles.weeks}>
 					{weekDays.map((week) => (
