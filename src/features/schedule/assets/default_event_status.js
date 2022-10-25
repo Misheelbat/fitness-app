@@ -5,7 +5,13 @@ export const EVENT_STATUS = {
 };
 
 export const DEFAULT_EVENT_STATUS_OPTIONS = {
-	[EVENT_STATUS.inComplete]: { label: 'In Complete', value: EVENT_STATUS.inComplete },
+	[EVENT_STATUS.inComplete]: {
+		label: 'InComplete',
+		value: EVENT_STATUS.inComplete,
+	},
 	[EVENT_STATUS.complete]: { label: 'Completed', value: EVENT_STATUS.complete },
-	[EVENT_STATUS.tobeCompleted]: { label: 'To be completed', value: EVENT_STATUS.tobeCompleted },
+	[EVENT_STATUS.tobeCompleted]: {
+		label: 'To be completed',
+		value: EVENT_STATUS.tobeCompleted,
+	},
 };

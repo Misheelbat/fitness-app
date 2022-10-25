@@ -20,18 +20,14 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 	const [addEventToCalendar, { isLoading: isAddEventLoading }] =
 		useAddEventToScheduleMutation();
 
-	const [workoutOption, setWorkoutOption] = useState({
+	const [selectedWorkout, setSelectedWorkout] = useState({
 		value: event?.name,
 		label: event?.name,
 	});
 
-	const [statusOption, setStatusOption] = useState({
-		label: event.status
-			? event.status
-			: DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.label,
-		value: event.status
-			? event.status
-			: DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.value,
+	const [selectedStatus, setSelectedStatus] = useState({
+		label: event.status ?? DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.label,
+		value: event.status ?? DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.value,
 	});
 
 	const [statusOptions, setStatusOptions] = useState(
@@ -40,22 +36,23 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 
 	const canSave = [
 		selectedDate,
-		workoutOption.value,
-		statusOption?.value,
+		selectedWorkout.value,
+		selectedStatus?.value,
 	].every(Boolean);
 
 	useEffect(() => {
+		// if selected date is in the past
 		if (isBefore(parse(selectedDate, DATE_FORMAT, new Date()), new Date())) {
-			if (!event.status) setStatusOption(null);
+			if (!event.status) setSelectedStatus(null);
 
+			// remove tobeCompleted option
 			const options = Object.values(DEFAULT_EVENT_STATUS_OPTIONS).filter(
 				(status) =>
 					status.value !== DEFAULT_EVENT_STATUS_OPTIONS.tobeCompleted.value
 			);
 			setStatusOptions(options);
 		}
-		// eslint-disable-next-line
-	}, [selectedDate]);
+	}, [selectedDate, event.status]);
 
 	const selectWorkout = async (e) => {
 		e.preventDefault();
@@ -63,8 +60,8 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 		try {
 			await addEventToCalendar({
 				id: selectedDate,
-				name: workoutOption.value,
-				status: statusOption.value,
+				name: selectedWorkout.value,
+				status: selectedStatus.value,
 			}).unwrap();
 			toast.success('Event added to Calendar', { toastId: selectedDate });
 		} catch (error) {
@@ -86,9 +83,9 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 						</span>
 					</div>
 					<Select
-						value={workoutOption.value ? workoutOption : null}
+						value={selectedWorkout.value ? selectedWorkout : null}
 						options={workouts?.ids.map((id) => ({ value: id, label: id }))}
-						onChange={(e) => setWorkoutOption(e)}
+						onChange={(e) => setSelectedWorkout(e)}
 						styles={selectorStyles}
 						noOptionsMessage={() => 'No Workouts Found'}
 						placeholder={'Select a Workout...'}
@@ -98,9 +95,9 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 				<section>
 					<div className={styles.eventSubHeader}>Set Workout Status:</div>
 					<Select
-						value={statusOption}
+						value={selectedStatus}
 						options={statusOptions}
-						onChange={(e) => setStatusOption(e)}
+						onChange={(e) => setSelectedStatus(e)}
 						styles={selectorStyles}
 						hideSelectedOptions={true}
 						placeholder={'Select a Workout Status...'}

@@ -107,3 +107,57 @@ export const useGetWorkoutStats = (timeFrame = DEFAULT_TIMEFRAMES.week) => {
 		restDays,
 	};
 };
+
+// const counts = {
+// 	[EVENT_STATUS.complete]: 0,
+// 	[EVENT_STATUS.inComplete]: 0,
+// 	[EVENT_STATUS.tobeCompleted]: 0,
+// };
+
+// const allWorkoutsInCalendar = Object.values(schedules);
+// const workoutsInTimeFrame = [];
+// for (const workout of allWorkoutsInCalendar) {
+// 	if (
+// 		isThisTimeFrame(timeframe, parse(event.id, DATE_FORMAT, new Date()), {
+// 			weekStartsOn: 1,
+// 		})
+// 	) {
+// 		workoutsInTimeFrame.push(workout);
+// 		counts[workout.status]++;
+// 	}
+// }
+
+
+// export const useGetWorkoutStats = (timeFrame = DEFAULT_TIMEFRAMES.week) => {
+// 	const { data: schedules, isSuccess } = useGetSchedulesQuery();
+
+// 	const counts = {
+// 		[EVENT_STATUS.complete]: 0,
+// 		[EVENT_STATUS.inComplete]: 0,
+// 		[EVENT_STATUS.tobeCompleted]: 0,
+// 	};
+// 	let workoutNumber = 0;
+// 	let restDays = 7;
+
+// 	if (isSuccess && schedules) {
+// 		const allWorkoutsInCalendar = Object.values(schedules);
+// 		const workoutsInTimeFrame = [];
+// 		for (const workout of allWorkoutsInCalendar) {
+// 			if (
+// 				isThisTimeFrame(timeFrame, parse(event.id, DATE_FORMAT, new Date()), {
+// 					weekStartsOn: 1,
+// 				})
+// 			) {
+// 				workoutNumber++;
+// 				counts[workout.status]++;
+// 			}
+// 		}
+// 		restDays = getDaysInTimeFrame(timeFrame) - workoutsInTimeFrame.length;
+// 	}
+
+// 	return {
+// 		workoutNumber,
+// 		...counts,
+// 		restDays,
+// 	};
+// };
