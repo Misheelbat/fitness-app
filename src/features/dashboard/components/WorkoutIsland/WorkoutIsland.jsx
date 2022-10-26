@@ -13,9 +13,9 @@ export const WorkoutIsland = () => {
 	const {
 		restDays,
 		workoutNumber,
-		nCompletedWorkouts,
-		nIncompletedWorkouts,
-		nTobeCompletedWorkouts,
+		complete: nCompletedWorkouts,
+		inComplete: nIncompletedWorkouts,
+		tobeCompleted: nTobeCompletedWorkouts,
 	} = useGetWorkoutStats(timeFrame);
 
 	const handleChange = (e) => {
