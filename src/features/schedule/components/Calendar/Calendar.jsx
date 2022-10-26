@@ -9,7 +9,7 @@ import {
 } from 'date-fns';
 
 import { Cell } from '../Cell/Cell';
-import { weekDays } from 'features/schedule/assets/default_week_days';
+import { weekDays } from 'features/schedule/assets/default_values';
 import styles from './Calendar.module.css';
 
 export const Calendar = ({ events = {}, value, onDateChange }) => {
@@ -58,7 +58,7 @@ export const Calendar = ({ events = {}, value, onDateChange }) => {
 				<button onClick={nextMonth}>{'>'}</button>
 				<button onClick={nextYear}>{'>>'}</button>
 			</div>
-			
+
 			<div className={styles.col}>
 				<div className={styles.weeks}>
 					{weekDays.map((week) => (
