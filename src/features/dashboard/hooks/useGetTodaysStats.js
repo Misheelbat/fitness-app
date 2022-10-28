@@ -18,7 +18,11 @@ export const useGetTodaysStats = () => {
 			.map((n) => parse(n.id, 'dLLLyyyy', new Date()))
 			.filter((datum) => datum > new Date());
 		const closestDate = closestTo(new Date(), schedulesArray);
-		nextWorkoutDate = format(closestDate, "ccc ',' d LLL yyyy");
+		if (closestDate) {
+			nextWorkoutDate = format(closestDate, "ccc ',' d LLL yyyy");
+		}
+		console.log(schedulesArray);
+		console.log(closestDate);
 	}
 
 	return { todaysActivity, nextWorkoutDate };
