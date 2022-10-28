@@ -8,10 +8,10 @@ export const useGetTodaysStats = () => {
 	const today = format(new Date(), DATE_FORMAT);
 
 	let todaysActivity = 'Rest Day';
-	let nextWorkoutDate = 'No Workout found in Calendar';
+	let nextWorkoutDate = 'No Workouts found in Calendar';
 	if (!isSuccess || !schedules) return { todaysActivity, nextWorkoutDate };
 
-	if (isSuccess) {
+	if (isSuccess && Object.keys(schedules).length !== 0) {
 		if (schedules[today]) todaysActivity = schedules[today].name;
 		// create array of date Object from schedules with only future dates
 		const schedulesArray = Object.values(schedules)
