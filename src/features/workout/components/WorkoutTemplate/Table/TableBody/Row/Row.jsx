@@ -1,7 +1,9 @@
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Trash } from 'phosphor-react';
 
+import { Trash } from 'phosphor-react';
 import { Spinner } from 'components/Elements';
+
 import {
 	useGetTableDataQuery,
 	useDeleteExerciseFromWorkoutMutation,
@@ -28,7 +30,6 @@ export const Row = ({ rowData, workout }) => {
 			toast.error('oops something went wrong...');
 		}
 	};
-
 	return (
 		<tr>
 			{isTableDataLoading && (
@@ -36,11 +37,12 @@ export const Row = ({ rowData, workout }) => {
 					<Spinner size={20} />
 				</td>
 			)}
+
 			{!isTableDataLoading && isSuccess && (
 				<>
 					{Object.values(data).map((value, i) => (
 						<td aria-labelledby={DEFAULT_TABLE_HEADERS[i]} key={value}>
-							{value}
+							<Link to={`../../exercises/${rowData.id}`}>{value}</Link>
 						</td>
 					))}
 					<td aria-labelledby="Edit">

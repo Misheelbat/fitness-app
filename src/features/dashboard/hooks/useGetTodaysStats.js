@@ -13,8 +13,10 @@ export const useGetTodaysStats = () => {
 
 	if (isSuccess) {
 		if (schedules[today]) todaysActivity = schedules[today].name;
-		// array of date Object from schedules
-		const schedulesArray = Object.values(schedules).map((n) => parse(n.id, 'dLLLyyyy', new Date()));
+		// create array of date Object from schedules
+		const schedulesArray = Object.values(schedules).map((n) =>
+			parse(n.id, 'dLLLyyyy', new Date())
+		);
 		const closestDate = closestTo(new Date(), schedulesArray);
 		nextWorkoutDate = format(closestDate, "ccc ',' d LLL yyyy");
 	}
