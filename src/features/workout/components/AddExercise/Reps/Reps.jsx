@@ -1,8 +1,9 @@
 import { useState } from 'react';
 
+import { createArray } from 'features/workout/';
+
 import { RepsFormInput } from './RepsFormInput/RepsFormInput';
 import { ArrowBtn } from './ArrowBtn/ArrowBtn';
-import { createArray } from 'features/workout/utility';
 
 import styles from './Reps.module.css';
 

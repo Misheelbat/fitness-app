@@ -22,7 +22,7 @@ export const Row = ({ rowData, workout }) => {
 	const [deleteExercise, { isLoading: isDeleteLoading }] =
 		useDeleteExerciseFromWorkoutMutation();
 
-	const onDeleteClick = async () => {
+	const handleDelete = async () => {
 		try {
 			await deleteExercise({ id: rowData.id, workout }).unwrap();
 			toast.success(`${data.name} deleted`, { toastId: rowData.id });
@@ -30,6 +30,7 @@ export const Row = ({ rowData, workout }) => {
 			toast.error('oops something went wrong...');
 		}
 	};
+
 	return (
 		<tr>
 			{isTableDataLoading && (
@@ -40,13 +41,16 @@ export const Row = ({ rowData, workout }) => {
 
 			{!isTableDataLoading && isSuccess && (
 				<>
-					{Object.values(data).map((value, i) => (
+					{Object.entries(data).map(([key, value], i) => (
 						<td aria-labelledby={DEFAULT_TABLE_HEADERS[i]} key={value}>
-							<Link to={`../../exercises/${rowData.id}`}>{value}</Link>
+							{key === 'name' && (
+								<Link to={`/app/exercises/${rowData.id}`}>{value}</Link>
+							)}
+							{key !== 'name' && value}
 						</td>
 					))}
 					<td aria-labelledby="Edit">
-						<button className={styles.deleteBtn} onClick={onDeleteClick}>
+						<button className={styles.deleteBtn} onClick={handleDelete}>
 							{isDeleteLoading ? <Spinner size={20} /> : <Trash size={20} />}
 						</button>
 					</td>
