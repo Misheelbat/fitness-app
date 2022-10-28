@@ -22,7 +22,7 @@ export const Landing = () => {
 		<>
 			<Head />
 			<main className={styles.landing}>
-				<h1>Landing</h1>
+				<h1>Welcome</h1>
 				<Button onClick={handleStart}>Get Started</Button>
 			</main>
 		</>
