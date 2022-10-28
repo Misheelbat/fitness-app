@@ -52,11 +52,19 @@ export const Calendar = ({ events = {}, value, onDateChange }) => {
 	return (
 		<div className={styles.calendar}>
 			<div className={styles.colHeader}>
-				<button onClick={prevYear}>{'<<'}</button>
-				<button onClick={prevMonth}>{'<'}</button>
+				<button title="previous year" onClick={prevYear}>
+					{'<<'}
+				</button>
+				<button title="previous month" onClick={prevMonth}>
+					{'<'}
+				</button>
 				<div className={styles.spanThree}>{format(value, 'LLLL yyyy')}</div>
-				<button onClick={nextMonth}>{'>'}</button>
-				<button onClick={nextYear}>{'>>'}</button>
+				<button title="next month" onClick={nextMonth}>
+					{'>'}
+				</button>
+				<button title="next year" onClick={nextYear}>
+					{'>>'}
+				</button>
 			</div>
 
 			<div className={styles.col}>
