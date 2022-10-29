@@ -5,12 +5,18 @@ You should always configure and use the following tools:
 2. you need to create a firebase account and create a new project.
 3. after you have created a new project you will be given a firebase config
    it looks like this: 
+   
    const firebaseConfig = {
      apiKey: "",
+     
      authDomain: "",
+     
      projectId: "",
+     
      storageBucket: "",
+     
      messagingSenderId: "",
+     
      appId: ""
    };
 4. create a .env file in the project root and create the following Environment variables 
