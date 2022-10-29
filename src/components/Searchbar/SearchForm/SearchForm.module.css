@@ -31,6 +31,10 @@
 .searchForm button:active {
 	transform: scale(1.2);
 }
+.searchForm .searchBtnActive {
+	color: var(--clr-blue);
+	transform: scale(1.2);
+}
 @media (max-width: 500px) {
 	.searchForm input {
 		padding: 0.6em 1em;

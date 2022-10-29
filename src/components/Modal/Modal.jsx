@@ -32,20 +32,21 @@ Modal.Content = function ModalContent({
 	...rest
 }) {
 	const { openModal, setOpenModal } = useToggleContext();
-
+	const close = () => setOpenModal(false);
 	return (
 		<Dialog
 			aria-label={contentLabel}
 			isOpen={openModal}
+			onDismiss={close}
 			className={cx(styles.modalContainer, addClassName)}
 			{...rest}
 		>
 			<DeleteBtn
-				onClick={() => setOpenModal(false)}
+				onClick={close}
 				x={true}
 				btnClassName={styles.modalCloseBtn}
-				size={20}
-			/>
+				size={25}
+			/>      
 
 			{children}
 		</Dialog>

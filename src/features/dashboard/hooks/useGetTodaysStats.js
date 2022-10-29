@@ -8,21 +8,19 @@ export const useGetTodaysStats = () => {
 	const today = format(new Date(), DATE_FORMAT);
 
 	let todaysActivity = 'Rest Day';
-	let nextWorkoutDate = 'No Workouts found in Calendar';
+	let nextWorkoutDate = 'Calendar is empty';
 	if (!isSuccess || !schedules) return { todaysActivity, nextWorkoutDate };
 
 	if (isSuccess && Object.keys(schedules).length !== 0) {
 		if (schedules[today]) todaysActivity = schedules[today].name;
 		// create array of date Object from schedules with only future dates
 		const schedulesArray = Object.values(schedules)
-			.map((n) => parse(n.id, 'dLLLyyyy', new Date()))
+			.map((event) => parse(event.id, 'dLLLyyyy', new Date()))
 			.filter((datum) => datum > new Date());
 		const closestDate = closestTo(new Date(), schedulesArray);
 		if (closestDate) {
 			nextWorkoutDate = format(closestDate, "ccc ',' d LLL yyyy");
 		}
-		console.log(schedulesArray);
-		console.log(closestDate);
 	}
 
 	return { todaysActivity, nextWorkoutDate };

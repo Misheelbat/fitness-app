@@ -30,7 +30,10 @@ export const SearchForm = ({ searchFn, results, closeResults }) => {
 				onChange={(e) => setSearchTerm(e.target.value)}
 				placeholder="Search an Exercise"
 			/>
-			<button disabled={results?.isLoading}>
+			<button
+				disabled={results?.isLoading}
+				className={searchTerm ? styles.searchBtnActive : null}
+			>
 				{results?.isLoading && <Spinner size="16" />}
 				{!results?.isLoading && <MagnifyingGlass size="16" />}
 			</button>
