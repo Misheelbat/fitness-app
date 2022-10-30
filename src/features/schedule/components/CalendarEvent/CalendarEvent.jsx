@@ -30,7 +30,9 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 	useEffect(() => {
 		// if selected date is in the past
 		if (isBefore(parse(selectedDate, DATE_FORMAT, new Date()), new Date())) {
+			// set default selected status to null, so the placeholder text is used
 			if (!event.status) setSelectedStatus(null);
+
 			// remove tobeCompleted option from available status options
 			setStatusOptions([EVENT_STATUS.complete, EVENT_STATUS.inComplete]);
 		}

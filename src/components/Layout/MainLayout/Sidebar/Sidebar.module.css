@@ -75,9 +75,7 @@
 }
 
 /* SideNavItem - Navbar-Mobile */
-[data-reach-dialog-overlay] {
-	z-index: 1000;
-}
+
 .mobileNav[data-reach-dialog-content] {
 	margin: 0;
 	padding: 1rem;
