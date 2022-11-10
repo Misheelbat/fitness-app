@@ -11,7 +11,7 @@ export const CardsList = ({ cards = [], isLoading }) => {
 	let content;
 	if (isLoading) {
 		content = (
-			<div className={styles.cardsList}>
+			<div className={styles.loading}>
 				<Spinner size="50" variant="primary" />
 			</div>
 		);
@@ -31,7 +31,7 @@ export const CardsList = ({ cards = [], isLoading }) => {
 			</Modal>
 		));
 	}
-	
+
 	// if window size is bigger than 900px render card as it is
 	if (!isMobileWidth && !isLoading) {
 		content = cards.map(({ id, name, equipment }) => (
