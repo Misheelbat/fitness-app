@@ -5,7 +5,7 @@ import { Island } from '../Island/Island';
 import { DEFAULT_TIMEFRAMES } from 'features/dashboard';
 import { useGetWorkoutStats } from 'features/dashboard/hooks';
 
-import customStyles from './react-select.styles';
+import selectStyles from './react-select.styles';
 import styles from './WorkoutIsland.module.css';
 
 export const WorkoutIsland = () => {
@@ -40,7 +40,7 @@ export const WorkoutIsland = () => {
 						}}
 						options={defaultSelectValue}
 						onChange={handleChange}
-						styles={customStyles}
+						styles={selectStyles}
 					/>
 					<span>{`: ${workoutNumber} / ${restDays} RD`}</span>
 				</div>

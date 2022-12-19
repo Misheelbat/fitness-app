@@ -1,13 +1,17 @@
 .mainDashboard {
+	height: 100%;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+.dashboardHeader {
 	display: flex;
 	align-content: flex-start;
 	flex-wrap: wrap;
 	gap: 1rem;
-	height: 100%;
-	overflow: hidden;
 }
 @media (max-width: 900px) {
-	.mainDashboard {
+	.dashboardHeader {
 		justify-content: center;
 	}
 }

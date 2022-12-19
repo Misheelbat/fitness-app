@@ -50,7 +50,11 @@ export const Row = ({ rowData, workout }) => {
 						</td>
 					))}
 					<td aria-labelledby="Edit">
-						<button className={styles.deleteBtn} onClick={handleDelete}>
+						<button
+							className={styles.deleteBtn}
+							onClick={handleDelete}
+							title="delete"
+						>
 							{isDeleteLoading ? <Spinner size={20} /> : <Trash size={20} />}
 						</button>
 					</td>
