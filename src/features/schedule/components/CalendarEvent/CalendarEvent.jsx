@@ -28,8 +28,14 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 	const canSave = selectedDate && selectedWorkout && selectedStatus;
 
 	useEffect(() => {
+		const today = format(new Date(), DATE_FORMAT);
 		// if selected date is in the past
-		if (isBefore(parse(selectedDate, DATE_FORMAT, new Date()), new Date())) {
+		if (
+			isBefore(
+				parse(selectedDate, DATE_FORMAT, new Date()),
+				parse(today, DATE_FORMAT, new Date())
+			)
+		) {
 			// set default selected status to null, so the placeholder text is used
 			if (!event.status) setSelectedStatus(null);
 
@@ -47,7 +53,7 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 				name: selectedWorkout,
 				status: selectedStatus,
 			}).unwrap();
-			toast.success('Event added to Calendar', { toastId: selectedDate });
+			toast.success('Workout added to Calendar', { toastId: selectedDate });
 		} catch (error) {
 			toast.error(error);
 		}
@@ -59,6 +65,7 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 				label: selectedWorkout,
 		  }
 		: null;
+
 	const default_status_option = selectedStatus
 		? {
 				value: selectedStatus,
@@ -68,7 +75,9 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 
 	return (
 		<div className={styles.eventModalContent}>
+
 			<form onSubmit={selectWorkout}>
+			
 				<section>
 					<div className={styles.eventSubHeader}>
 						Select a Workout for:
@@ -102,7 +111,6 @@ export const CalendarEventDetails = ({ selectedDate, event = {} }) => {
 						hideSelectedOptions={true}
 						placeholder={'Select a Workout Status...'}
 					/>
-
 					<Button
 						aria-disabled={!canSave}
 						type="submit"

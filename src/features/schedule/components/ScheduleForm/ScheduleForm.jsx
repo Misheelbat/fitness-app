@@ -31,10 +31,15 @@ export const ScheduleForm = () => {
 	useEffect(() => {
 		// if a past event has toBeCompleted status change it to not completed
 		if (isSuccess && schedules) {
-			const today = new Date();
+			const today = format(new Date(), DATE_FORMAT);
 			Object.values(schedules).forEach(async (event) => {
 				if (event.status !== EVENT_STATUS.tobeCompleted) return;
-				if (isBefore(parse(event.id, DATE_FORMAT, new Date()), today)) {
+				if (
+					isBefore(
+						parse(event.id, DATE_FORMAT, new Date()),
+						parse(today, DATE_FORMAT, new Date())
+					)
+				) {
 					try {
 						await updateEventStatus({
 							id: event.id,
