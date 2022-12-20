@@ -9,6 +9,10 @@
 .todaysWork p {
 	padding: 0 0 2rem 2rem;
 }
+.todaysWork p span {
+	text-transform: capitalize;
+	color: var(--clr-green);
+}
 .nothingFound {
 	padding-left: 2rem;
 }

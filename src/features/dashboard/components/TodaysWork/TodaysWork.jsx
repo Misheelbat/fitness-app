@@ -9,6 +9,7 @@ import styles from './TodaysWork.module.css';
 export const TodaysWork = () => {
 	const { todaysActivity } = useGetTodaysStats();
 	const { data: workouts, isLoading } = useGetWorkoutsQuery();
+
 	const data = workouts?.entities[todaysActivity];
 
 	let content;
@@ -21,9 +22,12 @@ export const TodaysWork = () => {
 	} else if (data) {
 		content = <TableGrid data={data?.exercises} workout={data?.id} />;
 	} else content = <div className={styles.nothingFound}>No Workout Today</div>;
+
 	return (
 		<div className={styles.todaysWork}>
-			<p>Todays Workout :</p>
+			<p>
+				Todays Workout : <span>{data?.id}</span>
+			</p>
 			{content}
 		</div>
 	);
