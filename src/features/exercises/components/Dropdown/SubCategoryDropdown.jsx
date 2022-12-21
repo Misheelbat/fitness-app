@@ -11,23 +11,27 @@ import {
 
 import styles from './dropdownstyle';
 
-export let SubCategoryDropdown = ({ resetPage }) => {
+export let SubCategoryDropdown = ({ resetToPageZero }) => {
 	const dispatch = useDispatch();
 	const categoryUrl = useSelector(selectCategoryUrl);
 	const subCategory = useSelector(selectSubCategory);
-	const { data, isLoading, isSuccess } = useGetCategoryQuery(categoryUrl);
+	const {
+		data: subCategories,
+		isLoading,
+		isSuccess,
+	} = useGetCategoryQuery(categoryUrl);
 
 	const handleChange = (e) => {
 		dispatch(setSubCategory(e));
-		resetPage();
+		resetToPageZero();
 	};
 
 	useEffect(() => {
-		if (data && Array.isArray(data)) {
-			dispatch(setSubCategory(data[0]));
-			resetPage();
+		if (subCategories && Array.isArray(subCategories)) {
+			dispatch(setSubCategory(subCategories[0]));
+			resetToPageZero();
 		}
-	}, [dispatch, data, resetPage]);
+	}, [dispatch, subCategories, resetToPageZero]);
 
 	if (isLoading) {
 		return <Select isLoading={true} styles={styles} />;
@@ -38,7 +42,7 @@ export let SubCategoryDropdown = ({ resetPage }) => {
 			<Select
 				value={subCategory}
 				isLoading={isLoading}
-				options={data}
+				options={subCategories}
 				onChange={handleChange}
 				styles={styles}
 			/>

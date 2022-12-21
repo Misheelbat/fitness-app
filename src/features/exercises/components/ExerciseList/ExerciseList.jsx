@@ -27,7 +27,7 @@ export const ExerciseList = () => {
 	const resetPage = useCallback(() => setPage(0), []);
 	return (
 		<div className={styles.exerciseList}>
-			<SubCategoryDropdown resetPage={resetPage} />
+			<SubCategoryDropdown resetToPageZero={resetPage} />
 			<div className={styles.info}>
 				<PageBtn
 					setPage={setPage}
